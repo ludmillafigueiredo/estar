@@ -3,13 +3,13 @@
 #' @description Returns the log-ratio response of a state variable.
 #'
 #' @details
-#' Read in a state variable time-series (\code{sv_df}) from the file path
+#' Read in a state variable time-series (\code{svts_df}) from the file path
 #' \code{svts_path}.
 #' If \code{bl = "time_series"}, read the baseline time-series from \code{bl_path},
 #' otherwise, the baseline is the state variable at \code{t = t_bl}.
 #' According to \code{res__time}, resistance can be calculated at the first
 #' time step after disturbance (\code{t_d + 1}) or as the maximal deviation
-#' from baseline inside a time frame defined by \code{dev_frame}.
+#' from baseline inside a time frame defined by \code{time_frame}.
 #'
 #' @param svts_path Path to the state variable time series for which resistance should be calculated.
 #' @param bl String stating the baseline in relation to which resistance
@@ -19,13 +19,13 @@
 #' @param res_time String stating how to select the time step at which resistance
 #'   should be calculated.
 #' @param t_d Time step of disturbance.
-#' @param dev_frame First and last time steps defining the time frame for which
+#' @param time_frame First and last time steps defining the time frame for which
 #'   the largest deviation from the baseline should be looked for.
 #' @return The log-ratio response between \code{sv} and \code{sv_bl}.
 
-resistance <- function(svts_path, bl, bl_path, t_bl, res_time, t_d, dev_frame){
+resistance <- function(svts_path, bl, bl_path, t_bl, res_time, t_d, time_frame){
 
-    svts_df <- read_csv(tseries,
+    svts_df <- read_csv(svts_path,
                         col_names = TRUE,
                         col_types = cols(sv = col_double(), t = col_integer()))
 
@@ -45,7 +45,7 @@ resistance <- function(svts_path, bl, bl_path, t_bl, res_time, t_d, dev_frame){
         }else{
             resistance_df = inner_join(bl_df, svts_df) %>%
                 ## reduce length to the interval of search defined by the user
-                filter(t %in% seq(dev_frame)) %>%
+                filter(t %in% seq(time_frame)) %>%
                 mutate(lrr = log(sv/sv_bl)) %>%
                 filter(max(lrr))
 
@@ -65,7 +65,7 @@ resistance <- function(svts_path, bl, bl_path, t_bl, res_time, t_d, dev_frame){
 
         }else{
             resistance_df <- svts_df %>%
-                filter(t %in% seq(dev_frame)) %>%
+                filter(t %in% seq(time_frame)) %>%
                 mutate(lrr = log(sv/bl$sv_bl)) %>%
                 filter(max(lrr))
 
