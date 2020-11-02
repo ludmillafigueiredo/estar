@@ -1,0 +1,39 @@
+---
+title: "eStar package" 
+author: "Ludmilla Figueiredo"           
+date: "`r Sys.Date()`"                  
+output:
+  rmdformats::readthedown:
+    code_folding: hide                  
+    toc_depth: 3                        
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE,
+                      fig.width = 9, fig.height = 6, dpi = 500, 
+                      retina = 1, fig.showtext = TRUE)
+```
+
+
+This is an open lab notebook, containing all relevant pieces of information regarding the development of this package.
+Information here will likely overlap with the package documentation (and accompanying manuscript), but the later have precedence, since they are the official documentation.
+
+# Glossary
+
+# Input formats 
+
+***
+
+<details><summary>Session Info</summary>
+
+```{r sessionInfo}
+## DO NOT REMOVE!
+## We store the settings of your computer and the current versions of the
+## packages used to allow for reproducibility
+Sys.time()
+#git2r::repository() ## uncomment if you are using GitHub
+sessionInfo()
+```
+
+</details>
+
