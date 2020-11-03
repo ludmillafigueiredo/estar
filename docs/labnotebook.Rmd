@@ -48,7 +48,15 @@ write.csv(data, './data-raw/toyset.csv')
 
 ## check NAs
 check_inv_NA <- invariability(svts_path = './data-raw/toyset.csv', variant = 'cv') 
-check_inv_NA
+check_inv_NA  ## here you see that will cause a pb
+
+
+## check with the baseline
+data_base <- data.frame(sv = rnorm(20, 5, 1), t = 1:20)
+write.csv(data_base, './data-raw/toyset_base.csv')
+check_inv_base <- invariability(svts_path = './data-raw/toyset.csv', variant = 'bla',
+                                time_frame = c(1, 20), bl_path = './data-raw/toysetc_base.csv') ## not sure what should be indicated as a variant here 
+
 ```
 
 <details><summary>Session Info</summary>
