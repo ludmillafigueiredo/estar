@@ -42,11 +42,11 @@ invariability <- function(svts_path, variant, time_frame, bl_path){
                           col_types = cols(sv = col_double(), t = col_integer())) %>%
             rename(sv = sv_bl)
 
-        invar_df <- inner_join(svts_df, bl_df) %>%
-            filter(t %in% seq(time_frame)) %>%
-            mutate(lrr = log(sv/sv_bl))
+        invar_df <- dplyr::inner_join(svts_df, bl_df) %>%
+            dplyr::filter(t %in% seq(time_frame)) %>%
+            dplyr::mutate(lrr = log(sv/sv_bl))
 
-        invar <- 1/sd(lm(lrr~t)$residuals)
+        invar <- 1/sd(stats::lm(lrr~t)$residuals)
 
         return(invar)
 
