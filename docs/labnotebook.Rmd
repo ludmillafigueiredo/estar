@@ -12,32 +12,32 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE,
                       fig.width = 9, fig.height = 6, dpi = 500, 
                       retina = 1, fig.showtext = TRUE)
+library(tidyverse)
 ```
 
 
 This is an open lab notebook, containing all relevant pieces of information regarding the development of this package.
-Information here will likely overlap with the package documentation (and accompanying manuscript), but the later have precedence, since they are the official documentation.
-
-# Glossary
-
-# Input formats 
+Information here will likely overlap with the package documentation (and accompanying manuscript), and the later have precedence, since they are the official documentation.
 
 ***
-
-# Create an examplary data set
-```{r toy data}
-ts <- rnorm(20, 5, 1)
-ts[c(2, 3)] <- c(0.4, 2) ## disturbance at t = 1
-
-data <- data.frame(sv = ts, t = 1:20)
-plot(sv ~ t, data = data, type = 'l')
-
-write.csv(data, './data-raw/toyset.csv')
+# Toy data set
+```{r toy-data, fig.cap="Values of the state variable (stat_var) in the baseline and disturbed time-series of the toy data set."}
+load("../data/toy_blts.rda")
+load("../data/toy_svts.rda")
+bind_rows(dplyr::mutate(toy_blts, type = "baseline"),
+           dplyr::mutate(toy_svts, type = "disturbed")) %>%
+  ggplot(aes(x = time, y = stat_var, colour = type, group = type)) +
+  geom_line()+
+  geom_point()+
+  scale_color_viridis_d(option = "cividis")+
+  theme_minimal()
 ```
 
 
+# Glossary
+
 # Some tests of functions
-```{r prelim simple tests}
+```{r eval=FALSE}
 check_inv <- invariability(svts_path = './data-raw/toyset.csv', variant = 'cv') 
 ## important: takes the whole time series (but it is possible that some times steps prior to the distrubace are also included in the provided time series)
 mean(data$sv) / sd(data$sv)
@@ -58,6 +58,8 @@ check_inv_base <- invariability(svts_path = './data-raw/toyset.csv', variant = '
                                 time_frame = c(1, 20), bl_path = './data-raw/toysetc_base.csv') ## not sure what should be indicated as a variant here 
 
 ```
+
+# Input formats 
 
 <details><summary>Session Info</summary>
 
