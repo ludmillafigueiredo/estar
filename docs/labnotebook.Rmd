@@ -24,6 +24,41 @@ Information here will likely overlap with the package documentation (and accompa
 
 ***
 
+# Create an examplary data set
+```{r toy data}
+ts <- rnorm(20, 5, 1)
+ts[c(2, 3)] <- c(0.4, 2) ## disturbance at t = 1
+
+data <- data.frame(sv = ts, t = 1:20)
+plot(sv ~ t, data = data, type = 'l')
+
+write.csv(data, './data-raw/toyset.csv')
+```
+
+
+# Some tests of functions
+```{r prelim simple tests}
+check_inv <- invariability(svts_path = './data-raw/toyset.csv', variant = 'cv') 
+## important: takes the whole time series (but it is possible that some times steps prior to the distrubace are also included in the provided time series)
+mean(data$sv) / sd(data$sv)
+
+## simple test for NA presence
+data$sv[18] <- NA
+write.csv(data, './data-raw/toyset.csv')
+
+## check NAs
+check_inv_NA <- invariability(svts_path = './data-raw/toyset.csv', variant = 'cv') 
+check_inv_NA  ## here you see that will cause a pb
+
+
+## check with the baseline
+data_base <- data.frame(sv = rnorm(20, 5, 1), t = 1:20)
+write.csv(data_base, './data-raw/toyset_base.csv')
+check_inv_base <- invariability(svts_path = './data-raw/toyset.csv', variant = 'bla',
+                                time_frame = c(1, 20), bl_path = './data-raw/toysetc_base.csv') ## not sure what should be indicated as a variant here 
+
+```
+
 <details><summary>Session Info</summary>
 
 ```{r sessionInfo}
