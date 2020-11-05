@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Ludmilla",
            family = "Figueiredo",
            role = c("aut", "cre"),
-           email = "ludmillafi@uni-wuerzburg.de",
+           email = "ludmillafi@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0001-8217-7800"))
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
@@ -18,3 +18,5 @@ Suggests:
     testthat
 Depends: 
     R (>= 2.10)
+Imports:
+    tidyverse
