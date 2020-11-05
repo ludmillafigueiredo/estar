@@ -12,7 +12,7 @@ A data frame with 100 rows and 2 variables:
 }
 }
 \source{
-\code{dataframe(sv = runif(n = 100, t = seq(1,100)))}
+\code{dataframe(sv = runif(n = 100), t = seq(1,100))}
 }
 \usage{
 mock_svts

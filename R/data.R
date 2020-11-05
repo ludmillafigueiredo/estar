@@ -10,7 +10,14 @@
 #'   \item{sv}{state variable}
 #'   \item{t}{time}
 #' }
-#' @source \code{dataframe(sv = runif(n = 100), t = seq(1,100))}
+#' @source \code{
+#' set.seed(777)
+# mock_svts <- tibble::tibble(sv = runif(n = 100, min = 50, max = 100), t = seq(1,100)) %>%
+#   dplyr::mutate(sv = dplyr::case_when(
+#   t >= 10 && t < 15 ~ runif(n = 1, min = 0, max = 30),
+#   TRUE ~ sv))
+#   usethis::use_data(mock_svts)
+#'   }
 "mock_svts"
 
 #'
@@ -24,5 +31,12 @@
 #'   \item{sv}{state variable}
 #'   \item{t}{time}
 #' }
-#' @source \code{dataframe(sv = runif(n = 100, min = 0, max = 0.5), t = seq(1,100))}
+#' @source \code{
+#' set.seed(777)
+# mock_blts <- tibble::tibble(sv = runif(n = 100, min = 50, max = 100), t = seq(1,100))
+#   usethis::use_data(mock_blts)
+#'   }
 "mock_blts"
+
+
+
