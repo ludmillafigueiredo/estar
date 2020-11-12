@@ -2,26 +2,80 @@
 % Please edit documentation in R/invariability.R
 \name{invariability}
 \alias{invariability}
-\title{Calculate the invariability of state variable after disturbance.}
+\title{Calculate the invariability of a state variable after disturbance.}
 \usage{
-invariability(svts_path, variant, time_frame, bl_path)
+invariability(
+  sv_resp,
+  t_resp,
+  mode,
+  tf_resp,
+  data_resp = NULL,
+  sv_bl = NULL,
+  t_bl = NULL,
+  tf_bl = NULL,
+  data_bl = NULL
+)
 }
 \arguments{
-\item{svts_path}{Path to the state variable time series for which
-invariability should be calculated.}
+\item{sv_resp}{a vector containing the response state variable or a string specifying
+the name of the column containing said variable in the dataframe provided
+in \code{data}.}
 
-\item{variant}{String stating whether invariability should be calculated
-as the inverse of the coefficient of variation of the state variable
-\code{"cv"}, or as the residual of the linear model derived for the log
-response ratio between the response and a baseline.}
+\item{t_resp}{a vector containing the time or a string specifying the
+name of the column containing the time in the dataframe provided
+in \code{data}.}
 
-\item{time_frame}{First and last time steps defining the time frame for which
-invariability should be calculated from the baseline should be looked for.}
+\item{mode}{a string stating whether invariability should be calculated
+from the coefficient of variation of the state variable \code{mode = "cv"},
+or from the linear model between the response and time \code{"lm_res"}.
+The details of the two modes as explained in 'Details'.}
 
-\item{bl_path}{Path to the state variable time series to be used as baseline.}
+\item{tf_resp}{a vector, specifying the positional interval of \code{sv} values
+from which invariability should be calculated, or the specific time values defining
+this interval, if \code{t} is provided.}
+
+\item{data_resp}{an optional data frame containing the columns storing the
+response state variable and time.}
+
+\item{sv_bl}{a vector containing the baseline, or a string containing
+the name of the column in \code{data_bl} containing the baseline.
+Obligatory argument if \code{mode = "lm_res"}.}
+
+\item{t_bl}{an optional vector containing the time steps for which the baseline
+was measured, or a string containing the name of the column in \code{data_bl}.
+Obligatory argument if \code{mode = "lm_res"}.}
+
+\item{tf_bl}{a vector, specifying the positional interval of \code{sv_bl} values
+from which invariability should be calculated, or the specific time values defining
+this interval, if \code{data_bl} is provided.
+Obligatory argument if \code{mode = "lm_res"}.}
+
+\item{data_bl}{an optional data frame containing the columns storing the baseline
+of the state variable.}
+}
+\value{
+a double, the invariability value.
 }
 \description{
 Return the inverse of coefficient of variation or
 that of the standard-deviation of residuals of the linear model
 derived for the ratio between response over time.
+}
+\details{
+Invariance can be calculated as the inverse of coefficient of variation
+(\code{mode = "cv"} or as the inverse of the residuals of the linear model derived
+for the log response ratio between the state variable and the baseline.
+}
+\examples{
+invariability(sv_resp = "stat_var", t_resp = "time", mode = "cv",
+tf_resp = c(11, 50), data_resp = toy_svts)
+invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
+tf_resp = c(11, 50))
+invariability(sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
+tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
+t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts)
+invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
+tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
+t_bl = toy_blts$time, tf_bl = c(11, 50))
+
 }
