@@ -13,7 +13,8 @@ invariability(
   sv_bl = NULL,
   t_bl = NULL,
   tf_bl = NULL,
-  data_bl = NULL
+  data_bl = NULL,
+  na_rm = TRUE
 )
 }
 \arguments{
@@ -52,6 +53,8 @@ Obligatory argument if \code{mode = "lm_res"}.}
 
 \item{data_bl}{an optional data frame containing the columns storing the baseline
 of the state variable.}
+
+\item{na_rm}{a logical indicating whether NA values should be removed before processing.}
 }
 \value{
 a double, the invariability value.

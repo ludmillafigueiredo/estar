@@ -17,6 +17,7 @@
 #' @param tf_resp a vector, specifying the positional interval of \code{sv} values
 #' from which invariability should be calculated, or the specific time values defining
 #' this interval, if \code{t} is provided.
+#' @param na_rm a logical indicating whether NA values should be removed before processing.
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
 #' @param sv_bl a vector containing the baseline, or a string containing
@@ -52,7 +53,7 @@
 #' for the log response ratio between the state variable and the baseline.
 #' @export
 invariability <- function(sv_resp, t_resp , mode, tf_resp, data_resp = NULL,
-                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL){
+                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE){
 
     if(is.null(data_resp)){
 
@@ -83,7 +84,7 @@ invariability <- function(sv_resp, t_resp , mode, tf_resp, data_resp = NULL,
           }
         }
 
-        invar <- 1/(stats::sd(sv_vct, na.rm = TRUE)/mean(sv_vct, na.rm = TRUE))
+        invar <- 1/(stats::sd(sv_vct, na.rm = na_rm)/mean(sv_vct, na.rm = na_rm))
 
         return(invar)
 
