@@ -42,6 +42,3 @@
 #   usethis::use_data(toy_blts)
 #'   }
 "toy_blts"
-
-
-

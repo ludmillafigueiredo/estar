@@ -52,66 +52,71 @@
 #' resistance(
 #'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
 #'   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-#'   res_time = "time_frame", tf_res = c(11,50)
+#'   res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' resistance(
 #'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
-#'   tresp_bl = 9, res_time = "time_frame", tf_res = c(11,50)
+#'   tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' @export
 resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl = NULL, data_bl = NULL,
                        tresp_bl = NULL, res_time, t_res = NULL, tf_res = NULL) {
   if (is.null(data_resp)) {
     data_resp <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
-  }else{
+  } else {
     data_resp <- data_resp %>%
-      dplyr::select("sv_resp" = dplyr::all_of(sv_resp),
-                    "t_resp" = dplyr::all_of(t_resp))
+      dplyr::select(
+        "sv_resp" = dplyr::all_of(sv_resp),
+        "t_resp" = dplyr::all_of(t_resp)
+      )
   }
 
-    if (bl == "separate") {
-      if (is.null(data_bl)) {
-        data_bl <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
-      }else{
-        data_bl <- data_bl %>%
-          dplyr::select("sv_bl" = dplyr::all_of(sv_bl),
-                        "t_bl" = dplyr::all_of(t_bl))
-      }
-
-        res_df <- dplyr::inner_join(dplyr::rename(data_resp),
-                                    dplyr::rename(data_bl),
-                                    by = c("t_resp" = "t_bl")) %>%
-          dplyr::rename("t" = t_resp)
+  if (bl == "separate") {
+    if (is.null(data_bl)) {
+      data_bl <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
     } else {
-        if (bl == "previous") {
-            bl <- data_resp %>%
-                dplyr::filter(t_resp == tresp_bl) %>%
-                dplyr::pull(sv_resp)
-
-            res_df <- data_resp %>%
-              dplyr::rename("t" = t_resp) %>%
-              dplyr::mutate(sv_bl = bl)
-        } else {
-            stop("bl must be \"separate\" or \"previous\".")
-        }
+      data_bl <- data_bl %>%
+        dplyr::select(
+          "sv_bl" = dplyr::all_of(sv_bl),
+          "t_bl" = dplyr::all_of(t_bl)
+        )
     }
 
-    if (res_time == "single") {
-        res_df <- res_df %>%
-            dplyr::filter(t == t_res) %>%
-            dplyr::mutate(lrr = log(sv_resp / sv_bl))
+    res_df <- dplyr::inner_join(dplyr::rename(data_resp),
+      dplyr::rename(data_bl),
+      by = c("t_resp" = "t_bl")
+    ) %>%
+      dplyr::rename("t" = t_resp)
+  } else {
+    if (bl == "previous") {
+      bl <- data_resp %>%
+        dplyr::filter(t_resp == tresp_bl) %>%
+        dplyr::pull(sv_resp)
 
-        return(res_df$lrr)
+      res_df <- data_resp %>%
+        dplyr::rename("t" = t_resp) %>%
+        dplyr::mutate(sv_bl = bl)
     } else {
-        if (res_time == "time_frame") {
-            res_df <- res_df %>%
-                dplyr::filter(t %in% seq(tf_res)) %>%
-                dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
-                dplyr::summarize(max_lrr = max(lrr))
-
-            return(res_df$max_lrr)
-        } else {
-            stop("res_time must be \"defined\" or \"single\".")
-        }
+      stop("bl must be \"separate\" or \"previous\".")
     }
+  }
+
+  if (res_time == "single") {
+    res_df <- res_df %>%
+      dplyr::filter(t == t_res) %>%
+      dplyr::mutate(lrr = log(sv_resp / sv_bl))
+
+    return(res_df$lrr)
+  } else {
+    if (res_time == "time_frame") {
+      res_df <- res_df %>%
+        dplyr::filter(t %in% seq(tf_res)) %>%
+        dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
+        dplyr::summarize(max_lrr = max(lrr))
+
+      return(res_df$max_lrr)
+    } else {
+      stop("res_time must be \"defined\" or \"single\".")
+    }
+  }
 }

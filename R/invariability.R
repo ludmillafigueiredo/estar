@@ -14,7 +14,7 @@
 #' from the coefficient of variation of the state variable \code{mode = "cv"},
 #' or from the linear model between the response and time \code{"lm_res"}.
 #' The details of the two modes as explained in 'Details'.
-#' @param tf_resp a vector, specifying the positional interval of \code{sv} values
+#' @param tf_resp a vector, specifying the interval of \code{sv} values
 #' from which invariability should be calculated, or the specific time values defining
 #' this interval, if \code{t} is provided.
 #' @param na_rm a logical indicating whether NA values should be removed before processing.
@@ -26,7 +26,7 @@
 #' @param t_bl an optional vector containing the time steps for which the baseline
 #' was measured, or a string containing the name of the column in \code{data_bl}.
 #' Obligatory argument if \code{mode = "lm_res"}.
-#' @param tf_bl a vector, specifying the positional interval of \code{sv_bl} values
+#' @param tf_bl a vector, specifying the interval of \code{sv_bl} values
 #' from which invariability should be calculated, or the specific time values defining
 #' this interval, if \code{data_bl} is provided.
 #' Obligatory argument if \code{mode = "lm_res"}.
@@ -36,17 +36,24 @@
 #' @return a double, the invariability value.
 #'
 #' @examples
-#' invariability(sv_resp = "stat_var", t_resp = "time", mode = "cv",
-#' tf_resp = c(11, 50), data_resp = toy_svts)
-#' invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
-#' tf_resp = c(11, 50))
-#' invariability(sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
-#' tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
-#' t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts)
-#' invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
-#' tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
-#' t_bl = toy_blts$time, tf_bl = c(11, 50))
-#'
+#' invariability(
+#'   sv_resp = "stat_var", t_resp = "time", mode = "cv",
+#'   tf_resp = c(11, 50), data_resp = toy_svts
+#' )
+#' invariability(
+#'   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
+#'   tf_resp = c(11, 50)
+#' )
+#' invariability(
+#'   sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
+#'   tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
+#'   t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts
+#' )
+#' invariability(
+#'   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
+#'   tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
+#'   t_bl = toy_blts$time, tf_bl = c(11, 50)
+#' )
 #' @details
 #' Invariance can be calculated as the inverse of coefficient of variation
 #' (\code{mode = "cv"} or as the inverse of the residuals of the linear model derived
@@ -56,10 +63,12 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
                           sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE) {
   if (is.null(data_resp)) {
     data_resp <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
-  }else{
+  } else {
     data_resp <- data_resp %>%
-      dplyr::select("sv_resp" = dplyr::all_of(sv_resp),
-                    "t_resp" = dplyr::all_of(t_resp))
+      dplyr::select(
+        "sv_resp" = dplyr::all_of(sv_resp),
+        "t_resp" = dplyr::all_of(t_resp)
+      )
   }
 
   data_resp <- data_resp %>%
@@ -83,19 +92,22 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
     if (mode == "lm_res") {
       if (is.null(data_bl)) {
         data_bl <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
-      }else{
+      } else {
         data_bl <- data_bl %>%
-          dplyr::select("sv_bl" = dplyr::all_of(sv_bl),
-                        "t_bl" = dplyr::all_of(t_bl))
+          dplyr::select(
+            "sv_bl" = dplyr::all_of(sv_bl),
+            "t_bl" = dplyr::all_of(t_bl)
+          )
       }
 
       data_bl <- data_bl %>%
         dplyr::filter(t_bl >= min(t_bl), t_bl <= max(t_bl))
 
       invar_df <- dplyr::inner_join(data_resp,
-                                    data_bl,
-                                    by = c("t_resp" = "t_bl")) %>%
-        dplyr::mutate(lrr = log(sv_resp/sv_bl)) %>%
+        data_bl,
+        by = c("t_resp" = "t_bl")
+      ) %>%
+        dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
         dplyr::rename("t" = t_resp)
 
       invar <- 1 / stats::sd(stats::lm(invar_df$lrr ~ invar_df$t)$residuals)
