@@ -31,7 +31,7 @@ from the coefficient of variation of the state variable \code{mode = "cv"},
 or from the linear model between the response and time \code{"lm_res"}.
 The details of the two modes as explained in 'Details'.}
 
-\item{tf_resp}{a vector, specifying the positional interval of \code{sv} values
+\item{tf_resp}{a vector, specifying the interval of \code{sv} values
 from which invariability should be calculated, or the specific time values defining
 this interval, if \code{t} is provided.}
 
@@ -46,7 +46,7 @@ Obligatory argument if \code{mode = "lm_res"}.}
 was measured, or a string containing the name of the column in \code{data_bl}.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{tf_bl}{a vector, specifying the positional interval of \code{sv_bl} values
+\item{tf_bl}{a vector, specifying the interval of \code{sv_bl} values
 from which invariability should be calculated, or the specific time values defining
 this interval, if \code{data_bl} is provided.
 Obligatory argument if \code{mode = "lm_res"}.}
@@ -70,15 +70,22 @@ Invariance can be calculated as the inverse of coefficient of variation
 for the log response ratio between the state variable and the baseline.
 }
 \examples{
-invariability(sv_resp = "stat_var", t_resp = "time", mode = "cv",
-tf_resp = c(11, 50), data_resp = toy_svts)
-invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
-tf_resp = c(11, 50))
-invariability(sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
-tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
-t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts)
-invariability(sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
-tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
-t_bl = toy_blts$time, tf_bl = c(11, 50))
-
+invariability(
+  sv_resp = "stat_var", t_resp = "time", mode = "cv",
+  tf_resp = c(11, 50), data_resp = toy_svts
+)
+invariability(
+  sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
+  tf_resp = c(11, 50)
+)
+invariability(
+  sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
+  tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
+  t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts
+)
+invariability(
+  sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
+  tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
+  t_bl = toy_blts$time, tf_bl = c(11, 50)
+)
 }

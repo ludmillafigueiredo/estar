@@ -52,72 +52,57 @@
 #' (\code{mode = "cv"} or as the inverse of the residuals of the linear model derived
 #' for the log response ratio between the state variable and the baseline.
 #' @export
-invariability <- function(sv_resp, t_resp , mode, tf_resp, data_resp = NULL,
-                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE){
-
-    if(is.null(data_resp)){
-
-        data_resp <- data.frame(sv_resp = sv_resp, t_resp = t_resp)
-
-    }else{
-
-      data_resp <- dplyr::rename(data_resp, c("sv_resp" = "stat_var", "t_resp" = "time"))
-
-    }
-
+invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
+                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE) {
+  if (is.null(data_resp)) {
+    data_resp <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
+  }else{
     data_resp <- data_resp %>%
-        dplyr::select(sv_resp, t_resp) %>%
-        dplyr::filter(t_resp >= min(t_resp), t_resp <= max(t_resp))
+      dplyr::select("sv_resp" = dplyr::all_of(sv_resp),
+                    "t_resp" = dplyr::all_of(t_resp))
+  }
 
-    if(mode == "cv"){
+  data_resp <- data_resp %>%
+    dplyr::filter(t_resp >= min(t_resp), t_resp <= max(t_resp))
 
-        sv_vct <- dplyr::pull(data_resp, sv_resp)
+  if (mode == "cv") {
+    sv_vct <- dplyr::pull(data_resp, sv_resp)
 
-        if(any(is.na(sv_vct))){
+    if (any(is.na(sv_vct))) {
+      message("NAs detected among the entries of the state variable")
 
-          message("NAs detected among the entries of the state variable")
-
-          if(sum(!is.na(sv_vct)) < 10){
-
-            warning("Less than 10 data points are available for measuring invariability.")
-
-          }
-        }
-
-        invar <- 1/(stats::sd(sv_vct, na.rm = na_rm)/mean(sv_vct, na.rm = na_rm))
-
-        return(invar)
-
-    }else{
-
-        if(mode == "lm_res"){
-
-            if(is.null(data_bl)){
-
-                data_bl <- data.frame(sv_bl = sv_bl, t_bl = t_bl)
-
-            }else{
-
-              data_bl <- dplyr::rename(data_bl, c("sv_bl" = "stat_var", "t_bl" = "time"))
-
-            }
-
-            data_bl <- data_bl %>%
-              dplyr::filter(t_bl >= min(tf_bl), t_bl <= max(tf_bl)) %>%
-              dplyr::select(sv_bl, t = t_bl)
-
-            data_resp <- dplyr::rename(data_resp, t = t_resp)
-
-            invar_df <- dplyr::inner_join(data_resp, data_bl, by = "t") %>%
-                dplyr::mutate(lrr = log(sv_resp/sv_bl))
-
-            invar <- 1/stats::sd(stats::lm(invar_df$lrr~invar_df$t)$residuals)
-
-            return(invar)
-
-        }else{
-
-            stop("Specify mode of invariability to calculate:\n\"cv\" or \"lm_res\"")}
-
+      if (sum(!is.na(sv_vct)) < 10) {
+        warning("Less than 10 data points are available for measuring invariability.")
+      }
     }
+
+    invar <- 1 / (stats::sd(sv_vct, na.rm = na_rm) / mean(sv_vct, na.rm = na_rm))
+
+    return(invar)
+  } else {
+    if (mode == "lm_res") {
+      if (is.null(data_bl)) {
+        data_bl <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
+      }else{
+        data_bl <- data_bl %>%
+          dplyr::select("sv_bl" = dplyr::all_of(sv_bl),
+                        "t_bl" = dplyr::all_of(t_bl))
+      }
+
+      data_bl <- data_bl %>%
+        dplyr::filter(t_bl >= min(t_bl), t_bl <= max(t_bl))
+
+      invar_df <- dplyr::inner_join(data_resp,
+                                    data_bl,
+                                    by = c("t_resp" = "t_bl")) %>%
+        dplyr::mutate(lrr = log(sv_resp/sv_bl)) %>%
+        dplyr::rename("t" = t_resp)
+
+      invar <- 1 / stats::sd(stats::lm(invar_df$lrr ~ invar_df$t)$residuals)
+
+      return(invar)
+    } else {
+      stop("Specify mode of invariability to calculate:\n\"cv\" or \"lm_res\"")
+    }
+  }
 }
