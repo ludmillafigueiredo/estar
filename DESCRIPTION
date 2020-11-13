@@ -22,5 +22,6 @@ Depends:
 Imports:
     dplyr,
     stats,
-    magrittr
+    magrittr,
+    utils
 VignetteBuilder: knitr
