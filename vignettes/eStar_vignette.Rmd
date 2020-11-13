@@ -1,0 +1,60 @@
+---
+title: "eStar package"
+output: 
+  rmarkdown::html_vignette:
+    fig_width: 5
+    fig_height: 3
+vignette: >
+  %\VignetteIndexEntry{eStar_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(eStar)
+library(dplyr) ## TODO: shouldn't it be imported by eStar
+library(ggplot2)
+```
+
+# Toy data set
+```{r toy-data, fig.cap = "Baseline and response time-series of the state variable created for the toy data set."}
+load("../data/toy_blts.rda")
+load("../data/toy_svts.rda")
+bind_rows(dplyr::mutate(toy_blts, type = "baseline"),
+          dplyr::mutate(toy_svts, type = "response")) %>%
+    ggplot(aes(x = time, y = stat_var, colour = type, group = type)) +
+    geom_line()+
+    geom_point()+
+    scale_color_viridis_d(option = "cividis")+
+    labs(x = "Time", y = "State variable", color = "Data")+
+    theme_minimal() +
+    theme(legend.position = "bottom")
+```
+
+# Glossary
+
+# Main functions
+##
+Invariability
+```{r eval=FALSE}
+```
+
+<details><summary>Session Info</summary>
+
+```{r sessionInfo}
+## DO NOT REMOVE!
+## We store the settings of your computer and the current versions of the
+## packages used to allow for reproducibility
+Sys.time()
+#git2r::repository() ## uncomment if you are using GitHub
+sessionInfo()
+```
+
+</details>
