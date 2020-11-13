@@ -4,28 +4,59 @@
 \alias{resistance}
 \title{Calculate the resistance of a state variable to disturbance}
 \usage{
-resistance(svts_path, bl, bl_path, t_bl, res_time, t_d, time_frame)
+resistance(
+  sv_resp,
+  t_resp,
+  data_resp = NULL,
+  bl,
+  sv_bl = NULL,
+  t_bl = NULL,
+  data_bl = NULL,
+  tresp_bl = NULL,
+  res_time,
+  t_res = NULL,
+  tf_res = NULL
+)
 }
 \arguments{
-\item{svts_path}{Path to the state variable time series for which resistance should be calculated.}
+\item{sv_resp}{a vector containing the response state variable or a string specifying
+the name of the column containing said variable in the dataframe provided
+in \code{data_resp}.}
 
-\item{bl}{String stating the baseline in relation to which resistance
+\item{t_resp}{a vector containing the time or a string specifying the
+name of the column containing the time in the dataframe provided
+in \code{data_resp}.}
+
+\item{data_resp}{an optional data frame containing the columns storing the
+response state variable and time.}
+
+\item{bl}{a string stating the baseline in relation to which resistance
 should be calculated.}
 
-\item{bl_path}{Path to the state variable time series to be used as baseline.}
+\item{sv_bl}{a vector containing the baseline, or a string containing
+the name of the column in \code{data_bl} containing the baseline.
+Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{t_bl}{User-defined time step that should be used as baseline.}
+\item{t_bl}{an optional vector containing the time steps for which the baseline
+was measured, or a string containing the name of the column in \code{data_bl}.
+Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{res_time}{String stating how to select the time step at which resistance
+\item{data_bl}{an optional data frame containing the columns storing the baseline
+of the state variable.}
+
+\item{tresp_bl}{an integer, specifying the time step that should be used
+as baseline}
+
+\item{res_time}{a string stating how to select the time step at which resistance
 should be calculated.}
 
-\item{t_d}{Time step of disturbance.}
+\item{t_res}{an integer defining the time step when resistance should be measured.}
 
-\item{time_frame}{First and last time steps defining the time frame for which
-the largest deviation from the baseline should be looked for.}
+\item{tf_res}{a vector, specifying the interval of \code{sv_resp} and
+\code{sv_bl} values from which resistance should be calculated.}
 }
 \value{
-The log-ratio response between \code{sv} and \code{sv_bl}.
+a double, the log-ratio response between \code{sv} and \code{sv_bl}.
 }
 \description{
 Returns the log-ratio response of a state variable.
@@ -38,4 +69,24 @@ otherwise, the baseline is the state variable at \code{t = t_bl}.
 According to \code{res__time}, resistance can be calculated at the first
 time step after disturbance (\code{t_d + 1}) or as the maximal deviation
 from baseline inside a time frame defined by \code{time_frame}.
+}
+\examples{
+resistance(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  res_time = "single", t_res = 11
+)
+resistance(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+  tresp_bl = 9, res_time = "single", t_res = 11
+)
+resistance(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  res_time = "time_frame", tf_res = c(11,50)
+)
+resistance(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+  tresp_bl = 9, res_time = "time_frame", tf_res = c(11,50)
+)
 }
