@@ -28,15 +28,6 @@
 #' @param tf_res a vector, specifying the interval of \code{sv_resp} and
 #' \code{sv_bl} values from which resistance should be calculated.
 #'
-#' @details
-#' Read in a state variable time-series (\code{svts_df}) from the file path
-#' \code{svts_path}.
-#' If \code{bl = "time_series"}, read the baseline time-series from \code{bl_path},
-#' otherwise, the baseline is the state variable at \code{t = t_bl}.
-#' According to \code{res__time}, resistance can be calculated at the first
-#' time step after disturbance (\code{t_d + 1}) or as the maximal deviation
-#' from baseline inside a time frame defined by \code{time_frame}.
-#'
 #' @return a double, the log-ratio response between \code{sv} and \code{sv_bl}.
 #'
 #' @examples

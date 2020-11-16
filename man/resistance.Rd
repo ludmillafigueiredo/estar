@@ -61,15 +61,6 @@ a double, the log-ratio response between \code{sv} and \code{sv_bl}.
 \description{
 Returns the log-ratio response of a state variable.
 }
-\details{
-Read in a state variable time-series (\code{svts_df}) from the file path
-\code{svts_path}.
-If \code{bl = "time_series"}, read the baseline time-series from \code{bl_path},
-otherwise, the baseline is the state variable at \code{t = t_bl}.
-According to \code{res__time}, resistance can be calculated at the first
-time step after disturbance (\code{t_d + 1}) or as the maximal deviation
-from baseline inside a time frame defined by \code{time_frame}.
-}
 \examples{
 resistance(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
