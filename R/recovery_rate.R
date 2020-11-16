@@ -15,8 +15,8 @@
 #' @param bl_mode a string determining whether recovery is calculated in relation
 #' to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
 #' variable time series (\code{bl_mode = "point"}).
-#' @param t_rec if \code{bl_mode = "point"}, the time step at which extent of
-#' recovery should be measured in the baseline and in the response.
+#' @param t_rec if \code{bl_mode = "point"}, the time step at which response value
+#' should be used as the baseline.
 #' @param sv_bl a vector containing the baseline, or a string containing
 #' the name of the column in \code{data_bl} containing the baseline.
 #' Obligatory argument if (\code{slope_mode = "bl"}).

@@ -33,8 +33,8 @@ response state variable and time.}
 to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
 variable time series (\code{bl_mode = "point"}).}
 
-\item{t_rec}{if \code{bl_mode = "point"}, the time step at which extent of
-recovery should be measured in the baseline and in the response.}
+\item{t_rec}{if \code{bl_mode = "point"}, the time step at which response value
+should be used as the baseline.}
 
 \item{sv_bl}{a vector containing the baseline, or a string containing
 the name of the column in \code{data_bl} containing the baseline.
