@@ -69,7 +69,7 @@ between two time steps.
 \examples{
 recovery_rate(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   slope_mode = "lm", tf_slope = c(12, 50)
 )
 recovery_rate(
@@ -79,7 +79,7 @@ recovery_rate(
 )
 recovery_rate(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   slope_mode = "points", tf_slope = c(12, 50)
 )
 recovery_rate(
