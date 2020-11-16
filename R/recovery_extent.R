@@ -2,51 +2,79 @@
 #'
 #' @description Returns the log-ratio response of a state variable in relation to a baseline or between two time steps.
 #'
-#' @details
-#' Read in a state variable time-series (\code{svts_df}) from the file path
-#' \code{svts_path}.
-#' If \code{bl = TRUE}, read the baseline time-series from \code{bl_path},
-#' an calculate the log-ratio response at \code{t = time_frame}.
-#' If \code{bl = FALSE}, calculate the log-ratio response between that values of state variable at the time steps listed in \code{time_frame}.
+#' @param sv_resp a vector containing the response state variable or a string
+#' specifying the name of the column containing said variable in the dataframe
+#' provided in \code{data}.
+#' @param t_resp a vector containing the time or a string specifying the name
+#' of the column containing the time in the dataframe provided in \code{data}.
+#' @param data_resp an optional data frame containing the columns storing the
+#' response state variable and time.
+#' @param bl_mode a string determining whether recovery is calculated in relation
+#' to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
+#' variable time series (\code{bl_mode = "point"}).
+#' @param t_rec an integer, time step at which extent of recovery should be
+#' calculated.
+#' @param sv_bl a vector containing the baseline, or a string containing
+#' the name of the column in \code{data_bl} containing the baseline.
+#' Obligatory argument if (\code{slope_mode = "bl"}).
+#' @param t_bl an optional vector containing the time steps for which the baseline
+#' was measured, or a string containing the name of the column in \code{data_bl}.
+#' Obligatory argument if (\code{slope_mode = "bl"}).
+#' @param data_bl an optional data frame containing the columns storing the
+#' baseline of the state variable.
+#'
+#' @return a double, the extent of recovery
 #' 
-#' @param svts_path Path to the state variable time series for which resistance should be calculated.
-#' @param bl Boolean determining whether recovery is calculated in relation to a baseline time series.
-#' @param time_frame If \code{bl = TRUE}, the time step at which extent of recovery should be measured. If \code{bl =FALSE}, the first and last time steps defining the time frame between which the extent of recovery should be calculated for.
-
-recovery_extent <- function(svts_path, bl, bl_path, time_frame){
-    
-    svts_df <- read_csv(svts_path,
-                        col_names = TRUE,
-                        col_types = cols(sv = col_double(), t = col_integer()))
-    
-    if(bl == TRUE){
-
-        bl_df <- read_csv(bl_path,
-                          col_names = TRUE,
-                          col_types = cols(sv = col_double(), t = col_integer())) %>%
-            rename(sv = sv_bl)
-
-        base_df <- inner_join(svts_df, bl_df) %>%
-            filter(t %in% time_frame) %>%
-            mutate(extent = log(sv/sv_bl))
-
-        return(extent_df$extent)
-        
-    }else{
-
-        if(bl == FALSE){
-
-            extent_df <- base_df %>%
-                filter(t %in% time_frame) %>%
-                mutate(lim = case_when(
-                           time_frame == min(time_frame) ~ "min",
-                           time_frame == max(time_frame) ~ "max")) %>%
-                select(lim, sv) %>%
-                pivot_wider(names_from = lim, values_from = sv) %>%
-                mutate(extent = log(max/min))
-
-            return(extent_df$extent)
-            
-        }
+#' @examples
+#' recovery_extent(
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
+#'   t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
+#' )
+#' recovery_extent(
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
+#'   t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
+#' )
+#' @export
+recovery_extent <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec, sv_bl = NULL,
+                            t_bl = NULL, data_bl = NULL) {
+  if (is.null(data_resp)) {
+    respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
+  } else {
+    respts_df <- data_resp %>%
+      dplyr::select(
+        "sv_resp" = dplyr::all_of(sv_resp),
+        "t_resp" = dplyr::all_of(t_resp)
+      )
+  }
+  if (bl_mode == "ts") {
+    if (is.null(data_bl)) {
+      blts_df <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
+    } else {
+      blts_df <- data_bl %>%
+        dplyr::select(
+          "sv_bl" = dplyr::all_of(sv_bl),
+          "t_bl" = dplyr::all_of(t_bl)
+        )
     }
+    extent_df <- dplyr::left_join(
+      dplyr::rename(respts_df, "t" = t_resp),
+      dplyr::rename(blts_df, "t" = t_bl)
+    ) %>%
+      dplyr::filter(t == t_rec)
+  } else {
+    if (bl_mode == "point") {
+      svbl_df <- dplyr::filter(respts_df, t_resp == t_rec) %>%
+        dplyr::rename("sv_bl" = sv_resp)
+      extent_df <- respts_df %>%
+        dplyr::filter(t_resp == t_rec) %>%
+        dplyr::mutate(sv_bl = svbl_df$sv_bl)
+      warning("You are using a single point as baseline.")
+    } else {
+      stop("bl_mode must be 'ts' or 'point'.")
+    }
+  }
+
+  extent <- extent_df %>%
+    dplyr::mutate(extent = log(sv_resp / sv_bl)) %>%
+    dplyr::pull(extent)
 }
