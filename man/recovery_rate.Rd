@@ -2,26 +2,89 @@
 % Please edit documentation in R/recovery_rate.R
 \name{recovery_rate}
 \alias{recovery_rate}
-\title{Calculate the extent of recovery.}
+\title{Calculate the rate of recovery.}
 \usage{
-recovery_rate(svts_path, bl, bl_path, time_frame)
+recovery_rate(
+  sv_resp,
+  t_resp,
+  data_resp,
+  bl_mode,
+  t_rec = NULL,
+  sv_bl = NULL,
+  t_bl = NULL,
+  data_bl = NULL,
+  slope_mode,
+  tf_slope,
+  na_rm = TRUE
+)
 }
 \arguments{
-\item{svts_path}{Path to the state variable time series for which resistance should be calculated.}
+\item{sv_resp}{a vector containing the response state variable or a string
+specifying the name of the column containing said variable in the dataframe
+provided in \code{data}.}
 
-\item{bl}{Boolean determining whether recovery is calculated in relation to a baseline time series or to a point in the state variable time series.}
+\item{t_resp}{a vector containing the time or a string specifying the name
+of the column containing the time in the dataframe provided in \code{data}.}
 
-\item{time_frame}{If \code{bl = TRUE}, the time step at which extent of recovery should be measured in the baseline and in the response. If \code{bl =FALSE}, the first and last time steps defining the time frame between which the extent of recovery should be calculated for.}
+\item{data_resp}{an optional data frame containing the columns storing the
+response state variable and time.}
 
-\item{slope_lm}{Boolean determining whether recovery rate is calculated as the slope of a linear model \code{slope_lm = TRUE} or between two points in the time series.}
+\item{bl_mode}{a string determining whether recovery is calculated in relation
+to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
+variable time series (\code{bl_mode = "point"}).}
+
+\item{t_rec}{if \code{bl_mode = "point"}, the time step at which extent of
+recovery should be measured in the baseline and in the response.}
+
+\item{sv_bl}{a vector containing the baseline, or a string containing
+the name of the column in \code{data_bl} containing the baseline.
+Obligatory argument if (\code{slope_mode = "bl"}).}
+
+\item{t_bl}{an optional vector containing the time steps for which the baseline
+was measured, or a string containing the name of the column in \code{data_bl}.
+Obligatory argument if (\code{slope_mode = "bl"}).}
+
+\item{data_bl}{an optional data frame containing the columns storing the
+baseline of the state variable.}
+
+\item{slope_mode}{a string stating whether recovery rate is calculated as the
+slope of a linear model (\code{slope_mode = "lm"}) or between two points in
+the time series (\code{slope_mode = "points"}).}
+
+\item{tf_slope}{a vector containing the first and last time steps defining
+the time frame between which the rate of recovery should be calculated.}
+
+\item{na_rm}{a logical indicating whether NA values should be removed before
+processing.}
+}
+\value{
+a double, the rate of recovery
 }
 \description{
-Returns the log-ratio response of a state variable in relation to a baseline or between two time steps.
+Returns the rate of log-ratio response (LRR) of a state variable
+in relation to a baseline, over a time frame. The slope can be calculated as
+the slope of a linear model derived for the LRR over time or as the slope
+between two time steps.
 }
-\details{
-Read in a state variable time-series (\code{svts_df}) from the file path
-\code{svts_path}.
-If \code{bl = TRUE}, read the baseline time-series from \code{bl_path},
-an calculate the log-ratio response at \code{t = time_frame}.
-If \code{bl = FALSE}, calculate the log-ratio response between that values of state variable at the time steps listed in \code{time_frame}.
+\examples{
+recovery_rate(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
+  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  slope_mode = "lm", tf_slope = c(12, 50)
+)
+recovery_rate(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
+  t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  slope_mode = "lm", tf_slope = c(12, 50)
+)
+recovery_rate(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
+  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  slope_mode = "points", tf_slope = c(12, 50)
+)
+recovery_rate(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
+  t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
+  slope_mode = "points", tf_slope = c(12, 50)
+)
 }

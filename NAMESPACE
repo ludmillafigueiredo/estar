@@ -2,5 +2,6 @@
 
 export("%>%")
 export(invariability)
+export(recovery_rate)
 export(resistance)
 importFrom(magrittr,"%>%")
