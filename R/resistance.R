@@ -62,9 +62,9 @@
 resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl = NULL, data_bl = NULL,
                        tresp_bl = NULL, res_time, t_res = NULL, tf_res = NULL) {
   if (is.null(data_resp)) {
-    data_resp <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
+    respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
   } else {
-    data_resp <- data_resp %>%
+    respts_df <- data_resp %>%
       dplyr::select(
         "sv_resp" = dplyr::all_of(sv_resp),
         "t_resp" = dplyr::all_of(t_resp)
@@ -73,27 +73,27 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl
 
   if (bl == "separate") {
     if (is.null(data_bl)) {
-      data_bl <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
+      blts_df <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
     } else {
-      data_bl <- data_bl %>%
+      blts_df <- data_bl %>%
         dplyr::select(
           "sv_bl" = dplyr::all_of(sv_bl),
           "t_bl" = dplyr::all_of(t_bl)
         )
     }
 
-    res_df <- dplyr::inner_join(dplyr::rename(data_resp),
-      dplyr::rename(data_bl),
+    res_df <- dplyr::inner_join(dplyr::rename(respts_df),
+      dplyr::rename(blts_df),
       by = c("t_resp" = "t_bl")
     ) %>%
       dplyr::rename("t" = t_resp)
   } else {
     if (bl == "previous") {
-      bl <- data_resp %>%
+      bl <- respts_df %>%
         dplyr::filter(t_resp == tresp_bl) %>%
         dplyr::pull(sv_resp)
 
-      res_df <- data_resp %>%
+      res_df <- respts_df %>%
         dplyr::rename("t" = t_resp) %>%
         dplyr::mutate(sv_bl = bl)
     } else {

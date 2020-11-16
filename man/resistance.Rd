@@ -83,10 +83,10 @@ resistance(
 resistance(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-  res_time = "time_frame", tf_res = c(11,50)
+  res_time = "time_frame", tf_res = c(11, 50)
 )
 resistance(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
-  tresp_bl = 9, res_time = "time_frame", tf_res = c(11,50)
+  tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 )
 }

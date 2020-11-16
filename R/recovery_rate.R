@@ -91,8 +91,8 @@ recovery_rate <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec = NULL, sv_
         dplyr::pull(sv_resp)
 
       base_df <- respts_df %>%
-          dplyr::mutate(extent = log(sv_resp / sv_bl)) %>%
-          dplyr::rename("t" = t_resp)
+        dplyr::mutate(extent = log(sv_resp / sv_bl)) %>%
+        dplyr::rename("t" = t_resp)
     } else {
       stop("bl_mode must be 'ts' or 'point'.")
     }
@@ -108,8 +108,8 @@ recovery_rate <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec = NULL, sv_
   } else {
     if (slope_mode == "points") {
       rate_df <- base_df %>%
-          dplyr::filter(t == min(tf_slope) | t == max(tf_slope))%>%
-          dplyr::arrange(t) %>%
+        dplyr::filter(t == min(tf_slope) | t == max(tf_slope)) %>%
+        dplyr::arrange(t) %>%
         dplyr::mutate(lim = dplyr::case_when(
           t == min(tf_slope, na.rm = na_rm) ~ "min_t",
           t == max(tf_slope, na.rm = na_rm) ~ "max_t"

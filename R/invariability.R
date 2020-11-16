@@ -62,20 +62,20 @@
 invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
                           sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE) {
   if (is.null(data_resp)) {
-    data_resp <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
+    respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
   } else {
-    data_resp <- data_resp %>%
+    respts_df <- data_resp %>%
       dplyr::select(
         "sv_resp" = dplyr::all_of(sv_resp),
         "t_resp" = dplyr::all_of(t_resp)
       )
   }
 
-  data_resp <- data_resp %>%
+  respts_df <- respts_df %>%
     dplyr::filter(t_resp >= min(t_resp), t_resp <= max(t_resp))
 
   if (mode == "cv") {
-    sv_vct <- dplyr::pull(data_resp, sv_resp)
+    sv_vct <- dplyr::pull(respts_df, sv_resp)
 
     if (any(is.na(sv_vct))) {
       message("NAs detected among the entries of the state variable")
@@ -91,20 +91,20 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
   } else {
     if (mode == "lm_res") {
       if (is.null(data_bl)) {
-        data_bl <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
+        blts_df <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
       } else {
-        data_bl <- data_bl %>%
+        blts_df <- data_bl %>%
           dplyr::select(
             "sv_bl" = dplyr::all_of(sv_bl),
             "t_bl" = dplyr::all_of(t_bl)
           )
       }
 
-      data_bl <- data_bl %>%
+      blts_df <- blts_df %>%
         dplyr::filter(t_bl >= min(t_bl), t_bl <= max(t_bl))
 
-      invar_df <- dplyr::inner_join(data_resp,
-        data_bl,
+      invar_df <- dplyr::inner_join(respts_df,
+        blts_df,
         by = c("t_resp" = "t_bl")
       ) %>%
         dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
