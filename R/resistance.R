@@ -112,7 +112,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl
       res_df <- res_df %>%
         dplyr::filter(t %in% seq(tf_res)) %>%
         dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
-        dplyr::summarize(max_lrr = max(lrr))
+        dplyr::summarize(max_lrr = max(abs(lrr)))
 
       return(res_df$max_lrr)
     } else {
