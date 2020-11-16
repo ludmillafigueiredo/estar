@@ -89,7 +89,7 @@ recovery_rate <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec = NULL, sv_
     if (bl_mode == "point") {
       sv_bl <- dplyr::filter(respts_df, t_resp == t_rec) %>%
         dplyr::pull(sv_resp)
-
+      warning("You are using a single point as baseline.")
       base_df <- respts_df %>%
         dplyr::mutate(extent = log(sv_resp / sv_bl)) %>%
         dplyr::rename("t" = t_resp)
