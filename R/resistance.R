@@ -10,7 +10,7 @@
 #' in \code{data_resp}.
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
-#' @param bl a string stating the baseline in relation to which resistance
+#' @param bl_mode a string stating the baseline in relation to which resistance
 #' should be calculated.
 #' @param sv_bl a vector containing the baseline, or a string containing
 #' the name of the column in \code{data_bl} containing the baseline.
@@ -27,31 +27,33 @@
 #' @param t_res an integer defining the time step when resistance should be measured.
 #' @param tf_res a vector, specifying the interval of \code{sv_resp} and
 #' \code{sv_bl} values from which resistance should be calculated.
-#'
+#' @param na_rm a logical indicating whether NA values should be removed before
+#' processing.
+#' 
 #' @return a double, the log-ratio response between \code{sv} and \code{sv_bl}.
 #'
 #' @examples
 #' resistance(
-#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
 #'   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
 #'   res_time = "single", t_res = 11
 #' )
 #' resistance(
-#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
 #'   tresp_bl = 9, res_time = "single", t_res = 11
 #' )
 #' resistance(
-#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
 #'   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
 #'   res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' resistance(
-#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+#'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
 #'   tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' @export
-resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl = NULL, data_bl = NULL,
-                       tresp_bl = NULL, res_time, t_res = NULL, tf_res = NULL) {
+resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL, t_bl = NULL, data_bl = NULL,
+                       tresp_bl = NULL, res_time, t_res = NULL, tf_res = NULL, na_rm = TRUE) {
   if (is.null(data_resp)) {
     respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
   } else {
@@ -62,7 +64,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl
       )
   }
 
-  if (bl == "separate") {
+  if (bl_mode == "ts") {
     if (is.null(data_bl)) {
       blts_df <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
     } else {
@@ -79,7 +81,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl, sv_bl = NULL, t_bl
     ) %>%
       dplyr::rename("t" = t_resp)
   } else {
-    if (bl == "previous") {
+    if (bl_mode == "point") {
       bl <- respts_df %>%
         dplyr::filter(t_resp == tresp_bl) %>%
         dplyr::pull(sv_resp)

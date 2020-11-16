@@ -8,14 +8,15 @@ resistance(
   sv_resp,
   t_resp,
   data_resp = NULL,
-  bl,
+  bl_mode,
   sv_bl = NULL,
   t_bl = NULL,
   data_bl = NULL,
   tresp_bl = NULL,
   res_time,
   t_res = NULL,
-  tf_res = NULL
+  tf_res = NULL,
+  na_rm = TRUE
 )
 }
 \arguments{
@@ -30,7 +31,7 @@ in \code{data_resp}.}
 \item{data_resp}{an optional data frame containing the columns storing the
 response state variable and time.}
 
-\item{bl}{a string stating the baseline in relation to which resistance
+\item{bl_mode}{a string stating the baseline in relation to which resistance
 should be calculated.}
 
 \item{sv_bl}{a vector containing the baseline, or a string containing
@@ -54,6 +55,9 @@ should be calculated.}
 
 \item{tf_res}{a vector, specifying the interval of \code{sv_resp} and
 \code{sv_bl} values from which resistance should be calculated.}
+
+\item{na_rm}{a logical indicating whether NA values should be removed before
+processing.}
 }
 \value{
 a double, the log-ratio response between \code{sv} and \code{sv_bl}.
@@ -63,21 +67,21 @@ Returns the log-ratio response of a state variable.
 }
 \examples{
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   res_time = "single", t_res = 11
 )
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
   tresp_bl = 9, res_time = "single", t_res = 11
 )
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "separate",
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   res_time = "time_frame", tf_res = c(11, 50)
 )
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl = "previous",
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
   tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 )
 }
