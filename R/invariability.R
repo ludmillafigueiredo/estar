@@ -95,10 +95,13 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
 
     return(invar)
   } else {
+    if (is.null(sv_bl) | is.null(t_bl)) {
+      stop("Missing 'sv_bl' or 't_bl' argument(s).")
+    }
     if (mode == "lm_res") {
       if (is.null(data_bl)) {
         blts_df <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
-      } else {  ## V: there should be an error message here also if sv_bl or t_bl are not specified
+      } else {
         blts_df <- data_bl %>%
           dplyr::select(
             "sv_bl" = dplyr::all_of(sv_bl),
