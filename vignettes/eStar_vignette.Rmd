@@ -111,7 +111,7 @@ invariability(
    t_bl = toy_blts$time, tf_bl = c(11, 50)
 )
 
-## testing - shows we need an error if the par-rs for the baseline are not specified here
+## testing - shows we need an error if the par-rs for the baseline are not specified here. Hmmm maybe this isn't actually needed. The user should be smart enough to read the documentation and see when which par-s are obligatory, or?
 invariability(
    sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
    tf_resp = c(11, 50), mode = "lm_res")
