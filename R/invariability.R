@@ -19,7 +19,8 @@
 #' @param tf_resp a numeric vector, specifying the beginning and end of the
 #' interval of \code{sv} values, from which invariability should be calculated,
 #' or the specific time values defining this interval, if \code{t} is provided.
-#' @param na_rm a logical indicating whether NA values should be removed before processing.
+#' @param na_rm a logical indicating whether NA values should be removed before processing,
+#' defaults to TRUE.
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
 #' @param sv_bl a numeric vector containing the state variable in the baseline,
