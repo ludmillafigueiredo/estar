@@ -65,7 +65,8 @@
 #' of the state variable and the baseline.
 #' @export
 invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
-                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL, na_rm = TRUE) {
+                          sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL,
+                          na_rm = TRUE) {
   if (is.null(data_resp)) {
     respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
   } else {
@@ -77,7 +78,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
   }
 
   respts_df <- respts_df %>%
-    dplyr::filter(t_resp >= min(tf_resp), t_resp <= max(tf_resp))  ## V: this should be min or max of tf_resp, FIXED
+    dplyr::filter(t_resp >= min(tf_resp), t_resp <= max(tf_resp))
 
   if (mode == "cv") {
     sv_vct <- dplyr::pull(respts_df, sv_resp)
@@ -106,7 +107,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
       }
 
       blts_df <- blts_df %>%
-        dplyr::filter(t_bl >= min(tf_bl), t_bl <= max(tf_bl))  ## V: these should be min or max of tf_bl, FIXED
+        dplyr::filter(t_bl >= min(tf_bl), t_bl <= max(tf_bl))
 
       invar_df <- dplyr::inner_join(respts_df,
         blts_df,
@@ -119,7 +120,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
 
       return(invar)
     } else {
-      stop("Specify mode of invariability to calculate:\n\"cv\" or \"lm_res\"")
+      stop("Specify mode of invariability to calculate: \"cv\" or \"lm_res\"")
     }
   }
 }
