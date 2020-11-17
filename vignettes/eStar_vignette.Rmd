@@ -73,15 +73,32 @@ invariability(
 ## quick check
 st <- toy_svts$stat_var[11:50]
 mean(st) / sd(st) 
-## diffeers from the one obtained with the function, identifies that the subsettign of the time serties is not done correctly
+## differs from the one obtained with the function, identifies that the subsettign of the time serties is not done correctly
+
+
+## one more check - NAs seems ot be well covered
+toy_svts_na <- toy_svts
+toy_svts_na$stat_var[11:50] <- NA
+invariability(
+   sv_resp = 'stat_var', t_resp = 'time', mode = "cv",
+   tf_resp = c(11, 50), data_resp = toy_svts_na  
+ )
+
+# another check - not sure whether we should do something for such cases, where either mean or sd would be 0 - add a warning???
+toy_svts_0 <- toy_svts
+toy_svts_0$stat_var[11:50] <- 0
+invariability(
+   sv_resp = 'stat_var', t_resp = 'time', mode = "cv",
+   tf_resp = c(11, 50), data_resp = toy_svts_0
+ )
 
 invariability(
    sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
    tf_resp = c(11, 50)
  )
 ```
-Invariability calculated as the inverse of the residuals of the linear model
-fiited to the log response ratio (response/baseline) over time.
+Invariability calculated as the standard deviation of the residuals of the linear model
+fiited to predict the log response ratio (response/baseline) by time.
 ```{r}
 invariability(
     sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
@@ -93,6 +110,11 @@ invariability(
    tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
    t_bl = toy_blts$time, tf_bl = c(11, 50)
 )
+
+## testing - shows we need an error if the par-rs for the baseline are not specified here
+invariability(
+   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
+   tf_resp = c(11, 50), mode = "lm_res")
 ```
 
 ## Resistance
