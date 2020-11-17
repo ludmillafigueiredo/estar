@@ -76,7 +76,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
   }
 
   respts_df <- respts_df %>%
-    dplyr::filter(t_resp >= min(t_resp), t_resp <= max(t_resp))  ## V: this should be min or max of tf_resp, or?
+    dplyr::filter(t_resp >= min(tf_resp), t_resp <= max(tf_resp))  ## V: this should be min or max of tf_resp, FIXED
 
   if (mode == "cv") {
     sv_vct <- dplyr::pull(respts_df, sv_resp)
@@ -105,7 +105,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
       }
 
       blts_df <- blts_df %>%
-        dplyr::filter(t_bl >= min(t_bl), t_bl <= max(t_bl))  ## V: these should be min or max of tf_bl, right?
+        dplyr::filter(t_bl >= min(tf_bl), t_bl <= max(tf_bl))  ## V: these should be min or max of tf_bl, FIXED
 
       invar_df <- dplyr::inner_join(respts_df,
         blts_df,
