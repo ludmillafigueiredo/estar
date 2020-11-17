@@ -67,8 +67,13 @@ variable over a defined time frame (`tf_resp`).
 ```{r}
 invariability(
    sv_resp = "stat_var", t_resp = "time", mode = "cv",
-   tf_resp = c(11, 50), data_resp = toy_svts
+   tf_resp = c(11, 50), data_resp = toy_svts  ## V: one point to think about is a suggestion to the user whether the first time step should be AFTER the disturbance (as you selected here, 11. Or the step OF the disturbance. ATM I do not have clear point of view on that)
  )
+
+## quick check
+st <- toy_svts$stat_var[11:50]
+mean(st) / sd(st) 
+## diffeers from the one obtained with the function, identifies that the subsettign of the time serties is not done correctly
 
 invariability(
    sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
