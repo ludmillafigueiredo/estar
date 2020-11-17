@@ -18,11 +18,11 @@ invariability(
 )
 }
 \arguments{
-\item{sv_resp}{a vector containing the response state variable or a string specifying
-the name of the column containing said variable in the dataframe provided
-in \code{data}.}
+\item{sv_resp}{a numeric vector containing the state variable in the disturbed system
+or a string specifying the name of the column containing said variable in
+the dataframe provided in \code{data}.}
 
-\item{t_resp}{a vector containing the time or a string specifying the
+\item{t_resp}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
 in \code{data}.}
 
@@ -31,24 +31,25 @@ from the coefficient of variation of the state variable \code{mode = "cv"},
 or from the linear model between the response and time \code{"lm_res"}.
 The details of the two modes as explained in 'Details'.}
 
-\item{tf_resp}{a vector, specifying the interval of \code{sv} values
-from which invariability should be calculated, or the specific time values defining
-this interval, if \code{t} is provided.}
+\item{tf_resp}{a numeric vector, specifying the beginning and end of the
+interval of \code{sv} values, from which invariability should be calculated,
+or the specific time values defining this interval, if \code{t} is provided.}
 
 \item{data_resp}{an optional data frame containing the columns storing the
 response state variable and time.}
 
-\item{sv_bl}{a vector containing the baseline, or a string containing
-the name of the column in \code{data_bl} containing the baseline.
+\item{sv_bl}{a numeric vector containing the state variable in the baseline,
+or a string containing the name of the column in \code{data_bl} containing said
+variable in the baseline.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{t_bl}{an optional vector containing the time steps for which the baseline
-was measured, or a string containing the name of the column in \code{data_bl}.
+\item{t_bl}{an optional numeric vector containing the time steps for which
+the baseline was measured, or a string containing the name of the column in \code{data_bl}.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{tf_bl}{a vector, specifying the interval of \code{sv_bl} values
-from which invariability should be calculated, or the specific time values defining
-this interval, if \code{data_bl} is provided.
+\item{tf_bl}{a numeric vector, specifying the beginning and end of the
+interval of \code{sv_bl} values from which invariability should be calculated,
+or the specific time values defining this interval, if \code{data_bl} is provided.
 Obligatory argument if \code{mode = "lm_res"}.}
 
 \item{data_bl}{an optional data frame containing the columns storing the baseline
@@ -57,17 +58,20 @@ of the state variable.}
 \item{na_rm}{a logical indicating whether NA values should be removed before processing.}
 }
 \value{
-a double, the invariability value.
+a numeric, the invariability value.
 }
 \description{
-Return the inverse of coefficient of variation or
-that of the standard-deviation of residuals of the linear model
-derived for the ratio between response over time.
+Return the temporal invariability of the state variable.
+Can be aclulated as the inverse of coefficient of variation or
+as the standard deviation of residuals of the linear model that uses
+as the predictor  the time and as the response variable the log-response
+ratio of the state variable in the disturbed system and in the baseline.
 }
 \details{
-Invariance can be calculated as the inverse of coefficient of variation
-(\code{mode = "cv"} or as the inverse of the residuals of the linear model derived
-for the log response ratio between the state variable and the baseline.
+Invariance can be calculated as the inverse of the coefficient of variation
+(\code{mode = "cv"} or as the standard deviation of the residuals of the linear model
+with the predictor being the time and the response being the log response ratio
+of the state variable and the baseline.
 }
 \examples{
 invariability(
