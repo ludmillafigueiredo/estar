@@ -20,11 +20,11 @@ resistance(
 )
 }
 \arguments{
-\item{sv_resp}{a vector containing the response state variable or a string specifying
-the name of the column containing said variable in the dataframe provided
-in \code{data_resp}.}
+\item{sv_resp}{a numeric vector containing the state variable in the
+disturbed system or a string specifying the name of the column
+containing said variable in the dataframe provided in \code{data_resp}.}
 
-\item{t_resp}{a vector containing the time or a string specifying the
+\item{t_resp}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
 in \code{data_resp}.}
 
@@ -32,15 +32,15 @@ in \code{data_resp}.}
 response state variable and time.}
 
 \item{bl_mode}{a string stating the baseline in relation to which resistance
-should be calculated.}
+should be calculated. ## V: more details on the possible values here should be given}
 
-\item{sv_bl}{a vector containing the baseline, or a string containing
-the name of the column in \code{data_bl} containing the baseline.
-Obligatory argument if \code{mode = "lm_res"}.}
+\item{sv_bl}{a numeric vector containing the state variable in the baseline,
+or a string for the name of the column in \code{data_bl} containing said
+variable in the baseline.}
 
-\item{t_bl}{an optional vector containing the time steps for which the baseline
-was measured, or a string containing the name of the column in \code{data_bl}.
-Obligatory argument if \code{mode = "lm_res"}.}
+\item{t_bl}{an optional numeric vector containing the time steps for which
+the baseline was measured, or a string containing the name of the column in
+\code{data_bl}.}
 
 \item{data_bl}{an optional data frame containing the columns storing the baseline
 of the state variable.}
@@ -64,6 +64,17 @@ a double, the log-ratio response between \code{sv} and \code{sv_bl}.
 }
 \description{
 Returns the log-ratio response of a state variable.
+\subsection{V: we should also calculate it as (classically done) the difference}{
+}
+
+\subsection{between the state variable at the specified time point (usually right after disturbance)}{
+}
+
+\subsection{and the baseline. You have all for it now, only need to add mode and then the}{
+}
+
+\subsection{metric is just a difference, not lrr}{
+}
 }
 \examples{
 resistance(

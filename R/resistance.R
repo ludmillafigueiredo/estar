@@ -6,20 +6,22 @@
 #' ## and the baseline. You have all for it now, only need to add mode and then the
 #' ## metric is just a difference, not lrr
 #'
-#' @param sv_resp a vector containing the response state variable or a string specifying
-#' the name of the column containing said variable in the dataframe provided
-#' in \code{data_resp}.
-#' @param t_resp a vector containing the time or a string specifying the
+#' @param sv_resp a numeric vector containing the state variable in the
+#' disturbed system or a string specifying the name of the column
+#' containing said variable in the dataframe provided in \code{data_resp}.
+#' @param t_resp a numeric vector containing the time or a string specifying the
 #' name of the column containing the time in the dataframe provided
 #' in \code{data_resp}.
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
 #' @param bl_mode a string stating the baseline in relation to which resistance
 #' should be calculated. ## V: more details on the possible values here should be given
-#' @param sv_bl a vector containing the baseline, or a string containing
-#' the name of the column in \code{data_bl} containing the baseline.
-#' @param t_bl an optional vector containing the time steps for which the baseline
-#' was measured, or a string containing the name of the column in \code{data_bl}.
+#' @param sv_bl a numeric vector containing the state variable in the baseline,
+#' or a string for the name of the column in \code{data_bl} containing said
+#' variable in the baseline.
+#' @param t_bl an optional numeric vector containing the time steps for which
+#' the baseline was measured, or a string containing the name of the column in
+#' \code{data_bl}.
 #' @param data_bl an optional data frame containing the columns storing the baseline
 #' of the state variable.
 #' @param tresp_bl an integer, specifying the time step that should be used
@@ -96,7 +98,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
     }
   }
 
-  if (res_time == "single") {  ## V: I am not sure why this is needed and what it adds to the bl_mode = 'point'
+  if (res_time == "single") {
     res_df <- res_df %>%
       dplyr::filter(t == t_res) %>%
       dplyr::mutate(lrr = log(sv_resp / sv_bl))
