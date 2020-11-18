@@ -221,6 +221,9 @@ recovery_extent(
  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
 ) 
+
+## check
+log(toy_svts$stat_var[50] / toy_blts$stat_var[50])
 ```
 Extent of recovery as the log response ratio in relation to a previous point in time
 (`bl_mode = "point"`), a certain time (`t_rec = 50`).
@@ -228,7 +231,7 @@ Extent of recovery as the log response ratio in relation to a previous point in 
 recovery_extent(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
   t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
-)
+) ## as I expected, the teturned lrr is 0, that is becasue your state variable for the baseline and disturbed system is exactly the same (see my comment in the code)
 ```
 
 <details><summary>Session Info</summary>
