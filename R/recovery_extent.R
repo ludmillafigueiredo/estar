@@ -57,9 +57,11 @@ recovery_extent <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec, sv_bl = 
         )
     }
     extent_df <- dplyr::left_join(  ## V: does not work
-      dplyr::rename(respts_df, "t" = t_resp),
-      dplyr::rename(blts_df, "t" = t_bl)
+        dplyr::rename(respts_df),
+        dplyr::rename(blts_df),
+        by = c("t_resp" = "t_bl")
     ) %>%
+        dplyr::rename("t" = t_resp) %>%
       dplyr::filter(t == t_rec)
   } else {
     if (bl_mode == "point") {
@@ -78,4 +80,5 @@ recovery_extent <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec, sv_bl = 
   extent <- extent_df %>%
     dplyr::mutate(extent = log(sv_resp / sv_bl)) %>%
     dplyr::pull(extent)
+  return(extent)
 }
