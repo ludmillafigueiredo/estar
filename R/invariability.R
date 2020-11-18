@@ -6,12 +6,12 @@
 #' as the predictor  the time and as the response variable the log-response
 #' ratio of the state variable in the disturbed system and in the baseline.
 #'
-#' @param sv_resp a numeric vector containing the state variable in the disturbed system
-#'  or a string specifying the name of the column containing said variable in
-#'  the dataframe provided in \code{data}.
+#' @param sv_resp a numeric vector containing the state variable in the
+#' disturbed system or a string specifying the name of the column
+#' containing said variable in the dataframe provided in \code{data_resp}.
 #' @param t_resp a numeric vector containing the time or a string specifying the
 #' name of the column containing the time in the dataframe provided
-#' in \code{data}.
+#' in \code{data_resp}.
 #' @param mode a string stating whether invariability should be calculated
 #' from the coefficient of variation of the state variable \code{mode = "cv"},
 #' or from the linear model between the response and time \code{"lm_res"}.
@@ -24,7 +24,7 @@
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
 #' @param sv_bl a numeric vector containing the state variable in the baseline,
-#' or a string containing the name of the column in \code{data_bl} containing said
+#' or a string for the name of the column in \code{data_bl} containing said
 #' variable in the baseline.
 #' Obligatory argument if \code{mode = "lm_res"}.
 #' @param t_bl an optional numeric vector containing the time steps for which

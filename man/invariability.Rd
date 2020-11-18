@@ -18,13 +18,13 @@ invariability(
 )
 }
 \arguments{
-\item{sv_resp}{a numeric vector containing the state variable in the disturbed system
-or a string specifying the name of the column containing said variable in
-the dataframe provided in \code{data}.}
+\item{sv_resp}{a numeric vector containing the state variable in the
+disturbed system or a string specifying the name of the column
+containing said variable in the dataframe provided in \code{data_resp}.}
 
 \item{t_resp}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{data}.}
+in \code{data_resp}.}
 
 \item{mode}{a string stating whether invariability should be calculated
 from the coefficient of variation of the state variable \code{mode = "cv"},
@@ -32,14 +32,14 @@ or from the linear model between the response and time \code{"lm_res"}.
 The details of the two modes as explained in 'Details'.}
 
 \item{tf_resp}{a numeric vector, specifying the beginning and end of the
-interval of \code{sv} values, from which invariability should be calculated,
-or the specific time values defining this interval, if \code{t} is provided.}
+interval of \code{sv_resp} values, from which invariability should be calculated,
+or the specific time values defining this interval.}
 
 \item{data_resp}{an optional data frame containing the columns storing the
 response state variable and time.}
 
 \item{sv_bl}{a numeric vector containing the state variable in the baseline,
-or a string containing the name of the column in \code{data_bl} containing said
+or a string for the name of the column in \code{data_bl} containing said
 variable in the baseline.
 Obligatory argument if \code{mode = "lm_res"}.}
 
@@ -55,7 +55,8 @@ Obligatory argument if \code{mode = "lm_res"}.}
 \item{data_bl}{an optional data frame containing the columns storing the baseline
 of the state variable.}
 
-\item{na_rm}{a logical indicating whether NA values should be removed before processing.}
+\item{na_rm}{a logical indicating whether NA values should be removed before processing,
+defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
