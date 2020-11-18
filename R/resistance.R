@@ -107,7 +107,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
   } else {
     if (res_time == "time_frame") {
       res_df <- res_df %>%
-        dplyr::filter(t %in% seq(tf_res)) %>%
+        dplyr::filter(t %in% seq(from = tf_res[1], to = tf_res[2])) %>%
         dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
         dplyr::summarize(max_lrr = max(abs(lrr), na.rm = na_rm))
 
