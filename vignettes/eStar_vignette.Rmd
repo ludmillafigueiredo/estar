@@ -220,7 +220,7 @@ Extent of recovery as the log response ratio in relation to a baseline time-seri
 recovery_extent(
  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
  t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
-)
+) 
 ```
 Extent of recovery as the log response ratio in relation to a previous point in time
 (`bl_mode = "point"`), a certain time (`t_rec = 50`).

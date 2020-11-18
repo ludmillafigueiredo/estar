@@ -19,12 +19,12 @@
 #' Obligatory argument if (\code{slope_mode = "bl"}).
 #' @param t_bl an optional vector containing the time steps for which the baseline
 #' was measured, or a string containing the name of the column in \code{data_bl}.
-#' Obligatory argument if (\code{slope_mode = "bl"}).
+#' Obligatory argument if (\code{slope_mode = "bl"}).  ## V: par-r slope_mode seems to be not documented
 #' @param data_bl an optional data frame containing the columns storing the
 #' baseline of the state variable.
 #'
 #' @return a double, the extent of recovery
-#' 
+#'
 #' @examples
 #' recovery_extent(
 #'   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
@@ -56,18 +56,19 @@ recovery_extent <- function(sv_resp, t_resp, data_resp, bl_mode, t_rec, sv_bl = 
           "t_bl" = dplyr::all_of(t_bl)
         )
     }
-    extent_df <- dplyr::left_join(
+    extent_df <- dplyr::left_join(  ## V: does not work
       dplyr::rename(respts_df, "t" = t_resp),
       dplyr::rename(blts_df, "t" = t_bl)
     ) %>%
       dplyr::filter(t == t_rec)
   } else {
     if (bl_mode == "point") {
-      svbl_df <- dplyr::filter(respts_df, t_resp == t_rec) %>%
+      svbl_df <- dplyr::filter(respts_df, t_resp == t_rec) %>%  ## V: I think this will not work because you are using a time step for caluclating the recovery,
+          ## but you need a time step for the baseline time point - analogous to how you did it with resistancs
         dplyr::rename("sv_bl" = sv_resp)
       extent_df <- respts_df %>%
         dplyr::filter(t_resp == t_rec) %>%
-        dplyr::mutate(sv_bl = svbl_df$sv_bl)
+        dplyr::mutate(sv_bl = svbl_df$sv_bl)  ## V: so here I expect you will have sv_bl exactly equal oto sv_resp....
       warning("You are using a single point as baseline.")
     } else {
       stop("bl_mode must be 'ts' or 'point'.")
