@@ -127,6 +127,9 @@ resistance(
   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   res_time = "single", t_res = 11
 )
+
+## quick check
+log(toy_svts$stat_var[11] / toy_blts$stat_var[11]) ## Ok
 ```
 
 Resistance calculated in relation to a previous valeus of the state variable
@@ -137,6 +140,9 @@ resistance(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
   tresp_bl = 9, res_time = "single", t_res = 11
 )
+
+## quick check
+log(toy_svts$stat_var[11] / toy_svts$stat_var[9])  ## ok
 ```
 
 Resistance calculated in relation to a baseline time series (`bl_mode = "ts"`), 
@@ -148,6 +154,9 @@ resistance(
   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
   res_time = "time_frame", tf_res = c(11, 50)
 )
+
+## check
+debugonce(resistance)  ## pb with seq()
 ```
 
 Resistance calculated in relation to a previous value (`bl_mode = "point"`), 
