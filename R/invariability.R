@@ -84,7 +84,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
     sv_vct <- dplyr::pull(respts_df, sv_resp)
 
     if (any(is.na(sv_vct))) {
-      message("NAs detected among the entries of the state variable")
+      warning("NAs detected among the entries of the state variable")
 
       if (sum(!is.na(sv_vct)) < 10) {
         warning("Less than 10 data points are available for measuring invariability.")
