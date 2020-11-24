@@ -12,7 +12,11 @@ recovery_extent(
   t_rec,
   sv_bl = NULL,
   t_bl = NULL,
-  data_bl = NULL
+  data_bl = NULL,
+  tsv_bl = NULL,
+  tfsv_bl = NULL,
+  summ_mode = NULL,
+  bl_narm = TRUE
 )
 }
 \arguments{
@@ -27,22 +31,39 @@ of the column containing the time in the dataframe provided in \code{data}.}
 response state variable and time.}
 
 \item{bl_mode}{a string determining whether recovery is calculated in relation
-to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
-variable time series (\code{bl_mode = "point"}).}
+to a baseline time series (\code{bl_mode = "ts"}), to a point in the state
+variable time series (\code{bl_mode = "point"}), or (\code{bl_mode = "period"})
+to a summary (mean or median, defined by \code{summ_mode}) of the values of
+the state variable during a period defined by \code{tfsd_bl}.}
 
 \item{t_rec}{an integer, time step at which extent of recovery should be
 calculated.}
 
 \item{sv_bl}{a vector containing the baseline, or a string containing
 the name of the column in \code{data_bl} containing the baseline.
-Obligatory argument if (\code{slope_mode = "bl"}).}
+Obligatory argument if (\code{bl_mode = "bl"}).}
 
 \item{t_bl}{an optional vector containing the time steps for which the baseline
 was measured, or a string containing the name of the column in \code{data_bl}.
-Obligatory argument if (\code{slope_mode = "bl"}).}
+Obligatory argument if (\code{bl_mode = "bl"}).}
 
 \item{data_bl}{an optional data frame containing the columns storing the
 baseline of the state variable.}
+
+\item{tsv_bl}{an integer stating the time point of the state variable response
+time-series that should be used as baseline.
+Obligatory argument if \code{bl_mode = "point"}.}
+
+\item{tfsv_bl}{a numerical vector defining the period over which the values of
+the state variable response should be used to calculate the baseline.
+Obligatory argument if \code{bl_mode = "point"}.}
+
+\item{summ_mode}{a string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).}
+
+\item{bl_narm}{a logical indicating whether NA values should be removed before
+summarizing the values to be used as baseline.
+Obligatory argument if \code{bl_mode = "period"}.}
 }
 \value{
 a double, the extent of recovery
@@ -57,6 +78,10 @@ recovery_extent(
 )
 recovery_extent(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-  t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
+  t_rec = 50, tsv_bl = 9
+)
+recovery_extent(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "period",
+  t_rec = 50, tfsv_bl = c(5,10), summ_mode = "mean"
 )
 }
