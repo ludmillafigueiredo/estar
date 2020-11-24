@@ -49,16 +49,6 @@
 #' @export
 persistence <- function(sv_resp, t_resp, lim_mode, lim_ref, lim_pos, tf_perst,
                         data_resp = NULL, sv_bl = NULL, t_bl = NULL, data_bl = NULL) {
-  if (is.null(data_resp)) {
-    respts_df <- data.frame("svr_col" = sv_resp, "svr_col" = t_resp)
-  } else {
-    respts_df <- data_resp %>%
-      dplyr::select(
-        "svr_col" = dplyr::all_of(sv_resp),
-        "tr_col" = dplyr::all_of(t_resp)
-      )
-  }
-
   choose_lim <- function(lim_pos, svr_col, lim_ref) {
     if (lim_pos == "u") {
       svr_col >= lim_ref
@@ -70,6 +60,7 @@ persistence <- function(sv_resp, t_resp, lim_mode, lim_ref, lim_pos, tf_perst,
       }
     }
   }
+  respts_df <- format_input(input = "dtb", sv_resp, t_resp, data_resp)
   if (lim_mode == "value") {
     persistence <- respts_df %>%
       dplyr::filter(tr_col >= min(tf_perst), tr_col <= max(tf_perst)) %>%
@@ -79,15 +70,7 @@ persistence <- function(sv_resp, t_resp, lim_mode, lim_ref, lim_pos, tf_perst,
     return(persistence)
   } else {
     if (lim_mode == "bl") {
-      if (is.null(data_bl)) {
-        blts_df <- data.frame("svbl_col" = sv_bl, "tbl_col" = t_bl)
-      } else {
-        blts_df <- data_bl %>%
-          dplyr::select(
-            "svbl_col" = dplyr::all_of(sv_bl),
-            "tbl_col" = dplyr::all_of(t_bl)
-          )
-      }
+      blts_df <- format_input(input = "udtb", sv_resp, t_resp, data_resp)
       persistence <- dplyr::rename(respts_df, t = tr_col) %>%
         dplyr::left_join(.,
           dplyr::rename(blts_df, t = tbl_col),

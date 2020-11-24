@@ -19,30 +19,31 @@ recovery_rate(
 )
 }
 \arguments{
-\item{sv_resp}{a vector containing the response state variable or a string
-specifying the name of the column containing said variable in the dataframe
-provided in \code{data}.}
+\item{sv_resp}{a numeric vector containing the state variable in the
+disturbed system or a string specifying the name of the column
+containing said variable in the dataframe provided in \code{data_resp}.}
 
-\item{t_resp}{a vector containing the time or a string specifying the name
-of the column containing the time in the dataframe provided in \code{data}.}
+\item{t_resp}{a numeric vector containing the time or a string specifying the
+name of the column containing the time in the dataframe provided in \code{data_resp}.}
 
 \item{data_resp}{an optional data frame containing the columns storing the
-response state variable and time.}
+data for disturbed system: response state variable and time.}
 
 \item{bl_mode}{a string determining whether recovery is calculated in relation
-to a baseline time series (\code{bl_mode = "ts"}) or to a point in the state
-variable time series (\code{bl_mode = "point"}).}
+to a baseline time series (\code{bl_mode = "ts"}) or to a point in the disturbed
+state variable time series (\code{bl_mode = "point"}). ##V: this argument is redundant with slope_mode, that one is enough for this function}
 
-\item{t_rec}{if \code{bl_mode = "point"}, the time step at which response value
-should be used as the baseline.}
+\item{t_rec}{if \code{bl_mode = "point"}, the time step at which state variable
+value should be used as the starting time point for recovery rate calculation.}
 
-\item{sv_bl}{a vector containing the baseline, or a string containing
-the name of the column in \code{data_bl} containing the baseline.
+\item{sv_bl}{a numeric vector containing the state variable in the baseline,
+or a string for the name of the column in \code{data_bl} containing said
+variable in the baseline.
 Obligatory argument if (\code{slope_mode = "bl"}).}
 
 \item{t_bl}{an optional vector containing the time steps for which the baseline
 was measured, or a string containing the name of the column in \code{data_bl}.
-Obligatory argument if (\code{slope_mode = "bl"}).}
+Obligatory argument if (\code{slope_mode = "bl"}).  ## V: the slope_mode = 'bl' is not mentioned in the documentation}
 
 \item{data_bl}{an optional data frame containing the columns storing the
 baseline of the state variable.}

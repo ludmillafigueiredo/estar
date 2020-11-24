@@ -67,15 +67,7 @@
 invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
                           sv_bl = NULL, t_bl = NULL, tf_bl = NULL, data_bl = NULL,
                           na_rm = TRUE) {
-  if (is.null(data_resp)) {
-    respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
-  } else {
-    respts_df <- data_resp %>%
-      dplyr::select(
-        "sv_resp" = dplyr::all_of(sv_resp),
-        "t_resp" = dplyr::all_of(t_resp)
-      )
-  }
+  respts_df <- format_input(input = "dtb", sv_resp, t_resp, data_resp)
 
   respts_df <- respts_df %>%
     dplyr::filter(t_resp >= min(tf_resp), t_resp <= max(tf_resp))
@@ -99,15 +91,7 @@ invariability <- function(sv_resp, t_resp, mode, tf_resp, data_resp = NULL,
       stop("Missing 'sv_bl' or 't_bl' argument(s).")
     }
     if (mode == "lm_res") {
-      if (is.null(data_bl)) {
-        blts_df <- data.frame("sv_bl" = sv_bl, "t_bl" = t_bl)
-      } else {
-        blts_df <- data_bl %>%
-          dplyr::select(
-            "sv_bl" = dplyr::all_of(sv_bl),
-            "t_bl" = dplyr::all_of(t_bl)
-          )
-      }
+      blts_df <- format_input(input = "udtb", sv_resp, t_resp, data_resp)
 
       blts_df <- blts_df %>%
         dplyr::filter(t_bl >= min(tf_bl), t_bl <= max(tf_bl))

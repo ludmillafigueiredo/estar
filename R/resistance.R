@@ -56,34 +56,18 @@
 #'   tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' @export
-resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL, t_bl = NULL, data_bl = NULL,
-                       tresp_bl = NULL, res_time, t_res = NULL, tf_res = NULL, na_rm = TRUE) {
-  if (is.null(data_resp)) {
-    respts_df <- data.frame("sv_resp" = sv_resp, "t_resp" = t_resp)
-  } else {
-    respts_df <- data_resp %>%
-      dplyr::select(
-        "sv_resp" = dplyr::all_of(sv_resp),
-        "t_resp" = dplyr::all_of(t_resp)
-      )
-  }
+resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
+                       t_bl = NULL, data_bl = NULL, tresp_bl = NULL, res_time,
+                       t_res = NULL, tf_res = NULL, na_rm = TRUE) {
+  respts_df <- format_input(input = "dtb", sv_resp, t_resp, data_resp)
 
   if (bl_mode == "ts") {
-    if (is.null(data_bl)) {
-      blts_df <- data.frame("sv_bl" = sv_bl, "t" = t_bl)
-    } else {
-      blts_df <- data_bl %>%
-        dplyr::select(
-          "sv_bl" = dplyr::all_of(sv_bl),
-          "t_bl" = dplyr::all_of(t_bl)
-        )
-    }
+    blts_df <- format_input(input = "udtb", sv_resp, t_resp, data_resp)
 
-    res_df <- dplyr::inner_join(dplyr::rename(respts_df),
-      dplyr::rename(blts_df),
-      by = c("t_resp" = "t_bl")
-    ) %>%
-      dplyr::rename("t" = t_resp)
+    res_df <- dplyr::inner_join(dplyr::rename(respts_df, "t" = "t_bl"),
+      dplyr::rename(blts_df, "t" = "t_resp"),
+      by = c("t")
+    )
   } else {
     if (bl_mode == "point") {
       bl <- respts_df %>%
@@ -91,7 +75,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
         dplyr::pull(sv_resp)
 
       res_df <- respts_df %>%
-        dplyr::rename("t" = t_resp) %>%
+        dplyr::rename("t" = "t_resp") %>%
         dplyr::mutate(sv_bl = bl)
     } else {
       stop("bl must be \"separate\" or \"previous\".")
@@ -107,7 +91,7 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
   } else {
     if (res_time == "time_frame") {
       res_df <- res_df %>%
-        dplyr::filter(t %in% seq(from = tf_res[1], to = tf_res[2])) %>%
+        dplyr::filter(t >= min(tf_res), t <= max(tf_res)) %>%
         dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
         dplyr::summarize(max_lrr = max(abs(lrr), na.rm = na_rm))
 

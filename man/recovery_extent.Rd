@@ -82,6 +82,10 @@ recovery_extent(
 )
 recovery_extent(
   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "period",
-  t_rec = 50, tfsv_bl = c(5,10), summ_mode = "mean"
+  t_rec = 50, tfsv_bl = c(5, 10), summ_mode = "mean"
+)
+recovery_extent(
+  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "period",
+  t_rec = 50, tfsv_bl = c(5, 10), summ_mode = "median"
 )
 }
