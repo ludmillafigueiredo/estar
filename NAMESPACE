@@ -2,6 +2,7 @@
 
 export("%>%")
 export(invariability)
+export(persistence)
 export(recovery_extent)
 export(recovery_rate)
 export(resistance)
