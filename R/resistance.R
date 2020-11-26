@@ -1,11 +1,10 @@
 #' Calculate the resistance of a state variable to disturbance
 #'
-#' @description Returns the log-ratio response of a state variable.
-#' ## V: we should also calculate it as (classically done) the difference
-#' ## between the state variable at the specified time point (usually right after disturbance)
-#' ## and the baseline. You have all for it now, only need to add mode and then the
-#' ## metric is just a difference, not lrr
-#'
+#' @description Returns the value of the maximal absolute response of a state
+#' variable to its value at an specified time. The response is calculated as
+#' as the difference between disturbed and undisturbed states, or as the log-ratio
+#' between. See details on how to specify the values.
+#' 
 #' @param sv_resp a numeric vector containing the state variable in the
 #' disturbed system or a string specifying the name of the column
 #' containing said variable in the dataframe provided in \code{data_resp}.
@@ -14,6 +13,9 @@
 #' in \code{data_resp}.
 #' @param data_resp an optional data frame containing the columns storing the
 #' response state variable and time.
+#' @param res_mode a string stating whether the resistance from the disturbed time
+#' state and the baseline should be calculated as the log-ratio response
+#' (\code{res_mode = "lrr"}) or the absolute difference (\code{res_mode = "abs"}).
 #' @param bl_mode a string stating the baseline in relation to which resistance
 #' should be calculated. ## V: more details on the possible values here should be given
 #' @param sv_bl a numeric vector containing the state variable in the baseline,
@@ -34,7 +36,10 @@
 #' @param na_rm a logical indicating whether NA values should be removed before
 #' processing.
 #'
-#' @return a double, the log-ratio response between \code{sv} and \code{sv_bl}.
+#' @details 
+#'
+#' @return a double, the resistance between state variable in disturbed and
+#' undisturbed conditions.
 #'
 #' @examples
 #' resistance(
@@ -56,9 +61,20 @@
 #'   tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
 #' )
 #' @export
-resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
-                       t_bl = NULL, data_bl = NULL, tresp_bl = NULL, res_time,
-                       t_res = NULL, tf_res = NULL, na_rm = TRUE) {
+resistance <- function(sv_resp, t_resp, data_resp = NULL, res_mode, bl_mode,
+                       sv_bl = NULL, t_bl = NULL, data_bl = NULL, tresp_bl = NULL,
+                       res_time, t_res = NULL, tf_res = NULL, na_rm = TRUE) {
+    get_res <- function(sv_resp, sv_bl, res_mode){
+        if (res_mode == "lrr") {
+            res = log(sv_resp / sv_bl)
+        } else {
+            if (res_mode == "diff") {
+                res = sv_resp - sv_bl
+            } else {
+                stop("res_mode must be \"lrr\" or \"diff\".")
+        }
+        }
+    }
   respts_df <- format_input(input = "dtb", sv_resp, t_resp, data_resp)
 
   if (bl_mode == "ts") {
@@ -85,17 +101,17 @@ resistance <- function(sv_resp, t_resp, data_resp = NULL, bl_mode, sv_bl = NULL,
   if (res_time == "single") {
     res_df <- res_df %>%
       dplyr::filter(t == t_res) %>%
-      dplyr::mutate(lrr = log(sv_resp / sv_bl))
+      dplyr::mutate(res = get_res(sv_resp, sv_bl, res_mode))
 
     return(res_df$lrr)
   } else {
     if (res_time == "time_frame") {
       res_df <- res_df %>%
         dplyr::filter(t >= min(tf_res), t <= max(tf_res)) %>%
-        dplyr::mutate(lrr = log(sv_resp / sv_bl)) %>%
-        dplyr::summarize(max_lrr = max(abs(lrr), na.rm = na_rm))
+        dplyr::mutate(res = get_res(sv_resp, sv_bl, res_mode)) %>%
+        dplyr::summarize(max_res = max(abs(res), na.rm = na_rm))
 
-      return(res_df$max_lrr)
+      return(res_df$max_res)
     } else {
       stop("res_time must be \"defined\" or \"single\".")
     }

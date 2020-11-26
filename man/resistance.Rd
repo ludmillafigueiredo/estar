@@ -8,6 +8,7 @@ resistance(
   sv_resp,
   t_resp,
   data_resp = NULL,
+  res_mode,
   bl_mode,
   sv_bl = NULL,
   t_bl = NULL,
@@ -30,6 +31,10 @@ in \code{data_resp}.}
 
 \item{data_resp}{an optional data frame containing the columns storing the
 response state variable and time.}
+
+\item{res_mode}{a string stating whether the resistance from the disturbed time
+state and the baseline should be calculated as the log-ratio response
+(\code{res_mode = "lrr"}) or the absolute difference (\code{res_mode = "abs"}).}
 
 \item{bl_mode}{a string stating the baseline in relation to which resistance
 should be calculated. ## V: more details on the possible values here should be given}
@@ -60,21 +65,17 @@ should be calculated.}
 processing.}
 }
 \value{
-a double, the log-ratio response between \code{sv} and \code{sv_bl}.
+a double, the resistance between state variable in disturbed and
+undisturbed conditions.
 }
 \description{
-Returns the log-ratio response of a state variable.
-\subsection{V: we should also calculate it as (classically done) the difference}{
+Returns the value of the maximal absolute response of a state
+variable to its value at an specified time. The response is calculated as
+as the difference between disturbed and undisturbed states, or as the log-ratio
+between. See details on how to specify the values.
 }
+\details{
 
-\subsection{between the state variable at the specified time point (usually right after disturbance)}{
-}
-
-\subsection{and the baseline. You have all for it now, only need to add mode and then the}{
-}
-
-\subsection{metric is just a difference, not lrr}{
-}
 }
 \examples{
 resistance(
