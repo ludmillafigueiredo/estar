@@ -9,12 +9,10 @@ recovery_rate(
   tdb_i,
   db_data,
   bl_mode,
-  t_rec = NULL,
+  rec_tf,
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
-  slope_mode,
-  slope_tf,
   na_rm = TRUE
 )
 }
@@ -30,33 +28,26 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{bl_mode}{a string determining whether recovery is calculated in relation
-to a baseline time series (\code{bl_mode = "ts"}) or to a point in the disturbed
-state variable time series (\code{bl_mode = "point"}). ##V: this argument is redundant with slope_mode, that one is enough for this function}
+\item{bl_mode}{a string determining whether recovery is calculated for the
+time series of values in a disturbed system (\code{bl_mode = "db"}) or to the
+log-ratio response in relation to the baseline (\code{bl_mode = "bl"}).}
 
-\item{t_rec}{if \code{bl_mode = "point"}, the time step at which state variable
-value should be used as the starting time point for recovery rate calculation.}
+\item{rec_tf}{a vector containing the first and last time steps defining
+the time frame between which the rate of recovery should be calculated.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if (\code{slope_mode = "bl"}).}
+Obligatory argument if (\code{bl_mode = "bl"}).}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if (\code{slope_mode = "bl"}).  ## V: the slope_mode = 'bl' is not mentioned in the documentation}
+Obligatory argument if (\code{bl_mode = "bl"}).}
 
 \item{bl_data}{an optional data frame containing the time-series of the
 baseline values of the state variable. Time and value columns must be named
 \code{tbl_i} and \code{svbl_i}, respectively.}
-
-\item{slope_mode}{a string stating whether recovery rate is calculated as the
-slope of a linear model (\code{slope_mode = "lm"}) or between two points in
-the time series (\code{slope_mode = "points"}).}
-
-\item{slope_tf}{a vector containing the first and last time steps defining
-the time frame between which the rate of recovery should be calculated.}
 
 \item{na_rm}{a logical indicating whether NA values should be removed before
 processing.}
@@ -72,23 +63,11 @@ between two time steps.
 }
 \examples{
 recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "ts",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-  slope_mode = "lm", slope_tf = c(12, 50)
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "db",
+  rec_tf = c(12, 50)
 )
 recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "point",
-  t_rec = 9, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-  slope_mode = "lm", slope_tf = c(12, 50)
-)
-recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "ts",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-  slope_mode = "points", slope_tf = c(12, 50)
-)
-recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "point",
-  t_rec = 9, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-  slope_mode = "points", slope_tf = c(12, 50)
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "bl",
+  rec_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
 )
 }
