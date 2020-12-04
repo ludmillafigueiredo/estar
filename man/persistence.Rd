@@ -5,26 +5,29 @@
 \title{Calculate the persistance of a state variable in a user-defined limit}
 \usage{
 persistence(
-  sv_resp,
-  t_resp,
+  svdb_i,
+  tdb_i,
+  db_data = NULL,
   lim_mode,
   lim_ref,
   lim_pos,
-  tf_perst,
-  data_resp = NULL,
-  sv_bl = NULL,
-  t_bl = NULL,
-  data_bl = NULL
+  perst_tf,
+  svbl_i = NULL,
+  tbl_i = NULL,
+  bl_data = NULL
 )
 }
 \arguments{
-\item{sv_resp}{a numeric vector containing the state variable in the
+\item{svdb_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{data_resp}.}
+containing said variable in the dataframe provided in \code{db_data}.}
 
-\item{t_resp}{a numeric vector containing the time or a string specifying the
+\item{tdb_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{data_resp}.}
+in \code{db_data}.}
+
+\item{db_data}{an optional data frame containing the time-series of the values
+of the state variable in a state considered to be disturbed.}
 
 \item{lim_mode}{a string stating whether the limit is to be measured in
 relation to a fixed value (\code{lim_mode = "value"}) or to a baseline
@@ -39,23 +42,20 @@ limit (if \code{lim_mode = "bl"}).}
 limit should be verified \code{limit = "l"}.
 The details of the two modes as explained in 'Details'.}
 
-\item{tf_perst}{a numerical vector, specifying the time step during which
+\item{perst_tf}{a numerical vector, specifying the time step during which
 persistence should be measured.}
 
-\item{data_resp}{an optional data frame containing the columns storing the
-response state variable and time.}
-
-\item{sv_bl}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{data_bl} containing said
+\item{svbl_i}{a numeric vector containing the state variable in the baseline,
+or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
 Obligatory argument if \code{lim_mode = "bl"}.}
 
-\item{t_bl}{an optional numeric vector containing the time steps for which
+\item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
-\code{data_bl}.
+\code{bl_data}.
 Obligatory argument if \code{lim_mode = "bl"}.}
 
-\item{data_bl}{an optional data frame containing the columns storing the baseline
+\item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
 }
 \value{
@@ -67,12 +67,12 @@ inside an upper or lower limit
 }
 \examples{
 persistence(
-  sv_resp = "stat_var", t_resp = "time", lim_mode = "value",
-  lim_ref = 70, lim_pos = "u", tf_perst = c(30, 60), data_resp = toy_svts
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, lim_mode = "value",
+  lim_ref = 70, lim_pos = "u", perst_tf = c(30, 60)
 )
 persistence(
-  sv_resp = "stat_var", t_resp = "time", lim_mode = "bl",
-  lim_ref = 0.9, lim_pos = "u", tf_perst = c(30, 60), data_resp = toy_svts,
-  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, lim_mode = "bl",
+  lim_ref = 0.9, lim_pos = "u", perst_tf = c(30, 60),
+  svbl_i = "stat_var", tdb_i = "time", bl_data = toy_blts
 )
 }

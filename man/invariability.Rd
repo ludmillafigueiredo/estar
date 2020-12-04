@@ -5,58 +5,60 @@
 \title{Calculate the invariability of a state variable after disturbance.}
 \usage{
 invariability(
-  sv_resp,
-  t_resp,
+  svdb_i,
+  tdb_i,
   mode,
-  tf_resp,
-  data_resp = NULL,
-  sv_bl = NULL,
-  t_bl = NULL,
-  tf_bl = NULL,
-  data_bl = NULL,
+  tf_invar,
+  db_data = NULL,
+  svbl_i = NULL,
+  tbl_i = NULL,
+  blinvar_tf = NULL,
+  bl_data = NULL,
   na_rm = TRUE
 )
 }
 \arguments{
-\item{sv_resp}{a numeric vector containing the state variable in the
+\item{svdb_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{data_resp}.}
+containing said variable in the dataframe provided in \code{db_data}.}
 
-\item{t_resp}{a numeric vector containing the time or a string specifying the
+\item{tdb_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{data_resp}.}
+in \code{db_data}.}
 
 \item{mode}{a string stating whether invariability should be calculated
 from the coefficient of variation of the state variable \code{mode = "cv"},
 or from the linear model between the response and time \code{"lm_res"}.
 The details of the two modes as explained in 'Details'.}
 
-\item{tf_resp}{a numeric vector, specifying the beginning and end of the
-interval of \code{sv_resp} values, from which invariability should be calculated,
+\item{tf_invar}{a numeric vector, specifying the beginning and end of the
+interval of \code{svdb_i} values, from which invariability should be calculated,
 or the specific time values defining this interval.}
 
-\item{data_resp}{an optional data frame containing the columns storing the
-response state variable and time.}
+\item{db_data}{an optional data frame containing the time-series of the values
+of the state variable in a state considered to be disturbed.}
 
-\item{sv_bl}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{data_bl} containing said
+\item{svbl_i}{a numeric vector containing the state variable in the baseline,
+or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{t_bl}{an optional numeric vector containing the time steps for which
-the baseline was measured, or a string containing the name of the column in \code{data_bl}.
+\item{tbl_i}{an optional numeric vector containing the time steps for which
+the baseline was measured, or a string containing the name of the column in
+\code{bl_data}.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{tf_bl}{a numeric vector, specifying the beginning and end of the
-interval of \code{sv_bl} values from which invariability should be calculated,
-or the specific time values defining this interval, if \code{data_bl} is provided.
+\item{blinvar_tf}{a numeric vector, specifying the beginning and end of the
+interval of \code{svbl_i} values from which invariability should be calculated,
+or the specific time values defining this interval, if a baseline is provided.
 Obligatory argument if \code{mode = "lm_res"}.}
 
-\item{data_bl}{an optional data frame containing the columns storing the baseline
-of the state variable.}
+\item{bl_data}{an optional data frame containing the time-series of the
+baseline values of the state variable. Time and value columns must be named
+\code{tbl_i} and \code{svbl_i}, respectively.}
 
-\item{na_rm}{a logical indicating whether NA values should be removed before processing,
-defaults to TRUE.}
+\item{na_rm}{a logical indicating whether NA values should be removed before
+processing, defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
@@ -76,21 +78,21 @@ of the state variable and the baseline.
 }
 \examples{
 invariability(
-  sv_resp = "stat_var", t_resp = "time", mode = "cv",
-  tf_resp = c(11, 50), data_resp = toy_svts
+  svdb_i = "stat_var", tdb_i = "time", mode = "cv",
+  tf_invar = c(11, 50), db_data = toy_svts
 )
 invariability(
-  sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
-  tf_resp = c(11, 50)
+  svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time, mode = "cv",
+  tf_invar = c(11, 50)
 )
 invariability(
-  sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
-  tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
-  t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts
+  svdb_i = "stat_var", tdb_i = "time", mode = "lm_res",
+  tf_invar = c(11, 50), db_data = toy_svts, svbl_i = "stat_var",
+  tbl_i = "time", blinvar_tf = c(11, 50), bl_data = toy_blts
 )
 invariability(
-  sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
-  tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
-  t_bl = toy_blts$time, tf_bl = c(11, 50)
+  svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time,
+  tf_invar = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
+  tbl_i = toy_blts$time, blinvar_tf = c(11, 50)
 )
 }
