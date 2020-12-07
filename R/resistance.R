@@ -52,39 +52,39 @@
 #'
 #' @examples
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "ts",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
 #'   svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
 #'   res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "ts",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
 #'   svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
 #'   res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "point",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
 #'   tsv_bl = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "point",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
 #'   tsv_bl = 9, res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "ts",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
 #'   svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
 #'   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "ts",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
 #'   svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
 #'   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "point",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
 #'   res_mode = "lrr", tsv_bl = 9, res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_svts, bl_mode = "point",
+#'   svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
 #'   res_mode = "diff", tsv_bl = 9, res_time = "max", res_tf = c(11, 50)
 #' )
 #' @export

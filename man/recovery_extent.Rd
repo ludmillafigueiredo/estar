@@ -77,19 +77,19 @@ Returns the log-ratio response of a state variable in relation to a baseline or 
 }
 \examples{
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "ts",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "ts",
   t_rec = 50, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "point",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "point",
   t_rec = 50, svasbl_t = 9
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "period",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "period",
   t_rec = 50, svasbl_tf = c(5, 10), summ_mode = "mean"
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "period",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "period",
   t_rec = 50, svasbl_tf = c(5, 10), summ_mode = "median"
 )
 }

@@ -13,7 +13,7 @@ A data frame with 100 rows and 2 variables:
 }
 \source{
 \code{
-set.seed(777); toy_blts <- data.frame(stat_var = runif(n = 100, min = 80, max = 100), time = seq(1,100))
+set.seed(777); toy_blts <- data.frame(stat_var = runif(n = 100, min = 90, max = 100), time = seq(1,100))
   }
 }
 \usage{

@@ -36,11 +36,11 @@
 #'
 #' @examples
 #' recovery_rate(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "db",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "db",
 #'   rec_tf = c(12, 50)
 #' )
 #' recovery_rate(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, bl_mode = "bl",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "bl",
 #'   rec_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
 #' )
 #' @export

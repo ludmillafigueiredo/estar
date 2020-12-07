@@ -44,19 +44,19 @@
 #' @examples
 #' invariability(
 #'   svdb_i = "stat_var", tdb_i = "time", mode = "cv",
-#'   tf_invar = c(11, 50), db_data = toy_svts
+#'   tf_invar = c(11, 50), db_data = toy_dbts
 #' )
 #' invariability(
-#'   svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time, mode = "cv",
+#'   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, mode = "cv",
 #'   tf_invar = c(11, 50)
 #' )
 #' invariability(
 #'   svdb_i = "stat_var", tdb_i = "time", mode = "lm_res",
-#'   tf_invar = c(11, 50), db_data = toy_svts, svbl_i = "stat_var",
+#'   tf_invar = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
 #'   tbl_i = "time", blinvar_tf = c(11, 50), bl_data = toy_blts
 #' )
 #' invariability(
-#'   svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time,
+#'   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time,
 #'   tf_invar = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
 #'   tbl_i = toy_blts$time, blinvar_tf = c(11, 50)
 #' )
