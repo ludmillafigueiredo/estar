@@ -20,7 +20,7 @@
 #' @param svbl_i a numeric vector containing the state variable in the baseline,
 #' or a string for the name of the column in \code{bl_data} containing said
 #' variable in the baseline.
-#' Obligatory argument if (\code{bl_mode = "bl"}).
+#' Obligatory argument if (\code{bl_mode = "bl"}).  ## V: should be 'ts'?
 #' @param tbl_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{bl_data}.
@@ -103,6 +103,6 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, bl_mode, t_rec, svbl_i = NUL
 
   extent <- extent_df %>%
     dplyr::mutate(extent = log(svdb_c / svbl_c)) %>%
-    dplyr::pull(extent)
+    dplyr::pull(extent)  ## V: still add a mode (lrr is just one possibility, the other being difference, like for resistance)
   return(extent)
 }
