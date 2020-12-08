@@ -12,9 +12,10 @@
 #' name of the column containing the time in the dataframe provided
 #' in \code{db_data}.
 #' @param db_data an optional data frame containing the time-series of the values
-#' of the state variable in a state considered to be disturbed.    
+#' of the state variable in a state considered to be disturbed.
 #' @param bl_mode a string stating the baseline is input as a time series
-#' (\code{bl_mode = "ts"}), input by \code{svudb_v} and \code{tudb_v}), or should
+#' (\code{bl_mode = "ts"}), input by \code{svudb_v} and \code{tudb_v}), ## V: not sure these are up to date (svudb_v anbd tudb_v)
+#' or should
 #' taken from the disturbed time-series, at a time step to be specified by
 #' \code{tsv_bl} (\code{bl_mode = "point"}).
 #' @param svbl_v a numeric vector containing the values of the state variable to be
@@ -142,7 +143,7 @@ resistance <- function(svdb_v, tdb_v, db_data = NULL, bl_mode, svbl_v = NULL,
 
       return(res_df$res)
     } else {
-      stop("res_time must be \"defined\" or \"single\".")
+      stop("res_time must be \"defined\" or \"single\".")  ## V: or 'max', not 'single', or?
     }
   }
 }
