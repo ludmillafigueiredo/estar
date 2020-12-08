@@ -2,19 +2,19 @@
 % Please edit documentation in R/persistence.R
 \name{persistence}
 \alias{persistence}
-\title{Calculate the persistance of a state variable in a user-defined limit}
+\title{Calculate the persistance of a state variable inside a zone}
 \usage{
 persistence(
   svdb_i,
   tdb_i,
   db_data = NULL,
-  lim_mode,
-  lim_ref,
-  lim_pos,
+  response,
   perst_tf,
   svbl_i = NULL,
   tbl_i = NULL,
-  bl_data = NULL
+  bl_data = NULL,
+  bl_tf = NULL,
+  na_rm = TRUE
 )
 }
 \arguments{
@@ -29,50 +29,42 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{lim_mode}{a string stating whether the limit is to be measured in
-relation to a fixed value (\code{lim_mode = "value"}) or to a baseline
-(\code{lim_mode = "bl"}).
-The details of the two modes as explained in 'Details'.}
-
-\item{lim_ref}{a double containing the fixed limit value
-(if \code{lim_mode = "value"}) or the proportion of baseline to be used as
-limit (if \code{lim_mode = "bl"}).}
-
-\item{lim_pos}{a string stating whether an upper \code{limit = "u"} or lower
-limit should be verified \code{limit = "l"}.
-The details of the two modes as explained in 'Details'.}
-
-\item{perst_tf}{a numerical vector, specifying the time step during which
-persistence should be measured.}
+\item{perst_tf}{a numerical vector, specifying the beginning and end of the
+time interval during which persistence should be measured.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if \code{lim_mode = "bl"}.}
+Obligatory argument if \code{response = "lrr"}.}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if \code{lim_mode = "bl"}.}
+Obligatory argument if \code{response = "lrr"}.}
 
 \item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
+
+\item{na_rm}{a logical determining whether NAs should be taken out for the
+estimation of variation}
 }
 \value{
-an integer, the duration of persistence
+a double, the proportion of \code{perst_tf} during which the system persisted
 }
 \description{
 Return the number of time steps the state variable remained
-inside an upper or lower limit
+inside
+}
+\details{
+Persistence is defined here as the proportion of time, in relation to a
+user-defined time frame, during which the response value (eith state variable or
+the log-ratio to baseline) stays inside the interval define by the mean and standard
+deviation of the response value during the user-defined time frame.
 }
 \examples{
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, lim_mode = "value",
-  lim_ref = 70, lim_pos = "u", perst_tf = c(30, 60)
-)
-persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_svts, lim_mode = "bl",
-  lim_ref = 0.9, lim_pos = "u", perst_tf = c(30, 60),
-  svbl_i = "stat_var", tdb_i = "time", bl_data = toy_blts
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "sv",
+  perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
+  bl_tf = NULL, na_rm = TRUE
 )
 }
