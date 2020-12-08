@@ -47,12 +47,12 @@ scenario alone.}
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if \code{mode = "lm_res"}.}
+Obligatory argument if \code{response = "lrr"}.}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if \code{mode = "lm_res"}.}
+Obligatory argument if \code{response = "lrr}.}
 
 \item{blinvar_tf}{a numeric vector, specifying the beginning and end of the
 interval of \code{svbl_i} values from which invariability should be calculated,

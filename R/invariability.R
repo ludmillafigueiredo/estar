@@ -30,11 +30,11 @@
 #' @param svbl_i a numeric vector containing the state variable in the baseline,
 #' or a string for the name of the column in \code{bl_data} containing said
 #' variable in the baseline.
-#' Obligatory argument if \code{mode = "lm_res"}.
+#' Obligatory argument if \code{response = "lrr"}.
 #' @param tbl_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{bl_data}.
-#' Obligatory argument if \code{mode = "lm_res"}.
+#' Obligatory argument if \code{response = "lrr}.
 #' @param bl_data an optional data frame containing the time-series of the
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tbl_i} and \code{svbl_i}, respectively.
