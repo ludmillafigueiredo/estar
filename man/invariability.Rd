@@ -10,6 +10,7 @@ invariability(
   mode,
   tf_invar,
   db_data = NULL,
+  response,
   svbl_i = NULL,
   tbl_i = NULL,
   blinvar_tf = NULL,
@@ -37,6 +38,11 @@ or the specific time values defining this interval.}
 
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
+
+\item{response}{a string stating whether invariability should be calculated
+from the log-ratio response between the values in the disturbed scenario and
+the baseline (\code{response = "lrr"}) or for the values in the disturbed
+scenario alone.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
@@ -73,25 +79,25 @@ ratio of the state variable in the disturbed system and in the baseline.
 \details{
 Invariance can be calculated as the inverse of the coefficient of variation
 (\code{mode = "cv"} or as the standard deviation of the residuals of the linear model
-with the predictor being the time and the response being the log response ratio
-of the state variable and the baseline.
+with the predictor being the time and the response being the state variable or the
+log response ratio of the state variable and the baseline (\code{mode = "lm_res"}).
 }
 \examples{
 invariability(
-  svdb_i = "stat_var", tdb_i = "time", mode = "cv",
-  tf_invar = c(11, 50), db_data = toy_svts
+  svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
+  tf_invar = c(11, 50), db_data = toy_dbts
 )
 invariability(
-  svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time, mode = "cv",
-  tf_invar = c(11, 50)
+  svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "sv",
+  mode = "cv", tf_invar = c(11, 50)
 )
 invariability(
-  svdb_i = "stat_var", tdb_i = "time", mode = "lm_res",
-  tf_invar = c(11, 50), db_data = toy_svts, svbl_i = "stat_var",
+  svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
+  tf_invar = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
   tbl_i = "time", blinvar_tf = c(11, 50), bl_data = toy_blts
 )
 invariability(
-  svdb_i = toy_svts$stat_var, tdb_i = toy_svts$time,
+  svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "lrr",
   tf_invar = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
   tbl_i = toy_blts$time, blinvar_tf = c(11, 50)
 )
