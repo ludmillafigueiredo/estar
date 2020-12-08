@@ -36,10 +36,11 @@ names(colors) <- c("Undisturbed", "purple", "Disturbed", "Log-Ratio", "yellow")
 
 # Toy data set
 ```{r toy-data, fig.height = 6, fig.width = 9, fig.cap = "a) Baseline and response time-series of the state variable created for the toy data set and b) long response ratio of response/baseline values.."}
+load("../data/toy_blts.rda")  ## V: why '../' and not './'?
+load("../data/toy_dbts.rda")
 sv_df <- dplyr::left_join(dplyr::rename(toy_blts, "bl" = stat_var),
-          dplyr::rename(toy_svts, "resp" = stat_var),
-          by = "time") %>%
-    dplyr::mutate(lrr = log(resp/bl))
+          dplyr::rename(toy_dbts, "resp" = stat_var),
+          by = "time") 
 
 sv_df %>%
     tidyr::pivot_longer(cols = c("bl", "resp", "lrr"),

@@ -1,7 +1,8 @@
 #' Compose a standardized dataframe to be wrangled by the function
 #'
-#' @param input a string stating whether the time-series of disturbed values of
-#' the state variable (\code{input = "dtb"}).
+#' @param input a string stating whether the data frame to be created is
+#' for the disturbed system (\code{input = "dtb"}) or for the baseline
+#' (\code{input = "bl"}))
 #' @param sv_v a numerical vector passed to the function as \code{sv_resp} or
 #' \code{sv_bl}
 #' @param t_v a numerical vector passed to the function as \code{t_resp},
@@ -19,13 +20,17 @@ format_input <- function(input, sv_v, t_v, data) {
       )
     }
   } else {
-    if (is.null(data)) {
-      input_df <- data.frame("svbl_c" = sv_v, "tbl_c" = t_v)
-    } else {
-      input_df <- dplyr::select(data,
-        "svbl_c" = dplyr::all_of(sv_v),
-        "tbl_c" = dplyr::all_of(t_v)
-      )
-    }
+      if(input == "bl"){
+          if (is.null(data)) {
+              input_df <- data.frame("svbl_c" = sv_v, "tbl_c" = t_v)
+          } else {
+              input_df <- dplyr::select(data,
+                                        "svbl_c" = dplyr::all_of(sv_v),
+                                        "tbl_c" = dplyr::all_of(t_v)
+                                        )
+          }
+      } else {
+          stop("'input' argument must be \"db\" or \"bl\".")
+      }
   }
 }
