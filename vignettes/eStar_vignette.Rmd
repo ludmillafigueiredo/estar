@@ -22,39 +22,41 @@ library(eStar)
 library(dplyr) ## TODO: shouldn't it be imported by eStar
 library(ggplot2)
 library(cowplot)
+library(viridis)
+
+colors <- viridis(n = 5, option = "plasma")
+names(colors) <- c("Undisturbed", "purple", "Disturbed", "Log-Ratio", "yellow")
 ```
+<!-- colors : -->
+<!-- Deep blue "#0D0887FF"  -->
+<!-- Purple "#7E03A8FF"  -->
+<!-- Dark pink "#CC4678FF"  -->
+<!-- Orange "#F89441FF"  -->
+<!-- Yellow "#F0F921FF" -->
 
 # Toy data set
 ```{r toy-data, fig.height = 6, fig.width = 9, fig.cap = "a) Baseline and response time-series of the state variable created for the toy data set and b) long response ratio of response/baseline values.."}
-load("../data/toy_blts.rda")  ## V: why '../' and not './'?
-load("../data/toy_svts.rda")
 sv_df <- dplyr::left_join(dplyr::rename(toy_blts, "bl" = stat_var),
           dplyr::rename(toy_svts, "resp" = stat_var),
-          by = "time") 
+          by = "time") %>%
+    dplyr::mutate(lrr = log(resp/bl))
 
-plot_grid(
-    sv_df %>%
-    tidyr::pivot_longer(cols = c("bl", "resp"), names_to = "data", values_to = "value")%>%
+sv_df %>%
+    tidyr::pivot_longer(cols = c("bl", "resp", "lrr"),
+                        names_to = "response", values_to = "value")%>%
     dplyr::mutate(data = dplyr::case_when(
-                                    data == "bl" ~ "Baseline",
-                                    data == "resp" ~ "Response")) %>%
-    ggplot(aes(x = time, y = value, colour = data, group = data)) +
-    geom_line()+
-    geom_point()+
-    scale_color_viridis_d(option = "cividis")+
+                                    response == "bl" ~ "Undisturbed",
+                                    response == "resp" ~ "Disturbed",
+                                    response == "lrr" ~ "Log-Ratio")) %>%
+    ggplot(aes(x = time, y = value, colour = data, group
+               = data)) +
+    geom_line(size = 0.8)+
+    geom_point(size = 0.8)+
+    scale_colour_manual(values = colors)+
     labs(x = "Time", y = "State variable", color = "Data")+
-    theme_minimal() +
-    theme(legend.position = c(0.80, 0.20),
-          legend.background = element_rect(fill="white")),
-    sv_df %>%
-    dplyr::mutate(lrr = log(resp / bl)) %>%
-    ggplot(aes(x = time, y = lrr), colour = "green") +
-    geom_line()+
-    geom_point()+
-    labs(x = "Time", y = "Log response ratio")+
-    theme_minimal(),
-    nrow = 1,
-    labels = c("a)", "b)"))
+    theme_minimal()+
+    theme(legend.position = c(0.80, 0.40),
+          legend.background = element_rect(fill="white"))
 ```
 
 # Main functions
