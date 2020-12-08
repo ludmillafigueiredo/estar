@@ -3,7 +3,7 @@
 #' @description Returns the rate of log-ratio response (LRR) of a state variable
 #' in relation to a baseline, over a time frame. The slope can be calculated as
 #' the slope of a linear model derived for the LRR over time or as the slope
-#' between two time steps.
+#' between two time steps.  ## V: here docs has to be made crystal clear, happy to work on this
 #'
 #' @param svdb_i a numeric vector containing the state variable in the
 #' disturbed system or a string specifying the name of the column
@@ -64,7 +64,7 @@ recovery_rate <- function(svdb_i, tdb_i, db_data, bl_mode, rec_tf,
           "t" = tdb_c
         )
     } else {
-      stop("bl_mode must be 'ts' or 'point'.")
+      stop("bl_mode must be 'ts' or 'point'.")  ## V: ts or db?
     }
   }
   lm_df <- base_df %>%
