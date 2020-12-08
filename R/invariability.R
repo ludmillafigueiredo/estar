@@ -78,26 +78,7 @@ invariability <- function(svdb_i, tdb_i, mode, tf_invar, db_data = NULL, respons
   dbts_df <- dbts_df %>%
     dplyr::filter(tdb_c >= min(tf_invar), tdb_c <= max(tf_invar))
 
-  if (response == "sv") {
-    invar_df <- dplyr::rename(dbts_df,
-      "response" = svdb_c,
-      "t" = tdb_c
-    )
-  } else {
-    if (response == "lrr") {
-      blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data) %>%
-        dplyr::filter(tbl_c >= min(blinvar_tf), tbl_c <= max(blinvar_tf))
-
-      invar_df <- dplyr::inner_join(
-        dplyr::rename(dbts_df, "t" = tdb_c),
-        dplyr::rename(blts_df, "t" = tbl_c),
-        by = "t"
-      ) %>%
-        dplyr::mutate("response" = log(svdb_c / svbl_c))
-    } else {
-      stop("'response' argument must be \"cv\" or \"lrr\".")
-    }
-  }
+  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, blinvar_tf, bl_data)
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")
