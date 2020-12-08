@@ -1,7 +1,7 @@
 #' Calculate the persistance of a state variable inside a zone
 #'
 #' @description Return the number of time steps the state variable remained
-#' inside 
+#' inside
 #'
 #' @param svdb_i a numeric vector containing the state variable in the
 #' disturbed system or a string specifying the name of the column
@@ -16,7 +16,7 @@
 #' @param svbl_i a numeric vector containing the state variable in the baseline,
 #' or a string for the name of the column in \code{bl_data} containing said
 #' variable in the baseline.
-#' Obligatory argument if \code{response = "lrr"}.
+#' Obligatory argument if \code{response = "lrr"}.  ## V: param response still to be added
 #' @param tbl_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{bl_data}.
@@ -25,7 +25,7 @@
 #' of the state variable.
 #' @param na_rm a logical determining whether NAs should be taken out for the
 #' estimation of variation
-#' 
+#'
 #' @return a double, the proportion of \code{perst_tf} during which the system persisted
 #'
 #' @details Persistence is defined here as the proportion of time, in relation to a
@@ -44,7 +44,7 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, response, perst_tf,
                         bl_tf = NULL, na_rm = TRUE
                         ) {
     dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
-    
+
     response_df <- sort_response(response, dbts_df, svbl_i, tbl_i, bl_data) %>%
         dplyr::filter(t >= min(perst_tf), t <= max(perst_tf))
 
