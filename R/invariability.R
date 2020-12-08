@@ -22,7 +22,7 @@
 #' from the log-ratio response between the values in the disturbed scenario and
 #' the baseline (\code{response = "lrr"}) or for the values in the disturbed
 #' scenario alone.
-#' @param tf_invar a numeric vector, specifying the beginning and end of the
+#' @param invar_tf a numeric vector, specifying the beginning and end of the
 #' interval of \code{svdb_i} values, from which invariability should be calculated,
 #' or the specific time values defining this interval.
 #' @param na_rm a logical indicating whether NA values should be removed before
@@ -34,35 +34,31 @@
 #' @param tbl_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{bl_data}.
-#' Obligatory argument if \code{response = "lrr}.
+#' Obligatory argument if \code{response = "lrr"}.
 #' @param bl_data an optional data frame containing the time-series of the
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tbl_i} and \code{svbl_i}, respectively.
-#' @param blinvar_tf a numeric vector, specifying the beginning and end of the
-#' interval of \code{svbl_i} values from which invariability should be calculated,
-#' or the specific time values defining this interval, if a baseline is provided.
-#' Obligatory argument if \code{response = "lrr"}.
 #'
 #' @return a numeric, the invariability value.
 #'
 #' @examples
 #' invariability(
 #'   svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
-#'   tf_invar = c(11, 50), db_data = toy_dbts
+#'   invar_tf = c(11, 50), db_data = toy_dbts
 #' )
 #' invariability(
 #'   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "sv",
-#'   mode = "cv", tf_invar = c(11, 50)
+#'   mode = "cv", invar_tf = c(11, 50)
 #' )
 #' invariability(
 #'   svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
-#'   tf_invar = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
-#'   tbl_i = "time", blinvar_tf = c(11, 50), bl_data = toy_blts
+#'   invar_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
+#'   tbl_i = "time", bl_data = toy_blts
 #' )
 #' invariability(
 #'   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "lrr",
-#'   tf_invar = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
-#'   tbl_i = toy_blts$time, blinvar_tf = c(11, 50)
+#'   invar_tf = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
+#'   tbl_i = toy_blts$time
 #' )
 #' @details
 #' Invariance can be calculated as the inverse of the coefficient of variation
@@ -70,15 +66,12 @@
 #' with the predictor being the time and the response being the state variable or the
 #' log response ratio of the state variable and the baseline (\code{mode = "lm_res"}).
 #' @export
-invariability <- function(svdb_i, tdb_i, mode, tf_invar, db_data = NULL, response,
-                          svbl_i = NULL, tbl_i = NULL, blinvar_tf = NULL, bl_data = NULL,
-                          na_rm = TRUE) {
+invariability <- function(svdb_i, tdb_i, mode, invar_tf, db_data = NULL, response,
+                          svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
 
-  dbts_df <- dbts_df %>%
-    dplyr::filter(tdb_c >= min(tf_invar), tdb_c <= max(tf_invar))
-
-  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, blinvar_tf, bl_data)
+  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, bl_data) %>%
+    dplyr::filter(t >= min(invar_tf), t <= max(invar_tf))
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")
