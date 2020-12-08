@@ -41,7 +41,7 @@
 #' @param blinvar_tf a numeric vector, specifying the beginning and end of the
 #' interval of \code{svbl_i} values from which invariability should be calculated,
 #' or the specific time values defining this interval, if a baseline is provided.
-#' Obligatory argument if \code{mode = "lm_res"}.
+#' Obligatory argument if \code{response = "lrr"}.
 #'
 #' @return a numeric, the invariability value.
 #'
