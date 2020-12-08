@@ -12,16 +12,15 @@
 #' @param tbl_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{bl_data}.
-#' @param bl_data a numeric vector, specifying the beginning and end of the
-#' interval of \code{svbl_i} values from which invariability should be calculated,
+#' @param bl_data an optional data frame containing the time-series of the
+#' baseline values of the state variable. Time and value columns must be named
+#' \code{tbl_i} and \code{svbl_i}, respectively.
+#' @param bl_tf a numeric vector, specifying the beginning and end of the
+#' interval of \code{svbl_i} values from which the metric should be calculated,
 #' or the specific time values defining this interval, if a baseline is provided.
-#' Obligatory argument if \code{mode = "lm_res"}.
-#' @param blinvar_tf a numeric vector, specifying the beginning and end of the
-#' interval of \code{svbl_i} values from which invariability should be calculated,
-#' or the specific time values defining this interval, if a baseline is provided.
-#' Obligatory argument if \code{mode = "lm_res"}.
+#' 
 #' @noRd
-sort_response <- function(response, dbts_df, svbl_i, tbl_i, blinvar_tf, bl_data){
+sort_response <- function(response, dbts_df, svbl_i, tbl_i, bl_tf, bl_data){
     if (response == "sv") {
     response_df <- dplyr::rename(dbts_df,
       "response" = svdb_c,
@@ -30,7 +29,7 @@ sort_response <- function(response, dbts_df, svbl_i, tbl_i, blinvar_tf, bl_data)
   } else {
     if (response == "lrr") {
       blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data) %>%
-        dplyr::filter(tbl_c >= min(blinvar_tf), tbl_c <= max(blinvar_tf))
+        dplyr::filter(tbl_c >= min(bl_tf), tbl_c <= max(bl_tf))
 
       response_df <- dplyr::inner_join(
         dplyr::rename(dbts_df, "t" = tdb_c),
