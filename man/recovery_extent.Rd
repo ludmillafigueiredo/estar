@@ -8,6 +8,7 @@ recovery_extent(
   svdb_i,
   tdb_i,
   db_data,
+  rec_mode,
   bl,
   t_rec,
   svbl_i = NULL,
@@ -30,6 +31,10 @@ in \code{db_data}.}
 
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
+
+\item{rec_mode}{A string stating whether the resistance should be calculated
+as the log-ratio response (\code{res_mode = "lrr"}) or the difference
+(\code{res_mode = "diff"}). See details.}
 
 \item{bl}{A string determining whether recovery is calculated in relation
 to a baseline time series (\code{bl = "input"}), to a point in the state
@@ -83,19 +88,25 @@ over a period defined by \code{bl_tf}}
 }
 \examples{
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  t_rec = 50, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "point",
-  t_rec = 50, bl_t = 9
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "diff",
+  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
-  t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  bl = "point", t_rec = 50, bl_t = 9
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
-  t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
+)
+recovery_extent(
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 )
 }

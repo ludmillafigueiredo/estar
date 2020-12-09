@@ -10,6 +10,9 @@
 #' \item the mean or median of pre-disturbance values of the state variable
 #' over a period defined by \code{bl_tf}}
 #'
+#' @param rec_mode A string stating whether the resistance should be calculated
+#' as the log-ratio response (\code{res_mode = "lrr"}) or the difference
+#' (\code{res_mode = "diff"}). See details.
 #' @param bl A string determining whether recovery is calculated in relation
 #' to a baseline time series (\code{bl = "input"}), to a point in the state
 #' variable time series (\code{bl = "point"}), or (\code{bl = "period"})
@@ -31,25 +34,32 @@
 #'
 #' @examples
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   t_rec = 50, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+#'   bl_data = toy_blts
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "point",
-#'   t_rec = 50, bl_t = 9
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "diff",
+#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+#'   bl_data = toy_blts
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
-#'   t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   bl = "point", t_rec = 50, bl_t = 9
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
-#'   t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
+#' )
+#' recovery_extent(
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
-recovery_extent <- function(svdb_i, tdb_i, db_data, bl, t_rec, svbl_i = NULL,
-                            tbl_i = NULL, bl_data = NULL, bl_t = NULL, bl_tf = NULL,
-                            summ_mode = NULL, na_rm = TRUE) {
+recovery_extent <- function(svdb_i, tdb_i, db_data, rec_mode, bl, t_rec,
+                            svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
+                            bl_t = NULL, bl_tf = NULL, summ_mode = NULL,
+                            na_rm = TRUE) {
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
@@ -73,23 +83,34 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, bl, t_rec, svbl_i = NULL,
     } else {
       if (bl == "period") {
         summ_f <- match.fun(summ_mode)
-        svbl_df <- dplyr::filter(
-          dbts_df,
-          tdb_c >= bl_tf, tdb_c <= bl_tf
-        ) %>%
+        svbl_df <- dplyr::filter(dbts_df,
+          tdb_c >= min(bl_tf), tdb_c <= max(bl_tf)
+          ) %>%
+          dplyr::ungroup() %>%
           dplyr::summarize("svbl_c" = summ_f(svdb_c, na.rm = na_rm))
 
         extent_df <- dbts_df %>%
           dplyr::filter(tdb_c == t_rec) %>%
-          dplyr::mutate("svbl_c" = svbl_df$svbl_c)
+          dplyr::mutate(svbl_c = svbl_df$svbl_c)
       } else {
-        stop("bl must be 'ts', 'point', or 'period'.")
+        stop("bl must be \"input\", \"point\", or \"period\".")
       }
     }
   }
 
+  if (rec_mode == "lrr"){
   extent <- extent_df %>%
     dplyr::mutate(extent = log(svdb_c / svbl_c)) %>%
-    dplyr::pull(extent)  ## V: still add a mode (lrr is just one possibility, the other being difference, like for resistance)
+    dplyr::pull(extent) 
+  } else{
+      if (rec_mode == "diff"){
+  extent <- extent_df %>%
+    dplyr::mutate(extent = svdb_c - svbl_c) %>%
+    dplyr::pull(extent)
+      } else {
+          stop("rec_mode must be \"lrr\" or \"diff\"")
+      }
+  }
+  
   return(extent)
 }
