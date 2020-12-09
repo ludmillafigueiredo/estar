@@ -2,18 +2,18 @@
 % Please edit documentation in R/persistence.R
 \name{persistence}
 \alias{persistence}
-\title{Calculate the persistance of a state variable inside a zone}
+\title{Calculate the persistance of a state variable inside a defined interval}
 \usage{
 persistence(
   svdb_i,
   tdb_i,
   db_data = NULL,
-  response,
   perst_tf,
+  bl,
+  bl_tf,
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
-  bl_tf = NULL,
   na_rm = TRUE
 )
 }
@@ -32,15 +32,23 @@ of the state variable in a state considered to be disturbed.}
 \item{perst_tf}{a numerical vector, specifying the beginning and end of the
 time interval during which persistence should be measured.}
 
+\item{bl}{a string stating whether the baseline is defined by a separate
+baseline that is input (\code{bl = "input"}) or by a certain time period of
+the disturbed system (\code{bl = "db"}).}
+
+\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+time interval that defines the baseline (either in the disturbed time-series,
+or in the baseline input). See Details.}
+
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if \code{response = "lrr"}.}
+Obligatory argument if \code{bl = "bl"}.}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if \code{response = "lrr"}.}
+Obligatory argument if \code{bl = "bl"}.}
 
 \item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
@@ -49,22 +57,32 @@ of the state variable.}
 estimation of variation}
 }
 \value{
-a double, the proportion of \code{perst_tf} during which the system persisted
+a double, contained in [0,1]
 }
 \description{
-Return the number of time steps the state variable remained
-inside
+Return the proportion of time the state variable remained
+inside the interval defined by the baseline's mean \eqn{\pm} sd. The proportion
+is calculated in relation to the time frame for which persistence should be
+calculated.
 }
 \details{
-Persistence is defined here as the proportion of time, in relation to a
-user-defined time frame, during which the response value (eith state variable or
-the log-ratio to baseline) stays inside the interval define by the mean and standard
-deviation of the response value during the user-defined time frame.
+If the baseline is defined by values of the state variable along the
+disturbed time-series (\code{bl = "db"}), the time frame used as baseline
+(\code{bl_tf}) cannot overlap with the time frame for which the persistence
+is to be calculated (\code{perst_tf}), because of redundancy: the values over
+\code{bl_tf} define the interval for which the values in \code{perst_tf} are
+checked. If they are the same (or partly, if overlap is partial), the
+returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "sv",
-  perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
-  bl_tf = NULL, na_rm = TRUE
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  bl_tf = c(1, 9), perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
+  na_rm = TRUE
+)
+persistence(
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "bl",
+  bl_tf = c(50, 100), perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
+  na_rm = TRUE
 )
 }
