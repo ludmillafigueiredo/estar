@@ -8,7 +8,7 @@ persistence(
   svdb_i,
   tdb_i,
   db_data = NULL,
-  perst_tf,
+  metric_tf,
   bl,
   bl_tf,
   svbl_i = NULL,
@@ -29,7 +29,7 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{perst_tf}{a numerical vector, specifying the beginning and end of the
+\item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time interval during which persistence should be measured.}
 
 \item{bl}{a string stating whether the baseline is defined by a separate
@@ -54,35 +54,35 @@ Obligatory argument if \code{bl = "bl"}.}
 of the state variable.}
 
 \item{na_rm}{a logical determining whether NAs should be taken out for the
-estimation of variation}
+estimation of variation. Defaults to TRUE.}
 }
 \value{
 a double, contained in [0,1]
 }
 \description{
-Return the proportion of time the state variable remained
-inside the interval defined by the baseline's mean \eqn{\pm} sd. The proportion
-is calculated in relation to the time frame for which persistence should be
-calculated.
+\code{persistence} returns the proportion of time the state
+variable remained inside the interval defined by the baseline's
+mean \eqn{\pm} sd. The proportion is calculated in relation to the time
+frame for which persistence should be calculated.
 }
 \details{
 If the baseline is defined by values of the state variable along the
 disturbed time-series (\code{bl = "db"}), the time frame used as baseline
 (\code{bl_tf}) cannot overlap with the time frame for which the persistence
-is to be calculated (\code{perst_tf}), because of redundancy: the values over
-\code{bl_tf} define the interval for which the values in \code{perst_tf} are
+is to be calculated (\code{metric_tf}), because of redundancy: the values over
+\code{bl_tf} define the interval for which the values in \code{metric_tf} are
 checked. If they are the same (or partly, if overlap is partial), the
 returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  bl_tf = c(1, 9), perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
-  na_rm = TRUE
+  bl_tf = c(1, 9), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
+  bl_data = NULL, na_rm = TRUE
 )
 persistence(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "bl",
-  bl_tf = c(50, 100), perst_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
-  na_rm = TRUE
+  bl_tf = c(50, 100), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
+  bl_data = NULL, na_rm = TRUE
 )
 }

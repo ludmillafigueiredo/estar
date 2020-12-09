@@ -2,21 +2,21 @@
 % Please edit documentation in R/recovery_extent.R
 \name{recovery_extent}
 \alias{recovery_extent}
-\title{Calculate the extent of recovery.}
+\title{Calculate the extent of recovery}
 \usage{
 recovery_extent(
   svdb_i,
   tdb_i,
   db_data,
-  bl_mode,
+  bl,
   t_rec,
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
-  svasbl_t = NULL,
-  svasbl_tf = NULL,
+  bl_t = NULL,
+  bl_tf = NULL,
   summ_mode = NULL,
-  bl_narm = TRUE
+  na_rm = TRUE
 )
 }
 \arguments{
@@ -31,65 +31,71 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{bl_mode}{a string determining whether recovery is calculated in relation
-to a baseline time series (\code{bl_mode = "ts"}), to a point in the state
-variable time series (\code{bl_mode = "point"}), or (\code{bl_mode = "period"})
+\item{bl}{A string determining whether recovery is calculated in relation
+to a baseline time series (\code{bl = "input"}), to a point in the state
+variable time series (\code{bl = "point"}), or (\code{bl = "period"})
 to a summary (mean or median, defined by \code{summ_mode}) of the values of
-the state variable during a period defined by \code{tfsd_bl}.}
+the state variable during a period defined by \code{bl_tf}.}
 
-\item{t_rec}{an integer, time step at which extent of recovery should be
+\item{t_rec}{An integer, time step at which extent of recovery should be
 calculated.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if (\code{bl_mode = "bl"}).}
+Obligatory argument if \code{bl = "bl"}.}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if (\code{bl_mode = "bl"}).}
+Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the time-series of the
-baseline values of the state variable. Time and value columns must be named
-\code{tbl_i} and \code{svbl_i}, respectively.}
+\item{bl_data}{an optional data frame containing the columns storing the baseline
+of the state variable.}
 
-\item{svasbl_t}{an integer stating the time point of the state variable response
+\item{bl_t}{An integer stating the time point of the state variable response
 time-series that should be used as baseline.
-Obligatory argument if \code{bl_mode = "point"}.}
+Obligatory argument if \code{bl = "point"}.}
 
-\item{svasbl_tf}{a numerical vector defining the period over which the values of
+\item{bl_tf}{A numerical vector defining the period over which the values of
 the state variable response should be used to calculate the baseline.
-Obligatory argument if \code{bl_mode = "period"}.}
+Obligatory argument if \code{bl = "period"}.}
 
-\item{summ_mode}{a string, stating whether the baseline should be summarized as
+\item{summ_mode}{A string, stating whether the baseline should be summarized as
 the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).}
 
-\item{bl_narm}{a logical indicating whether NA values should be removed before
-summarizing the values to be used as baseline.
-Obligatory argument if \code{bl_mode = "period"}.}
+\item{na_rm}{a logical determining whether NAs should be taken out for the
+estimation of variation. Defaults to TRUE.}
 }
 \value{
 a double, the extent of recovery
 }
 \description{
-Returns the log-ratio response of a state variable in relation to a baseline or between two time steps.
+\code{recovery_extent} calculates how close a state variable at a certain
+time step is to aa baseline. This distance can be calculated as the
+log-ratio or the difference between the state variable in a disturbed
+time-series and the baseline. The baseline can be
+\itemize{
+\item a separate baseline time-series
+\item a single pre-disturbance value of the state variable
+\item the mean or median of pre-disturbance values of the state variable
+over a period defined by \code{bl_tf}}
 }
 \examples{
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "ts",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
   t_rec = 50, svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "point",
-  t_rec = 50, svasbl_t = 9
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "point",
+  t_rec = 50, bl_t = 9
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "period",
-  t_rec = 50, svasbl_tf = c(5, 10), summ_mode = "mean"
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
+  t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl_mode = "period",
-  t_rec = 50, svasbl_tf = c(5, 10), summ_mode = "median"
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "period",
+  t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 )
 }

@@ -8,7 +8,7 @@ invariability(
   svdb_i,
   tdb_i,
   mode,
-  invar_tf,
+  metric_tf,
   db_data = NULL,
   response,
   svbl_i = NULL,
@@ -26,14 +26,13 @@ containing said variable in the dataframe provided in \code{db_data}.}
 name of the column containing the time in the dataframe provided
 in \code{db_data}.}
 
-\item{mode}{a string stating whether invariability should be calculated
+\item{mode}{A string stating whether invariability should be calculated
 from the coefficient of variation of the state variable \code{mode = "cv"},
-or from the linear model between the response and time \code{"lm_res"}.
+or from the linear model \code{"lm_res"}.
 The details of the two modes as explained in 'Details'.}
 
-\item{invar_tf}{a numeric vector, specifying the beginning and end of the
-interval of \code{svdb_i} values, from which invariability should be calculated,
-or the specific time values defining this interval.}
+\item{metric_tf}{a numerical vector, specifying the beginning and end of the
+time interval for which the metric should be measured.}
 
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
@@ -46,53 +45,50 @@ scenario alone.}
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
-Obligatory argument if \code{response = "lrr"}.}
+Obligatory argument if \code{bl = "bl"}.}
 
 \item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory argument if \code{response = "lrr"}.}
+Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the time-series of the
-baseline values of the state variable. Time and value columns must be named
-\code{tbl_i} and \code{svbl_i}, respectively.}
+\item{bl_data}{an optional data frame containing the columns storing the baseline
+of the state variable.}
 
-\item{na_rm}{a logical indicating whether NA values should be removed before
-processing, defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out for the
+estimation of variation. Defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
 }
 \description{
-Return the temporal invariability of the state variable.
-Can be aclulated as the inverse of coefficient of variation or
-as the standard deviation of residuals of the linear model that uses
-as the predictor  the time and as the response variable the log-response
-ratio of the state variable in the disturbed system and in the baseline.
-}
-\details{
-Invariance can be calculated as the inverse of the coefficient of variation
-(\code{mode = "cv"} or as the standard deviation of the residuals of the linear model
-with the predictor being the time and the response being the state variable or the
-log response ratio of the state variable and the baseline (\code{mode = "lm_res"}).
+\code{invariability} returns the temporal invariability of the state variable
+response to disturbance.
+The response can be the post-disturbance values of the state variable, or the
+log-response ratio of the state variable in the disturbed system compared to
+the baseline.
+The invariability itself can be calculated as the inverse of the coefficient
+of variation of the state variable or as the inverse of the standard deviation of
+residuals of the linear model that uses the time as the predictor of the
+response.
 }
 \examples{
 invariability(
   svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
-  invar_tf = c(11, 50), db_data = toy_dbts
+  metric_tf = c(11, 50), db_data = toy_dbts
 )
 invariability(
   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "sv",
-  mode = "cv", invar_tf = c(11, 50)
+  mode = "cv", metric_tf = c(11, 50)
 )
 invariability(
   svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
-  invar_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
+  metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
   tbl_i = "time", bl_data = toy_blts
 )
 invariability(
   svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "lrr",
-  invar_tf = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
+  metric_tf = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
   tbl_i = toy_blts$time
 )
 }

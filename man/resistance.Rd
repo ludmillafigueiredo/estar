@@ -5,14 +5,14 @@
 \title{Calculate the resistance of a state variable to disturbance}
 \usage{
 resistance(
-  svdb_v,
-  tdb_v,
+  svdb_i,
+  tdb_i,
   db_data = NULL,
-  bl_mode,
-  svbl_v = NULL,
-  tbl_v = NULL,
+  bl,
+  svbl_i = NULL,
+  tbl_i = NULL,
   bl_data = NULL,
-  tsv_bl = NULL,
+  bl_t = NULL,
   res_mode,
   res_time,
   res_t = NULL,
@@ -21,106 +21,101 @@ resistance(
 )
 }
 \arguments{
-\item{svdb_v}{a numeric vector containing the state variable in the
+\item{svdb_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
 containing said variable in the dataframe provided in \code{db_data}.}
 
-\item{tdb_v}{a numeric vector containing the time or a string specifying the
+\item{tdb_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
 in \code{db_data}.}
 
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{bl_mode}{a string stating the baseline is input as a time series
-(\code{bl_mode = "ts"}), input by \code{svudb_v} and \code{tudb_v}), or should
-taken from the disturbed time-series, at a time step to be specified by
-\code{tsv_bl} (\code{bl_mode = "point"}).}
+\item{svbl_i}{a numeric vector containing the state variable in the baseline,
+or a string for the name of the column in \code{bl_data} containing said
+variable in the baseline.
+Obligatory argument if \code{bl = "bl"}.}
 
-\item{svbl_v}{a numeric vector containing the values of the state variable to be
-used the baseline, or a string for the name of the column in \code{data_udb}
-containing these values.
-Obligatory if \code{bl_mode = "ts"}.}
-
-\item{tbl_v}{an optional numeric vector containing the time steps for which
+\item{tbl_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
-Obligatory if \code{bl_mode = "ts"}.}
+Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the columns storing the values
-of the state variable in a state considered to be undisturbed.}
+\item{bl_data}{an optional data frame containing the columns storing the baseline
+of the state variable.}
 
-\item{tsv_bl}{an integer, specifying the time step whose values should be used
-as baseline.
-Obligatory if \code{bl_mode = "point"}.}
+\item{bl_t}{An integer, specifying the time step whose state variable value
+should be used as baseline.
+Obligatory if \code{bl = "db"}.}
 
-\item{res_mode}{a string stating whether the resistance should be calculated
+\item{res_mode}{A string stating whether the resistance should be calculated
 as the log-ratio response (\code{res_mode = "lrr"}) or the difference
 (\code{res_mode = "diff"}). See details.}
 
-\item{res_time}{a string stating whether resistance should be calculated at
+\item{res_time}{A string stating whether resistance should be calculated at
 an specific time step (\code{res_time = "defined"}) or if it should be taken
 as the maximal value over a timeframe (\code{res_time = "max"}. Time steps
 are defined by \code{res_t} and \code{res_tf}, respectively. See details.}
 
-\item{res_t}{an integer defining the time step when resistance should be
-measured if \code{res_time = "single"}).}
+\item{res_t}{An integer defining the time step when resistance should be
+measured if \code{res_time = "defined"}).}
 
-\item{res_tf}{a vector, specifying the interval for which the maximum resistance
-should be looked for, if \code{bl_mode = "ts"}.}
+\item{res_tf}{A vector, specifying the interval for which the maximum
+resistance should be looked for, if \code{bl = "input"}.}
 
-\item{na_rm}{a logical indicating whether NA values should be removed before
-processing.}
+\item{na_rm}{a logical determining whether NAs should be taken out for the
+estimation of variation. Defaults to TRUE.}
 }
 \value{
-a double, the resistance of the state variable to baseline.
+A double, the resistance of the state variable to baseline.
 }
 \description{
-Returns the value of the maximal absolute response of a state
-variable to its value at an specified time. The response is calculated as
-as the difference between disturbed and undisturbed states, or as the log-ratio
-between. See details on how to specify the values.
+\code{resistance} returns the distance of a state variable to a baseline
+value at an specified time. The distance is calculated as the maximal
+absolute difference between the disturbed state and the baseline, or as
+the log response ratio between them, at an specified time step.
+See details on how to specify the values.
 }
 \details{
-Whether \code{res_mode = "lrr"} or \code{res_mode = "diff"}, if
-\code{res_time = "max"}, the resistance is value is selected as the maximal
-absolute value.
+If resistance is calculated at an specific time step, it is
+traditionally the first time step following disturbance.
 }
 \examples{
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
-  svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
   res_mode = "lrr", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
-  svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
   res_mode = "diff", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
-  tsv_bl = 9, res_mode = "lrr", res_time = "defined", res_t = 11
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  bl_t = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
-  tsv_bl = 9, res_mode = "diff", res_time = "defined", res_t = 11
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  bl_t = 9, res_mode = "diff", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
-  svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "ts",
-  svbl_v = "stat_var", tbl_v = "time", bl_data = toy_blts,
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
-  res_mode = "lrr", tsv_bl = 9, res_time = "max", res_tf = c(11, 50)
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  res_mode = "lrr", bl_t = 9, res_time = "max", res_tf = c(11, 50)
 )
 resistance(
-  svdb_v = "stat_var", tdb_v = "time", db_data = toy_dbts, bl_mode = "point",
-  res_mode = "diff", tsv_bl = 9, res_time = "max", res_tf = c(11, 50)
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  res_mode = "diff", bl_t = 9, res_time = "max", res_tf = c(11, 50)
 )
 }

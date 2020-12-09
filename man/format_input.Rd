@@ -7,8 +7,9 @@
 format_input(input, sv_v, t_v, data)
 }
 \arguments{
-\item{input}{a string stating whether the time-series of disturbed values of
-the state variable (\code{input = "dtb"}).}
+\item{input}{a string stating whether the data frame to be created is
+for the disturbed system (\code{input = "dtb"}) or for the baseline
+(\code{input = "bl"}))}
 
 \item{sv_v}{a numerical vector passed to the function as \code{sv_resp} or
 \code{sv_bl}}
