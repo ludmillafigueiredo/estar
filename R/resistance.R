@@ -110,21 +110,21 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   }
 
   if (res_time == "defined") {
-    res_df <- res_df %>%
+    res <- res_df %>%
       dplyr::filter(t == res_t) %>%
-      dplyr::mutate(res = get_res(svdb_c, svbl_c, res_mode))
-
-    return(res_df$res)
+      dplyr::mutate(res = get_res(svdb_c, svbl_c, res_mode))%>%
+      dplyr::pull(res)
   } else {
     if (res_time == "max") {
-      res_df <- res_df %>%
+      res <- res_df %>%
         dplyr::filter(t >= min(res_tf), t <= max(res_tf)) %>%
         dplyr::mutate(res = get_res(svdb_c, svbl_c, res_mode)) %>%
-        dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm))
-
-      return(res_df$res)
+        dplyr::ungroup() %>%
+        dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm)) %>%
+        dplyr::pull(res)
     } else {
       stop("res_time must be \"defined\" or \"max\".")
     }
   }
+  return(res)
 }
