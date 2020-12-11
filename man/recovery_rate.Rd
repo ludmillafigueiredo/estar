@@ -28,6 +28,10 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
+\item{bl}{a string stating whether the baseline is defined by a separate
+baseline that is input (\code{bl = "input"}) or by a time period of
+the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time interval for which the metric should be measured.}
 
