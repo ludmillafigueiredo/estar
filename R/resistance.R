@@ -68,13 +68,13 @@
 resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, svbl_i = NULL,
                        tbl_i = NULL, bl_data = NULL, bl_t = NULL, res_mode,
                        res_time, res_t = NULL, res_tf = NULL, na_rm = TRUE) {
-  get_res <- function(svdb_i, svbl_i, res_mode) {
+  get_res <- function(svdb_c, svbl_c, res_mode) {
     if (res_mode == "lrr") {
-      res <- log(svdb_i / svbl_i)
+      res <- log(svdb_c / svbl_c)
       return(res)
     } else {
       if (res_mode == "diff") {
-        res <- svdb_i - svbl_i
+        res <- svdb_c - svbl_c
         return(res)
       } else {
         stop("res_mode must be \"lrr\" or \"diff\".")
@@ -100,7 +100,7 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, svbl_i = NULL,
         dplyr::rename("t" = tdb_c) %>%
         dplyr::mutate(svbl_c = bl)
     } else {
-      stop("bl must be \"ts\" or \"point\".")
+      stop("bl must be \"input\" or \"db\".")
     }
   }
 
