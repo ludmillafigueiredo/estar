@@ -24,7 +24,7 @@
 #' )
 #' persistence(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-#'   bl_tf = c(1, 9), metric_tf = c(10, 30)
+#'   bl_tf = c(1, 9), metric_tf = c(30, 100)
 #' )
 #' persistence(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
@@ -68,15 +68,23 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NU
         dplyr::summarize(low_lim = mean_sv - sd_sv,
                          high_lim = mean_sv + sd_sv)
 
-    persistence <- dbts_df %>%
+    persistence_df <- dbts_df %>%
         dplyr::filter(tdb_c >= min(metric_tf), tdb_c <= max(metric_tf)) %>%
         dplyr::rowwise() %>%
-        dplyr::mutate(persist = all(svdb_c >= perst_zone$low_lim, svdb_c <= perst_zone$high_lim)) %>%
+        dplyr::mutate(persist = all(svdb_c >= perst_zone$low_lim,
+                                    svdb_c <= perst_zone$high_lim)) %>%
         dplyr::group_by(persist) %>%
         dplyr::summarize(n_p = dplyr::n()) %>%
-        dplyr::ungroup() %>%
-        dplyr::filter(persist == TRUE) %>%
+        dplyr::ungroup()  %>%
         dplyr::mutate(persistence = n_p/sum(n_p)) %>%
-        dplyr::pull(persistence)
-    return(persistence)
+        dplyr::filter(persist == TRUE)
+
+    ## necessary if all persist values are FALSE, and data frame ends up empty
+    if (dim(persistence_df)[1] == 0) {
+        persistence = 0
+        return(persistence)
+    } else {
+        return(persistence_df$persistence)
+    }
 }
+

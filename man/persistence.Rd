@@ -81,7 +81,7 @@ persistence(
 )
 persistence(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  bl_tf = c(1, 9), metric_tf = c(10, 30)
+  bl_tf = c(1, 9), metric_tf = c(30, 100)
 )
 persistence(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
