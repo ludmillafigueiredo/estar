@@ -10,7 +10,7 @@ persistence(
   db_data = NULL,
   metric_tf,
   bl,
-  bl_tf,
+  bl_tf = NULL,
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
@@ -30,15 +30,15 @@ in \code{db_data}.}
 of the state variable in a state considered to be disturbed.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time interval during which persistence should be measured.}
+time interval for which the metric should be measured.}
 
 \item{bl}{a string stating whether the baseline is defined by a separate
-baseline that is input (\code{bl = "input"}) or by a certain time period of
-the disturbed system (\code{bl = "db"}).}
+baseline that is input (\code{bl = "input"}) or by a time period of
+the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
 
 \item{bl_tf}{a numerical vector, specifying the beginning and end of the
-time interval that defines the baseline (either in the disturbed time-series,
-or in the baseline input). See Details.}
+time interval of the time-series of the disturbed system that defines the
+baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
@@ -77,12 +77,20 @@ returned value of persistence will be falsely higher.
 \examples{
 persistence(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  bl_tf = c(1, 9), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
-  bl_data = NULL, na_rm = TRUE
+  bl_tf = c(1, 9), metric_tf = c(50, 100)
 )
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "bl",
-  bl_tf = c(50, 100), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
-  bl_data = NULL, na_rm = TRUE
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  bl_tf = c(1, 9), metric_tf = c(10, 30)
+)
+persistence(
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
+  bl_data = toy_blts
+)
+persistence(
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+  metric_tf = c(30, 100), svbl_i = "stat_var", tbl_i = "time",
+  bl_data = toy_blts
 )
 }

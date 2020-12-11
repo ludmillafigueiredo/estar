@@ -9,10 +9,11 @@ resistance(
   tdb_i,
   db_data = NULL,
   bl,
+  summ_mode = "mean",
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
-  bl_t = NULL,
+  bl_tf = NULL,
   res_mode,
   res_time,
   res_t = NULL,
@@ -32,6 +33,14 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
+\item{bl}{a string stating whether the baseline is defined by a separate
+baseline that is input (\code{bl = "input"}) or by a time period of
+the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+
+\item{summ_mode}{A string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+Defaults to "mean".}
+
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
 variable in the baseline.
@@ -45,9 +54,9 @@ Obligatory argument if \code{bl = "bl"}.}
 \item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
 
-\item{bl_t}{An integer, specifying the time step whose state variable value
-should be used as baseline.
-Obligatory if \code{bl = "db"}.}
+\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+time interval of the time-series of the disturbed system that defines the
+baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
 
 \item{res_mode}{A string stating whether the resistance should be calculated
 as the log-ratio response (\code{res_mode = "lrr"}) or the difference
@@ -80,6 +89,11 @@ See details on how to specify the values.
 \details{
 If resistance is calculated at an specific time step, it is
 traditionally the first time step following disturbance.
+
+Even though it is possible to use a single data value as baseline
+(by passing a double to \code{bl_tf}), it is not recommended, because a
+single value does not account for any variation on the system arising from
+demographic or environmental dynamics or stochasticity.
 }
 \examples{
 resistance(
@@ -94,11 +108,11 @@ resistance(
 )
 resistance(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  bl_t = 9, res_mode = "lrr", res_time = "defined", res_t = 11
+  bl_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 )
 resistance(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  bl_t = 9, res_mode = "diff", res_time = "defined", res_t = 11
+  bl_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
 )
 resistance(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
@@ -112,10 +126,12 @@ resistance(
 )
 resistance(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  res_mode = "lrr", bl_t = 9, res_time = "max", res_tf = c(11, 50)
+  res_mode = "lrr", bl_tf = 9, res_time = "max",
+  res_tf = c(11, 50)
 )
 resistance(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-  res_mode = "diff", bl_t = 9, res_time = "max", res_tf = c(11, 50)
+  summ_mode = "median", res_mode = "lrr", bl_tf = 9, res_time = "max",
+  res_tf = c(11, 50)
 )
 }

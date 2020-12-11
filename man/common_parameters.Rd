@@ -11,6 +11,9 @@ common_parameters(
   svbl_i,
   tbl_i,
   bl_data,
+  bl,
+  bl_tf,
+  summ_mode,
   na_rm,
   response,
   metric_df,
@@ -41,6 +44,18 @@ Obligatory argument if \code{bl = "bl"}.}
 
 \item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
+
+\item{bl}{a string stating whether the baseline is defined by a separate
+baseline that is input (\code{bl = "input"}) or by a time period of
+the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+
+\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+time interval of the time-series of the disturbed system that defines the
+baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
+
+\item{summ_mode}{A string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+Defaults to "mean".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out for the
 estimation of variation. Defaults to TRUE.}

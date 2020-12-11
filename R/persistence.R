@@ -5,14 +5,6 @@
 #' mean \eqn{\pm} sd. The proportion is calculated in relation to the time
 #' frame for which persistence should be calculated.
 #' 
-#' @param metric_tf a numerical vector, specifying the beginning and end of the
-#' time interval during which persistence should be measured.
-#' @param bl a string stating whether the baseline is defined by a separate
-#' baseline that is input (\code{bl = "input"}) or by a certain time period of
-#' the disturbed system (\code{bl = "db"}).
-#' @param bl_tf a numerical vector, specifying the beginning and end of the
-#' time interval that defines the baseline (either in the disturbed time-series,
-#' or in the baseline input). See Details.
 #' @inheritParams common_parameters
 #' 
 #' @return a double, contained in \[0,1\]
@@ -28,41 +20,48 @@
 #' @examples
 #' persistence(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-#'   bl_tf = c(1, 9), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
-#'   bl_data = NULL, na_rm = TRUE
+#'   bl_tf = c(1, 9), metric_tf = c(50, 100)
 #' )
 #' persistence(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "bl",
-#'   bl_tf = c(50, 100), metric_tf = c(50, 100), svbl_i = NULL, tbl_i = NULL,
-#'   bl_data = NULL, na_rm = TRUE
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   bl_tf = c(1, 9), metric_tf = c(10, 30)
+#' )
+#' persistence(
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+#'   metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
+#'   bl_data = toy_blts
+#' )
+#' persistence(
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+#'   metric_tf = c(30, 100), svbl_i = "stat_var", tbl_i = "time",
+#'   bl_data = toy_blts
 #' )
 #' @export
-persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf,
+persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NULL,
                         svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
                         na_rm = TRUE
                         ) {
     dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
 
     if (bl == "input") {
-        blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data) ##%>%
-            dplyr::rename("t" = tbl_c,
-                          "sv" = svbl_c)
+        blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data) %>%
+            dplyr::rename("sv" = svbl_c)
     } else {
         if (bl == "db") {
             if(max(bl_tf) > min(metric_tf)) {
                 stop("Baseline overlaps with persistence period. Check Details.")
             }
             blts_df <- dbts_df %>%
-            dplyr::rename("t" = tdb_c,
-                          "sv" = svdb_c)
+            dplyr::ungroup() %>%
+            dplyr::filter(tdb_c >= min(bl_tf), tdb_c <= max(bl_tf)) %>%
+            dplyr::rename("sv" = svdb_c)         
+        
         } else {
             stop("bl must be \"input\" or \"db\".")
         }
     }
 
     perst_zone <- blts_df %>%
-        dplyr::ungroup() %>%
-        dplyr::filter(t >= min(bl_tf), t <= max(bl_tf)) %>%
         dplyr::select(sv) %>%
         dplyr::summarize(mean_sv = mean(sv, na.rm = na_rm),
                          sd_sv = sd(sv, na.rm = na_rm)) %>%

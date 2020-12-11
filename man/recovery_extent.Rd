@@ -14,9 +14,8 @@ recovery_extent(
   svbl_i = NULL,
   tbl_i = NULL,
   bl_data = NULL,
-  bl_t = NULL,
   bl_tf = NULL,
-  summ_mode = NULL,
+  summ_mode = "mean",
   na_rm = TRUE
 )
 }
@@ -36,11 +35,9 @@ of the state variable in a state considered to be disturbed.}
 as the log-ratio response (\code{res_mode = "lrr"}) or the difference
 (\code{res_mode = "diff"}). See details.}
 
-\item{bl}{A string determining whether recovery is calculated in relation
-to a baseline time series (\code{bl = "input"}), to a point in the state
-variable time series (\code{bl = "point"}), or (\code{bl = "period"})
-to a summary (mean or median, defined by \code{summ_mode}) of the values of
-the state variable during a period defined by \code{bl_tf}.}
+\item{bl}{a string stating whether the baseline is defined by a separate
+baseline that is input (\code{bl = "input"}) or by a time period of
+the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
 
 \item{t_rec}{An integer, time step at which extent of recovery should be
 calculated.}
@@ -58,16 +55,13 @@ Obligatory argument if \code{bl = "bl"}.}
 \item{bl_data}{an optional data frame containing the columns storing the baseline
 of the state variable.}
 
-\item{bl_t}{An integer stating the time point of the state variable response
-time-series that should be used as baseline.
-Obligatory argument if \code{bl = "point"}.}
-
-\item{bl_tf}{A numerical vector defining the period over which the values of
-the state variable response should be used to calculate the baseline.
-Obligatory argument if \code{bl = "period"}.}
+\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+time interval of the time-series of the disturbed system that defines the
+baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
 
 \item{summ_mode}{A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).}
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+Defaults to "mean".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out for the
 estimation of variation. Defaults to TRUE.}
@@ -82,31 +76,36 @@ log-ratio or the difference between the state variable in a disturbed
 time-series and the baseline. The baseline can be
 \itemize{
 \item a separate baseline time-series
-\item a single pre-disturbance value of the state variable
 \item the mean or median of pre-disturbance values of the state variable
 over a period defined by \code{bl_tf}}
+}
+\details{
+Even though it is possible to use a single data value as baseline
+(by passing a double to \code{bl_tf}), it is not recommended, because a
+single value does not account for any variation on the system arising from
+demographic or environmental dynamics or stochasticity.
 }
 \examples{
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
-  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "diff",
-  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
-  bl = "point", t_rec = 50, bl_t = 9
+  bl = "db", t_rec = 50, bl_tf = 9
 )
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
-  bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "mean"
+  bl = "db", t_rec = 50, bl_tf = c(5, 10)
 )
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
-  bl = "period", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+  bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 )
 }
