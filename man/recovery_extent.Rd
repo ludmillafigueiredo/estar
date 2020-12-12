@@ -8,7 +8,7 @@ recovery_extent(
   svdb_i,
   tdb_i,
   db_data,
-  rec_mode,
+  response,
   bl,
   t_rec,
   svbl_i = NULL,
@@ -31,9 +31,10 @@ in \code{db_data}.}
 \item{db_data}{an optional data frame containing the time-series of the values
 of the state variable in a state considered to be disturbed.}
 
-\item{rec_mode}{A string stating whether the resistance should be calculated
-as the log-ratio response (\code{res_mode = "lrr"}) or the difference
-(\code{res_mode = "diff"}). See details.}
+\item{response}{a string stating whether invariability should be calculated
+from the log-ratio response between the values in the disturbed scenario and
+the baseline (\code{response = "lrr"}) or for the values in the disturbed
+scenario alone.}
 
 \item{bl}{a string stating whether the baseline is defined by a separate
 baseline that is input (\code{bl = "input"}) or by a time period of
@@ -87,25 +88,25 @@ demographic or environmental dynamics or stochasticity.
 }
 \examples{
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "diff",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = 9
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = c(5, 10)
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 )
 }

@@ -9,9 +9,6 @@
 #' \item the mean or median of pre-disturbance values of the state variable
 #' over a period defined by \code{bl_tf}}
 #'
-#' @param rec_mode A string stating whether the resistance should be calculated
-#' as the log-ratio response (\code{res_mode = "lrr"}) or the difference
-#' (\code{res_mode = "diff"}). See details.
 #' @param t_rec An integer, time step at which extent of recovery should be
 #' calculated.
 #' @inheritParams common_parameters
@@ -25,29 +22,29 @@
 #'
 #' @examples
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
 #'   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
 #'   bl_data = toy_blts
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "diff",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
 #'   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
 #'   bl_data = toy_blts
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = 9
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = c(5, 10)
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, rec_mode = "lrr",
+#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
-recovery_extent <- function(svdb_i, tdb_i, db_data, rec_mode, bl, t_rec,
+recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
                             svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
                             bl_tf = NULL, summ_mode = "mean",
                             na_rm = TRUE) {
@@ -75,17 +72,17 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, rec_mode, bl, t_rec,
     }
   }
 
-  if (rec_mode == "lrr") {
+  if (response == "lrr") {
     extent <- extent_df %>%
       dplyr::mutate(extent = log(svdb_c / svbl_c)) %>%
       dplyr::pull(extent)
   } else {
-    if (rec_mode == "diff") {
+    if (response == "diff") {
       extent <- extent_df %>%
         dplyr::mutate(extent = svdb_c - svbl_c) %>%
         dplyr::pull(extent)
     } else {
-      stop("rec_mode must be \"lrr\" or \"diff\"")
+      stop("response must be \"lrr\" or \"diff\"")
     }
   }
 
