@@ -2,8 +2,7 @@
 title: "eStar package"
 output: 
   rmarkdown::html_vignette:
-    fig_width: 5
-    fig_height: 3
+  fig_caption: TRUE
 vignette: >
   %\VignetteIndexEntry{eStar_vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,15 +16,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r, setup, inclusde=FALSE}
 library(eStar)
-library(dplyr) ## TODO: shouldn't it be imported by eStar
 library(ggplot2)
 library(cowplot)
 library(viridis)
+library(kableExtra)
 
 colors <- viridis(n = 5, option = "plasma")
-names(colors) <- c("Undisturbed", "purple", "Disturbed", "Log-Ratio", "yellow")
+names(colors) <- c("Metric", "Baseline", "Disturbed", "LRR", "Difference")
+resp_colscale <- scale_colour_manual(values = colors)
 ```
 <!-- colors : -->
 <!-- Deep blue "#0D0887FF"  -->
@@ -35,210 +35,228 @@ names(colors) <- c("Undisturbed", "purple", "Disturbed", "Log-Ratio", "yellow")
 <!-- Yellow "#F0F921FF" -->
 
 # Toy data set
-```{r toy-data, fig.height = 6, fig.width = 9, fig.cap = "a) Baseline and response time-series of the state variable created for the toy data set and b) long response ratio of response/baseline values.."}
-load("../data/toy_blts.rda")  ## V: why '../' and not './'?
-load("../data/toy_dbts.rda")
-sv_df <- dplyr::left_join(dplyr::rename(toy_blts, "bl" = stat_var),
-          dplyr::rename(toy_dbts, "resp" = stat_var),
-          by = "time") 
-
-sv_df %>%
-    tidyr::pivot_longer(cols = c("bl", "resp", "lrr"),
+```{r toy-data, fig.height = 5, fig.width = 7, fig.cap = "Figure 1: Time-series of the state variable created for the toy data set. Values in a 'disturbed' system (dark pink) show a steep decrease at time step 10, while the baseline (purlple) does not. Also represented are values often derived to calculate the stability metrics: long response ratio between the values in disturbed and in the baseline time-series (orange) and the difference between them (yellow)."}
+sv_df <- dplyr::left_join(dplyr::rename(toy_blts, "svbl" = stat_var),
+          dplyr::rename(toy_dbts, "svdb" = stat_var),
+          by = "time") %>%
+    dplyr::mutate(lrr = log(svdb/svbl),
+                  diff = svdb - svbl) %>%
+    tidyr::pivot_longer(cols = c("svbl", "svdb", "lrr", "diff"),
                         names_to = "response", values_to = "value")%>%
-    dplyr::mutate(data = dplyr::case_when(
-                                    response == "bl" ~ "Undisturbed",
-                                    response == "resp" ~ "Disturbed",
-                                    response == "lrr" ~ "Log-Ratio")) %>%
-    ggplot(aes(x = time, y = value, colour = data, group
-               = data)) +
+    dplyr::mutate(data = dplyr::recode_factor(response,
+                                              "svdb" = "Disturbed",
+                                              "svbl" = "Baseline",
+                                              "lrr" = "LRR",
+                                              "diff" = "Difference"))
+
+(sv_plot <- sv_df %>%
+    ggplot(aes(x = time, y = value, colour = data, group = data)) +
     geom_line(size = 0.8)+
     geom_point(size = 0.8)+
-    scale_colour_manual(values = colors)+
-    labs(x = "Time", y = "State variable", color = "Data")+
+    resp_colscale+
+    labs(x = "Time", y = "Response measure", color = "Data")+
     theme_minimal()+
-    theme(legend.position = c(0.80, 0.40),
-          legend.background = element_rect(fill="white"))
+    theme(legend.position = c(0.80, 0.20),
+          legend.background = element_rect(fill =  "white", colour = "white")))
+```
+
+Description of values generated for the disturbed system:
+```{r}
+?toy_dbts
+```
+
+Description of values generated for the baseline system:
+```{r}
+?toy_blts
+```
+
+```{r eval=FALSE, include = FALSE}
+toy_blts, toy_svts %>%
+    knitr::kable(caption = "Example formatting of input time-series of a) disturbed system and b) baseline.") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
 # Main functions
-Examples of each function appled to the toy dataset.
+Examples of each function applied to the toy dataset.
 
 ## Invariability
 
+Invariability calculated as the inverse of standard deviation of residuals of the 
+linear model fitted to predict the log response ratio from time, over a defined 
+time frame (`metric_df`, Fig. 2-a).
+```{r}
+invariability(
+    svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
+    metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
+    tbl_i = "time", bl_data = toy_blts
+)
+```
+
+Invariability calculated as the inverse of standard deviation of residuals of the
+linear model fitted to predict the state variable from time (Fig. 2-b).
+```{r}
+invariability(
+    svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "lm_res",
+    metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
+    tbl_i = "time", bl_data = toy_blts
+)
+```
+
+Invariability calculated as the inverse of the coefficient of variation of the log
+response ratio (Fig. 2-c).
+```{r}
+invariability(
+   svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "cv",
+   metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
+    tbl_i = "time", bl_data = toy_blts
+)
+```
+
 Invariability calculated as the inverse of the coefficient of variation of a state 
-variable over a defined time frame (`tf_resp`).
+variable (Fig. 2-d).
 ```{r}
 invariability(
-   sv_resp = "stat_var", t_resp = "time", mode = "cv",
-   tf_resp = c(11, 50), data_resp = toy_svts  ## V: one point to think about is a suggestion to the user whether the first time step should be AFTER the disturbance (as you selected here, 11. Or the step OF the disturbance. ATM I do not have clear point of view on that)
- )
-
-## quick check
-st <- toy_svts$stat_var[11:50]
-mean(st) / sd(st) 
-## differs from the one obtained with the function, identifies that the subsettign of the time serties is not done correctly
-
-
-## one more check - NAs seems ot be well covered
-toy_svts_na <- toy_svts
-toy_svts_na$stat_var[11:50] <- NA
-invariability(
-   sv_resp = 'stat_var', t_resp = 'time', mode = "cv",
-   tf_resp = c(11, 50), data_resp = toy_svts_na  
- )
-
-# another check - not sure whether we should do something for such cases, where either mean or sd would be 0 - add a warning???
-toy_svts_0 <- toy_svts
-toy_svts_0$stat_var[11:50] <- 0
-invariability(
-   sv_resp = 'stat_var', t_resp = 'time', mode = "cv",
-   tf_resp = c(11, 50), data_resp = toy_svts_0
- )
-
-invariability(
-   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time, mode = "cv",
-   tf_resp = c(11, 50)
- )
-```
-Invariability calculated as the standard deviation of the residuals of the linear model
-fiited to predict the log response ratio (response/baseline) by time.
-```{r}
-invariability(
-    sv_resp = "stat_var", t_resp = "time", mode = "lm_res",
-    tf_resp = c(11, 50), data_resp = toy_svts, sv_bl = "stat_var",
-    t_bl = "time", tf_bl = c(11, 50), data_bl = toy_blts
+   svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
+   metric_tf = c(11, 50), db_data = toy_dbts
 )
-invariability(
-   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
-   tf_resp = c(11, 50), mode = "lm_res", sv_bl = toy_blts$stat_var,
-   t_bl = toy_blts$time, tf_bl = c(11, 50)
-)
-
-## testing - shows we need an error if the par-rs for the baseline are not specified here. Hmmm maybe this isn't actually needed. The user should be smart enough to read the documentation and see when which par-s are obligatory, or?
-invariability(
-   sv_resp = toy_svts$stat_var, t_resp = toy_svts$time,
-   tf_resp = c(11, 50), mode = "lm_res")
 ```
 
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, and 'SV', to 'state variable'", out.width = '100%'}
+knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/invariability.png")
+```
 ## Resistance
 
-Resistance calculated in relation to a baseline time series (`bl_mode = "ts"`), 
-as the log response ratio at a given time (`res_time = "single"`, `t_res = 11`).
+Resistance calculated in relation to a baseline time series (`bl = "input"`), 
+as the log response ratio (`res_mode = "lrr"`) at the first time step following 
+disturbance (`res_time = "defined"`, `res_t = 11`, Fig. 3-e,f).
 ```{r}
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-  res_time = "single", t_res = 11
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+   res_mode = "lrr", res_time = "defined", res_t = 11
 )
-
-## quick check
-log(toy_svts$stat_var[11] / toy_blts$stat_var[11]) ## Ok
 ```
 
-Resistance calculated in relation to a previous valeus of the state variable
-(`bl_mode = "point"`, `tresp_bl = 9`), as the log response ratio at a given 
-time (`res_time = "single"`, `t_res = 11`).
+Resistance calculated in relation to a baseline time series (`bl = "input"`), 
+as the highest (`res_mode = "max"`) log response ratio (`res_mode = "lrr"`) 
+during a given time frame (`res_tf = c(11, 50)`, Fig. 3-g,h).
 ```{r}
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-  tresp_bl = 9, res_time = "single", t_res = 11
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 )
-
-## quick check
-log(toy_svts$stat_var[11] / toy_svts$stat_var[9])  ## ok
 ```
 
-Resistance calculated in relation to a baseline time series (`bl_mode = "ts"`), 
-as the highest log response ratio during a given time frame (`res_time = "time_frame", 
-tf_res = c(11, 50)`).
+Resistance calculated in relation to a baseline time series (`bl = "input"`), 
+as the difference (`res_mode = "diff"`) at the first time step following 
+disturbance (`res_time = "defined"`, `res_t = 11`, Fig. 3-i,j).
 ```{r}
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-  sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-  res_time = "time_frame", tf_res = c(11, 50)
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+   res_mode = "diff", res_time = "defined", res_t = 11
 )
-
-## check
-debugonce(resistance)  ## pb with seq()
 ```
 
-Resistance calculated in relation to a previous value (`bl_mode = "point"`), 
-as the highest log response ratio during a given time frame (`res_time = "time_frame", 
-tf_res = c(11, 50)`).
+Resistance calculated in relation to a baseline time series (`bl = "input"`), 
+as the highest (`res_mode = "max"`) absolute difference (`res_mode = "diff"`) 
+during a given time frame (`res_tf = c(11, 50)`, Fig. 3-k,l).
 ```{r}
 resistance(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-  tresp_bl = 9, res_time = "time_frame", tf_res = c(11, 50)
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 )
 ```
+
+```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'SV', to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of highest response in relation to the baseline.", out.width = '100%'}
+knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/resistance.png")
+```
+## Extent of recovery
+Extent of recovery as the log response ratio in relation to a baseline value
+(`bl = "input"`), at time step (`t_rec = 50`, Fig. 4-m,n).
+```{r eval=FALSE}
+recovery_extent(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+   bl_data = toy_blts
+) 
+```
+Extent of recovery as the difference in relation to a baseline value
+(`bl = "input"`), at time step (`t_rec = 50`, Fig. 4-o,p).
+```{r eval=FALSE}
+recovery_extent(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+   bl_data = toy_blts
+)
+```
+Extent of recovery as the log response ratio in relation to a pre-disturbance 
+(`bl = "db"`) mean value (`summ_mode = "mean"` by default, summarized over 
+`bl_tf = c(5, 10)`), at time step (`t_rec = 50`).
+```{r eval=FALSE}
+recovery_extent(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+   bl = "db", t_rec = 50, bl_tf = c(5, 10)
+)
+```
+```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'Diff', to the difference between them, and 'tpost', to a post-disturbance time step.", out.width = '100%'}
+knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png")
+```
+
 ## Rate of recovery
 
-Rate of recovery calculated in relation to a baseline (`bl_mode = "ts"`), 
-as the slope of a linear model (`slope_mode = "lm"`) of the log response ratio
-over a time frame (`tf_slope = c(12, 50)`).
+Rate of recovery calculated as the slope of the linear model which predicts the 
+log response ratio in relation to a baseline (`bl = "input`) is predicted by 
+time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-q).
 ```{r}
 recovery_rate(
-   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-   sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-   slope_mode = "lm", tf_slope = c(12, 50)
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
 )
 ```
-Rate of recovery calculated in relation to a previous point (`bl_mode = "point"`), 
-as the slope of a linear model (`slope_mode = "lm"`) of the log response ratio
-over a time frame (`tf_slope = c(12, 50)`).  ## V: sorry I am completely confused by this. 
-## if the bl_mode = 'point', then we cannot use baseline time series (and are not supposed to)..
-## I think there is some misunderstanding about what rate of recovery is, let's talk about it
+
+Rate of recovery calculated as the slope of the linear model which predicts the 
+the values of the state variable  (`bl = "db`) is predicted by time (over a time
+frame (`metric_tf = c(12, 50)`, Fig. 5-r).
 ```{r}
- recovery_rate(
-   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-   t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-   slope_mode = "lm", tf_slope = c(12, 50)
- )
+recovery_rate(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+   metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+)
 ```
 
-Rate of recovery calculated in relation to a baseline (`bl_mode = "ts"`), 
-as the slope of the log response ratio between two points (`slope_mode = "points"`)
-over a time frame (`tf_slope = c(12, 50)`).
-```{r}
- recovery_rate(
-   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
-   t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-   slope_mode = "points", tf_slope = c(12, 50)
- )
+```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'SV', to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
+knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/rate_recovery.png")
 ```
 
-Rate of recovery calculated in relation to a previous point (`bl_mode = "point"`), 
-as the slope of the log response ratio between two points (`slope_mode = "points"`)
-over a time frame (`tf_slope = c(12, 50)`).
+## Persistence
+
+Limits of persistence defined by the state variable values in an independent 
+baseline (`bl = "input"`) during the same post-disturbance time period 
+for which persistence is measured (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
- recovery_rate(
-   sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-   t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts,
-   slope_mode = "points", tf_slope = c(12, 50)
- )
+persistence(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
+   metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
+   bl_data = toy_blts
+)
 ```
 
-## Extent of recovery
-Extent of recovery as the log response ratio in relation to a baseline time-series
-(`bl_mode = "ts"`), a certain time (`t_rec = 50`).
+Limits of persistence defined by the state variable values during a pre-disturbance
+(`bl = "db"`) time period (`bl_tf = c(1, 9)`). Persistence is measured for the 
+post-disturbance time period (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
-recovery_extent(
- sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "ts",
- t_rec = 50, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
-) 
-
-## check
-log(toy_svts$stat_var[50] / toy_blts$stat_var[50])
-```
-Extent of recovery as the log response ratio in relation to a previous point in time
-(`bl_mode = "point"`), a certain time (`t_rec = 50`).
-```{r}
-recovery_extent(
-  sv_resp = "stat_var", t_resp = "time", data_resp = toy_svts, bl_mode = "point",
-  t_rec = 9, sv_bl = "stat_var", t_bl = "time", data_bl = toy_blts
-) ## as I expected, the teturned lrr is 0, that is becasue your state variable for the baseline and disturbed system is exactly the same (see my comment in the code)
+persistence(
+   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+   bl_tf = c(1, 9), metric_tf = c(50, 100)
+)
 ```
 
+```{r fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the eStar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png")
+```
 <details><summary>Session Info</summary>
 
 ```{r sessionInfo}

@@ -26,5 +26,7 @@ Imports:
     utils,
     tidyr,
     ggplot2,
-    cowplot
+    cowplot,
+    viridis,
+    kableExtra
 VignetteBuilder: knitr

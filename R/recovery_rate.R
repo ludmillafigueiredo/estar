@@ -23,7 +23,7 @@ recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
                           svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
   if (bl == "input") {
-    blts_df <- format_input(input = "input", svbl_i, tbl_i, bl_data)
+    blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
     base_df <- dplyr::left_join(
       dplyr::rename(dbts_df, "t" = tdb_c),
       dplyr::rename(blts_df, "t" = tbl_c),

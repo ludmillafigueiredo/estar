@@ -23,12 +23,12 @@
 #' @examples
 #' recovery_extent(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-#'   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
 #'   bl_data = toy_blts
 #' )
 #' recovery_extent(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
-#'   bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
 #'   bl_data = toy_blts
 #' )
 #' recovery_extent(

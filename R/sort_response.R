@@ -17,6 +17,7 @@
 #' \code{tbl_i} and \code{svbl_i}, respectively.
 #' 
 #' @noRd
+#' @export
 sort_response <- function(response, dbts_df, svbl_i, tbl_i, bl_data){
     if (response == "sv") {
     response_df <- dplyr::rename(dbts_df,
