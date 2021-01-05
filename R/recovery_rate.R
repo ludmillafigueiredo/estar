@@ -2,9 +2,10 @@
 #'
 #' \code{recovery_rate} returns the rate of recovery calculated as the slope of
 #' a linear model which uses the time as a predictor of the response.
-#' The response can be the state variable in a disturbed system, or the log
-#' response ratio (LRR) of the state variable in relation to a baseline.
-#' 
+#' The response can be the state variable in a disturbed system, or the
+#' log-response ratio (LRR) of the state variable in the disturbed system
+#' compared to the baseline.
+#'
 #' @inheritParams common_parameters
 #'
 #' @return a double, the rate of recovery
@@ -39,7 +40,7 @@ recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
           "t" = tdb_c
         )
     } else {
-      stop("bl must be \"input\" or \"db\".")  ## V: ts or db?
+      stop("bl must be \"input\" or \"db\".")
     }
   }
   lm_df <- base_df %>%
