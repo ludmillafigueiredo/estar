@@ -30,12 +30,12 @@ containing said variable in the dataframe provided in \code{db_data}.}
 name of the column containing the time in the dataframe provided
 in \code{db_data}.}
 
-\item{db_data}{an optional data frame containing the time-series of the values
-of the state variable in a state considered to be disturbed.}
+\item{db_data}{an optional data frame containing the time series of the
+state variable values in a disturbed system.}
 
 \item{bl}{a string stating whether the baseline is defined by a separate
-baseline that is input (\code{bl = "input"}) or by a time period of
-the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+baseline that is specified by the user (\code{bl = "input"}) or by a
+time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
 
 \item{summ_mode}{A string, stating whether the baseline should be summarized as
 the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
@@ -43,57 +43,60 @@ Defaults to "mean".}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
-variable in the baseline.
+variable in the dataframe with baseline values.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{tbl_i}{an optional numeric vector containing the time steps for which
+\item{tbl_i}{an optional numeric vector containing the time period over which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the columns storing the baseline
-of the state variable.}
+\item{bl_data}{an optional data frame containing the time series of the
+state variable values in the baseline.}
 
 \item{bl_tf}{a numerical vector, specifying the beginning and end of the
-time interval of the time-series of the disturbed system that defines the
-baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
+pre-disturbance time period for the disturbed time-series that defines
+the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
 
 \item{res_mode}{A string stating whether the resistance should be calculated
-as the log-ratio response (\code{res_mode = "lrr"}) or the difference
-(\code{res_mode = "diff"}). See details.}
+as the log response ratio of the state variable in the disturbed system
+compared to the baseline (\code{res_mode = "lrr"}) or the difference
+(\code{res_mode = "diff"}) between the values of these state variables. See details.}
 
 \item{res_time}{A string stating whether resistance should be calculated at
-an specific time step (\code{res_time = "defined"}) or if it should be taken
-as the maximal value over a timeframe (\code{res_time = "max"}. Time steps
-are defined by \code{res_t} and \code{res_tf}, respectively. See details.}
+a specific point in time (\code{res_time = "defined"}) or if it should be taken
+as the maximal difference between the disturbed and baseline state variables
+over a specified time period (\code{res_time = "max"}. Time point or the time
+period are defined by \code{res_t} and \code{res_tf}, respectively. See details.}
 
-\item{res_t}{An integer defining the time step when resistance should be
+\item{res_t}{An integer defining the time point when resistance should be
 measured if \code{res_time = "defined"}).}
 
-\item{res_tf}{A vector, specifying the interval for which the maximum
-resistance should be looked for, if \code{bl = "input"}.}
+\item{res_tf}{A vector, specifying the time period for which the maximum
+resistance should be looked for, if \code{bl = "input"}. ## V: but also if bl = 'db', right?}
 
-\item{na_rm}{a logical determining whether NAs should be taken out for the
-estimation of variation. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior to the
+estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-A double, the resistance of the state variable to baseline.
+A double, the resistance of the state variable to disturbance.
 }
 \description{
 \code{resistance} returns the distance of a state variable to a baseline
-value at an specified time. The distance is calculated as the maximal
-absolute difference between the disturbed state and the baseline, or as
-the log response ratio between them, at an specified time step.
+value at a specified time point. The distance is calculated as the maximal
+absolute difference between the state variables in the disturbed system and
+the baseline, or as the maximal log response ratio between these state variables,
+at a specified time point.
 See details on how to specify the values.
 }
 \details{
-If resistance is calculated at an specific time step, it is
-traditionally the first time step following disturbance.
+If resistance is calculated at a specific time point, it is
+conventionally the first time point after the disturbance.
 
 Even though it is possible to use a single data value as baseline
 (by passing a double to \code{bl_tf}), it is not recommended, because a
-single value does not account for any variation on the system arising from
-demographic or environmental dynamics or stochasticity.
+single value does not account for any variability in the system arising from,
+for example, demographic or environmental stochasticity.
 }
 \examples{
 resistance(
