@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "ludmillafi@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0001-8217-7800"))
-Description: What the package does (one paragraph).
+Description: Calculates a set of commonly used stability metrics. 
+             Aims to facilitate their standardized application among empiricits 
+             and modellers.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
