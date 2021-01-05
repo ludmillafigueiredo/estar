@@ -28,73 +28,76 @@ containing said variable in the dataframe provided in \code{db_data}.}
 name of the column containing the time in the dataframe provided
 in \code{db_data}.}
 
-\item{db_data}{an optional data frame containing the time-series of the values
-of the state variable in a state considered to be disturbed.}
+\item{db_data}{an optional data frame containing the time series of the
+state variable values in a disturbed system.}
 
-\item{response}{a string stating whether invariability should be calculated
-from the log-ratio response between the values in the disturbed scenario and
-the baseline (\code{response = "lrr"}) or for the values in the disturbed
-scenario alone.}
+\item{response}{a string stating whether the stability metric should be calculated
+using the log-response ratio between the values in the disturbed system and
+the baseline (\code{response = "lrr"}) or using the state variable values in the
+disturbed system alone.}
 
 \item{bl}{a string stating whether the baseline is defined by a separate
-baseline that is input (\code{bl = "input"}) or by a time period of
-the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+baseline that is specified by the user (\code{bl = "input"}) or by a
+time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
 
-\item{t_rec}{An integer, time step at which extent of recovery should be
+\item{t_rec}{An integer, time point at which the extent of recovery should be
 calculated.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
-variable in the baseline.
+variable in the dataframe with baseline values.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{tbl_i}{an optional numeric vector containing the time steps for which
+\item{tbl_i}{an optional numeric vector containing the time period over which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the columns storing the baseline
-of the state variable.}
+\item{bl_data}{an optional data frame containing the time series of the
+state variable values in the baseline.}
 
 \item{bl_tf}{a numerical vector, specifying the beginning and end of the
-time interval of the time-series of the disturbed system that defines the
-baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
+pre-disturbance time period for the disturbed time-series that defines
+the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
 
 \item{summ_mode}{A string, stating whether the baseline should be summarized as
 the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
 Defaults to "mean".}
 
-\item{na_rm}{a logical determining whether NAs should be taken out for the
-estimation of variation. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior to the
+estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a double, the extent of recovery
 }
 \description{
-\code{recovery_extent} calculates how close a state variable at a certain
-time step is to aa baseline. This distance can be calculated as the
-log-ratio or the difference between the state variable in a disturbed
+\code{recovery_extent} calculates how close a state variable is to its
+baseline value at a time point specified by the user (usually after recovery
+has taken place). This distance can be calculated as the log-response ratio
+between the values in the disturbed system and the baseline
+or as the difference between the state variables in a disturbed
 time-series and the baseline. The baseline can be
 \itemize{
-\item a separate baseline time-series
+\item a separate baseline time-series, which is summarized as a mean or median
+according to \code{summ_mode}
 \item the mean or median of pre-disturbance values of the state variable
-over a period defined by \code{bl_tf}}
+in the disturbed system over a period defined by \code{bl_tf}}
 }
 \details{
 Even though it is possible to use a single data value as baseline
 (by passing a double to \code{bl_tf}), it is not recommended, because a
-single value does not account for any variation on the system arising from
-demographic or environmental dynamics or stochasticity.
+single value does not account for any variability in the system arising from,
+for example, demographic or environmental stochasticity.
 }
 \examples{
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-  bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(
   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
-  bl = "input", bl_tf = 9, t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
+  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
   bl_data = toy_blts
 )
 recovery_extent(

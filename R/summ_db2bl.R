@@ -1,7 +1,7 @@
 #' Summarize the values of the state variable in a disturbed system into a baseline
 #'
 #' Internal function, used in \code{resistance()} and \code{recovery_extent()}
-#' to create a baseline value out of values the time-series characterizing the
+#' to create a baseline value out of the pre-disturbance values in the
 #' disturbed system.
 #'
 #' @inheritParams common_parameters

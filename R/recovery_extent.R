@@ -1,23 +1,26 @@
 #' Calculate the extent of recovery
 #'
-#' \code{recovery_extent} calculates how close a state variable at a certain
-#' time step is to aa baseline. This distance can be calculated as the
-#' log-ratio or the difference between the state variable in a disturbed
+#' \code{recovery_extent} calculates how close a state variable is to its
+#' baseline value at a time point specified by the user (usually after recovery
+#' has taken place). This distance can be calculated as the log-response ratio
+#' between the values in the disturbed system and the baseline
+#' or as the difference between the state variables in a disturbed
 #' time-series and the baseline. The baseline can be
 #' \itemize{
-#' \item a separate baseline time-series
+#' \item a separate baseline time-series, which is summarized as a mean or median
+#' according to \code{summ_mode}
 #' \item the mean or median of pre-disturbance values of the state variable
-#' over a period defined by \code{bl_tf}}
+#' in the disturbed system over a period defined by \code{bl_tf}}
 #'
-#' @param t_rec An integer, time step at which extent of recovery should be
+#' @param t_rec An integer, time point at which the extent of recovery should be
 #' calculated.
 #' @inheritParams common_parameters
 #'
 #' @details Even though it is possible to use a single data value as baseline
 #' (by passing a double to \code{bl_tf}), it is not recommended, because a
-#' single value does not account for any variation on the system arising from
-#' demographic or environmental dynamics or stochasticity.
-#' 
+#' single value does not account for any variability in the system arising from,
+#' for example, demographic or environmental stochasticity.
+#'
 #' @return a double, the extent of recovery
 #'
 #' @examples
