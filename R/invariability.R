@@ -1,21 +1,20 @@
 #' Calculate the invariability of a state variable after disturbance.
 #'
-#' \code{invariability} returns the temporal invariability of the state variable
-#' response to disturbance.
-#' The response can be the post-disturbance values of the state variable, or the
-#' log-response ratio of the state variable in the disturbed system compared to
-#' the baseline.
-#' The invariability itself can be calculated as the inverse of the coefficient
-#' of variation of the state variable or as the inverse of the standard deviation of
+#' \code{invariability} returns the temporal invariability.
+#' Invariability can be calculated using the post-disturbance values of the
+#' state variable in the disturbed system, or the log-response ratio of the
+#' state variable in the disturbed system compared to the baseline.
+#' Two variants of invariability can be calculated: 1. the first one is calculated
+#' as the inverse of the coefficient of variation of the state variable; 2. the
+#' second one is calculated as the inverse of the standard deviation of
 #' residuals of the linear model that uses the time as the predictor of the
-#' response.
+#' state variable.
 #'
-#' @param mode A string stating whether invariability should be calculated
-#' from the coefficient of variation of the state variable \code{mode = "cv"},
-#' or from the linear model \code{"lm_res"}.
-#' The details of the two modes as explained in 'Details'.
+#' @param mode A string stating which variant of invariability should be calculated,
+#' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
+#' or the on ebased on fitting the linear model \code{"lm_res"}.
 #' @inheritParams common_parameters
-#' 
+#'
 #' @return a numeric, the invariability value.
 #'
 #' @examples

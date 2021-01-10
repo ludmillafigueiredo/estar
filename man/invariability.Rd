@@ -26,51 +26,50 @@ containing said variable in the dataframe provided in \code{db_data}.}
 name of the column containing the time in the dataframe provided
 in \code{db_data}.}
 
-\item{mode}{A string stating whether invariability should be calculated
-from the coefficient of variation of the state variable \code{mode = "cv"},
-or from the linear model \code{"lm_res"}.
-The details of the two modes as explained in 'Details'.}
+\item{mode}{A string stating which variant of invariability should be calculated,
+the one based on the coefficient of variation of the state variable \code{mode = "cv"},
+or the on ebased on fitting the linear model \code{"lm_res"}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time interval for which the metric should be measured.}
+time period for which the stability metric should be measured.}
 
-\item{db_data}{an optional data frame containing the time-series of the values
-of the state variable in a state considered to be disturbed.}
+\item{db_data}{an optional data frame containing the time series of the
+state variable values in a disturbed system.}
 
-\item{response}{a string stating whether invariability should be calculated
-from the log-ratio response between the values in the disturbed scenario and
-the baseline (\code{response = "lrr"}) or for the values in the disturbed
-scenario alone.}
+\item{response}{a string stating whether the stability metric should be calculated
+using the log-response ratio between the values in the disturbed system and
+the baseline (\code{response = "lrr"}) or using the state variable values in the
+disturbed system alone.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
-variable in the baseline.
+variable in the dataframe with baseline values.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{tbl_i}{an optional numeric vector containing the time steps for which
+\item{tbl_i}{an optional numeric vector containing the time period over which
 the baseline was measured, or a string containing the name of the column in
 \code{bl_data}.
 Obligatory argument if \code{bl = "bl"}.}
 
-\item{bl_data}{an optional data frame containing the columns storing the baseline
-of the state variable.}
+\item{bl_data}{an optional data frame containing the time series of the
+state variable values in the baseline.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out for the
-estimation of variation. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior to the
+estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
 }
 \description{
-\code{invariability} returns the temporal invariability of the state variable
-response to disturbance.
-The response can be the post-disturbance values of the state variable, or the
-log-response ratio of the state variable in the disturbed system compared to
-the baseline.
-The invariability itself can be calculated as the inverse of the coefficient
-of variation of the state variable or as the inverse of the standard deviation of
+\code{invariability} returns the temporal invariability.
+Invariability can be calculated using the post-disturbance values of the
+state variable in the disturbed system, or the log-response ratio of the
+state variable in the disturbed system compared to the baseline.
+Two variants of invariability can be calculated: 1. the first one is calculated
+as the inverse of the coefficient of variation of the state variable; 2. the
+second one is calculated as the inverse of the standard deviation of
 residuals of the linear model that uses the time as the predictor of the
-response.
+state variable.
 }
 \examples{
 invariability(

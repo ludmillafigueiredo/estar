@@ -2,21 +2,22 @@
 #'
 #' \code{persistence} returns the proportion of time the state
 #' variable remained inside the interval defined by the baseline's
-#' mean \eqn{\pm} sd. The proportion is calculated in relation to the time
-#' frame for which persistence should be calculated.
-#' 
+#' \eqn{\pm} sd. The proportion is calculated in relation to the time
+#' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+#' ## V:Let's talk about it at the meeting
+#'
 #' @inheritParams common_parameters
-#' 
+#'
 #' @return a double, contained in \[0,1\]
-#' 
-#' @details If the baseline is defined by values of the state variable along the
-#' disturbed time-series (\code{bl = "db"}), the time frame used as baseline
-#' (\code{bl_tf}) cannot overlap with the time frame for which the persistence
-#' is to be calculated (\code{metric_tf}), because of redundancy: the values over
-#' \code{bl_tf} define the interval for which the values in \code{metric_tf} are
+#'
+#' @details If the baseline is defined by the pre-distrubed values of the
+#' state variable in the disturbed system (\code{bl = "db"}), this pre-disturbed
+#' time period used as baseline (\code{bl_tf}) cannot overlap with the time period
+#' for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
+#' the values over \code{bl_tf} define the interval for which the values in \code{metric_tf} are
 #' checked. If they are the same (or partly, if overlap is partial), the
 #' returned value of persistence will be falsely higher.
-#' 
+#'
 #' @examples
 #' persistence(
 #'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
@@ -54,8 +55,8 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NU
             blts_df <- dbts_df %>%
             dplyr::ungroup() %>%
             dplyr::filter(tdb_c >= min(bl_tf), tdb_c <= max(bl_tf)) %>%
-            dplyr::rename("sv" = svdb_c)         
-        
+            dplyr::rename("sv" = svdb_c)
+
         } else {
             stop("bl must be \"input\" or \"db\".")
         }

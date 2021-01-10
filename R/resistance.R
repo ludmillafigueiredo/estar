@@ -1,33 +1,36 @@
 #' Calculate the resistance of a state variable to disturbance
 #'
 #' \code{resistance} returns the distance of a state variable to a baseline
-#' value at an specified time. The distance is calculated as the maximal
-#' absolute difference between the disturbed state and the baseline, or as
-#' the log response ratio between them, at an specified time step.
+#' value at a specified time point. The distance is calculated as the maximal
+#' absolute difference between the state variables in the disturbed system and
+#' the baseline, or as the maximal log response ratio between these state variables,
+#' at a specified time point.
 #' See details on how to specify the values.
 #'
 #' @param res_mode A string stating whether the resistance should be calculated
-#' as the log-ratio response (\code{res_mode = "lrr"}) or the difference
-#' (\code{res_mode = "diff"}). See details.
+#' as the log response ratio of the state variable in the disturbed system
+#' compared to the baseline (\code{res_mode = "lrr"}) or the difference
+#' (\code{res_mode = "diff"}) between the values of these state variables. See details.
 #' @param res_time A string stating whether resistance should be calculated at
-#' an specific time step (\code{res_time = "defined"}) or if it should be taken
-#' as the maximal value over a timeframe (\code{res_time = "max"}. Time steps
-#' are defined by \code{res_t} and \code{res_tf}, respectively. See details.
-#' @param res_t An integer defining the time step when resistance should be
+#' a specific point in time (\code{res_time = "defined"}) or if it should be taken
+#' as the maximal difference between the disturbed and baseline state variables
+#' over a specified time period (\code{res_time = "max"}. Time point or the time
+#' period are defined by \code{res_t} and \code{res_tf}, respectively. See details.
+#' @param res_t An integer defining the time point when resistance should be
 #' measured if \code{res_time = "defined"}).
-#' @param res_tf A vector, specifying the interval for which the maximum
-#' resistance should be looked for, if \code{bl = "input"}.
+#' @param res_tf A vector, specifying the time period for which the maximum
+#' resistance should be looked for, if \code{bl = "input"}. ## V: but also if bl = 'db', right?
 #' @inheritParams common_parameters
 #'
-#' @details If resistance is calculated at an specific time step, it is
-#' traditionally the first time step following disturbance.
+#' @details If resistance is calculated at a specific time point, it is
+#' conventionally the first time point after the disturbance.
 #'
 #' Even though it is possible to use a single data value as baseline
 #' (by passing a double to \code{bl_tf}), it is not recommended, because a
-#' single value does not account for any variation on the system arising from
-#' demographic or environmental dynamics or stochasticity.
+#' single value does not account for any variability in the system arising from,
+#' for example, demographic or environmental stochasticity.
 #'
-#' @return A double, the resistance of the state variable to baseline.
+#' @return A double, the resistance of the state variable to disturbance.
 #'
 #' @examples
 #' resistance(
@@ -98,7 +101,7 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   } else {
     if (bl == "db") {
       if (min(bl_tf) == max(bl_tf)) {
-        warning("You are using a single point as baseline. Consider an interval, see Details.")
+        warning("You are using a single time point as baseline. Consider a time period, see Details.")
       }
       bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
       res_df <- dbts_df %>%
