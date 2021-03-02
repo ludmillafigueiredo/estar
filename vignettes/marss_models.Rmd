@@ -1,0 +1,123 @@
+---
+title: "Multivariate Autoregressive State-Space Models"
+header-includes:
+  \usepackage{amsmath}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{marss_models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r knit-setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = FALSE
+)
+rmarkdown::html_document(df_print = knitr::kable)
+```
+
+```{r message=FALSE}
+##library(eStar)
+library(tidyverse)
+library(viridis)
+library(kableExtra)
+library(imputeTS)
+library(MARSS)
+library(cowplot)
+```
+
+# Introduction to MARSS models
+
+In the `estar` package, we focus on applying a multivariate autoregressive state-space (MARSS) models to estimate the interaction strengths between $m$ species composing a community for which we have abundance data over time $T$. 
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application.
+For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
+
+A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as:
+\begin{equation}
+\begin{gathered}
+\mathbf{x}_t = \mathbf{B}_{t}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}_{t}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
+\mathbf{y}_t = \mathbf{Z}_{t}\mathbf{x}_t+\mathbf{a}+\mathbf{D}_{t}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
+\mathbf{x}_1 \sim\ \text{MVN}(\pi,\Lambda) \text{ or } \mathbf{x}_0 \sim\ \text{MVN}(\pi,\Lambda)
+\end{gathered}
+\end{equation}
+
+In our study case:
+
+- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown real abundance values of $m$ species (rows), over time $T$ (columns)
+- $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations of $m$ species (rows, $n \geq m$) over time $T$ (columns) 
+
+The state process ($\mathbf{X}$) is composed by:
+
+- $\mathbf{x}_t$ is a $m \times 1$ vector of unkown populations abundances of the $m$ species at time $t$.
+- $\mathbf{B}_t$ is a $m \times m$ matrix of states covariance. This is the interaction matrix of interactions strengths we want to estimate for our data.
+- $\mathbf{u}$ is a $m \times 1$ vector of states 
+- $\mathbf{C}_t$is a $m \times p$ matrix
+- $\mathbf{c}_t$ is a $p \times 1$ matrix
+- $\mathbf{w}_t$ is a column vector of process errors, which follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix)
+
+In the observation process ($\mathbf{Y}$):
+
+- $\mathbf{y}_t$ is a column vector of length $n$, with $n$ being the number of observations taken at time $t$.
+- $\mathbf{Z}_t$ is a $\mathbf{n} \times m$ matrix which describes the relationship between $\mathbf{x}$ ($m \times 1$ vector) and $\mathbf{y}$ ($n \times 1$ vector).
+- $\mathbf{a}$ is a column vector of length $n$
+- $\mathbf{D}_t$ is a $n \times q$ matrix
+- $\mathbf{d}_t$ s a $q \times 1$ matrix
+- $\mathbf{v}_t$ is a column vector of observation errors, which follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+
+# Process and observations errors
+
+autoregressive and non-independent error can be included in B1
+
+
+# Data overview
+
+## perfect scenario:
+
+```{r}
+load("../../data_prep/windblow_barkbeetle/windthrow_longts.RData")
+```
+
+```{r eval=FALSE}
+pllongts_raw.forestlist[[1]] %>% 
+  t %>%
+  cbind("t" = as.integer(rownames(.)),.) %>%
+  as_tibble() 
+```
+
+```{r}
+plot_raw <- function(df){
+  df %>%
+  ggplot(aes(x = time, y = cover, colour = gp, group = gp)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~rep) +
+  scale_colour_manual(values = viridis(n = 5)) +
+  labs(x = "Time", y = "Cover (%)", colour = "Func.\ngroup") +
+  theme_minimal()
+}
+
+pllongts_raw.forestdf %>%
+  ## convert time to absolute, instead of time since disturbance
+  dplyr::mutate(time = d_time + abs(min(d_time))) %>%
+  tidyr::pivot_longer(col = gp1:gp5,
+                      names_to = "gp",
+                      values_to = "cover") %>%
+  plot_raw()
+```
+
+```{r}
+pllongts_raw.barkdf %>%
+  dplyr::rename(time = d_time) %>%
+  tidyr::pivot_longer(col = gp1:gp5,
+                      names_to = "gp",
+                      values_to = "cover") %>%
+  plot_raw() +
+  geom_vline(xintercept = 0, color = "#ff0066")
+```
+
+MARSS takes y  s a  matrix ts object```{r}
+
+```
+
