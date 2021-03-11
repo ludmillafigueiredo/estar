@@ -7,6 +7,7 @@ vignette: >
   %\VignetteIndexEntry{marss_models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: references.bib
 ---
 
 ```{r knit-setup, include=FALSE, message=FALSE}
@@ -23,101 +24,179 @@ rmarkdown::html_document(df_print = knitr::kable)
 library(tidyverse)
 library(viridis)
 library(kableExtra)
-library(imputeTS)
+##library(imputeTS)
 library(MARSS)
 library(cowplot)
 ```
 
-# Introduction to MARSS models
-
-In the `estar` package, we focus on applying a multivariate autoregressive state-space (MARSS) models to estimate the interaction strengths between $m$ species composing a community for which we have abundance data over time $T$. 
-To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application.
+In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table ??? of main text) depend on measures of interaction strengths between species composing a community.
+These measures are classically summarized in the _community matrix_ [sensu @novak_characterizing_2016].
+In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
+In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
+In this vignette, we focus on explaing how a [MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data)  and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
+
+# Data overview
+
+## Aquatic community {#aquatic-data}
+<!-- include overview.Rmd file and processed data once permission is cleared -->
+[@wijngaarden_effects_1996; @baert_biodiversity_2016; @radchuk_biodiversity_2016]
+
+## Forest plant community {#forest-data}
+<!-- include overview.Rmd file and processed data once permission is cleared -->
+
+# MARSS models
+
+## Introduction to MARSS models {#intro-marss-model}
+
+to estimate the interaction strengths between $m$ species composing a community for which we have abundance data over time $T$. 
 
 A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as:
 \begin{equation}
 \begin{gathered}
-\mathbf{x}_t = \mathbf{B}_{t}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}_{t}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
-\mathbf{y}_t = \mathbf{Z}_{t}\mathbf{x}_t+\mathbf{a}+\mathbf{D}_{t}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
+\mathbf{x}_t = \mathbf{B}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}_{t}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
+\mathbf{y}_t = \mathbf{Z}\mathbf{x}_t+\mathbf{a}+\mathbf{D}_{t}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
 \mathbf{x}_1 \sim\ \text{MVN}(\pi,\Lambda) \text{ or } \mathbf{x}_0 \sim\ \text{MVN}(\pi,\Lambda)
 \end{gathered}
 \end{equation}
 
-In our study case:
+Considering the [aquatic community data](#aquatic-data), 
 
-- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown real abundance values of $m$ species (rows), over time $T$ (columns)
+- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown populations abundance values of $m$ species (rows), over time $T$ (columns)
 - $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations of $m$ species (rows, $n \geq m$) over time $T$ (columns) 
 
-The state process ($\mathbf{X}$) is composed by:
+The state process ($\mathbf{X}$) is described by:
 
 - $\mathbf{x}_t$ is a $m \times 1$ vector of unkown populations abundances of the $m$ species at time $t$.
-- $\mathbf{B}_t$ is a $m \times m$ matrix of states covariance. This is the interaction matrix of interactions strengths we want to estimate for our data.
-- $\mathbf{u}$ is a $m \times 1$ vector of states 
-- $\mathbf{C}_t$is a $m \times p$ matrix
-- $\mathbf{c}_t$ is a $p \times 1$ matrix
-- $\mathbf{w}_t$ is a column vector of process errors, which follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix)
+- $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of interactions strengths we want to estimate for our data.
+- $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each of the populations.
+- $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect species abundances.
+- $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients of each of the $p$ covariates (enviromental conditions) on each of the $m$ states (populations abundances).
+- $\mathbf{w}_t$ is a $m \times 1$ vector of errors expected to be involved in the state ($X$) we are assessing. These account, for the stochasticity of the system, and follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix)
 
-In the observation process ($\mathbf{Y}$):
+Thus, for a community of three species, affected by temperature and preciptation:
 
-- $\mathbf{y}_t$ is a column vector of length $n$, with $n$ being the number of observations taken at time $t$.
-- $\mathbf{Z}_t$ is a $\mathbf{n} \times m$ matrix which describes the relationship between $\mathbf{x}$ ($m \times 1$ vector) and $\mathbf{y}$ ($n \times 1$ vector).
-- $\mathbf{a}$ is a column vector of length $n$
-- $\mathbf{D}_t$ is a $n \times q$ matrix
-- $\mathbf{d}_t$ s a $q \times 1$ matrix
-- $\mathbf{v}_t$ is a column vector of observation errors, which follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+\begin{equation}
+\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_t = 
+\begin{bmatrix}
+    \beta_{\mathrm{1}} & \beta_{\mathrm{1,2}} & \beta_{\mathrm{1,3}} \\
+    \beta_{\mathrm{2,1}} & \beta_{\mathrm{2}} & \beta_{\mathrm{2,3}} \\
+    \beta_{\mathrm{3,1}} & \beta_{\mathrm{3,2}} & \beta_{\mathrm{3}}
+\end{bmatrix}
+\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_{t-1} +
+\begin{bmatrix}u_{spp1}\\u_{spp2}\\u_{spp3}\end{bmatrix} + 
+\begin{bmatrix}
+    \gamma_{\mathrm{spp1, temp}} & \gamma_{\mathrm{spp1, prec}}\\
+    \gamma_{\mathrm{spp2, temp}} & \gamma_{\mathrm{spp2, prec}}\\
+    \gamma_{\mathrm{spp3, temp}} & \gamma_{\mathrm{spp3, prec}}
+\end{bmatrix}
+\begin{bmatrix}temp\\prec\end{bmatrix}_t \\ +
+\begin{bmatrix}w_{spp1}\\w_{spp2}\\w_{spp3}\end{bmatrix}_t \\
+\textrm{ where } \mathbf{w}_t \sim \,\text{MVN}\begin{pmatrix}0,
+\begin{bmatrix}
+    \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & \sigma_{\mathrm{1,3}} \\
+    \sigma_{\mathrm{2,1}} & \sigma_{\mathrm{2}} & \sigma_{\mathrm{2,3}} \\
+    \sigma_{\mathrm{3,1}} & \sigma_{\mathrm{3,2}} & \sigma_{\mathrm{3}} \\ \end{bmatrix}\end{pmatrix}\\
+\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_0 = \begin{bmatrix}\mu_1\\\mu_2\\\mu_3\end{bmatrix}_t 
+\end{equation}
 
-# Process and observations errors
+The observation process ($\mathbf{Y}$) is described by:
 
-autoregressive and non-independent error can be included in B1
+- $\mathbf{y}_t$ is a $m \times 1$ with the number of observations $n$ taken at time $t$.
+- $\mathbf{Z}_t$ is a $\mathbf{n} \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (population abundances) and the observations $\mathbf{y}$ (sampling values).
+- $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
+- $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
+- $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
+- $\mathbf{v}_t$ is a $m \times 1$ vector of observation errors. They follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+
+$\mathbf{Y}$ is the populations abundances time-series data available.
+Parameters $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be composed of both estimated and fixed values, depending on the assumptions around the system. 
+The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
+
+Thus, for the same system, where somme $effect$ affects observations:
+\begin{equation}
+ \left[ \begin{array}{c}
+    obs_{spp1} \\
+    obs_{spp2} \\
+    obs_{spp3} \end{array} \right]_t = 
+\begin{bmatrix}
+    1 & 0 & 0  \\
+    0 & 1 & 0 \\
+    0 & 0 & 1  \end{bmatrix} \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}_t +  
+    \left[ \begin{array}{c}
+    a_{obs1} \\
+    a_{obs2} \\
+    a_{obs3} \end{array} \right] +
+\begin{bmatrix}
+    \delta_{\mathrm{obs1, effect}} \\
+    \delta_{\mathrm{obs2, effect}} \\
+    \delta_{\mathrm{obs3, effect}}
+\end{bmatrix}
+\begin{bmatrix}effect\end{bmatrix}_t \\ +
+    \left[ \begin{array}{c}
+    v_{spp1} \\
+    v_{spp2} \\
+    v_{spp3} \end{array} \right]_t
+    \textrm{ where } \mathbf{v}_t \sim \,\text{MVN}\begin{pmatrix}0,
+\begin{bmatrix}
+    \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & \sigma_{\mathrm{1,3}} \\
+    \sigma_{\mathrm{2,1}} & \sigma_{\mathrm{2}} & \sigma_{\mathrm{2,3}} \\
+    \sigma_{\mathrm{3,1}} & \sigma_{\mathrm{3,2}} & \sigma_{\mathrm{3}} \\ \end{bmatrix}\end{pmatrix}\\
+\end{equation}
+
+## MARSS in estar {#marss-in-estar}
+
+## Limited data {#limited-data}
+
+<!-- # Process and observations errors -->
+
+<!-- autoregressive and non-independent error can be included in B1 -->
 
 
-# Data overview
+<!-- ## perfect scenario: -->
 
-## perfect scenario:
+<!-- ```{r eval=FALSE} -->
+<!-- load("../../data_prep/windblow_barkbeetle/windthrow_longts.RData") -->
+<!-- ``` -->
 
-```{r}
-load("../../data_prep/windblow_barkbeetle/windthrow_longts.RData")
-```
+<!-- ```{r eval=FALSE} -->
+<!-- pllongts_raw.forestlist[[1]] %>%  -->
+<!--   t %>% -->
+<!--   cbind("t" = as.integer(rownames(.)),.) %>% -->
+<!--   as_tibble()  -->
+<!-- ``` -->
 
-```{r eval=FALSE}
-pllongts_raw.forestlist[[1]] %>% 
-  t %>%
-  cbind("t" = as.integer(rownames(.)),.) %>%
-  as_tibble() 
-```
+<!-- ```{r eval=FALSE} -->
+<!-- plot_raw <- function(df){ -->
+<!--   df %>% -->
+<!--   ggplot(aes(x = time, y = cover, colour = gp, group = gp)) + -->
+<!--   geom_line() + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~rep) + -->
+<!--   scale_colour_manual(values = viridis(n = 5)) + -->
+<!--   labs(x = "Time", y = "Cover (%)", colour = "Func.\ngroup") + -->
+<!--   theme_minimal() -->
+<!-- } -->
 
-```{r}
-plot_raw <- function(df){
-  df %>%
-  ggplot(aes(x = time, y = cover, colour = gp, group = gp)) +
-  geom_line() +
-  geom_point() +
-  facet_wrap(~rep) +
-  scale_colour_manual(values = viridis(n = 5)) +
-  labs(x = "Time", y = "Cover (%)", colour = "Func.\ngroup") +
-  theme_minimal()
-}
+<!-- pllongts_raw.forestdf %>% -->
+<!--   ## convert time to absolute, instead of time since disturbance -->
+<!--   dplyr::mutate(time = d_time + abs(min(d_time))) %>% -->
+<!--   tidyr::pivot_longer(col = gp1:gp5, -->
+<!--                       names_to = "gp", -->
+<!--                       values_to = "cover") %>% -->
+<!--   plot_raw() -->
+<!-- ``` -->
 
-pllongts_raw.forestdf %>%
-  ## convert time to absolute, instead of time since disturbance
-  dplyr::mutate(time = d_time + abs(min(d_time))) %>%
-  tidyr::pivot_longer(col = gp1:gp5,
-                      names_to = "gp",
-                      values_to = "cover") %>%
-  plot_raw()
-```
+<!-- ```{r eval=FALSE} -->
+<!-- pllongts_raw.barkdf %>% -->
+<!--   dplyr::rename(time = d_time) %>% -->
+<!--   tidyr::pivot_longer(col = gp1:gp5, -->
+<!--                       names_to = "gp", -->
+<!--                       values_to = "cover") %>% -->
+<!--   plot_raw() + -->
+<!--   geom_vline(xintercept = 0, color = "#ff0066") -->
+<!-- ``` -->
 
-```{r}
-pllongts_raw.barkdf %>%
-  dplyr::rename(time = d_time) %>%
-  tidyr::pivot_longer(col = gp1:gp5,
-                      names_to = "gp",
-                      values_to = "cover") %>%
-  plot_raw() +
-  geom_vline(xintercept = 0, color = "#ff0066")
-```
-
-MARSS takes y  s a  matrix ts object```{r}
-
-```
+<!-- MARSS takes y  s a  matrix ts object -->
 
