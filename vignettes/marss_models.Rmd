@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   echo = FALSE
-)
+  )
+options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly dfifferent and this avoids a warning message every time it's rendered
 rmarkdown::html_document(df_print = knitr::kable)
 ```
 
@@ -50,8 +51,6 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 ## Introduction to MARSS models {#intro-marss-model}
 
-to estimate the interaction strengths between $m$ species composing a community for which we have abundance data over time $T$. 
-
 A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as:
 \begin{equation}
 \begin{gathered}
@@ -61,93 +60,236 @@ A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed 
 \end{gathered}
 \end{equation}
 
-Considering the [aquatic community data](#aquatic-data), 
+Considering the [aquatic community data](#aquatic-data): 
 
-- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown populations abundance values of $m$ species (rows), over time $T$ (columns)
-- $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations of $m$ species (rows, $n \geq m$) over time $T$ (columns) 
+- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ functional groups ($fg$, rows), over time $T$ ($t$, columns)
+
+\begin{equation}
+X=
+\begin{bmatrix}
+    x_{fg1, t1} & x_{fg1, t2} & ... & x_{fg1, tT}\\
+	x_{fg2, t1} & x_{fg2, t2} & ... & x_{fg2, tT}\\
+	... & ... & ... & ...\\
+	x_{fgm, t1} & x_{fgm, t2} & ... & x_{fgm, tT}
+\end{bmatrix}
+\end{equation}
+
+- $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations (rows) over time $T$ ($t$, columns) 
+
+\begin{equation}
+X=
+\begin{bmatrix}
+    y_{1, t1} & y_{1, t2} & ... & y_{1, tT}\\
+	y_{2, t1} & y_{2, t2} & ... & y_{2, tT}\\
+	... & ... & ... & ...\\
+	y_{n, t1} & y_{n, t2} & ... & y_{n, tT}
+\end{bmatrix}
+\end{equation}
+
+Note that:
+- considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can passed as `NA`.
+- from $X$ and $Y$ alone, it is impossible to trace how observations refer to processes.
+We will adress is in the following descriptions:
 
 The state process ($\mathbf{X}$) is described by:
 
-- $\mathbf{x}_t$ is a $m \times 1$ vector of unkown populations abundances of the $m$ species at time $t$.
-- $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of interactions strengths we want to estimate for our data.
-- $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each of the populations.
-- $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect species abundances.
-- $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients of each of the $p$ covariates (enviromental conditions) on each of the $m$ states (populations abundances).
-- $\mathbf{w}_t$ is a $m \times 1$ vector of errors expected to be involved in the state ($X$) we are assessing. These account, for the stochasticity of the system, and follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix)
+- $\mathbf{x}_t$ is a $m \times 1$ vector of unkown abundances of the $m$ species at time $t$.
+- $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of **interactions strengths** we want to estimate to calculate stability.
+- $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each group.
+- $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
+- $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
+- $\mathbf{w}_t$ is a $m \times 1$ vector of errors expected to be involved in the state ($X$) we are assessing. These account, for the stochasticity of the system.
 
-Thus, for a community of three species, affected by temperature and preciptation:
+Thus, for our [aquatic commmunity](aquatic-data) affected by insecticide concentration ($I$):
 
 \begin{equation}
-\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_t = 
 \begin{bmatrix}
-    \beta_{\mathrm{1}} & \beta_{\mathrm{1,2}} & \beta_{\mathrm{1,3}} \\
-    \beta_{\mathrm{2,1}} & \beta_{\mathrm{2}} & \beta_{\mathrm{2,3}} \\
-    \beta_{\mathrm{3,1}} & \beta_{\mathrm{3,2}} & \beta_{\mathrm{3}}
+	x_{1}\\
+    ... \\
+	x_{m}
+	\end{bmatrix}_t = 
+\begin{bmatrix}
+    \beta_{\mathrm{1}} & ... & \beta_{\mathrm{1,m}} \\
+    ... & ... & ... \\
+    \beta_{\mathrm{m,1}} & ... & \beta_{\mathrm{m}}
 \end{bmatrix}
-\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_{t-1} +
-\begin{bmatrix}u_{spp1}\\u_{spp2}\\u_{spp3}\end{bmatrix} + 
 \begin{bmatrix}
-    \gamma_{\mathrm{spp1, temp}} & \gamma_{\mathrm{spp1, prec}}\\
-    \gamma_{\mathrm{spp2, temp}} & \gamma_{\mathrm{spp2, prec}}\\
-    \gamma_{\mathrm{spp3, temp}} & \gamma_{\mathrm{spp3, prec}}
+	x_{1}\\
+	... \\
+	x_{m}
+\end{bmatrix}_{t-1} 
++
+\begin{bmatrix}
+	u_{1}\\
+	...\\
+	u_{m}
+\end{bmatrix} 
++ 
+\begin{bmatrix}
+    \gamma_{\mathrm{1, I}} \\
+    ... \\
+    \gamma_{\mathrm{m, I}}
 \end{bmatrix}
-\begin{bmatrix}temp\\prec\end{bmatrix}_t \\ +
-\begin{bmatrix}w_{spp1}\\w_{spp2}\\w_{spp3}\end{bmatrix}_t \\
-\textrm{ where } \mathbf{w}_t \sim \,\text{MVN}\begin{pmatrix}0,
 \begin{bmatrix}
-    \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & \sigma_{\mathrm{1,3}} \\
-    \sigma_{\mathrm{2,1}} & \sigma_{\mathrm{2}} & \sigma_{\mathrm{2,3}} \\
-    \sigma_{\mathrm{3,1}} & \sigma_{\mathrm{3,2}} & \sigma_{\mathrm{3}} \\ \end{bmatrix}\end{pmatrix}\\
-\begin{bmatrix}x_{spp1}\\x_{spp2}\\x_{spp3}\end{bmatrix}_0 = \begin{bmatrix}\mu_1\\\mu_2\\\mu_3\end{bmatrix}_t 
+	I
+\end{bmatrix}_t \\
++
+\begin{bmatrix}
+w_{1}\\
+...\\
+w_{m}
+\end{bmatrix}_t \\
+\end{equation}
+
+The $w_{t}$ erros follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix). 
+\begin{equation}
+\mathbf{w}_t \sim \,\text{MVN}
+\begin{pmatrix}
+0,
+	\begin{bmatrix}
+		\sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & .... & \sigma_{\mathrm{1,m}} \\
+		... & ... & ... \\
+		\sigma_{\mathrm{m,1}} & \sigma_{\mathrm{m,2}} & ... & \sigma_{\mathrm{m}} \\ 
+		\end{bmatrix}
+\end{pmatrix}\\
+\end{equation}
+
+where ($\sigma$) refer to processes own variances (diagonal) or covariances among processes.
+
+The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
+
+\begin{equation}
+\begin{bmatrix}
+	x_{fg1}\\
+    ...\\
+	x_{fgm}
+\end{bmatrix}_0 
+= 
+\begin{bmatrix}
+	\mu_1\\
+	...\\
+	\mu_m
+\end{bmatrix}_t
 \end{equation}
 
 The observation process ($\mathbf{Y}$) is described by:
 
-- $\mathbf{y}_t$ is a $m \times 1$ with the number of observations $n$ taken at time $t$.
-- $\mathbf{Z}_t$ is a $\mathbf{n} \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (population abundances) and the observations $\mathbf{y}$ (sampling values).
+- $\mathbf{y}_t$ is a $m \times 1$ with the number of $n$ observations taken at time $t$.
+- $\mathbf{Z}_t$ is a $\mathbf{n} \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ measured (samples).
 - $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
-- $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
 - $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
-- $\mathbf{v}_t$ is a $m \times 1$ vector of observation errors. They follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+- $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
+- $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
 
-$\mathbf{Y}$ is the populations abundances time-series data available.
+For our [aquatic commmunity](aquatic-data) affected by insecticide concentration ($I$)
+\begin{equation}
+ \left[ \begin{array}{c}
+    y_{1} \\
+    ... \\
+    y_{n} 
+\end{array} \right]_t = 
+Z
+\begin{bmatrix}
+x_1\\
+...\\
+x_m
+\end{bmatrix}_t +  
+    \left[ \begin{array}{c}
+    a_{obs1} \\
+    ... \\
+    a_{obs3} \end{array} \right] +
+\begin{bmatrix}
+    \delta_{\mathrm{obs1, E}} \\
+    ... \\
+    \delta_{\mathrm{obsn, E}}
+\end{bmatrix}
+\begin{bmatrix}
+E
+\end{bmatrix}_t \\ +
+    \left[ \begin{array}{c}
+    v_{obs1} \\
+    ... \\
+    v_{obsn} \end{array} \right]_t
+\end{equation}
+
+\begin{equation}
+\mathbf{v}_t \sim \,\text{MVN}
+\begin{pmatrix}0,
+	\begin{bmatrix}
+		\sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,n}} \\
+		... & ... & .... \\
+		\sigma_{\mathrm{n,1}} & ... & \sigma_{\mathrm{n}} \\ 
+	\end{bmatrix}
+\end{pmatrix}\\
+\end{equation}
+
 Parameters $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be composed of both estimated and fixed values, depending on the assumptions around the system. 
 The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
 
-Thus, for the same system, where somme $effect$ affects observations:
-\begin{equation}
- \left[ \begin{array}{c}
-    obs_{spp1} \\
-    obs_{spp2} \\
-    obs_{spp3} \end{array} \right]_t = 
-\begin{bmatrix}
-    1 & 0 & 0  \\
-    0 & 1 & 0 \\
-    0 & 0 & 1  \end{bmatrix} \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}_t +  
-    \left[ \begin{array}{c}
-    a_{obs1} \\
-    a_{obs2} \\
-    a_{obs3} \end{array} \right] +
-\begin{bmatrix}
-    \delta_{\mathrm{obs1, effect}} \\
-    \delta_{\mathrm{obs2, effect}} \\
-    \delta_{\mathrm{obs3, effect}}
-\end{bmatrix}
-\begin{bmatrix}effect\end{bmatrix}_t \\ +
-    \left[ \begin{array}{c}
-    v_{spp1} \\
-    v_{spp2} \\
-    v_{spp3} \end{array} \right]_t
-    \textrm{ where } \mathbf{v}_t \sim \,\text{MVN}\begin{pmatrix}0,
-\begin{bmatrix}
-    \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & \sigma_{\mathrm{1,3}} \\
-    \sigma_{\mathrm{2,1}} & \sigma_{\mathrm{2}} & \sigma_{\mathrm{2,3}} \\
-    \sigma_{\mathrm{3,1}} & \sigma_{\mathrm{3,2}} & \sigma_{\mathrm{3}} \\ \end{bmatrix}\end{pmatrix}\\
-\end{equation}
-
 ## MARSS in estar {#marss-in-estar}
 
-## Limited data {#limited-data}
+When calculating maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience, the user can either provide the required community matrix ($B$) or have it estimated from a variety of predefined assumptions about the modelled system. In this section we detail what are these assumptions and show how they might affect the estimation of ($B$) by applying them to the same study case. None of the parameters detailed here have default values in functions that calculate the metrics above, to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the assumptions chosen.
+
+We start from the minimal case of one single observation per state process and other simplifying assumptions, and complexify it step-wise.
+
+## Minimal case
+
+In our minimal case, we consider that
+
+- Single observation per state process: $n = m$, thus $y_i = x_i$
+- No processes error*: $w_t = 0$
+- Observational error is th same for all functional groups: $v_t = v$
+- Constant covariates*: $C_{t} = C$ and $c_{t} = c$
+- U = A = 0
+* No processes error and constant covariates are required for @downing_temporal_2020's calculations of asymptotic resilience
+
+Such model can be formalized as:
+
+\begin{equation}
+X = \mathbf{B}.X_{t-1} + C.c + 0 + 0 \\
+
+Y =  Z.X_t + 0 + D_t.E + v \\
+
+\text{ where }
+Z = 
+\begin{bmatrix}
+    1_{1, 1} & ... & ...  \\
+    ... & 1_{i, i} & ... \\
+    ... & ... & 1_{m, m}
+\end{bmatrix} 
+
+\end{equation}
+
+
+## Multiple obsevation per state process 
+In this case, $y = n \times x$.
+Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$.
+
+## Processes have the same variance and the same covariance
+In this case, $Q = \text{"equalvarcov"}$ in the MARSS function or 
+\begin{equation}
+Q = 
+\begin{bmatrix}
+
+\end{matrix}
+\end{equation}$.
+
+## Processes have the same variance and no covariances
+In this case, $Q = \text{"diagonal and equal"}$.
+
+## Each process has its own variance and no covariance.
+
+In this case, $Q = \text{"diagonal and unequal"}$.
+
+## a = "scaling" ?
+
+## Single process covariate effect for all groups ?
+
+## Single observation covariate for all groups ?
+
+# Limited data {#limited-data}
+
+# References
 
 <!-- # Process and observations errors -->
 
