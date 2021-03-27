@@ -1,10 +1,10 @@
 ---
-title: "Multivariate Autoregressive State-Space Models"
+title: "MARSS in eStar"
 header-includes:
   \usepackage{amsmath}
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{marss_models}
+  %\VignetteIndexEntry{marss}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references.bib
@@ -30,18 +30,17 @@ library(MARSS)
 library(cowplot)
 ```
 
-In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table ??? of main text) depend on measures of interaction strengths between species composing a community.
+In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table 2 of main text) depend on measures of interaction strengths between species composing a community.
 These measures are classically summarized in the _community matrix_ [sensu @novak_characterizing_2016].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
-In this vignette, we focus on explaing how a [MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
+In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
 To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data)  and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Data overview
 
 ## Aquatic community {#aquatic-data}
-<!-- include overview.Rmd file and processed data once permission is cleared -->
 [@wijngaarden_effects_1996; @baert_biodiversity_2016; @radchuk_biodiversity_2016]
 
 ## Forest plant community {#forest-data}
@@ -77,7 +76,7 @@ X=
 - $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations (rows) over time $T$ ($t$, columns) 
 
 \begin{equation}
-X=
+Y=
 \begin{bmatrix}
     y_{1, t1} & y_{1, t2} & ... & y_{1, tT}\\
 	y_{2, t1} & y_{2, t2} & ... & y_{2, tT}\\
@@ -241,6 +240,7 @@ In our minimal case, we consider that
 - Observational error is th same for all functional groups: $v_t = v$
 - Constant covariates*: $C_{t} = C$ and $c_{t} = c$
 - U = A = 0
+
 * No processes error and constant covariates are required for @downing_temporal_2020's calculations of asymptotic resilience
 
 Such model can be formalized as:
