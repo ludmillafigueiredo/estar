@@ -2,7 +2,9 @@
 title: "MARSS in eStar"
 header-includes:
   \usepackage{amsmath}
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+  fig_caption: TRUE
 vignette: >
   %\VignetteIndexEntry{marss}
   %\VignetteEngine{knitr::rmarkdown}
@@ -29,12 +31,11 @@ library(kableExtra)
 library(MARSS)
 library(cowplot)
 library(ggsci)
-source("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/R/marss_buildZ.R")
-source("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/custom_aesthetics.R")
+source("custom_aesthetics.R")
 ```
 
 In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table 2 of main text) depend on measures of interaction strengths between species composing a community.
-These measures are classically summarized in the _community matrix_ [sensu @novak_characterizing_2016].
+These measures are classically summarized in the _community matrix_ [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
