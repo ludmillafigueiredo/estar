@@ -6,7 +6,7 @@
 #' log-response ratio (LRR) of the state variable in the disturbed system
 #' compared to the baseline.
 #'
-#' @inheritParams common_parameters
+#' @inheritParams univar_params
 #'
 #' @return a double, the rate of recovery
 #'

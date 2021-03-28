@@ -6,7 +6,7 @@
 #' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
 #' ## V:Let's talk about it at the meeting
 #'
-#' @inheritParams common_parameters
+#' @inheritParams univar_params
 #'
 #' @return a double, contained in \[0,1\]
 #'

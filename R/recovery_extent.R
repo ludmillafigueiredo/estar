@@ -14,7 +14,7 @@
 #'
 #' @param t_rec An integer, time point at which the extent of recovery should be
 #' calculated.
-#' @inheritParams common_parameters
+#' @inheritParams univar_params
 #'
 #' @details Even though it is possible to use a single data value as baseline
 #' (by passing a double to \code{bl_tf}), it is not recommended, because a

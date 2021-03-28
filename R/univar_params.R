@@ -35,7 +35,7 @@
 #' disturbed system alone.
 #' @param metric_tf a numerical vector, specifying the beginning and end of the
 #' time period for which the stability metric should be measured.
-common_parameters <- function(svdb_i,
+univar_params <- function(svdb_i,
                               tdb_i,
                               db_data,
                               svbl_i,

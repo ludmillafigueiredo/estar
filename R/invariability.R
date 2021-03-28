@@ -13,7 +13,7 @@
 #' @param mode A string stating which variant of invariability should be calculated,
 #' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
 #' or the on ebased on fitting the linear model \code{"lm_res"}.
-#' @inheritParams common_parameters
+#' @inheritParams univar_params
 #'
 #' @return a numeric, the invariability value.
 #'
