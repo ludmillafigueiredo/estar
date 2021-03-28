@@ -45,7 +45,6 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 ## Aquatic community {#aquatic-data}
 
-
 ```{r include = FALSE}
 load("/home/luf74xx/Dokumente/postdoc/eStar_main/MAR_macroinv_Pesticide/macrofauna4marss_5gps.RData")
 ```
@@ -90,7 +89,7 @@ A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed 
 \end{gathered}
 \end{equation}
 
-Considering the [aquatic community data](#aquatic-data): 
+where
 
 - $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ functional groups ($fg$, rows), over time $T$ ($t$, columns)
 
@@ -98,9 +97,9 @@ Considering the [aquatic community data](#aquatic-data):
 X=
 \begin{bmatrix}
     x_{fg1, t1} & x_{fg1, t2} & ... & x_{fg1, tT}\\
-	x_{fg2, t1} & x_{fg2, t2} & ... & x_{fg2, tT}\\
-	... & ... & ... & ...\\
-	x_{fgm, t1} & x_{fgm, t2} & ... & x_{fgm, tT}
+  	x_{fg2, t1} & x_{fg2, t2} & ... & x_{fg2, tT}\\
+	  ... & ... & ... & ...\\
+	  x_{fgm, t1} & x_{fgm, t2} & ... & x_{fgm, tT}
 \end{bmatrix}
 \end{equation}
 
@@ -117,9 +116,10 @@ Y=
 \end{equation}
 
 Note that:
+
 - considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can passed as `NA`.
 - from $X$ and $Y$ alone, it is impossible to trace how observations refer to processes.
-We will adress is in the following descriptions:
+We will adress is in the description of $Y$.
 
 The state process ($\mathbf{X}$) is described by:
 
@@ -130,7 +130,7 @@ The state process ($\mathbf{X}$) is described by:
 - $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
 - $\mathbf{w}_t$ is a $m \times 1$ vector of errors expected to be involved in the state ($X$) we are assessing. These account, for the stochasticity of the system.
 
-Thus, for our [aquatic commmunity](aquatic-data) affected by insecticide concentration ($I$):
+Thus, in matrix formulation:
 
 \begin{equation}
 \begin{bmatrix}
@@ -211,7 +211,7 @@ The observation process ($\mathbf{Y}$) is described by:
 - $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
 - $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
 
-For our [aquatic commmunity](aquatic-data) affected by insecticide concentration ($I$)
+In matrix formulation:
 \begin{equation}
  \left[ \begin{array}{c}
     y_{1} \\
@@ -265,60 +265,140 @@ We start from the minimal case of one single observation per state process and o
 ## Minimal case
 
 In our minimal case, we consider that
-- Single observation per state process: $n = m$, thus $y_i = x_i$
-- No processes error*: $w_t = 0$
-- Observational error is th same for all functional groups: $v_t = v$
-- Constant covariates*: $C_{t} = C$ and $c_{t} = c$
+- Each observation corresponds to one state process ($y_i = x_i$), thus `Z = "identity"`. In this case, it corresponds to a $5 \times 5$ identity matrix, since $n = m$:
+```{r}
+Z_I5 <- matrix(list(0), 5, 5)
+diag(Z_I5) <- 1
+```
+
+- All functional groups have the same state processes variance*: $w_t = \sigma$, thus `Q = "diagonal and equal"`, which we equates to 
+\begin{equation}
+\begin{bmatrix}
+		\sigma & 0 & 0 & 0 & 0 \\
+		0 & \sigma & 0 & 0 & 0 \\
+		0 & 0 & \sigma & 0 & 0 \\
+		0 & 0 & 0 & \sigma & 0 \\
+		0 & 0 & 0 & 0 & \sigma\\
+		\end{bmatrix}
+\end{equation}		
+- Observational error is th same for all functional groups: $v_t = v$, thus `R = 0`
+- Constant covariates*: $C_{t} = C$ and $c_{t} = c = 0$
 - U = A = 0
-- $X_0 = X_{t=1}$
+- $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
 Note that processes error and constant covariates are required for @downing_temporal_2020's estimation of asymptotic resilience
 
-Such model can be formalized as:
+Such model is formalized as:
 
 \begin{equation}
-X = \mathbf{B}.X_{t-1} + C.c + 0 + 0 \\
+X = \mathbf{B}.X_{t-1} + C.0 + 0 + 0 \\
 
-Y =  Z.X_t + 0 + D_t.E + v \\
-
-\text{ where }
-Z = 
-\begin{bmatrix}
-    1_{1, 1} & ... & ...  \\
-    ... & 1_{i, i} & ... \\
-    ... & ... & 1_{m, m}
-\end{bmatrix} 
-
+Y =  Z.X_t + 0 + D_t.0 + v \\
 \end{equation}
 
+Thus, our [aquatic commmunity data](aquatic-data) must be split into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment. Since we have replicates but we are modelling one observation as correponding to one state processes, we use the summarized data, we :
 
-## Multiple obsevation per state process 
-In this case, $y = n \times x$.
-Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$.
+```{r eval=FALSE}
+## calculate z-scores
+fgps_5z_allscen.ldf <- fgps_5.df %>%
+    dplyr::filter(week >= 1 , week <= 28) %>%
+    ungroup() %>%
+    dplyr::mutate_at(vars(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores), 
+                     ~MARSS::zscore(.)) %>%
+    dplyr::mutate(across(c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
+                         ~dplyr::na_if(., 0))) %>%
+    tidyr::pivot_longer(cols = c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
+                        names_to = "fgp",
+                        values_to = "count")
 
-## Processes have the same variance and no covariance
-In this case, $Q = \text{"diagonal and unequal"}$ which equates to 
-\begin{equation}
-Q = 
-\begin{bmatrix} 
-   \sigma & 0 & 0 \\
-    0 & \sigma & 0 \\
-    0 & 0 & \sigma
-\end{bmatrix}
-\end{equation}.
+## summarize counts over replicates
+fgps_5z_allscen.summldf <- fgps_5z_allscen.ldf %>%
+    dplyr::group_by(week, treat, fgp) %>%
+    dplyr::summarize(count_mu = mean (count),
+                     count_sd = sd(count)) %>%
+    dplyr::ungroup()
 
-## Each process has its own variance and no covariance.
+## convert into time-series matrix
+(fgps_5z_allscen.summmxls <- fgps_5z_allscen.summldf %>%
+    dplyr::select(week, treat, fgp, count_mu) %>%
+    split(.$treat) %>%
+    map(~ dplyr::select(., week, fgp, count_mu) %>%
+        unique() %>%
+        tidyr::pivot_wider(id_cols = fgp,
+                           names_from = week, values_from = "count_mu", 
+                           names_prefix = "week ") %>%
+        tibble::column_to_rownames(var = "fgp") %>%
+        as.matrix()))
+```
 
-In this case, $Q = \text{"diagonal and unequal"}$.
+As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
+```{r eval=FALSE}
+fgps_5z_allscen.marssls <- fgps_5z_allscen.summmxls %>%
+    map(~ MARSS(.,
+                list(B = "unconstrained",
+                     U = "zero", A = "zero",
+                     Z = "identity", ## Z_I5 could also have been provided here 
+                     Q = "diagonal and equal", 
+                     R = R_05,
+                     tinitx = 1),
+                method = "BFGS"))
+```
 
-\begin{equation}
-Q = 
-\begin{bmatrix} 
-    \sigma_{1, 1} & 0 & 0 \\
-    0 & \sigma_{i, i} & 0 \\
-    0 & 0 & \sigma_{m, m}
-\end{bmatrix}
-\end{equation}.
+We provide the function `eStar::extractB` which extracts $B$ in matrix form and names the interacting groups
+```{r}
+(fgps_5.Bls <- fgps_5z_allscen.marssls %>%
+  map(~eStar::extractB(., 
+                states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
+```
+
+Finally, having estimated $B$ we can calculate all the multivariate metrics:
+
+* Initial resilience
+```{r}
+fgps_5.Bls %>%
+  map(eStar::init_resil)
+```
+
+* Asymptotic resilience
+```{r}
+fgps_5.Bls %>%
+  map(eStar::asympt_resil)
+```
+
+#TODO
+- estimate B with Q calculated from processes variances.
+- estimate B for each replicate and then average them.
+<!-- ## Multiple obsevation per state process  -->
+<!-- In this case, $y = n \times x$. -->
+<!-- Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$. -->
+<!-- We provide the function ` build_Zreps(n_reps, m_grps)`: -->
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- ## Processes have the same variance and no covariance -->
+<!-- In this case, $Q = \text{"diagonal and unequal"}$ which equates to  -->
+<!-- \begin{equation} -->
+<!-- Q =  -->
+<!-- \begin{bmatrix}  -->
+<!--    \sigma & 0 & 0 \\ -->
+<!--     0 & \sigma & 0 \\ -->
+<!--     0 & 0 & \sigma -->
+<!-- \end{bmatrix} -->
+<!-- \end{equation}. -->
+
+<!-- ## Each process has its own variance and no covariance. -->
+
+<!-- In this case, $Q = \text{"diagonal and unequal"}$. -->
+
+<!-- \begin{equation} -->
+<!-- Q =  -->
+<!-- \begin{bmatrix}  -->
+<!--     \sigma_{1, 1} & 0 & 0 \\ -->
+<!--     0 & \sigma_{i, i} & 0 \\ -->
+<!--     0 & 0 & \sigma_{m, m} -->
+<!-- \end{bmatrix} -->
+<!-- \end{equation}. -->
 
 # Limited data {#limited-data}
 
