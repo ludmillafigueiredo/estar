@@ -28,6 +28,9 @@ library(kableExtra)
 ##library(imputeTS)
 library(MARSS)
 library(cowplot)
+library(ggsci)
+source("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/R/marss_buildZ.R")
+source("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/custom_aesthetics.R")
 ```
 
 In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table 2 of main text) depend on measures of interaction strengths between species composing a community.
@@ -41,10 +44,38 @@ For a more general and formal definition, refer to the [`MARSS` package document
 # Data overview
 
 ## Aquatic community {#aquatic-data}
-[@wijngaarden_effects_1996; @baert_biodiversity_2016; @radchuk_biodiversity_2016]
 
-## Forest plant community {#forest-data}
-<!-- include overview.Rmd file and processed data once permission is cleared -->
+
+```{r include = FALSE}
+load("/home/luf74xx/Dokumente/postdoc/eStar_main/MAR_macroinv_Pesticide/macrofauna4marss_5gps.RData")
+```
+
+To illustrate the use of MARSS models inside `eStar`, we use a dataset compiled from an ecotoxicological study about the effects of insecticide use on a macroinvertebrate aquatic community [@vandenbrick_effects_1996; @wijngaarden_effects_1996]. The insecticide chlorpyrifos, which negatively affects consumer, but not producer species [@radchuk_biodiversity_2016]. In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized species diversity, but no effects on gross primary production nor respiration. 
+The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
+
+```{r fig.height=6, fig.width=8, fig.cap = "Organism count (mean +- sd in grey, log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical green line identifies the aplication of chloryfiros insecticide, and facets separates the different concentrations (mug/L)."}
+fgps_5.df %>%
+  tidyr::pivot_longer(cols = c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
+                      names_to = "fgp",
+                      values_to = "count") %>%
+  dplyr::group_by(week, treat, fgp) %>%
+  dplyr::summarize(count.mu = mean(log(count)),
+                   count.sd = sd(log(count))) %>%
+  ggplot(aes(x = week, y = count.mu, col = fgp, group = fgp)) +
+  geom_ribbon(aes(ymin = count.mu - count.sd,
+                  ymax = count.mu + count.sd),
+              col = "gainsboro", fill = "gainsboro") +
+  geom_point(alpha = 0.5) +
+  geom_line() +
+  geom_vline(aes(xintercept = 0), 
+             colour = ggsci::pal_rickandmorty(palette = "schwifty")(6)[6])+
+  facet_wrap(~treat, ncol = 1) +
+  ggsci::scale_colour_rickandmorty(palette = "schwifty") +
+  labs(x = "Week",
+       y = "Count (mean +- sd))",
+       colour = "Functional\ngroup") +
+  theme_estar()
+```
 
 # MARSS models
 
@@ -234,14 +265,14 @@ We start from the minimal case of one single observation per state process and o
 ## Minimal case
 
 In our minimal case, we consider that
-
 - Single observation per state process: $n = m$, thus $y_i = x_i$
 - No processes error*: $w_t = 0$
 - Observational error is th same for all functional groups: $v_t = v$
 - Constant covariates*: $C_{t} = C$ and $c_{t} = c$
 - U = A = 0
+- $X_0 = X_{t=1}$
 
-* No processes error and constant covariates are required for @downing_temporal_2020's calculations of asymptotic resilience
+Note that processes error and constant covariates are required for @downing_temporal_2020's estimation of asymptotic resilience
 
 Such model can be formalized as:
 
@@ -265,27 +296,29 @@ Z =
 In this case, $y = n \times x$.
 Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$.
 
-## Processes have the same variance and the same covariance
-In this case, $Q = \text{"equalvarcov"}$ in the MARSS function or 
+## Processes have the same variance and no covariance
+In this case, $Q = \text{"diagonal and unequal"}$ which equates to 
 \begin{equation}
 Q = 
-\begin{bmatrix}
-
-\end{matrix}
-\end{equation}$.
-
-## Processes have the same variance and no covariances
-In this case, $Q = \text{"diagonal and equal"}$.
+\begin{bmatrix} 
+   \sigma & 0 & 0 \\
+    0 & \sigma & 0 \\
+    0 & 0 & \sigma
+\end{bmatrix}
+\end{equation}.
 
 ## Each process has its own variance and no covariance.
 
 In this case, $Q = \text{"diagonal and unequal"}$.
 
-## a = "scaling" ?
-
-## Single process covariate effect for all groups ?
-
-## Single observation covariate for all groups ?
+\begin{equation}
+Q = 
+\begin{bmatrix} 
+    \sigma_{1, 1} & 0 & 0 \\
+    0 & \sigma_{i, i} & 0 \\
+    0 & 0 & \sigma_{m, m}
+\end{bmatrix}
+\end{equation}.
 
 # Limited data {#limited-data}
 
