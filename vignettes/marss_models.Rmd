@@ -47,7 +47,7 @@ For a more general and formal definition, refer to the [`MARSS` package document
 ## Aquatic community {#aquatic-data}
 
 ```{r include = FALSE}
-load("/home/luf74xx/Dokumente/postdoc/eStar_main/MAR_macroinv_Pesticide/macrofauna4marss_5gps.RData")
+load("data/macrofauna4marss_5gps.RData")
 ```
 
 To illustrate the use of MARSS models inside `eStar`, we use a dataset compiled from an ecotoxicological study about the effects of insecticide use on a macroinvertebrate aquatic community [@vandenbrick_effects_1996; @wijngaarden_effects_1996]. The insecticide chlorpyrifos, which negatively affects consumer, but not producer species [@radchuk_biodiversity_2016]. In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized species diversity, but no effects on gross primary production nor respiration. 
