@@ -125,7 +125,7 @@ invariability(
 ```
 
 ```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, and 'SV', to 'state variable'", out.width = '100%'}
-knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/invariability.png")
+knitr::include_graphics("figures/invariability.png")
 ```
 ## Resistance
 
@@ -174,7 +174,7 @@ resistance(
 ```
 
 ```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'SV', to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of highest response in relation to the baseline.", out.width = '100%'}
-knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/resistance.png")
+knitr::include_graphics("figures/resistance.png")
 ```
 ## Extent of recovery
 Extent of recovery as the log response ratio in relation to a baseline value
@@ -205,7 +205,7 @@ recovery_extent(
 )
 ```
 ```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'Diff', to the difference between them, and 'tpost', to a post-disturbance time step.", out.width = '100%'}
-knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png")
+knitr::include_graphics("figures/extent_recovery.png")
 ```
 
 ## Rate of recovery
@@ -231,7 +231,7 @@ recovery_rate(
 ```
 
 ```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'SV', to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
-knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/rate_recovery.png")
+knitr::include_graphics("figures/rate_recovery.png")
 ```
 
 ## Persistence
@@ -258,7 +258,7 @@ persistence(
 ```
 
 ```{r fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the eStar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
-knitr::include_graphics("/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png")
+knitr::include_graphics("figures/persistence.png")
 ```
 <details><summary>Session Info</summary>
 
