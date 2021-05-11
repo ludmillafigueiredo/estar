@@ -24,9 +24,9 @@ library(cowplot)
 library(viridis)
 library(kableExtra)
 
-colors <- viridis(n = 5, option = "plasma")
-names(colors) <- c("Metric", "Baseline", "Disturbed", "LRR", "Difference")
-resp_colscale <- scale_colour_manual(values = colors)
+label_intensity <- function(intensity){
+  paste0("Conc = ", intensity)
+}
 ```
 <!-- colors : -->
 <!-- Deep blue "#0D0887FF"  -->
@@ -35,47 +35,56 @@ resp_colscale <- scale_colour_manual(values = colors)
 <!-- Orange "#F89441FF"  -->
 <!-- Yellow "#F0F921FF" -->
 
-# Toy data set
-```{r toy-data, fig.height = 5, fig.width = 7, fig.cap = "Figure 1: Time-series of the state variable created for the toy data set. Values in a 'disturbed' system (dark pink) show a steep decrease at time step 10, while the baseline (purlple) does not. Also represented are values often derived to calculate the stability metrics: long response ratio between the values in disturbed and in the baseline time-series (orange) and the difference between them (yellow)."}
-sv_df <- dplyr::left_join(dplyr::rename(toy_blts, "svbl" = stat_var),
-          dplyr::rename(toy_dbts, "svdb" = stat_var),
-          by = "time") %>%
-    dplyr::mutate(lrr = log(svdb/svbl),
-                  diff = svdb - svbl) %>%
-    tidyr::pivot_longer(cols = c("svbl", "svdb", "lrr", "diff"),
-                        names_to = "response", values_to = "value")%>%
-    dplyr::mutate(data = dplyr::recode_factor(response,
-                                              "svdb" = "Disturbed",
-                                              "svbl" = "Baseline",
-                                              "lrr" = "LRR",
-                                              "diff" = "Difference"))
+# Macroinvertebrate community
 
-(sv_plot <- sv_df %>%
-    ggplot(aes(x = time, y = value, colour = data, group = data)) +
-    geom_line(size = 0.8)+
-    geom_point(size = 0.8)+
-    resp_colscale+
-    labs(x = "Time", y = "Response measure", color = "Data")+
-    theme_minimal()+
-    theme(legend.position = c(0.80, 0.20),
-          legend.background = element_rect(fill =  "white", colour = "white")))
+```{r, fig.height = 5, fig.width = 7, fig.cap = "Figure 1: Time-series of the state variable created for the toy data set. Values in a 'disturbed' system (dark pink) show a steep decrease at time step 10, while the baseline (purlple) does not. Also represented are values often derived to calculate the stability metrics: long response ratio between the values in disturbed and in the baseline time-series (orange) and the difference between them (yellow)."}
+aquacomm_fgps %>%
+  tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
+                      names_to = "gp", values_to = "abund") %>%
+  ## summarize to plot
+  dplyr::group_by(time, treat, gp) %>%
+  dplyr::summarize(abund_mean = mean(abund), abund_sd = sd(abund)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
+                      Herbivore = "herb",
+                      Detr_Herbivore = "detr_herb",
+                      Carnivore = "carn",
+                      Omnivore = "omni",
+                      Detrivore = "detr")) %>%
+  ggplot(aes(x = time, y = abund_mean, group = gp, colour = gp)) +
+  geom_line() +
+  geom_point() +
+  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, length.out = 5)]) +
+  facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
+  labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
+  theme_estar()
 ```
 
-Description of values generated for the disturbed system:
+# Data formatting esponses
+
+Stability metrics are calculated can be calculated:
+
+- directly from the state variable
+- from the difference between 
 ```{r}
-?toy_dbts
+aquacomm_resps <- aquacomm_fgps %>%
+  dplyr::select(-c(herb, detr_herb, omni, detr)) %>%
+  dplyr::group_by(time, treat) %>%
+  dplyr::summarize_at(vars(carn), mean) %>%
+  dplyr::ungroup() %>%
+  tidyr::pivot_wider(names_from = treat,
+                     values_from = carn,
+                     names_prefix = "carn_") %>%
+  dplyr::mutate(diff_0.1 = carn_0.1 - carn_0,
+                diff_0.9 = carn_0.9 - carn_0,
+                diff_6 = carn_6 - carn_0,
+                diff_44 = carn_44 - carn_0,
+                lrr_0.1 = log(carn_0.1/carn_0),
+                lrr_0.9 = log(carn_0.9/carn_0),
+                lrr_6 = log(carn_6/carn_0),
+                lrr_44 = log(carn_44/carn_0))
 ```
 
-Description of values generated for the baseline system:
-```{r}
-?toy_blts
-```
-
-```{r eval=FALSE, include = FALSE}
-toy_blts, toy_svts %>%
-    knitr::kable(caption = "Example formatting of input time-series of a) disturbed system and b) baseline.") %>%
-    kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-```
 
 # Main functions
 Examples of each function applied to the toy dataset.
