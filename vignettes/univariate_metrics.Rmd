@@ -89,18 +89,18 @@ aquacomm_resps <- aquacomm_fgps %>%
 # Main functions
 Examples of each function applied to the toy dataset.
 
-TODO: add descriptions of arguments
-
 ## Invariability
 
 Invariability calculated as the inverse of standard deviation of residuals of the 
 linear model fitted to predict the log response ratio from time, over a defined 
-time frame (`metric_df`, Fig. 2-a).
+time frame (`aquacomm_resps`, Fig. 2-a).
+
 ```{r}
 invariability(
-    svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
-    metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
-    tbl_i = "time", bl_data = toy_blts
+     response = "lrr", mode = "lm_res",
+     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
+     db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -108,9 +108,10 @@ Invariability calculated as the inverse of standard deviation of residuals of th
 linear model fitted to predict the state variable from time (Fig. 2-b).
 ```{r}
 invariability(
-    svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "lm_res",
-    metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
-    tbl_i = "time", bl_data = toy_blts
+  response = "sv", mode = "lm_res",
+     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
+     db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -118,9 +119,10 @@ Invariability calculated as the inverse of the coefficient of variation of the l
 response ratio (Fig. 2-c).
 ```{r}
 invariability(
-   svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "cv",
-   metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
-    tbl_i = "time", bl_data = toy_blts
+  response = "lrr", mode = "cv",
+     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
+     db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -128,8 +130,10 @@ Invariability calculated as the inverse of the coefficient of variation of a sta
 variable (Fig. 2-d).
 ```{r}
 invariability(
-   svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
-   metric_tf = c(11, 50), db_data = toy_dbts
+     response = "sv", mode = "cv",
+     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
+     db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -140,68 +144,69 @@ knitr::include_graphics("figures/invariability.png")
 
 Resistance calculated in relation to a baseline time series (`bl = "input"`), 
 as the log response ratio (`res_mode = "lrr"`) at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 11`, Fig. 3-e,f).
+disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-e,f).
 ```{r}
 resistance(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-   res_mode = "lrr", res_time = "defined", res_t = 11
+  bl = "input", res_mode = "lrr", res_time = "defined", res_t = 1,
+  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time", 
+  db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
 Resistance calculated in relation to a baseline time series (`bl = "input"`), 
-as the highest (`res_mode = "max"`) log response ratio (`res_mode = "lrr"`) 
-during a given time frame (`res_tf = c(11, 50)`, Fig. 3-g,h).
+as the highest (`res_time = "max"`) log response ratio (`res_mode = "lrr"`) 
+during a given time frame (`res_tf = c(1, 20)`, Fig. 3-g,h).
 ```{r}
 resistance(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
-)
+   bl = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
+  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time", 
+  db_data = aquacomm_resps, bl_data = aquacomm_resps
+  )
 ```
 
 Resistance calculated in relation to a baseline time series (`bl = "input"`), 
 as the difference (`res_mode = "diff"`) at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 11`, Fig. 3-i,j).
+disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-i,j).
 ```{r}
 resistance(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-   res_mode = "diff", res_time = "defined", res_t = 11
+   bl = "input", res_mode = "diff", res_time = "defined", res_t = 1,
+   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
 Resistance calculated in relation to a baseline time series (`bl = "input"`), 
-as the highest (`res_mode = "max"`) absolute difference (`res_mode = "diff"`) 
+as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) 
 during a given time frame (`res_tf = c(11, 50)`, Fig. 3-k,l).
 ```{r}
 resistance(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
-   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
+   bl = "input", res_mode = "diff", res_time = "max", res_tf = c(1, 20),
+   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
 ```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'SV', to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
 ```
+
 ## Extent of recovery
 Extent of recovery as the log response ratio in relation to a baseline value
-(`bl = "input"`), at time step (`t_rec = 50`, Fig. 4-m,n).
+(`bl = "input"`), at time step (`t_rec = 40`, Fig. 4-m,n).
 ```{r eval=FALSE}
 recovery_extent(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-   bl_data = toy_blts
+   bl = "input", t_rec = max(aquacomm_fgps$time),  response = "lrr", 
+   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   db_data = aquacomm_resps, bl_data = aquacomm_resps 
 ) 
 ```
 Extent of recovery as the difference in relation to a baseline value
 (`bl = "input"`), at time step (`t_rec = 50`, Fig. 4-o,p).
 ```{r eval=FALSE}
 recovery_extent(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-   bl_data = toy_blts
+   bl = "input", t_rec = max(aquacomm_fgps$time),  response = "diff", 
+   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 Extent of recovery as the log response ratio in relation to a pre-disturbance 
@@ -209,10 +214,11 @@ Extent of recovery as the log response ratio in relation to a pre-disturbance
 `bl_tf = c(5, 10)`), at time step (`t_rec = 50`).
 ```{r eval=FALSE}
 recovery_extent(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-   bl = "db", t_rec = 50, bl_tf = c(5, 10)
-)
+  bl = "db", t_rec = max(aquacomm_fgps$time), bl_tf = c(5, 10), response = "lrr", 
+  svdb_i = "carn_0.1", tdb_i = "time", db_data = aquacomm_resps
+  )
 ```
+
 ```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the eStar package. 'LRR' refers to the log response ratio between the disturbed and baseline time-series, 'Diff', to the difference between them, and 'tpost', to a post-disturbance time step.", out.width = '100%'}
 knitr::include_graphics("figures/extent_recovery.png")
 ```
@@ -224,9 +230,10 @@ log response ratio in relation to a baseline (`bl = "input`) is predicted by
 time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-q).
 ```{r}
 recovery_rate(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
-)
+  bl = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
+  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  db_data = aquacomm_resps, bl_data = aquacomm_resps
+  )
 ```
 
 Rate of recovery calculated as the slope of the linear model which predicts the 
@@ -234,8 +241,9 @@ the values of the state variable  (`bl = "db`) is predicted by time (over a time
 frame (`metric_tf = c(12, 50)`, Fig. 5-r).
 ```{r}
 recovery_rate(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-   metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+  bl = "db", metric_tf = c(1, max(aquacomm_fgps$time)), 
+  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -250,9 +258,9 @@ baseline (`bl = "input"`) during the same post-disturbance time period
 for which persistence is measured (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
 persistence(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-   metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
-   bl_data = toy_blts
+  bl = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
+  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
 
@@ -261,14 +269,15 @@ Limits of persistence defined by the state variable values during a pre-disturba
 post-disturbance time period (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
 persistence(
-   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
-   bl_tf = c(1, 9), metric_tf = c(50, 100)
+  bl = "db", bl_tf = c(-4, 0.14), metric_tf = c(1, max(aquacomm_fgps$time)),
+  svdb_i = "carn_0.1", tdb_i = "time", db_data = aquacomm_resps
 )
 ```
 
 ```{r fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the eStar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
 knitr::include_graphics("figures/persistence.png")
 ```
+
 <details><summary>Session Info</summary>
 
 ```{r sessionInfo}
