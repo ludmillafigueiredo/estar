@@ -2,19 +2,23 @@
 title: "Univariate metrics"
 output: 
   rmarkdown::html_vignette:
-  fig_caption: TRUE
+    toc: TRUE
+    toc_depth: 2 
+    fig_caption: TRUE
+    df_print: kable
 vignette: >
   %\VignetteIndexEntry{univariate_metrics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r, echo=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 options(rmarkdown.html_vignette.check_title = FALSE)
+set.seed(123)
 ```
 
 ```{r, setup, include=FALSE}
@@ -23,6 +27,9 @@ library(ggplot2)
 library(cowplot)
 library(viridis)
 library(kableExtra)
+library(ggsci)
+library(forcats)
+source("custom_aesthetics.R")
 
 label_intensity <- function(intensity){
   paste0("Conc = ", intensity)
