@@ -10,6 +10,7 @@ vignette: >
   %\VignetteIndexEntry{univariate_metrics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: references.bib
 ---
 
 ```{r, echo=FALSE}
@@ -42,15 +43,18 @@ label_intensity <- function(intensity){
 <!-- Orange "#F89441FF"  -->
 <!-- Yellow "#F0F921FF" -->
 
-# Macroinvertebrate community
+# Overview of demonstration data
 
-```{r, fig.height = 5, fig.width = 7, fig.cap = "Figure 1: Time-series of the state variable created for the toy data set. Values in a 'disturbed' system (dark pink) show a steep decrease at time step 10, while the baseline (purlple) does not. Also represented are values often derived to calculate the stability metrics: long response ratio between the values in disturbed and in the baseline time-series (orange) and the difference between them (yellow)."}
-aquacomm_fgps %>%
+We illustrate the use of `eStar` functions on a dataset compiled from an ecotoxicological study about the effects of insecticide use on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide chlorpyrifos, which negatively affects consumer, but not producer species [@radchuk_biodiversity_2016]. In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized species diversity, but no effects on gross primary production nor respiration. 
+The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
+
+```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the aplication of chloryfiros insecticide, and facets separates the different concentrations (nano g/L)."}
+(aquacomm_fgps.logplot <- aquacomm_fgps %>%
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") %>%
   ## summarize to plot
   dplyr::group_by(time, treat, gp) %>%
-  dplyr::summarize(abund_mean = mean(abund), abund_sd = sd(abund)) %>%
+  dplyr::summarize(abund_logmean = mean(log(abund))) %>%
   dplyr::ungroup() %>%
   dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
                       Herbivore = "herb",
@@ -58,14 +62,52 @@ aquacomm_fgps %>%
                       Carnivore = "carn",
                       Omnivore = "omni",
                       Detrivore = "detr")) %>%
-  ggplot(aes(x = time, y = abund_mean, group = gp, colour = gp)) +
+  ggplot(aes(x = time, y = abund_logmean, group = gp, colour = gp)) +
   geom_line() +
-  geom_point() +
-  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, length.out = 5)]) +
+  geom_point(size = 1) +
+  geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
+  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                    length.out = 5)]) +
+  facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
+  labs(x = "Time (week)", y = "Mean abundance (log)", 
+       colour = "Functional\ngroup") +
+  theme_estar())
+```
+
+```{r include=FALSE, eval=FALSE}
+ggsave(filename = "aquacomm_fgps_logplot.svg", plot = aquacomm_fgps.logplot, 
+       device = "svg")
+```
+
+```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the aplication of chloryfiros insecticide, and facets separates the different concentrations (nano g/L)."}
+(aquacomm_fgps.rawplot <- aquacomm_fgps %>%
+  tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
+                      names_to = "gp", values_to = "abund") %>%
+  ## summarize to plot
+  dplyr::group_by(time, treat, gp) %>%
+  dplyr::summarize(abund.mean = mean(abund), abund.sd = sd(abund)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
+                      Herbivore = "herb",
+                      Detr_Herbivore = "detr_herb",
+                      Carnivore = "carn",
+                      Omnivore = "omni",
+                      Detrivore = "detr")) %>%
+  ggplot(aes(x = time, y = abund.mean, group = gp, colour = gp)) +
+   geom_ribbon(aes(ymin = abund.mean - abund.sd,
+                  ymax = abund.mean + abund.sd),
+              col = "gainsboro", fill = "gainsboro") +
+  geom_line() +
+  geom_point(size = 1) +
+  geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
+  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                    length.out = 5)]) +
   facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
   labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
-  theme_estar()
+  theme_estar())
 ```
+
+
 
 # Data formatting esponses
 
@@ -281,7 +323,7 @@ persistence(
 )
 ```
 
-```{r fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the eStar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the eStar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
 knitr::include_graphics("figures/persistence.png")
 ```
 
