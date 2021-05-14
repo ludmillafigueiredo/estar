@@ -273,7 +273,7 @@ Y =  Z.X_t + 0 + D_t.0 + v \\
 
 Thus, our [aquatic commmunity data](aquatic-data) must be split into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment. Since we have replicates but we are modelling one observation as correponding to one state processes, we use the summarized data, we :
 
-```{r eval=FALSE}
+```{r}
 ## calculate z-scores
 aquacommz_allscen.ldf <- aquacomm_fgps %>%
     dplyr::filter(time >= 1 , time <= 28) %>%
@@ -307,7 +307,29 @@ aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
 ```
 
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
-```{r eval=FALSE}
+```{r }
+## 5 groups
+### no process variance, 5 gps
+Q_05 <- matrix(list(0), 5, 5)
+## single process variance, no covariance
+Q_I5 <- matrix(list(0), 5, 5)
+diag(Q_I5) <- rep("var_q", 5)
+### no observation error variancee: 4 reps, 5 gps
+R_0r5 <- matrix(list(0), 4*5, 4*5)
+### no observation error variancee: 0 reps (summarized data), 5 gps
+R_05 <- matrix(list(0), 5, 5)
+### single error variancee: 0 reps (summarized data), 5 gps
+R_I5 <- matrix(list(0), 5, 5)
+diag(R_I5) <- rep("var_r", 5)
+### single error variancee: 4 reps, 11 gps
+R_Ir5 <- matrix(list(0), 4*5, 4*5)
+diag(R_Ir5) <- rep("var_r", 4*5)
+### single replicate/observation per process: 0 reps, 5 gps
+Z_I5 <- matrix(list(0), 5, 5)
+diag(Z_I5) <- 1
+### multiple replicate/observation per process
+Z_r5 <- build_Zreps(4, 5)
+
 aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     map(~ MARSS(.,
                 list(B = "unconstrained",
