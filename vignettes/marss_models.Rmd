@@ -42,39 +42,13 @@ In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-
 To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data)  and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
-# Data overview
+# Overview of demonstration data
 
-## Aquatic community {#aquatic-data}
-
-```{r include = FALSE}
-load("data/macrofauna4marss_5gps.RData")
-```
-
-To illustrate the use of MARSS models inside `eStar`, we use a dataset compiled from an ecotoxicological study about the effects of insecticide use on a macroinvertebrate aquatic community [@vandenbrick_effects_1996; @wijngaarden_effects_1996]. The insecticide chlorpyrifos, which negatively affects consumer, but not producer species [@radchuk_biodiversity_2016]. In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized species diversity, but no effects on gross primary production nor respiration. 
+Similar to what we did for the univariate metrics, we illustrate the use of multivariate on a dataset compiled from an ecotoxicological study about the effects of insecticide use on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide chlorpyrifos, which negatively affects consumer, but not producer species [@radchuk_biodiversity_2016]. 
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
 
-```{r fig.height=6, fig.width=8, fig.cap = "Organism count (mean +- sd in grey, log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical green line identifies the aplication of chloryfiros insecticide, and facets separates the different concentrations (mug/L)."}
-fgps_5.df %>%
-  tidyr::pivot_longer(cols = c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
-                      names_to = "fgp",
-                      values_to = "count") %>%
-  dplyr::group_by(week, treat, fgp) %>%
-  dplyr::summarize(count.mu = mean(log(count)),
-                   count.sd = sd(log(count))) %>%
-  ggplot(aes(x = week, y = count.mu, col = fgp, group = fgp)) +
-  geom_ribbon(aes(ymin = count.mu - count.sd,
-                  ymax = count.mu + count.sd),
-              col = "gainsboro", fill = "gainsboro") +
-  geom_point(alpha = 0.5) +
-  geom_line() +
-  geom_vline(aes(xintercept = 0), 
-             colour = ggsci::pal_rickandmorty(palette = "schwifty")(6)[6])+
-  facet_wrap(~treat, ncol = 1) +
-  ggsci::scale_colour_rickandmorty(palette = "schwifty") +
-  labs(x = "Week",
-       y = "Count (mean +- sd))",
-       colour = "Functional\ngroup") +
-  theme_estar()
+```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the aplication of chloryfiros insecticide, and facets separates the different concentrations (nano g/L)."}
+knitr::include_graphics("aquacomm_fgps_logplot.svg")
 ```
 
 # MARSS models
@@ -301,40 +275,40 @@ Thus, our [aquatic commmunity data](aquatic-data) must be split into matrices $Y
 
 ```{r eval=FALSE}
 ## calculate z-scores
-fgps_5z_allscen.ldf <- fgps_5.df %>%
-    dplyr::filter(week >= 1 , week <= 28) %>%
+aquacommz_allscen.ldf <- aquacomm_fgps %>%
+    dplyr::filter(time >= 1 , time <= 28) %>%
     ungroup() %>%
-    dplyr::mutate_at(vars(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores), 
+    dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr), 
                      ~MARSS::zscore(.)) %>%
-    dplyr::mutate(across(c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
+    dplyr::mutate(across(c(herb, detr_herb, carn, omni, detr),
                          ~dplyr::na_if(., 0))) %>%
-    tidyr::pivot_longer(cols = c(Herbivores, DetHerbivores, Carnivores, Omnivores, Detrivores),
+    tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                         names_to = "fgp",
-                        values_to = "count")
+                        values_to = "abund")
 
-## summarize counts over replicates
-fgps_5z_allscen.summldf <- fgps_5z_allscen.ldf %>%
-    dplyr::group_by(week, treat, fgp) %>%
-    dplyr::summarize(count_mu = mean (count),
-                     count_sd = sd(count)) %>%
+## summarize abunds over replicates
+aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
+    dplyr::group_by(time, treat, fgp) %>%
+    dplyr::summarize(abund_mu = mean (abund),
+                     abund_sd = sd(abund)) %>%
     dplyr::ungroup()
 
 ## convert into time-series matrix
-(fgps_5z_allscen.summmxls <- fgps_5z_allscen.summldf %>%
-    dplyr::select(week, treat, fgp, count_mu) %>%
+(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
+    dplyr::select(time, treat, fgp, abund_mu) %>%
     split(.$treat) %>%
-    map(~ dplyr::select(., week, fgp, count_mu) %>%
+    map(~ dplyr::select(., time, fgp, abund_mu) %>%
         unique() %>%
         tidyr::pivot_wider(id_cols = fgp,
-                           names_from = week, values_from = "count_mu", 
-                           names_prefix = "week ") %>%
+                           names_from = time, values_from = "abund_mu", 
+                           names_prefix = "time ") %>%
         tibble::column_to_rownames(var = "fgp") %>%
         as.matrix()))
 ```
 
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
 ```{r eval=FALSE}
-fgps_5z_allscen.marssls <- fgps_5z_allscen.summmxls %>%
+aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
@@ -347,7 +321,7 @@ fgps_5z_allscen.marssls <- fgps_5z_allscen.summmxls %>%
 
 We provide the function `eStar::extractB` which extracts $B$ in matrix form and names the interacting groups
 ```{r}
-(fgps_5.Bls <- fgps_5z_allscen.marssls %>%
+(aquacomm.Bls <- aquacommz_allscen.marssls %>%
   map(~eStar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
@@ -356,13 +330,13 @@ Finally, having estimated $B$ we can calculate all the multivariate metrics:
 
 * Initial resilience
 ```{r}
-fgps_5.Bls %>%
+aquacomm.Bls %>%
   map(eStar::init_resil)
 ```
 
 * Asymptotic resilience
 ```{r}
-fgps_5.Bls %>%
+aquacomm.Bls %>%
   map(eStar::asympt_resil)
 ```
 
