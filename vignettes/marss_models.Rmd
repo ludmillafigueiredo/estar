@@ -356,7 +356,7 @@ Finally, having estimated $B$ we can calculate all the multivariate metrics:
 ## Reactivity
 ```{r}
 aquacomm.Bls %>%
-  map(estar::reactivity)
+  map(eStar::reactivity)
 ```
 
 
