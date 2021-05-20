@@ -1,12 +1,13 @@
 ---
 title: "MARSS in eStar"
-header-includes:
-  \usepackage{amsmath}
 output: 
   rmarkdown::html_vignette:
-  fig_caption: TRUE
+    toc: TRUE
+    toc_depth: 2 
+    fig_caption: TRUE
+    df_print: kable
 vignette: >
-  %\VignetteIndexEntry{marss}
+  %\VignetteIndexEntry{marss_estar}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references.bib
@@ -23,7 +24,7 @@ rmarkdown::html_document(df_print = knitr::kable)
 ```
 
 ```{r message=FALSE}
-##library(eStar)
+library(eStar)
 library(tidyverse)
 library(viridis)
 library(kableExtra)
@@ -31,6 +32,7 @@ library(kableExtra)
 library(MARSS)
 library(cowplot)
 library(ggsci)
+library(hesim)
 source("custom_aesthetics.R")
 ```
 
@@ -39,7 +41,7 @@ These measures are classically summarized in the _community matrix_ [sensu @nova
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
-To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data)  and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data) and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Overview of demonstration data
@@ -233,7 +235,7 @@ The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without a
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience, the user can either provide the required community matrix ($B$) or have it estimated from a variety of predefined assumptions about the modelled system. In this section we detail what are these assumptions and show how they might affect the estimation of ($B$) by applying them to the same study case. None of the parameters detailed here have default values in functions that calculate the metrics above, to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the assumptions chosen.
+When calculating the multivariate metrics the user can either provide the required community matrix ($B$) or have it estimated from a variety of predefined assumptions about the modelled system. In this section we detail what are these assumptions and show how they might affect the estimation of ($B$) by applying them to the same study case. None of the parameters detailed here have default values in functions that calculate the metrics above. the motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the assumptions chosen.
 
 We start from the minimal case of one single observation per state process and other simplifying assumptions, and complexify it step-wise.
 
@@ -271,7 +273,7 @@ X = \mathbf{B}.X_{t-1} + C.0 + 0 + 0 \\
 Y =  Z.X_t + 0 + D_t.0 + v \\
 \end{equation}
 
-Thus, our [aquatic commmunity data](aquatic-data) must be split into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment. Since we have replicates but we are modelling one observation as correponding to one state processes, we use the summarized data, we :
+Thus, our [aquatic commmunity data](aquatic-data) must be split into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment. We have replicates but we are modelling one observation as correponding to one state processes. Thus, we use the species mean abundances summarized over all replicates:
 
 ```{r}
 ## calculate z-scores
@@ -307,7 +309,7 @@ aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
 ```
 
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
-```{r }
+```{r cache = TRUE}
 ## 5 groups
 ### no process variance, 5 gps
 Q_05 <- matrix(list(0), 5, 5)
@@ -339,6 +341,7 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
                      R = R_05,
                      tinitx = 1),
                 method = "BFGS"))
+names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " nano g/L")
 ```
 
 We provide the function `eStar::extractB` which extracts $B$ in matrix form and names the interacting groups
@@ -350,21 +353,36 @@ We provide the function `eStar::extractB` which extracts $B$ in matrix form and 
 
 Finally, having estimated $B$ we can calculate all the multivariate metrics:
 
-* Initial resilience
+## Reactivity
+```{r}
+aquacomm.Bls %>%
+  map(estar::reactivity)
+```
+
+
+## Maximal amplification
+```{r}
+aquacomm.Bls %>%
+  map(eStar::max_amp)
+```
+
+
+## Initial resilience
 ```{r}
 aquacomm.Bls %>%
   map(eStar::init_resil)
 ```
 
-* Asymptotic resilience
+## Asymptotic resilience
 ```{r}
 aquacomm.Bls %>%
   map(eStar::asympt_resil)
 ```
 
-#TODO
-- estimate B with Q calculated from processes variances.
-- estimate B for each replicate and then average them.
+
+<!-- #TODO -->
+<!-- - estimate B with Q calculated from processes variances. -->
+<!-- - estimate B for each replicate and then average them. -->
 <!-- ## Multiple obsevation per state process  -->
 <!-- In this case, $y = n \times x$. -->
 <!-- Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$. -->
@@ -451,4 +469,17 @@ aquacomm.Bls %>%
 <!-- ``` -->
 
 <!-- MARSS takes y  s a  matrix ts object -->
+
+<details><summary>Session Info</summary>
+
+```{r sessionInfo}
+## DO NOT REMOVE!
+## We store the settings of your computer and the current versions of the
+## packages used to allow for reproducibility
+Sys.time()
+#git2r::repository() ## uncomment if you are using GitHub
+sessionInfo()
+```
+
+</details>
 
