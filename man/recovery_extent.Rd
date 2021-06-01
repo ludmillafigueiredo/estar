@@ -91,25 +91,25 @@ for example, demographic or environmental stochasticity.
 }
 \examples{
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-  bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
+  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+  bl_data = aquacomm_resps
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
-  bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-  bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "diff",
+  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+  bl_data = aquacomm_resps
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = 9
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = c(5, 10)
 )
 recovery_extent(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
   bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 )
 }

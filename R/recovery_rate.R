@@ -12,12 +12,12 @@
 #'
 #' @examples
 #' recovery_rate(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   metric_tf = c(12, 50)
 #' )
 #' recovery_rate(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   metric_tf = c(12, 50), svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps
 #' )
 #' @export
 recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
@@ -26,18 +26,18 @@ recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
     base_df <- dplyr::left_join(
-      dplyr::rename(dbts_df, "t" = tdb_c),
-      dplyr::rename(blts_df, "t" = tbl_c),
+      dplyr::rename(dbts_df, "t" = tdb_i),
+      dplyr::rename(blts_df, "t" = tbl_i),
       by = "t"
     ) %>%
-      dplyr::mutate(extent = log(svdb_c / svbl_c)) %>%
+      dplyr::mutate(extent = log(svdb_i / svbl_i)) %>%
       dplyr::select(t, extent)
   } else {
     if (bl == "db") {
       base_df <- dbts_df %>%
         dplyr::rename(
-          "extent" = svdb_c,
-          "t" = tdb_c
+          "extent" = svdb_i,
+          "t" = tdb_i
         )
     } else {
       stop("bl must be \"input\" or \"db\".")

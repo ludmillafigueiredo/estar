@@ -73,21 +73,21 @@ state variable.
 }
 \examples{
 invariability(
-  svdb_i = "stat_var", tdb_i = "time", response = "sv", mode = "cv",
-  metric_tf = c(11, 50), db_data = toy_dbts
+  svdb_i = "statvar_db", tdb_i = "time", response = "sv", mode = "cv",
+  metric_tf = c(11, 50), db_data = aquacomm_resps
 )
 invariability(
-  svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "sv",
+  svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "sv",
   mode = "cv", metric_tf = c(11, 50)
 )
 invariability(
-  svdb_i = "stat_var", tdb_i = "time", response = "lrr", mode = "lm_res",
-  metric_tf = c(11, 50), db_data = toy_dbts, svbl_i = "stat_var",
-  tbl_i = "time", bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", response = "lrr", mode = "lm_res",
+  metric_tf = c(11, 50), db_data = aquacomm_resps, svbl_i = "statvar_bl",
+  tbl_i = "time", bl_data = aquacomm_resps
 )
 invariability(
-  svdb_i = toy_dbts$stat_var, tdb_i = toy_dbts$time, response = "lrr",
-  metric_tf = c(11, 50), mode = "lm_res", svbl_i = toy_blts$stat_var,
-  tbl_i = toy_blts$time
+  svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "lrr",
+  metric_tf = c(11, 50), mode = "lm_res", svbl_i = aquacomm_resps$statvar_bl,
+  tbl_i = aquacomm_resps$time
 )
 }

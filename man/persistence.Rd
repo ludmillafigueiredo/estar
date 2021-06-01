@@ -78,21 +78,21 @@ returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   bl_tf = c(1, 9), metric_tf = c(50, 100)
 )
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   bl_tf = c(1, 9), metric_tf = c(30, 100)
 )
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
-  bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  metric_tf = c(50, 100), svbl_i = "statvar_bl", tbl_i = "time",
+  bl_data = aquacomm_resps
 )
 persistence(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  metric_tf = c(30, 100), svbl_i = "stat_var", tbl_i = "time",
-  bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  metric_tf = c(30, 100), svbl_i = "statvar_bl", tbl_i = "time",
+  bl_data = aquacomm_resps
 )
 }

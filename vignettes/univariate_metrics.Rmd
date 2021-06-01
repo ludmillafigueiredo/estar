@@ -136,7 +136,7 @@ aquacomm_resps <- aquacomm_fgps %>%
 
 
 # Main functions
-Examples of each function applied to the toy dataset.
+Examples of each function applied to the example dataset.
 
 ## Invariability
 
@@ -147,7 +147,7 @@ time frame (`aquacomm_resps`, Fig. 2-a).
 ```{r}
 invariability(
      response = "lrr", mode = "lm_res",
-     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     svdb_i = "statvar_db", svbl_i = "statvar_bl", tdb_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
      db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
@@ -158,7 +158,7 @@ linear model fitted to predict the state variable from time (Fig. 2-b).
 ```{r}
 invariability(
   response = "sv", mode = "lm_res",
-     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     svdb_i = "statvar_db", svbl_i = "statvar_bl", tdb_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
      db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
@@ -169,7 +169,7 @@ response ratio (Fig. 2-c).
 ```{r}
 invariability(
   response = "lrr", mode = "cv",
-     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     svdb_i = "statvar_db", svbl_i = "statvar_bl", tdb_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
      db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
@@ -180,7 +180,7 @@ variable (Fig. 2-d).
 ```{r}
 invariability(
      response = "sv", mode = "cv",
-     svdb_i = "carn_0.1", svbl_i = "carn_0", tdb_i = "time", 
+     svdb_i = "statvar_db", svbl_i = "statvar_bl", tdb_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tbl_i = "time", 
      db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
@@ -197,7 +197,7 @@ disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-e,f).
 ```{r}
 resistance(
   bl = "input", res_mode = "lrr", res_time = "defined", res_t = 1,
-  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time", 
+  svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time", 
   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -208,7 +208,7 @@ during a given time frame (`res_tf = c(1, 20)`, Fig. 3-g,h).
 ```{r}
 resistance(
    bl = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
-  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time", 
+  svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time", 
   db_data = aquacomm_resps, bl_data = aquacomm_resps
   )
 ```
@@ -219,7 +219,7 @@ disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-i,j).
 ```{r}
 resistance(
    bl = "input", res_mode = "diff", res_time = "defined", res_t = 1,
-   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -230,7 +230,7 @@ during a given time frame (`res_tf = c(11, 50)`, Fig. 3-k,l).
 ```{r}
 resistance(
    bl = "input", res_mode = "diff", res_time = "max", res_tf = c(1, 20),
-   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -245,7 +245,7 @@ Extent of recovery as the log response ratio in relation to a baseline value
 ```{r eval=FALSE}
 recovery_extent(
    bl = "input", t_rec = max(aquacomm_fgps$time),  response = "lrr", 
-   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps 
 ) 
 ```
@@ -254,7 +254,7 @@ Extent of recovery as the difference in relation to a baseline value
 ```{r eval=FALSE}
 recovery_extent(
    bl = "input", t_rec = max(aquacomm_fgps$time),  response = "diff", 
-   svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+   svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -264,7 +264,7 @@ Extent of recovery as the log response ratio in relation to a pre-disturbance
 ```{r eval=FALSE}
 recovery_extent(
   bl = "db", t_rec = max(aquacomm_fgps$time), bl_tf = c(5, 10), response = "lrr", 
-  svdb_i = "carn_0.1", tdb_i = "time", db_data = aquacomm_resps
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps
   )
 ```
 
@@ -280,7 +280,7 @@ time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-q).
 ```{r}
 recovery_rate(
   bl = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
-  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
   db_data = aquacomm_resps, bl_data = aquacomm_resps
   )
 ```
@@ -291,7 +291,7 @@ frame (`metric_tf = c(12, 50)`, Fig. 5-r).
 ```{r}
 recovery_rate(
   bl = "db", metric_tf = c(1, max(aquacomm_fgps$time)), 
-  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -308,7 +308,7 @@ for which persistence is measured (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
 persistence(
   bl = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
-  svdb_i = "carn_0.1", tdb_i = "time", svbl_i = "carn_0", tbl_i = "time",
+  svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
   db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
 ```
@@ -319,7 +319,7 @@ post-disturbance time period (`metric_tf = c(50, 100)`, Fig. 6).
 ```{r}
 persistence(
   bl = "db", bl_tf = c(-4, 0.14), metric_tf = c(1, max(aquacomm_fgps$time)),
-  svdb_i = "carn_0.1", tdb_i = "time", db_data = aquacomm_resps
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps
 )
 ```
 

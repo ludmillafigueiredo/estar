@@ -20,22 +20,22 @@
 #'
 #' @examples
 #' persistence(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   bl_tf = c(1, 9), metric_tf = c(50, 100)
 #' )
 #' persistence(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   bl_tf = c(1, 9), metric_tf = c(30, 100)
 #' )
 #' persistence(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   metric_tf = c(50, 100), svbl_i = "stat_var", tbl_i = "time",
-#'   bl_data = toy_blts
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   metric_tf = c(50, 100), svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl_data = aquacomm_resps
 #' )
 #' persistence(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   metric_tf = c(30, 100), svbl_i = "stat_var", tbl_i = "time",
-#'   bl_data = toy_blts
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   metric_tf = c(30, 100), svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl_data = aquacomm_resps
 #' )
 #' @export
 persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NULL,
@@ -46,7 +46,7 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NU
 
     if (bl == "input") {
         blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data) %>%
-            dplyr::rename("sv" = svbl_c)
+            dplyr::rename("sv" = svbl_i)
     } else {
         if (bl == "db") {
             if(max(bl_tf) > min(metric_tf)) {
@@ -54,8 +54,8 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NU
             }
             blts_df <- dbts_df %>%
             dplyr::ungroup() %>%
-            dplyr::filter(tdb_c >= min(bl_tf), tdb_c <= max(bl_tf)) %>%
-            dplyr::rename("sv" = svdb_c)
+            dplyr::filter(tdb_i >= min(bl_tf), tdb_i <= max(bl_tf)) %>%
+            dplyr::rename("sv" = svdb_i)
 
         } else {
             stop("bl must be \"input\" or \"db\".")
@@ -65,15 +65,15 @@ persistence <- function(svdb_i, tdb_i, db_data = NULL, metric_tf, bl, bl_tf = NU
     perst_zone <- blts_df %>%
         dplyr::select(sv) %>%
         dplyr::summarize(mean_sv = mean(sv, na.rm = na_rm),
-                         sd_sv = sd(sv, na.rm = na_rm)) %>%
+                         sd_sv = stats::sd(sv, na.rm = na_rm)) %>%
         dplyr::summarize(low_lim = mean_sv - sd_sv,
                          high_lim = mean_sv + sd_sv)
 
     persistence_df <- dbts_df %>%
-        dplyr::filter(tdb_c >= min(metric_tf), tdb_c <= max(metric_tf)) %>%
+        dplyr::filter(tdb_i >= min(metric_tf), tdb_i <= max(metric_tf)) %>%
         dplyr::rowwise() %>%
-        dplyr::mutate(persist = all(svdb_c >= perst_zone$low_lim,
-                                    svdb_c <= perst_zone$high_lim)) %>%
+        dplyr::mutate(persist = all(svdb_i >= perst_zone$low_lim,
+                                    svdb_i <= perst_zone$high_lim)) %>%
         dplyr::group_by(persist) %>%
         dplyr::summarize(n_p = dplyr::n()) %>%
         dplyr::ungroup()  %>%

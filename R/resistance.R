@@ -34,40 +34,40 @@
 #'
 #' @examples
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
 #'   res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
 #'   res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   bl_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   bl_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
 #'   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-#'   svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
 #'   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   res_mode = "lrr", bl_tf = 9, res_time = "max",
 #'   res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
 #'   summ_mode = "median", res_mode = "lrr", bl_tf = 9, res_time = "max",
 #'   res_tf = c(11, 50)
 #' )
@@ -76,27 +76,18 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
                        svbl_i = NULL, tbl_i = NULL, bl_data = NULL, bl_tf = NULL,
                        res_mode, res_time, res_t = NULL, res_tf = NULL,
                        na_rm = TRUE) {
-  get_res <- function(svdb_c, svbl_c, res_mode) {
-    if (res_mode == "lrr") {
-      res <- log(svdb_c / svbl_c)
-      return(res)
-    } else {
-      if (res_mode == "diff") {
-        res <- svdb_c - svbl_c
-        return(res)
-      } else {
-        stop("res_mode must be \"lrr\" or \"diff\".")
-      }
-    }
+  if (!(res_mode %in% c("lrr", "diff"))) {
+    stop("res_mode must be \"lrr\" or \"diff\".")
   }
+
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
 
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
 
-    res_df <- dplyr::inner_join(dplyr::rename(dbts_df, "t" = tdb_c),
-      dplyr::rename(blts_df, "t" = tbl_c),
-      by = c("t")
+    res_df <- dplyr::inner_join(dplyr::rename(dbts_df, "t" = tdb_i),
+                                dplyr::rename(blts_df, "t" = tbl_i),
+                                by = c("t")
     )
   } else {
     if (bl == "db") {
@@ -105,8 +96,8 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
       }
       bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
       res_df <- dbts_df %>%
-        dplyr::rename("t" = tdb_c) %>%
-        dplyr::mutate(svbl_c = bl)
+        dplyr::rename("t" = tdb_i) %>%
+        dplyr::mutate(svbl_i = bl)
     } else {
       stop("bl must be \"input\" or \"db\".")
     }
@@ -115,13 +106,13 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   if (res_time == "defined") {
     res <- res_df %>%
       dplyr::filter(t == res_t) %>%
-      dplyr::mutate(res = get_res(svdb_c, svbl_c, res_mode))%>%
+      dplyr::mutate(res = ifelse(res_mode == "lrr", log(svdb_i / svbl_i), svdb_i - svbl_i))%>%
       dplyr::pull(res)
   } else {
     if (res_time == "max") {
       res <- res_df %>%
         dplyr::filter(t >= min(res_tf), t <= max(res_tf)) %>%
-        dplyr::mutate(res = get_res(svdb_c, svbl_c, res_mode)) %>%
+        dplyr::mutate(res = ifelse(res_mode == "lrr", log(svdb_i / svbl_i), svdb_i - svbl_i)) %>%
         dplyr::ungroup() %>%
         dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm)) %>%
         dplyr::pull(res)

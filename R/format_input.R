@@ -12,21 +12,21 @@
 format_input <- function(input, sv_v, t_v, data) {
   if (input == "db") {
     if (is.null(data)) {
-      input_df <- data.frame("svdb_c" = sv_v, "tdb_c" = t_v)
+      input_df <- data.frame("svdb_i" = sv_v, "tdb_i" = t_v)
     } else {
       input_df <- dplyr::select(data,
-        "svdb_c" = dplyr::all_of(sv_v),
-        "tdb_c" = dplyr::all_of(t_v)
+        "svdb_i" = dplyr::all_of(sv_v),
+        "tdb_i" = dplyr::all_of(t_v)
       )
     }
   } else {
       if(input == "bl"){
           if (is.null(data)) {
-              input_df <- data.frame("svbl_c" = sv_v, "tbl_c" = t_v)
+              input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
           } else {
               input_df <- dplyr::select(data,
-                                        "svbl_c" = dplyr::all_of(sv_v),
-                                        "tbl_c" = dplyr::all_of(t_v)
+                                        "svbl_i" = dplyr::all_of(sv_v),
+                                        "tbl_i" = dplyr::all_of(t_v)
                                         )
           }
       } else {

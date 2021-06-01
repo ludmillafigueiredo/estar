@@ -63,11 +63,11 @@ compared to the baseline.
 }
 \examples{
 recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   metric_tf = c(12, 50)
 )
 recovery_rate(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  metric_tf = c(12, 50), svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  metric_tf = c(12, 50), svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps
 )
 }

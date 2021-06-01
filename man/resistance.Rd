@@ -100,40 +100,40 @@ for example, demographic or environmental stochasticity.
 }
 \examples{
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
   res_mode = "lrr", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
   res_mode = "diff", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   bl_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   bl_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "input",
-  svbl_i = "stat_var", tbl_i = "time", bl_data = toy_blts,
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
+  svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   res_mode = "lrr", bl_tf = 9, res_time = "max",
   res_tf = c(11, 50)
 )
 resistance(
-  svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, bl = "db",
+  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
   summ_mode = "median", res_mode = "lrr", bl_tf = 9, res_time = "max",
   res_tf = c(11, 50)
 )

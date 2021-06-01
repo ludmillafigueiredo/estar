@@ -25,25 +25,25 @@
 #'
 #' @examples
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
-#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-#'   bl_data = toy_blts
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
+#'   bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl_data = aquacomm_resps
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "diff",
-#'   bl = "input", t_rec = 50, svbl_i = "stat_var", tbl_i = "time",
-#'   bl_data = toy_blts
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "diff",
+#'   bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl_data = aquacomm_resps
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = 9
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = c(5, 10)
 #' )
 #' recovery_extent(
-#'   svdb_i = "stat_var", tdb_i = "time", db_data = toy_dbts, response = "lrr",
+#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
 #'   bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
@@ -55,8 +55,8 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
     extent_df <- dplyr::left_join(
-      dplyr::rename(dbts_df, "t" = tdb_c),
-      dplyr::rename(blts_df, "t" = tbl_c),
+      dplyr::rename(dbts_df, "t" = tdb_i),
+      dplyr::rename(blts_df, "t" = tbl_i),
       by = c("t")
     ) %>%
       dplyr::filter(t == t_rec)
@@ -68,8 +68,8 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
       bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
 
       extent_df <- dbts_df %>%
-        dplyr::filter(tdb_c == t_rec) %>%
-        dplyr::mutate(svbl_c = bl)
+        dplyr::filter(tdb_i == t_rec) %>%
+        dplyr::mutate(svbl_i = bl)
     } else {
       stop("bl must be \"input\", \"point\", or \"period\".")
     }
@@ -77,12 +77,12 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
 
   if (response == "lrr") {
     extent <- extent_df %>%
-      dplyr::mutate(extent = log(svdb_c / svbl_c)) %>%
+      dplyr::mutate(extent = log(svdb_i / svbl_i)) %>%
       dplyr::pull(extent)
   } else {
     if (response == "diff") {
       extent <- extent_df %>%
-        dplyr::mutate(extent = svdb_c - svbl_c) %>%
+        dplyr::mutate(extent = svdb_i - svbl_i) %>%
         dplyr::pull(extent)
     } else {
       stop("response must be \"lrr\" or \"diff\"")
