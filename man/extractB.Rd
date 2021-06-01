@@ -7,9 +7,9 @@
 extractB(marss_res, states_names)
 }
 \arguments{
-\item{states_names}{a string vector containing the names of species/groups for which interactions were estimated}
+\item{marss_res}{MARSS object returned by \code{\link[MARRS]{MARSS}}}
 
-\item{marss.res}{MARSS object returned by \code{\link[MARRS]{MARSS}}}
+\item{states_names}{a string vector containing the names of species/groups for which interactions were estimated}
 }
 \value{
 a named matrix

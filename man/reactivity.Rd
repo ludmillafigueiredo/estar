@@ -8,7 +8,7 @@
 reactivity(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{get_B}}.}
+\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.}
 }
 \value{
 a numeric, the reactivity value
