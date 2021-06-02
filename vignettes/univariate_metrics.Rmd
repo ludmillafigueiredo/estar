@@ -106,35 +106,7 @@ ggsave(filename = "aquacomm_fgps_logplot.svg", plot = aquacomm_fgps.logplot,
   labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
   theme_estar())
 ```
-
-
-
-# Data formatting esponses
-
-Stability metrics are calculated can be calculated:
-
-- directly from the state variable
-- from the difference between 
-```{r}
-aquacomm_resps <- aquacomm_fgps %>%
-  dplyr::select(-c(herb, detr_herb, omni, detr)) %>%
-  dplyr::group_by(time, treat) %>%
-  dplyr::summarize_at(vars(carn), mean) %>%
-  dplyr::ungroup() %>%
-  tidyr::pivot_wider(names_from = treat,
-                     values_from = carn,
-                     names_prefix = "carn_") %>%
-  dplyr::mutate(diff_0.1 = carn_0.1 - carn_0,
-                diff_0.9 = carn_0.9 - carn_0,
-                diff_6 = carn_6 - carn_0,
-                diff_44 = carn_44 - carn_0,
-                lrr_0.1 = log(carn_0.1/carn_0),
-                lrr_0.9 = log(carn_0.9/carn_0),
-                lrr_6 = log(carn_6/carn_0),
-                lrr_44 = log(carn_44/carn_0))
-```
-
-
+ 
 # Main functions
 Examples of each function applied to the example dataset.
 
