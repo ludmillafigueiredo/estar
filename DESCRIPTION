@@ -16,17 +16,20 @@ RoxygenNote: 7.1.1
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    Matrix,
+    hesim
 Depends: 
     R (>= 2.10)
 Imports:
-    dplyr,
+    tidyverse,
     stats,
     magrittr,
     utils,
-    tidyr,
     ggplot2,
+    ggsci,
     cowplot,
     viridis,
-    kableExtra
+    kableExtra,
+    MARSS
 VignetteBuilder: knitr

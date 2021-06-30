@@ -16,8 +16,7 @@ bibliography: references.bib
 ```{r knit-setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  echo = FALSE
+  comment = "#>"
   )
 options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly dfifferent and this avoids a warning message every time it's rendered
 rmarkdown::html_document(df_print = knitr::kable)
@@ -414,8 +413,6 @@ aquacomm.Bls %>%
 <!--     0 & 0 & \sigma_{m, m} -->
 <!-- \end{bmatrix} -->
 <!-- \end{equation}. -->
-
-# Limited data {#limited-data}
 
 # References
 
