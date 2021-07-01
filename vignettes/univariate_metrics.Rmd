@@ -317,6 +317,8 @@ git2r::repository()
 sessionInfo()
 ```
 
-</details>
+</details><br>
+
+---
 
 # References
