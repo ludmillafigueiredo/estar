@@ -414,8 +414,6 @@ aquacomm.Bls %>%
 <!-- \end{bmatrix} -->
 <!-- \end{equation}. -->
 
-# References
-
 <!-- # Process and observations errors -->
 
 <!-- autoregressive and non-independent error can be included in B1 -->
@@ -475,5 +473,8 @@ git2r::repository()
 sessionInfo()
 ```
 
-</details>
+</details><br>
 
+---
+
+# References
