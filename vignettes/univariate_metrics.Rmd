@@ -94,7 +94,7 @@ ggsave(filename = "aquacomm_fgps_logplot.svg", plot = aquacomm_fgps.logplot,
                       Omnivore = "omni",
                       Detritivore = "detr")) %>%
   ggplot(aes(x = time, y = abund.mean, group = gp, colour = gp)) +
-   geom_ribbon(aes(ymin = abund.mean - abund.sd,
+  geom_ribbon(aes(ymin = abund.mean - abund.sd,
                   ymax = abund.mean + abund.sd),
               col = "gainsboro", fill = "gainsboro") +
   geom_line() +
