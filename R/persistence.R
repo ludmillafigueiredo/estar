@@ -4,7 +4,6 @@
 #' variable remained inside the interval defined by the baseline's
 #' \eqn{\pm} sd. The proportion is calculated in relation to the time
 #' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
-#' ## V:Let's talk about it at the meeting
 #'
 #' @inheritParams univar_params
 #'

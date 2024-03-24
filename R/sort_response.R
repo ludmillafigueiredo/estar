@@ -16,6 +16,8 @@
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tbl_i} and \code{svbl_i}, respectively.
 #'
+#' @inheritParams univar_params
+#'
 #' @noRd
 #' @export
 sort_response <- function(response, dbts_df, svbl_i, tbl_i, bl_data){

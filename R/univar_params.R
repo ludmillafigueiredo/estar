@@ -46,7 +46,7 @@ univar_params <- function(svdb_i,
                               summ_mode,
                               na_rm,
                               response,
-                              metric_df,
+                              metric_tf,
                               ...){
     return(invisible(NULL))
 }
