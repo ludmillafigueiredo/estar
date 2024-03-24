@@ -472,7 +472,6 @@ aquacomm.Bls %>%
 
 ```{r sessionInfo}
 Sys.time()
-git2r::repository()
 sessionInfo()
 ```
 

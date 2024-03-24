@@ -4,7 +4,7 @@
 \alias{extractB}
 \title{Extract the community matrix (B) estimated by a MARSS model}
 \usage{
-extractB(marss_res, states_names)
+extractB(marss_res, states_names = NULL)
 }
 \arguments{
 \item{marss_res}{MARSS object returned by \code{\link[MARRS]{MARSS}}}

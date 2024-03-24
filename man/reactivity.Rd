@@ -3,7 +3,7 @@
 \name{reactivity}
 \alias{reactivity}
 \title{Calculate the reactivity of a community from its community matrix.
-\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is caluclated as the highest eigenvalue of the Hermitian part of the community matrix $B$.}
+\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is calculated as the largest eigenvalue of the Hermitian part of the community matrix $B$.}
 \usage{
 reactivity(B)
 }
@@ -15,5 +15,5 @@ a numeric, the reactivity value
 }
 \description{
 Calculate the reactivity of a community from its community matrix.
-\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is caluclated as the highest eigenvalue of the Hermitian part of the community matrix $B$.
+\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is calculated as the largest eigenvalue of the Hermitian part of the community matrix $B$.
 }

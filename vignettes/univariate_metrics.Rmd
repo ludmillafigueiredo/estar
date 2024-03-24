@@ -313,7 +313,6 @@ knitr::include_graphics("figures/persistence.png")
 
 ```{r sessionInfo}
 Sys.time()
-git2r::repository()
 sessionInfo()
 ```
 
