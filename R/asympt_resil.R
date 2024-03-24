@@ -1,5 +1,5 @@
 #' Calculate the asymptotic resilience of a community from its community matrix.
-#' \code{initi_resil} calculates asymptotic resilience as the slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation (Arnoldi et al. 2016, Downing et al. 2020).
+#' \code{init_resil} calculates asymptotic resilience as the slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation (Arnoldi et al. 2016, Downing et al. 2020).
 #'
 #' @param B a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.
 #'
