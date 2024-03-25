@@ -64,8 +64,6 @@ a double, contained in [0,1]
 variable remained inside the interval defined by the baseline's
 \eqn{\pm} sd. The proportion is calculated in relation to the time
 period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
-\subsection{V:Let's talk about it at the meeting}{
-}
 }
 \details{
 If the baseline is defined by the pre-distrubed values of the

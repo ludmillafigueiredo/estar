@@ -16,8 +16,7 @@ univar_params(
   summ_mode,
   na_rm,
   response,
-  metric_df,
-  ...
+  metric_tf
 )
 }
 \arguments{

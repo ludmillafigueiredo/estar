@@ -6,11 +6,15 @@ output:
     toc_depth: 2 
     fig_caption: TRUE
     df_print: kable
+    code_folding: hide
 vignette: >
   %\VignetteIndexEntry{marss_estar}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r knit-setup, include=FALSE, message=FALSE}
@@ -36,7 +40,7 @@ source("custom_aesthetics.R")
 ```
 
 In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table 2 of main text) depend on measures of interaction strengths between species composing a community.
-These measures are classically summarized in the _community matrix_ [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
+These measures are classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
@@ -45,7 +49,10 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 # Overview of demonstration data
 
-Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The used insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in eStar terminology). 
+Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
+The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016].
+This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level.
+Additionally, four replicates were used as control, undisturbed systems ('baseline' in estar terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
 ```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, represent the different concentrations (micro g/L)."}
@@ -56,8 +63,7 @@ knitr::include_graphics("aquacomm_fgps_logplot.svg")
 
 ## Introduction to MARSS models {#intro-marss-model}
 
-A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as:
-\begin{equation}
+A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as: \begin{equation}
 \begin{gathered}
 \mathbf{x}_t = \mathbf{B}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}_{t}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
 \mathbf{y}_t = \mathbf{Z}\mathbf{x}_t+\mathbf{a}+\mathbf{D}_{t}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
@@ -67,68 +73,70 @@ A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed 
 
 where
 
-- $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ functional groups ($fg$, rows), over time $T$ ($t$, columns)
+-   $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ functional groups ($fg$, rows), over time $T$ ($t$, columns)
 
+```{=tex}
 \begin{equation}
 X=
 \begin{bmatrix}
     x_{fg1, t1} & x_{fg1, t2} & ... & x_{fg1, tT}\\
-  	x_{fg2, t1} & x_{fg2, t2} & ... & x_{fg2, tT}\\
-	  ... & ... & ... & ...\\
-	  x_{fgm, t1} & x_{fgm, t2} & ... & x_{fgm, tT}
+    x_{fg2, t1} & x_{fg2, t2} & ... & x_{fg2, tT}\\
+      ... & ... & ... & ...\\
+      x_{fgm, t1} & x_{fgm, t2} & ... & x_{fgm, tT}
 \end{bmatrix}
 \end{equation}
+```
+-   $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations (rows) over time $T$ ($t$, columns)
 
-- $\mathbf{Y}$ is a $n \times T$ matrix, composed of $n$ observations (rows) over time $T$ ($t$, columns) 
-
+```{=tex}
 \begin{equation}
 Y=
 \begin{bmatrix}
     y_{1, t1} & y_{1, t2} & ... & y_{1, tT}\\
-	y_{2, t1} & y_{2, t2} & ... & y_{2, tT}\\
-	... & ... & ... & ...\\
-	y_{n, t1} & y_{n, t2} & ... & y_{n, tT}
+    y_{2, t1} & y_{2, t2} & ... & y_{2, tT}\\
+    ... & ... & ... & ...\\
+    y_{n, t1} & y_{n, t2} & ... & y_{n, tT}
 \end{bmatrix}
 \end{equation}
-
+```
 Note that:
 
-- considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can be passed as `NA`.
-- from $\mathbf{X}$ and  $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes.
-We will adress this in the description of $\mathbf{Y}$.
+-   considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can be passed as `NA`.
+-   from $\mathbf{X}$ and $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes. We will adress this in the description of $\mathbf{Y}$.
 
 The state process ($\mathbf{X}$) is described by:
 
-- $\mathbf{x}_t$ is a $m \times 1$ vector of unkown abundances of the $m$ species at time $t$.
-- $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of **interactions strengths** we want to estimate to calculate community-based stability metrics.
-- $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
-- $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
-- $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
-- $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the stochasticity of the system.
+-   $\mathbf{x}_t$ is a $m \times 1$ vector of unkown abundances of the $m$ species at time $t$.
+-   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of **interactions strengths** we want to estimate to calculate community-based stability metrics.
+-   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
+-   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
+-   $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
+-   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the stochasticity of the system.
 
 Thus, in matrix formulation:
 
+```{=tex}
 \begin{equation}
 \begin{bmatrix}
-	x_{1}\\
+    x_{1}\\
     ... \\
-	x_{m}
-	\end{bmatrix}_t = 
+    x_{m}
+    \end{bmatrix}_t = 
 \begin{bmatrix}
     \beta_{\mathrm{1}} & ... & \beta_{\mathrm{1,m}} \\
     ... & ... & ... \\
     \beta_{\mathrm{m,1}} & ... & \beta_{\mathrm{m}}
 \end{bmatrix}
 \begin{bmatrix}
-	x_{1}\\
-	... \\
-	x_{m}
+    x_{1}\\
+    ... \\
+    x_{m}
 \end{bmatrix}_{t-1} 
 +
 \begin{bmatrix}
-	u_{1}\\
-	...\\
-	u_{m}
+    u_{1}\\
+    ...\\
+    u_{m}
 \end{bmatrix} 
 + 
 \begin{bmatrix}
@@ -137,7 +145,7 @@ Thus, in matrix formulation:
     \gamma_{\mathrm{m, I}}
 \end{bmatrix}
 \begin{bmatrix}
-	I
+    I
 \end{bmatrix}_t \\
 +
 \begin{bmatrix}
@@ -146,17 +154,17 @@ w_{1}\\
 w_{m}
 \end{bmatrix}_t \\
 \end{equation}
-
-The $w_{t}$ erros follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix). 
+```
+The $w_{t}$ erros follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix).
 \begin{equation}
 \mathbf{w}_t \sim \,\text{MVN}
 \begin{pmatrix}
 0,
-	\begin{bmatrix}
-		\sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & .... & \sigma_{\mathrm{1,m}} \\
-		... & ... & ... \\
-		\sigma_{\mathrm{m,1}} & \sigma_{\mathrm{m,2}} & ... & \sigma_{\mathrm{m}} \\ 
-		\end{bmatrix}
+    \begin{bmatrix}
+        \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & .... & \sigma_{\mathrm{1,m}} \\
+        ... & ... & ... \\
+        \sigma_{\mathrm{m,1}} & \sigma_{\mathrm{m,2}} & ... & \sigma_{\mathrm{m}} \\ 
+        \end{bmatrix}
 \end{pmatrix}\\
 \end{equation}
 
@@ -164,31 +172,31 @@ where ($\sigma$) refer to variances of abundances (diagonal) and covariances amo
 
 The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
 
+```{=tex}
 \begin{equation}
 \begin{bmatrix}
-	x_{fg1}\\
+    x_{fg1}\\
     ...\\
-	x_{fgm}
+    x_{fgm}
 \end{bmatrix}_0 
 = 
 \begin{bmatrix}
-	\mu_1\\
-	...\\
-	\mu_m
+    \mu_1\\
+    ...\\
+    \mu_m
 \end{bmatrix}_t
 \end{equation}
-
+```
 The observation process ($\mathbf{Y}$) is described by:
 
-- $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
-- $\mathbf{Z}_t$ is a $n \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
-- $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
-- $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
-- $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
-- $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+-   $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
+-   $\mathbf{Z}_t$ is a $n \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
+-   $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
+-   $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
+-   $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
+-   $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
 
-In matrix formulation:
-\begin{equation}
+In matrix formulation: \begin{equation}
  \left[ \begin{array}{c}
     y_{1} \\
     ... \\
@@ -218,23 +226,27 @@ E
     v_{obsn} \end{array} \right]_t
 \end{equation}
 
+```{=tex}
 \begin{equation}
 \mathbf{v}_t \sim \,\text{MVN}
 \begin{pmatrix}0,
-	\begin{bmatrix}
-		\sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,n}} \\
-		... & ... & .... \\
-		\sigma_{\mathrm{n,1}} & ... & \sigma_{\mathrm{n}} \\ 
-	\end{bmatrix}
+    \begin{bmatrix}
+        \sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,n}} \\
+        ... & ... & .... \\
+        \sigma_{\mathrm{n,1}} & ... & \sigma_{\mathrm{n}} \\ 
+    \end{bmatrix}
 \end{pmatrix}\\
 \end{equation}
-
-Parameters $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be composed of both estimated and fixed values, depending on the assumptions about the system. 
+```
+Parameters $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be composed of both estimated and fixed values, depending on the assumptions about the system.
 The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community. In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case. None of the parameters detailed here have default values in functions that calculate the community-based stability metrics. The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the chosen assumptions.
+When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community.
+In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case.
+None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
+The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the chosen assumptions.
 
 We start from the minimal case of one single observation per state process and other simplifying assumptions, and complexify it step-wise.
 
@@ -242,38 +254,41 @@ We start from the minimal case of one single observation per state process and o
 
 In our minimal case, we consider that
 
-- Each observation corresponds to one state process ($y_i = x_i$), thus $\mathbf{Z}$ = "identity". In our case we have 5 functional groups, therefore $\mathbf{Z}$ corresponds to a $5 \times 5$ identity matrix, since $n = m$:
+-   Each observation corresponds to one state process ($y_i = x_i$), thus $\mathbf{Z}$ = "identity". In our case we have 5 functional groups, therefore $\mathbf{Z}$ corresponds to a $5 \times 5$ identity matrix, since $n = m$:
+
 ```{r}
 Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ```
 
-- All functional groups have the same state processes variance*: $w_t = \sigma$, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to 
-\begin{equation}
-\begin{bmatrix}
-		\sigma & 0 & 0 & 0 & 0 \\
-		0 & \sigma & 0 & 0 & 0 \\
-		0 & 0 & \sigma & 0 & 0 \\
-		0 & 0 & 0 & \sigma & 0 \\
-		0 & 0 & 0 & 0 & \sigma\\
-		\end{bmatrix}
-\end{equation}		
-- Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = v$, thus `R = 0`
-- Constant covariates*: $C_{t} = C$ and $c_{t} = c = 0$
-- We assume that the system is at  equillibrium, therefore: U = A = 0
-- $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
+-   All functional groups have the same state processes variance\*: $w_t = \sigma$, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to \begin{equation}
+    \begin{bmatrix}
+          \sigma & 0 & 0 & 0 & 0 \\
+          0 & \sigma & 0 & 0 & 0 \\
+          0 & 0 & \sigma & 0 & 0 \\
+          0 & 0 & 0 & \sigma & 0 \\
+          0 & 0 & 0 & 0 & \sigma\\
+          \end{bmatrix}
+    \end{equation}\
+-   Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = v$, thus `R = 0`
+-   Constant covariates\*: $C_{t} = C$ and $c_{t} = c = 0$
+-   We assume that the system is at equillibrium, therefore: U = A = 0
+-   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
 Note that processes error and constant covariates are required for @downing_temporal_2020's estimation of asymptotic resilience
 
 Such model is formalized as:
 
+```{=tex}
 \begin{equation}
 X = \mathbf{B}.X_{t-1} + C.0 + 0 + 0 \\
 
 Y =  Z.X_t + 0 + D_t.0 + v \\
 \end{equation}
-
-Thus, our [aquatic commmunity data](aquatic-data) must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment. We have replicates but we are modelling one observation as correponding to one state processes. Thus, we use the species mean abundances summarized over all replicates:
+```
+Thus, our [aquatic commmunity data](aquatic-data) must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment.
+We have replicates but we are modelling one observation as correponding to one state processes.
+Thus, we use the species mean abundances summarized over all replicates:
 
 ```{r}
 ## calculate z-scores
@@ -308,8 +323,9 @@ aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
         as.matrix()))
 ```
 
-Next, we prepare the arguments to be used for specifying the MARSS model according to the minimal requirements case outlined above. 
+Next, we prepare the arguments to be used for specifying the MARSS model according to the minimal requirements case outlined above.
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
+
 ```{r cache = TRUE}
 ## 5 groups
 ### no process variance, 5 gps
@@ -317,9 +333,9 @@ Q_05 <- matrix(list(0), 5, 5)
 ## single process variance, no covariance
 Q_I5 <- matrix(list(0), 5, 5)
 diag(Q_I5) <- rep("var_q", 5)
-### no observation error variancee: 4 reps, 5 gps
+### no observation error variance: 4 reps, 5 gps
 R_0r5 <- matrix(list(0), 4*5, 4*5)
-### no observation error variancee: 0 reps (summarized data), 5 gps
+### no observation error variance: 0 reps (summarized data), 5 gps
 R_05 <- matrix(list(0), 5, 5)
 ### single error variancee: 0 reps (summarized data), 5 gps
 R_I5 <- matrix(list(0), 5, 5)
@@ -345,8 +361,8 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
 names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " nano g/L")
 ```
 
-We provide the function `eStar::extractB` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object 
-and names the interacting groups
+We provide the function `eStar::extractB` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
+
 ```{r}
 (aquacomm.Bls <- aquacommz_allscen.marssls %>%
   map(~eStar::extractB(., 
@@ -356,52 +372,69 @@ and names the interacting groups
 Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate stability metrics:
 
 ## Reactivity
+
 ```{r}
 aquacomm.Bls %>%
   map(eStar::reactivity)
 ```
 
-
 ## Maximal amplification
+
 ```{r}
 aquacomm.Bls %>%
   map(eStar::max_amp)
 ```
 
-
 ## Initial resilience
+
 ```{r}
 aquacomm.Bls %>%
   map(eStar::init_resil)
 ```
 
 ## Asymptotic resilience
+
 ```{r}
 aquacomm.Bls %>%
   map(eStar::asympt_resil)
 ```
 
-
 <!-- #TODO -->
+
 <!-- - estimate B with Q calculated from processes variances. -->
+
 <!-- - estimate B for each replicate and then average them. -->
-<!-- ## Multiple obsevation per state process  -->
+
+<!-- ## Multiple observations per state process  -->
+
 <!-- In this case, $y = n \times x$. -->
+
 <!-- Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$. -->
+
 <!-- We provide the function ` build_Zreps(n_reps, m_grps)`: -->
+
 <!-- ```{r} -->
 
 <!-- ``` -->
 
 <!-- ## Processes have the same variance and no covariance -->
+
 <!-- In this case, $Q = \text{"diagonal and unequal"}$ which equates to  -->
+
 <!-- \begin{equation} -->
+
 <!-- Q =  -->
+
 <!-- \begin{bmatrix}  -->
+
 <!--    \sigma & 0 & 0 \\ -->
+
 <!--     0 & \sigma & 0 \\ -->
+
 <!--     0 & 0 & \sigma -->
+
 <!-- \end{bmatrix} -->
+
 <!-- \end{equation}. -->
 
 <!-- ## Each process has its own variance and no covariance. -->
@@ -409,74 +442,116 @@ aquacomm.Bls %>%
 <!-- In this case, $Q = \text{"diagonal and unequal"}$. -->
 
 <!-- \begin{equation} -->
+
 <!-- Q =  -->
+
 <!-- \begin{bmatrix}  -->
+
 <!--     \sigma_{1, 1} & 0 & 0 \\ -->
+
 <!--     0 & \sigma_{i, i} & 0 \\ -->
+
 <!--     0 & 0 & \sigma_{m, m} -->
+
 <!-- \end{bmatrix} -->
+
 <!-- \end{equation}. -->
 
 <!-- # Process and observations errors -->
 
 <!-- autoregressive and non-independent error can be included in B1 -->
 
-
 <!-- ## perfect scenario: -->
 
 <!-- ```{r eval=FALSE} -->
+
 <!-- load("../../data_prep/windblow_barkbeetle/windthrow_longts.RData") -->
+
 <!-- ``` -->
 
 <!-- ```{r eval=FALSE} -->
+
 <!-- pllongts_raw.forestlist[[1]] %>%  -->
+
 <!--   t %>% -->
+
 <!--   cbind("t" = as.integer(rownames(.)),.) %>% -->
+
 <!--   as_tibble()  -->
+
 <!-- ``` -->
 
 <!-- ```{r eval=FALSE} -->
+
 <!-- plot_raw <- function(df){ -->
+
 <!--   df %>% -->
+
 <!--   ggplot(aes(x = time, y = cover, colour = gp, group = gp)) + -->
+
 <!--   geom_line() + -->
+
 <!--   geom_point() + -->
+
 <!--   facet_wrap(~rep) + -->
+
 <!--   scale_colour_manual(values = viridis(n = 5)) + -->
+
 <!--   labs(x = "Time", y = "Cover (%)", colour = "Func.\ngroup") + -->
+
 <!--   theme_minimal() -->
+
 <!-- } -->
 
 <!-- pllongts_raw.forestdf %>% -->
+
 <!--   ## convert time to absolute, instead of time since disturbance -->
+
 <!--   dplyr::mutate(time = d_time + abs(min(d_time))) %>% -->
+
 <!--   tidyr::pivot_longer(col = gp1:gp5, -->
+
 <!--                       names_to = "gp", -->
+
 <!--                       values_to = "cover") %>% -->
+
 <!--   plot_raw() -->
+
 <!-- ``` -->
 
 <!-- ```{r eval=FALSE} -->
+
 <!-- pllongts_raw.barkdf %>% -->
+
 <!--   dplyr::rename(time = d_time) %>% -->
+
 <!--   tidyr::pivot_longer(col = gp1:gp5, -->
+
 <!--                       names_to = "gp", -->
+
 <!--                       values_to = "cover") %>% -->
+
 <!--   plot_raw() + -->
+
 <!--   geom_vline(xintercept = 0, color = "#ff0066") -->
+
 <!-- ``` -->
 
 <!-- MARSS takes y  s a  matrix ts object -->
 
-<details><summary>Session Info</summary>
+<details>
+
+<summary>Session Info</summary>
 
 ```{r sessionInfo}
 Sys.time()
 sessionInfo()
 ```
 
-</details><br>
+</details>
 
----
+<br>
+
+------------------------------------------------------------------------
 
 # References
