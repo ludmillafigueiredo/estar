@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5001"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="metrics.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="metrics_univar_vignette.svg"
    inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/doc/metric.png"
    inkscape:export-xdpi="600"
-   inkscape:export-ydpi="600">
+   inkscape:export-ydpi="600"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4995">
     <marker
@@ -1150,15 +1150,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2125733"
-     inkscape:cx="476.61017"
-     inkscape:cy="836.3044"
+     inkscape:cx="321.21769"
+     inkscape:cy="340.59797"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="true"
-     inkscape:window-width="1879"
-     inkscape:window-height="1145"
-     inkscape:window-x="1961"
-     inkscape:window-y="27"
+     inkscape:window-width="1780"
+     inkscape:window-height="1046"
+     inkscape:window-x="129"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:snap-grids="true"
      inkscape:snap-to-guides="false"
@@ -1166,7 +1166,8 @@
      inkscape:measure-end="205,310"
      showguides="false"
      inkscape:guide-bbox="true"
-     inkscape:snap-page="false">
+     inkscape:snap-page="false"
+     inkscape:pagecheckerboard="0">
     <inkscape:grid
        type="xygrid"
        id="grid14503" />
@@ -1179,7 +1180,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1189,15 +1190,10 @@
      id="layer1">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="49.190388"
        y="208.55011"
-       id="text11584"><tspan
-         sodipodi:role="line"
-         id="tspan11582"
-         x="49.190388"
-         y="217.91388"
-         style="stroke-width:0.26458332" /></text>
+       id="text11584" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1213,9 +1209,9 @@
          id="text4749"
          y="4.4485626"
          x="2.4042957"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="4.4485626"
            x="2.4042957"
            id="tspan4747"
@@ -1228,10 +1224,10 @@
          id="text4749-3-0-3"
          y="42.191406"
          x="63.325062"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan5046"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="42.191406"
            x="63.325062"
            sodipodi:role="line">d)</tspan></text>
@@ -1243,9 +1239,9 @@
          id="text4749-3"
          y="9.7344637"
          x="63.403439"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="9.7344637"
            x="63.403439"
            id="tspan4747-3"
@@ -1258,10 +1254,10 @@
          id="text4749-3-0-1"
          y="41.955338"
          x="1.6372459"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan15887"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="41.955338"
            x="1.6372459"
            sodipodi:role="line">c)</tspan></text>
@@ -1273,9 +1269,9 @@
          id="text4749-3-0"
          y="9.6669712"
          x="1.7976445"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="9.6669712"
            x="1.7976445"
            id="tspan4747-3-8"
@@ -1298,14 +1294,14 @@
            sodipodi:nodetypes="ccc" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="58.413223"
            y="39.0495"
            id="text13082-9-6-9-1-4-6-5-6"><tspan
              sodipodi:role="line"
              x="58.413223"
              y="39.0495"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
              id="tspan15765-7">T</tspan></text>
         <path
            style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.56543595;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
@@ -1340,7 +1336,7 @@
            inkscape:connector-curvature="0" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="57.061852"
            y="32.470921"
            id="text11703"><tspan
@@ -1348,10 +1344,10 @@
              id="tspan11701"
              x="57.061852"
              y="32.470921"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332">I</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583">I</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:4.24501276px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.31837595"
+           style="font-style:normal;font-weight:normal;font-size:4.24501px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.318376"
            x="66.521904"
            y="27.484699"
            id="text11761"
@@ -1360,10 +1356,10 @@
              id="tspan11759"
              x="66.521904"
              y="27.484699"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.31837595">}</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.318376">}</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="-18.781044"
            y="4.3663239"
            id="text11859"
@@ -1372,7 +1368,7 @@
              id="tspan11857"
              x="-18.781044"
              y="4.3663239"
-             style="stroke-width:0.26458332">LRR</tspan></text>
+             style="stroke-width:0.264583">LRR</tspan></text>
       </g>
       <path
          inkscape:export-ydpi="600"
@@ -1404,10 +1400,10 @@
          id="text13082-9-6-9-1-4-6-5"
          y="39.464203"
          x="120.59106"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan15765"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="39.464203"
            x="120.59106"
            sodipodi:role="line">T</tspan></text>
@@ -1452,9 +1448,9 @@
          id="text11703-6-1-3"
          y="25.35367"
          x="120.00317"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583"
            y="25.35367"
            x="120.00317"
            id="tspan11701-1-4-7"
@@ -1466,9 +1462,9 @@
          id="text11761-4"
          y="15.754999"
          x="221.07996"
-         style="font-style:normal;font-weight:normal;font-size:9.719244px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.72894323"
+         style="font-style:normal;font-weight:normal;font-size:9.71924px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.728943"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.72894323"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.728943"
            y="15.754999"
            x="221.07996"
            id="tspan11759-9"
@@ -1480,9 +1476,9 @@
          id="text11859-8"
          y="65.889259"
          x="-16.035074"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
+           style="stroke-width:0.264583"
            y="65.889259"
            x="-16.035074"
            id="tspan11857-3"
@@ -1522,10 +1518,10 @@
              id="text13082-9-6-9-1-4-6-5-3"
              y="71.283859"
              x="120.63509"
-             style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
              xml:space="preserve"><tspan
                id="tspan15765-4"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
                y="71.283859"
                x="120.63509"
                sodipodi:role="line">T</tspan></text>
@@ -1545,9 +1541,9 @@
              id="text11703-6-1"
              y="55.565201"
              x="120.43909"
-             style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
              xml:space="preserve"><tspan
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583"
                y="55.565201"
                x="120.43909"
                id="tspan11701-1-4"
@@ -1557,9 +1553,9 @@
              id="text11761-4-9"
              y="31.557697"
              x="226.78491"
-             style="font-style:normal;font-weight:normal;font-size:9.9133873px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.74350399"
+             style="font-style:normal;font-weight:normal;font-size:9.91339px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.743504"
              xml:space="preserve"><tspan
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.74350399"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.743504"
                y="31.557697"
                x="226.78491"
                id="tspan11759-9-3"
@@ -1569,9 +1565,9 @@
              id="text11859-8-5"
              y="65.889259"
              x="-48.002514"
-             style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+             style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
              xml:space="preserve"><tspan
-               style="stroke-width:0.26458332"
+               style="stroke-width:0.264583"
                y="65.889259"
                x="-48.002514"
                id="tspan11857-3-4"
@@ -1596,14 +1592,14 @@
            sodipodi:nodetypes="ccc" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="58.385883"
            y="70.869705"
            id="text13082-9-6-9-1-4-6-5-6-0"><tspan
              sodipodi:role="line"
              x="58.385883"
              y="70.869705"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
              id="tspan15765-7-8">T</tspan></text>
         <path
            style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44115788;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.44115788, 0.44115788;stroke-dashoffset:0;stroke-opacity:0.94117647"
@@ -1619,7 +1615,7 @@
            sodipodi:nodetypes="cc" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="56.998566"
            y="64.849251"
            id="text11703-6"><tspan
@@ -1627,10 +1623,10 @@
              id="tspan11701-1"
              x="56.998566"
              y="64.849251"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332">I</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583">I</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:4.62223768px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.3466678"
+           style="font-style:normal;font-weight:normal;font-size:4.62224px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.346668"
            x="71.739922"
            y="50.003719"
            id="text11761-3"
@@ -1639,10 +1635,10 @@
              id="tspan11759-3"
              x="71.739922"
              y="50.003719"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.3466678">}</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.346668">}</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="-50.948517"
            y="4.3663239"
            id="text11859-3"
@@ -1651,273 +1647,269 @@
              id="tspan11857-9"
              x="-50.948517"
              y="4.3663239"
-             style="stroke-width:0.26458332">LRR</tspan></text>
+             style="stroke-width:0.264583">LRR</tspan></text>
       </g>
     </g>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       id="text4749-0"
+       y="67.651344"
+       x="4.018065"
+       style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="67.651344"
+         x="4.018065"
+         id="tspan4747-2"
+         sodipodi:role="line">Extent of recovery (Er)</tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       inkscape:transform-center-y="-7.4245106"
+       inkscape:transform-center-x="-9.6518638"
+       id="text4749-3-8-9"
+       y="71.734268"
+       x="3.3791175"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="71.734268"
+         x="3.3791175"
+         id="tspan4747-3-3-9"
+         sodipodi:role="line">m-n)</tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="csssccsssc"
+       inkscape:connector-curvature="0"
+       id="path10152-2-0-9"
+       d="m 6.5317513,90.633577 c 1.6893982,1.066357 4.4121687,-0.466284 7.6791407,-0.05062 1.111088,0.141362 -1.249767,0.05062 3.740532,2.695899 1.156497,0.61304 3.071358,1.983829 5.277491,1.748621 1.042319,-0.11114 4.030951,-0.484875 5.414137,-1.424135 3.106948,-0.999175 5.459107,-0.968232 5.752781,-0.999175 0.97647,-0.125776 0.462288,0.890761 3.77665,-0.370512 0.573995,-0.218432 1.980861,-0.03529 2.438832,-0.06172 1.911018,-0.110322 1.019872,0.675138 2.585153,0.671849 0.565511,-8.1e-4 2.327676,-0.275702 3.105615,-0.239617"
+       style="fill:none;stroke:#f89441;stroke-width:0.37179;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
     <g
-       id="g6427"
-       transform="matrix(0.81,0,0,0.81,2.0258402,-53.873525)">
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         id="text4749-0"
-         y="150.0307"
-         x="2.459537"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="150.0307"
-           x="2.459537"
-           id="tspan4747-2"
-           sodipodi:role="line">Extent of recovery (Er)</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         inkscape:transform-center-y="-7.4245106"
-         inkscape:transform-center-x="-9.6518638"
-         id="text4749-3-8-9"
-         y="155.07135"
-         x="1.6707126"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="155.07135"
-           x="1.6707126"
-           id="tspan4747-3-3-9"
-           sodipodi:role="line">m-n)</tspan></text>
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       transform="matrix(0.81,0,0,0.81,2.012393,8.17447)"
+       id="g10964">
       <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cssssccsssc"
+         style="fill:none;stroke:#000000;stroke-width:0.170675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-04);marker-end:url(#Arrow1Lend-7-7-7-4)"
+         d="m 5.6059167,82.765246 v 25.372674 c 18.3118293,0 36.6236713,0 54.9355073,0"
+         id="path8498-1-5-6-4"
          inkscape:connector-curvature="0"
-         id="path10152-2-0-9"
-         d="m 5.5628532,178.40383 c 2.0856768,1.31649 5.4471218,-0.57566 9.4804208,-0.0625 1.371714,0.17452 -1.542922,0.0625 4.61794,3.32827 1.427775,0.75684 4.363247,1.49676 7.086868,1.20638 1.286814,-0.13721 1.833526,-0.50337 3.541164,-1.66295 0.94239,-0.63993 2.084097,-1.1231 3.065955,-1.19924 3.163911,-0.81619 4.469911,-1.38192 6.338913,-1.60995 1.205519,-0.15528 3.716666,0.38253 4.645647,0.35629 0.757912,-0.0214 2.255025,-0.61501 2.820421,-0.64765 2.359282,-0.1362 2.401996,0.54778 4.334441,0.54372 0.698162,-0.001 2.424711,-0.29691 3.38513,-0.25236"
-         style="fill:none;stroke:#f89441;stroke-width:0.45899999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647" />
-      <g
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         transform="translate(-0.01660149,76.602463)"
-         id="g10964">
-        <path
-           style="fill:none;stroke:#000000;stroke-width:0.17067547;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-04);marker-end:url(#Arrow1Lend-7-7-7-4)"
-           d="m 5.6059167,82.765246 v 25.372674 c 18.3118293,0 36.6236713,0 54.9355073,0"
-           id="path8498-1-5-6-4"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccc" />
-      </g>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         inkscape:transform-center-y="-7.4245106"
-         inkscape:transform-center-x="-9.6518638"
-         id="text4749-3-0-3-6-8-4"
-         y="153.76556"
-         x="62.483238"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="153.76556"
-           x="62.483238"
-           id="tspan4747-3-8-5-7-7-6"
-           sodipodi:role="line">o-p)</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path10112-50-8-6-6"
-         d="m 67.234173,164.38704 c 4.503867,1.1847 5.196028,-0.52044 10.207789,0 1.943117,8.37394 10.472376,13.42556 10.472376,13.42556"
-         style="fill:none;stroke:#f0f921;stroke-width:0.54699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path10114-2-2-1-1"
-         d="m 87.914338,177.8126 c 7.314128,-2.267 4.60743,-11.84827 15.376642,-13.23814 0,0 6.85584,-0.35561 12.32883,1.71062"
-         style="fill:none;stroke:#f0f921;stroke-width:0.54699999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         style="fill:none;stroke:#000000;stroke-width:0.16825619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-8-4-5-3-6)"
-         d="m 67.257459,159.69662 v 25.05556"
-         id="path8498-48-4-8-7"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cc" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         transform="scale(1.0009486,0.9990523)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:2.78922796px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149011"
-         x="120.4491"
-         y="167.74878"
-         id="text13082-9-6-9-1-4-6-5-1-0-7-2"><tspan
-           sodipodi:role="line"
-           x="120.4491"
-           y="167.74878"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149011"
-           id="tspan15765-71-8-0-2">T</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path10000-5-9"
-         d="m 67.234173,164.38704 54.526387,0.0176"
-         style="fill:none;stroke:#000000;stroke-width:0.17213009;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker10265-8-6-9)" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         id="text11613"
-         y="178.85156"
-         x="2.134676"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
-           y="178.85156"
-           x="2.134676"
-           id="tspan11611"
-           sodipodi:role="line">Er</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         id="text11613-9"
-         y="165.02187"
-         x="64.018265"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
-           y="165.02187"
-           x="64.018265"
-           id="tspan11611-4"
-           sodipodi:role="line">Er</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         transform="scale(1.0009486,0.9990523)"
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:2.78922796px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149011"
-         x="58.066612"
-         y="188.28233"
-         id="text13082-9-6-9-1-4-6-5-1-0-9"><tspan
-           sodipodi:role="line"
-           x="58.066612"
-           y="188.28233"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149011"
-           id="tspan15765-71-8-1">T</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-0-3-2"
-         d="m 101.83136,184.77903 -0.0922,-20.57044"
-         style="opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.4380078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.87601562, 0.87601562;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-7-8-0-8"
-         d="M 101.54905,164.32566 H 67.128989"
-         style="opacity:1;fill:none;stroke:#0d0887;stroke-width:0.61199999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.224, 1.224;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-7-81"
-         d="M 39.568788,178.33998 H 5.6332647"
-         style="opacity:1;fill:none;stroke:#0d0887;stroke-width:0.61199999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.224, 1.224;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9"
-         d="m 39.999749,184.73049 -0.09189,-23.25835"
-         style="opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.93, 0.93;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8"
-         y="186.84192"
-         x="38.002785"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="186.84192"
-           x="38.002785"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4"
-           sodipodi:role="line">t<tspan
-   id="tspan11527"
-   style="font-size:64.99999762%;baseline-shift:sub">post</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8-9"
-         y="162.37428"
-         x="99.752892"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="162.37428"
-           x="99.752892"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4-2"
-           sodipodi:role="line">t<tspan
-   id="tspan11527-9"
-   style="font-size:1.8344444px;baseline-shift:sub;stroke-width:0.26458332">post</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         transform="rotate(-90)"
-         id="text11859-3-4-5-2"
-         y="4.3663239"
-         x="-165.97026"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
-           y="4.3663239"
-           x="-165.97026"
-           id="tspan11857-9-9-5-9"
-           sodipodi:role="line">LRR</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
-         transform="rotate(-90)"
-         id="text11859-3-4-5-2-0"
-         y="65.934044"
-         x="-161.85739"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
-           y="65.934044"
-           x="-161.85739"
-           id="tspan11857-9-9-5-9-5"
-           sodipodi:role="line">Diff</tspan></text>
+         sodipodi:nodetypes="ccc" />
     </g>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       inkscape:transform-center-y="-7.4245106"
+       inkscape:transform-center-x="-9.6518638"
+       id="text4749-3-0-3-6-8-4"
+       y="70.676582"
+       x="52.637264"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="70.676582"
+         x="52.637264"
+         id="tspan4747-3-8-5-7-7-6"
+         sodipodi:role="line">o-p)</tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path10112-50-8-6-6"
+       d="m 56.48552,79.279977 c 3.648133,0.959607 4.208783,-0.421556 8.268309,0 1.573925,6.782892 8.482625,10.874704 8.482625,10.874704"
+       style="fill:none;stroke:#f0f921;stroke-width:0.44307;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path10114-2-2-1-1"
+       d="m 73.236454,90.154681 c 5.924444,-1.83627 3.732018,-9.597099 12.45508,-10.722893 0,0 5.55323,-0.288045 9.986352,1.385602"
+       style="fill:none;stroke:#f0f921;stroke-width:0.44307;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       style="fill:none;stroke:#000000;stroke-width:0.136287;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-8-4-5-3-6)"
+       d="M 56.504382,75.480737 V 95.775741"
+       id="path8498-48-4-8-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       transform="scale(1.0009486,0.9990523)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.25928px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211807"
+       x="99.587692"
+       y="81.951881"
+       id="text13082-9-6-9-1-4-6-5-1-0-7-2"><tspan
+         sodipodi:role="line"
+         x="99.587692"
+         y="81.951881"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.211807"
+         id="tspan15765-71-8-0-2">T</tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path10000-5-9"
+       d="m 56.48552,79.279977 44.16637,0.01426"
+       style="fill:none;stroke:#000000;stroke-width:0.139425;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker10265-8-6-9)" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       id="text11613"
+       y="90.996239"
+       x="3.7549276"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
+         y="90.996239"
+         x="3.7549276"
+         id="tspan11611"
+         sodipodi:role="line">Er</tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       id="text11613-9"
+       y="79.794189"
+       x="53.880634"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
+         y="79.794189"
+         x="53.880634"
+         id="tspan11611-4"
+         sodipodi:role="line">Er</tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       transform="scale(1.0009486,0.9990523)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.25928px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211807"
+       x="49.057877"
+       y="98.584061"
+       id="text13082-9-6-9-1-4-6-5-1-0-9"><tspan
+         sodipodi:role="line"
+         x="49.057877"
+         y="98.584061"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.211807"
+         id="tspan15765-71-8-1">T</tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-0-3-2"
+       d="M 84.509242,95.797489 84.43456,79.135433"
+       style="opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.354786;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.709573, 0.709573;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-7-8-0-8"
+       d="M 84.280571,79.23026 H 56.400321"
+       style="fill:none;stroke:#0d0887;stroke-width:0.49572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.99144, 0.99144;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-7-81"
+       d="M 46.177,90.582 6.5887846,90.581859"
+       style="fill:none;stroke:#0d0887;stroke-width:0.49572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.99144, 0.99144;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9"
+       d="M 34.425637,95.758172 34.351206,77.019"
+       style="opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.37665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.7533, 0.7533;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8"
+       y="97.46843"
+       x="32.808094"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="97.46843"
+         x="32.808094"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4"
+         sodipodi:role="line">t<tspan
+   id="tspan11527"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">post</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8-9"
+       y="77.649643"
+       x="82.825684"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="77.649643"
+         x="82.825684"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4-2"
+         sodipodi:role="line">t<tspan
+   id="tspan11527-9"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">post</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       transform="rotate(-90)"
+       id="text11859-3-4-5-2"
+       y="5.5625625"
+       x="-80.562386"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.214312"
+         y="5.5625625"
+         x="-80.562386"
+         id="tspan11857-9-9-5-9"
+         sodipodi:role="line">LRR</tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/extent_recovery.png"
+       transform="rotate(-90)"
+       id="text11859-3-4-5-2-0"
+       y="55.432415"
+       x="-77.230965"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.214312"
+         y="55.432415"
+         x="-77.230965"
+         id="tspan11857-9-9-5-9-5"
+         sodipodi:role="line">Diff</tspan></text>
     <g
        id="g6649"
        transform="matrix(0.9,0,0,0.9,101.67028,-108.80392)">
@@ -1928,9 +1920,9 @@
          id="text4749-8"
          y="195.60306"
          x="8.5432358"
-         style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.23812498"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
            y="195.60306"
            x="8.5432358"
            id="tspan4747-6"
@@ -1944,9 +1936,9 @@
          id="text4749-3-5"
          y="199.65617"
          x="63.249756"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.23812498"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
            y="199.65617"
            x="63.249756"
            id="tspan4747-3-37"
@@ -1986,10 +1978,10 @@
          id="text13082-9-6-9-1-4-6-5-4"
          y="227.58046"
          x="114.71588"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
            id="tspan15765-0"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.23812498"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
            y="227.58046"
            x="114.71588"
            sodipodi:role="line">T</tspan></text>
@@ -2018,10 +2010,10 @@
          id="text13082-9-6-9-1-4-6-5-6-02"
          y="227.52914"
          x="58.518375"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
            id="tspan15765-7-4"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.23812498"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
            y="227.52914"
            x="58.518375"
            sodipodi:role="line">T</tspan></text>
@@ -2034,9 +2026,9 @@
          id="text4749-3-0-9"
          y="199.65617"
          x="7.8045402"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.23812498"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
            y="199.65617"
            x="7.8045402"
            id="tspan4747-3-8-0"
@@ -2056,15 +2048,15 @@
          id="text11578"
          y="216.29097"
          x="37.234108"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.23812498"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.238125"
            y="216.29097"
            x="37.234108"
            id="tspan11576"
            sodipodi:role="line">LRR = <tspan
    id="tspan11580"
-   style="font-weight:bold;stroke-width:0.23812498">Rr .</tspan>T + i</tspan></text>
+   style="font-weight:bold;stroke-width:0.238125">Rr .</tspan>T + i</tspan></text>
       <text
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
@@ -2072,15 +2064,15 @@
          id="text11578-9"
          y="218.93478"
          x="96.605858"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.23812498"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.238125"
            y="218.93478"
            x="96.605858"
            id="tspan11576-9"
            sodipodi:role="line">SV = <tspan
    id="tspan11580-1"
-   style="font-weight:bold;stroke-width:0.23812498">Rr .</tspan>T + i</tspan></text>
+   style="font-weight:bold;stroke-width:0.238125">Rr .</tspan>T + i</tspan></text>
       <path
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
@@ -2140,9 +2132,9 @@
          id="text11859-3-4-5-2-04"
          y="10.13895"
          x="-206.68803"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
-           style="stroke-width:0.23812498"
+           style="stroke-width:0.238125"
            y="10.13895"
            x="-206.68803"
            id="tspan11857-9-9-5-9-1"
@@ -2155,258 +2147,256 @@
          id="text11859-3-4-5-2-04-7"
          y="65.50959"
          x="-206.68803"
-         style="font-style:normal;font-weight:normal;font-size:2.53999996px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23812498"
+         style="font-style:normal;font-weight:normal;font-size:2.54px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
          xml:space="preserve"><tspan
            id="tspan12134"
-           style="stroke-width:0.23812498"
+           style="stroke-width:0.238125"
            y="65.50959"
            x="-206.68803"
            sodipodi:role="line">SV</tspan></text>
     </g>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       inkscape:transform-center-y="-7.4245106"
+       inkscape:transform-center-x="-9.6518638"
+       id="text4749-3-6-2"
+       y="110.47582"
+       x="3.2291229"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="110.47582"
+         x="3.2291229"
+         id="tspan4747-3-80-1"
+         sodipodi:role="line">s-t)</tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text4749-8-3"
+       y="106.24063"
+       x="3.8098643"
+       style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="106.24063"
+         x="3.8098643"
+         id="tspan4747-6-8"
+         sodipodi:role="line">Persistence (P)</tspan></text>
     <g
-       id="g6501"
-       transform="matrix(0.81,0,0,0.81,1.8353382,-83.74098)">
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         inkscape:transform-center-y="-7.4245106"
-         inkscape:transform-center-x="-9.6518638"
-         id="text4749-3-6-2"
-         y="239.77383"
-         x="1.7207217"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="239.77383"
-           x="1.7207217"
-           id="tspan4747-3-80-1"
-           sodipodi:role="line">s-t)</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text4749-8-3"
-         y="234.5452"
-         x="2.4376864"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="234.5452"
-           x="2.4376864"
-           id="tspan4747-6-8"
-           sodipodi:role="line">Persistence (P)</tspan></text>
-      <g
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="g13388-7-9"
-         transform="matrix(0.59999999,0,0,0.59999999,0.86515,231.90159)">
-        <path
-           style="fill:none;stroke:#cc4678;stroke-width:0.91053212;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
-           d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
-           id="path10112-5-3"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccc" />
-        <path
-           style="fill:none;stroke:#cc4678;stroke-width:0.91100001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
-           d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
-           id="path10114-4-5"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccc" />
-      </g>
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="g13388-7-9"
+       transform="matrix(0.48599999,0,0,0.48599999,2.5361097,104.09931)">
       <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="ccc"
+         style="fill:none;stroke:#cc4678;stroke-width:0.910532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
+         id="path10112-5-3"
          inkscape:connector-curvature="0"
-         id="path8498-4-4"
-         d="m 5.65119,245.01367 v 25.37598 c 18.21745,0 36.4349,0 54.65235,0"
-         style="fill:none;stroke:#000000;stroke-width:0.17024653;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-26-6);marker-end:url(#Arrow1Lend-6-0)" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-5-5-2"
-         y="273.90866"
-         x="58.121239"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan15765-5-7"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="273.90866"
-           x="58.121239"
-           sodipodi:role="line">T</tspan></text>
+         sodipodi:nodetypes="ccc" />
       <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
+         style="fill:none;stroke:#cc4678;stroke-width:0.911;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
+         id="path10114-4-5"
          inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2"
-         d="m 25.47121,270.32401 v -23.1511"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44759899;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.447599, 0.447599;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-6"
-         d="m 54.57538,270.32401 v -23.1511"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44759899;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.447599, 0.447599;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         inkscape:connector-curvature="0"
-         id="path23808"
-         d="m 25.47121,274.95417 c 29.10416,0 29.10416,0 29.10416,0"
-         style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575);marker-end:url(#marker25951)" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-4"
-         d="m 35.33289,270.32401 v -23.1511"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44759899;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.447599, 0.447599;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9"
-         y="277.45294"
-         x="37.807163"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="277.45294"
-           x="37.807163"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3"
-           sodipodi:role="line">t<tspan
-   id="tspan24852"
-   style="font-size:64.99999762%;baseline-shift:sub">a</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-5"
-         y="273.8479"
-         x="44.404285"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="273.8479"
-           x="44.404285"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-6"
-           sodipodi:role="line">t<tspan
-   id="tspan24875"
-   style="font-size:64.99999762%;baseline-shift:sub">P</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-4"
-         y="251.86194"
-         x="56.492138"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
-           y="251.86194"
-           x="56.492138"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69"
-           sodipodi:role="line"><tspan
-   id="tspan11609"
-   style="font-weight:bold">P</tspan> = t<tspan
-   id="tspan26319"
-   style="font-size:64.99999762%;baseline-shift:sub">P</tspan>/t<tspan
-   id="tspan24852-6"
-   style="font-size:1.8344444px;baseline-shift:sub;stroke-width:0.26458332">a</tspan></tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-8"
-         d="M 5.62746,248.49583 H 54.57538"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44759899;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.447599, 0.447599;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-8-9"
-         d="M 5.62746,252.46458 H 54.57538"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.44759899;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.447599, 0.447599;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <rect
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         y="248.49406"
-         x="35.202976"
-         height="3.9718051"
-         width="19.373947"
-         id="rect26389"
-         style="opacity:0.6;fill:#0c0787;fill-opacity:0.56470588;stroke:none;stroke-width:0.26194495;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.94117647" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-6"
-         y="248.10202"
-         x="1.5618922"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.8344444px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.26458332"
-           y="248.10202"
-           x="1.5618922"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8"
-           sodipodi:role="line">lim<tspan
-   id="tspan26412">u</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-6-9"
-         y="251.96869"
-         x="2.0727849"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.8344444px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.26458332"
-           y="251.96869"
-           x="2.0727849"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-8"
-           sodipodi:role="line">lim<tspan
-   id="tspan26436">l</tspan></tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.2158124;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL);marker-end:url(#StopL)"
-         d="m 35.27275,271.77916 c 19.30263,0 19.30263,0 19.30263,0"
-         id="path23808-7"
-         inkscape:connector-curvature="0" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-         transform="rotate(-90)"
-         id="text11859-3-4-5-2-04-3"
-         y="4.3649459"
-         x="-245.43991"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
-           y="4.3649459"
-           x="-245.43991"
-           id="tspan11857-9-9-5-9-1-6"
-           sodipodi:role="line">SV</tspan></text>
+         sodipodi:nodetypes="ccc" />
     </g>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path8498-4-4"
+       d="m 6.4128021,114.72009 v 20.55455 c 14.7561349,0 29.5122689,0 44.2684039,0"
+       style="fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-26-6);marker-end:url(#Arrow1Lend-6-0)" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-5-5-2"
+       y="138.12503"
+       x="48.91354"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         id="tspan15765-5-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="138.12503"
+         x="48.91354"
+         sodipodi:role="line">T</tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9-3-9-57-8-1-4-2"
+       d="M 14.852277,134.9375 V 116.18511"
+       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9-3-9-57-8-1-4-2-6"
+       d="M 46.041396,135.22147 V 116.46908"
+       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       inkscape:connector-curvature="0"
+       id="path23808"
+       d="m 14.851262,138.9719 c 31.191058,0 31.191058,0 31.191058,0"
+       style="fill:none;stroke:#000000;stroke-width:0.246901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575);marker-end:url(#marker25951)" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9-3-9-57-8-1-4-2-4"
+       d="M 30.454979,135.22147 V 116.46908"
+       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9"
+       y="140.9959"
+       x="32.459141"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="140.9959"
+         x="32.459141"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3"
+         sodipodi:role="line">t<tspan
+   id="tspan24852"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-5"
+       y="138.07582"
+       x="37.802811"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="138.07582"
+         x="37.802811"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-6"
+         sodipodi:role="line">t<tspan
+   id="tspan24875"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">P</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-4"
+       y="120.26719"
+       x="47.593971"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+         y="120.26719"
+         x="47.593971"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-69"
+         sodipodi:role="line"><tspan
+   id="tspan11609"
+   style="font-weight:bold;stroke-width:0.214312">P</tspan> = t<tspan
+   id="tspan26319"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">P</tspan>/t<tspan
+   id="tspan24852-6"
+   style="font-size:1.4859px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9-3-9-57-8-1-4-2-8"
+       d="M 6.3935808,117.54064 H 46.041396"
+       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path13046-9-3-9-57-8-1-4-2-8-9"
+       d="M 6.3935808,120.75533 H 46.041396"
+       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <rect
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       y="117.53922"
+       x="30.349749"
+       height="3.2171621"
+       width="15.692897"
+       id="rect26389"
+       style="opacity:0.6;fill:#0c0787;fill-opacity:0.564706;stroke:none;stroke-width:0.212175;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.941176" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-6"
+       y="117.22166"
+       x="3.1004708"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.4859px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
+         y="117.22166"
+         x="3.1004708"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-8"
+         sodipodi:role="line">lim<tspan
+   id="tspan26412"
+   style="stroke-width:0.214312">u</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       id="text13082-9-6-9-1-4-6-2-9-0-9-6-9"
+       y="120.35366"
+       x="3.5142939"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.4859px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
+         y="120.35366"
+         x="3.5142939"
+         id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-8"
+         sodipodi:role="line">lim<tspan
+   id="tspan26436"
+   style="stroke-width:0.214312">l</tspan></tspan></text>
+    <path
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.174808;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL);marker-end:url(#StopL)"
+       d="m 30.406266,136.40014 c 15.63513,0 15.63513,0 15.63513,0"
+       id="path23808-7"
+       inkscape:connector-curvature="0" />
+    <text
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
+       transform="rotate(-90)"
+       id="text11859-3-4-5-2-04-3"
+       y="5.3709445"
+       x="-115.06535"
+       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.214312"
+         y="5.3709445"
+         x="-115.06535"
+         id="tspan11857-9-9-5-9-1-6"
+         sodipodi:role="line">SV</tspan></text>
     <g
        id="g6208"
        transform="matrix(0.81,0,0,0.81,107.05052,-57.2422)">
@@ -2416,9 +2406,9 @@
          id="text4749-9"
          y="77.47361"
          x="2.4042993"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="77.47361"
            x="2.4042993"
            id="tspan4747-7"
@@ -2431,9 +2421,9 @@
          id="text4749-3-0-3-6"
          y="82.173096"
          x="63.245491"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="82.173096"
            x="63.245491"
            id="tspan4747-3-8-5-7"
@@ -2446,9 +2436,9 @@
          id="text4749-3-8"
          y="82.173088"
          x="1.687314"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="82.173088"
            x="1.687314"
            id="tspan4747-3-3"
@@ -2460,7 +2450,7 @@
          id="g9998">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="1.8863342"
            y="114.74878"
            id="text4749-3-8-8"
@@ -2469,7 +2459,7 @@
              sodipodi:role="line"
              x="1.8863342"
              y="114.74878"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
              id="tspan5264">i-j)</tspan></text>
       </g>
       <path
@@ -2501,14 +2491,14 @@
          inkscape:export-xdpi="600"
          transform="scale(1.0009486,0.9990523)"
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:2.78922796px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149011"
+         style="font-style:normal;font-weight:normal;font-size:2.78923px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149"
          x="58.066612"
          y="126.57629"
          id="text13082-9-6-9-1-4-6-5-1-0"><tspan
            sodipodi:role="line"
            x="58.066612"
            y="126.57629"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149011"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149"
            id="tspan15765-71-8">T</tspan></text>
       <path
          inkscape:export-ydpi="600"
@@ -2526,9 +2516,9 @@
          id="text4749-3-0-3-6-8"
          y="116.33626"
          x="62.386177"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="116.33626"
            x="62.386177"
            id="tspan4747-3-8-5-7-7"
@@ -2539,9 +2529,9 @@
          id="text11613-9-2"
          y="137.25171"
          x="64.018265"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583"
            y="137.25171"
            x="64.018265"
            id="tspan11611-4-0"
@@ -2552,9 +2542,9 @@
          id="text11613-9-2-6"
          y="128.62022"
          x="2.0990844"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.264583"
            y="128.62022"
            x="2.0990844"
            id="tspan11611-4-0-5"
@@ -2597,30 +2587,30 @@
          id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1"
          y="121.88326"
          x="16.832382"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="121.88326"
            x="16.832382"
            id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0"
            sodipodi:role="line">t<tspan
    id="tspan11504"
-   style="font-size:64.99999762%;baseline-shift:sub">d+1</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub">d+1</tspan></tspan></text>
       <text
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
          id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-5"
          y="121.80981"
          x="86.521614"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="121.80981"
            x="86.521614"
            id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-9"
            sodipodi:role="line">t<tspan
    id="tspan11429-4"
-   style="font-size:1.8344444px;baseline-shift:sub;stroke-width:0.26458332">low</tspan></tspan></text>
+   style="font-size:1.83444px;baseline-shift:sub;stroke-width:0.264583">low</tspan></tspan></text>
       <g
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
@@ -2651,7 +2641,7 @@
            sodipodi:nodetypes="cc" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="16.847471"
            y="111.1711"
            id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1"><tspan
@@ -2659,12 +2649,12 @@
              id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7"
              x="16.847471"
              y="111.1711"
-             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332">t<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583">t<tspan
+   style="font-size:65%;baseline-shift:sub"
    id="tspan11502">d+1</tspan></tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="2.9145744"
            y="105.44563"
            id="text11556"><tspan
@@ -2672,10 +2662,10 @@
              id="tspan11554"
              x="2.9145744"
              y="105.44563"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332">R</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583">R</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
            x="-91.353241"
            y="4.3663239"
            id="text11859-3-4"
@@ -2684,7 +2674,7 @@
              id="tspan11857-9-9"
              x="-91.353241"
              y="4.3663239"
-             style="stroke-width:0.26458332">LRR</tspan></text>
+             style="stroke-width:0.264583">LRR</tspan></text>
       </g>
       <path
          inkscape:export-ydpi="600"
@@ -2731,14 +2721,14 @@
          inkscape:export-xdpi="600"
          transform="scale(1.0009486,0.99905229)"
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:2.78922796px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149011"
+         style="font-style:normal;font-weight:normal;font-size:2.78923px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26149"
          x="120.4491"
          y="126.57629"
          id="text13082-9-6-9-1-4-6-5-1-0-7"><tspan
            sodipodi:role="line"
            x="120.4491"
            y="126.57629"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149011"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26149"
            id="tspan15765-71-8-0">T</tspan></text>
       <path
          inkscape:export-ydpi="600"
@@ -2754,10 +2744,10 @@
          id="text13082-9-6-9-1-4-6-5-6-0-1"
          y="111.87978"
          x="120.56291"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan15765-7-8-0"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="111.87978"
            x="120.56291"
            sodipodi:role="line">T</tspan></text>
@@ -2783,24 +2773,24 @@
          id="text13082-9-6-9-1-4-6-2-9-0-9-4-5"
          y="111.68375"
          x="87.11132"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="111.68375"
            x="87.11132"
            id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0"
            sodipodi:role="line">t<tspan
    id="tspan11429"
-   style="font-size:64.99999762%;baseline-shift:sub">low</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub">low</tspan></tspan></text>
       <text
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
          id="text11556-9"
          y="107.34779"
          x="64.833755"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="107.34779"
            x="64.833755"
            id="tspan11554-5"
@@ -2812,9 +2802,9 @@
          id="text11859-3-4-5"
          y="65.89064"
          x="-91.456573"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
+           style="stroke-width:0.264583"
            y="65.89064"
            x="-91.456573"
            id="tspan11857-9-9-5"
@@ -2826,9 +2816,9 @@
          id="text11859-3-4-7"
          y="4.4097323"
          x="-123.40887"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
-           style="stroke-width:0.26458332"
+           style="stroke-width:0.264583"
            y="4.4097323"
            x="-123.40887"
            id="tspan11857-9-9-3"
@@ -2840,10 +2830,10 @@
          id="text11859-3-4-5-9"
          y="65.934044"
          x="-124.04137"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan12064"
-           style="stroke-width:0.26458332"
+           style="stroke-width:0.264583"
            y="65.934044"
            x="-124.04137"
            sodipodi:role="line">Diff</tspan></text>
@@ -2853,10 +2843,10 @@
          id="text13082-9-6-9-1-4-6-5-6-0-1-5"
          y="111.87978"
          x="58.121239"
-         style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"><tspan
            id="tspan15765-7-8-0-3"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.26458332"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583"
            y="111.87978"
            x="58.121239"
            sodipodi:role="line">T</tspan></text>
