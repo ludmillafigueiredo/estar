@@ -37,13 +37,16 @@ library(cowplot)
 library(ggsci)
 library(hesim)
 source("custom_aesthetics.R")
+
+#V: Please check and explain the notations for matrices I and E (in description of the state and observation processes, respectively).
+# Also, for the observation process, the Z matrix should be rather "spelled" out (analogous to how B matrix is written explicitely for the state process)
 ```
 
-In the `estar` package, estimations of maximal amplification, time to maximal amplification, intrinsic stochastic invariability, and asymptotic and initial resilience (definitions in Table 2 of main text) depend on measures of interaction strengths between species composing a community.
-These measures are classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
+Calculation of the so-called "multivariate stability metrics" (in the context of estar package) relies on the interaction strengths between species composing a community. This information is classically  summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
-In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), the issues that may arise when empirical data is [limited](#limited-data), and how they can be used with the functions provided by the [`estar` package](#marss-in-estar).
+
+In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), how these models can be used with the functions provided by the [`estar` package](#marss-in-estar), and the issues that may arise when empirical data is [limited](#limited-data).
 To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data) and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
@@ -55,7 +58,7 @@ This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 
 Additionally, four replicates were used as control, undisturbed systems ('baseline' in estar terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
-```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, represent the different concentrations (micro g/L)."}
+```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, and facets represent the different concentrations (micro g/L)."}
 knitr::include_graphics("aquacomm_fgps_logplot.svg")
 ```
 
@@ -73,7 +76,7 @@ A complete (MARSS) model that describes a state process ($\mathbf{X}$) assessed 
 
 where
 
--   $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ functional groups ($fg$, rows), over time $T$ ($t$, columns)
+-   $\mathbf{X}$ is a $m \times T$ matrix, composed of the unknown abundance values of $m$ species or functional groups ($fg$, rows), over time $T$ ($t$, columns)
 
 ```{=tex}
 \begin{equation}
@@ -107,7 +110,7 @@ Note that:
 The state process ($\mathbf{X}$) is described by:
 
 -   $\mathbf{x}_t$ is a $m \times 1$ vector of unkown abundances of the $m$ species at time $t$.
--   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the interaction matrix of **interactions strengths** we want to estimate to calculate community-based stability metrics.
+-   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** we want to estimate to calculate community-based stability metrics.
 -   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
 -   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
 -   $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
@@ -211,7 +214,7 @@ x_m
     \left[ \begin{array}{c}
     a_{obs1} \\
     ... \\
-    a_{obs3} \end{array} \right] +
+    a_{obsn} \end{array} \right] +
 \begin{bmatrix}
     \delta_{\mathrm{obs1, E}} \\
     ... \\
@@ -238,15 +241,15 @@ E
 \end{pmatrix}\\
 \end{equation}
 ```
-Parameters $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be composed of both estimated and fixed values, depending on the assumptions about the system.
+The terms $\mathbf{y}_t$, $\mathbf{c}_t$ and $\mathbf{d}_t$ are empirical data that are provided by the user. The remaining terms $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be estimated or some of them (e.g. $\mathbf{u}$, $\mathbf{Q}$) can be fixed to certain values based on the assumptions about the system.
 The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community.
+When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community. Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
 In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case.
 None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
-The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implication of the chosen assumptions.
+The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
 
 We start from the minimal case of one single observation per state process and other simplifying assumptions, and complexify it step-wise.
 
@@ -275,7 +278,7 @@ diag(Z_I5) <- 1
 -   We assume that the system is at equillibrium, therefore: U = A = 0
 -   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
-Note that processes error and constant covariates are required for @downing_temporal_2020's estimation of asymptotic resilience
+Some of these assumptions are required to calculate certain multivariate stability metrics. Thus, calculation of asymptotic resilience that is used here and that follows @downing_temporal_2020, requires that process error is zero and that covariates are constant.
 
 Such model is formalized as:
 
@@ -361,7 +364,7 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
 names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " nano g/L")
 ```
 
-We provide the function `eStar::extractB` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
+We provide the function `eStar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
 (aquacomm.Bls <- aquacommz_allscen.marssls %>%
@@ -374,6 +377,7 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate sta
 ## Reactivity
 
 ```{r}
+## V: please for each stability metric give one sentence on what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
 aquacomm.Bls %>%
   map(eStar::reactivity)
 ```
