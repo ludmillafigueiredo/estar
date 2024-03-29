@@ -23,3 +23,11 @@ Input dataframes do not get this suffix because their data-related status is mor
 ## Git messages
 Follow [Udacity's Git Commit Message Style Guide](http://udacity.github.io/git-styleguide/).
 
+## Color blind safe palette
+
+Tol_muted <- c('#88CCEE', '#44AA99', '#117733', '#332288', '#DDCC77', '#999933','#CC6677', '#882255', '#AA4499', '#DDDDDD')
+
+getrgb <- function(x) paste(as.vector(col2rgb(x)), collapse = " ")
+sapply(Tol_muted, getrgb)
+
+
