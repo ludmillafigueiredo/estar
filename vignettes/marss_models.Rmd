@@ -20,7 +20,8 @@ editor_options:
 ```{r knit-setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
   )
 options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly dfifferent and this avoids a warning message every time it's rendered
 rmarkdown::html_document(df_print = knitr::kable)
@@ -37,17 +38,15 @@ library(cowplot)
 library(ggsci)
 library(hesim)
 source("custom_aesthetics.R")
-
-#V: Please check and explain the notations for matrices I and E (in description of the state and observation processes, respectively).
-# Also, for the observation process, the Z matrix should be rather "spelled" out (analogous to how B matrix is written explicitely for the state process)
 ```
 
-Calculation of the so-called "multivariate stability metrics" (in the context of estar package) relies on the interaction strengths between species composing a community. This information is classically  summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
+Calculation of the so-called "multivariate stability metrics" (in the context of the `estar` package) relies on the interaction strengths between species composing a community.
+This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, they can be estimated with multivariate autoregressive state-space (MARSS) models.
 
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), how these models can be used with the functions provided by the [`estar` package](#marss-in-estar), and the issues that may arise when empirical data is [limited](#limited-data).
-To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data) and a [forest plant community](#forest-data) recovering from windthrows, bark beetle infestation, and logging.
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data).
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Overview of demonstration data
@@ -105,15 +104,15 @@ Y=
 Note that:
 
 -   considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can be passed as `NA`.
--   from $\mathbf{X}$ and $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes. We will adress this in the description of $\mathbf{Y}$.
+-   from $\mathbf{X}$ and $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes. We will address this in the description of $\mathbf{Y}$.
 
 The state process ($\mathbf{X}$) is described by:
 
--   $\mathbf{x}_t$ is a $m \times 1$ vector of unkown abundances of the $m$ species at time $t$.
--   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** we want to estimate to calculate community-based stability metrics.
+-   $\mathbf{x}_t$ is a $m \times 1$ vector of unknown abundances of the $m$ species at time $t$.
+-   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate community-based stability metrics.
 -   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
--   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
 -   $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
+-   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
 -   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the stochasticity of the system.
 
 Thus, in matrix formulation:
@@ -126,9 +125,9 @@ Thus, in matrix formulation:
     x_{m}
     \end{bmatrix}_t = 
 \begin{bmatrix}
-    \beta_{\mathrm{1}} & ... & \beta_{\mathrm{1,m}} \\
+    \beta_{\mathrm{1,1}} & ... & \beta_{\mathrm{1,m}} \\
     ... & ... & ... \\
-    \beta_{\mathrm{m,1}} & ... & \beta_{\mathrm{m}}
+    \beta_{\mathrm{m,1}} & ... & \beta_{\mathrm{m,m}}
 \end{bmatrix}
 \begin{bmatrix}
     x_{1}\\
@@ -143,13 +142,15 @@ Thus, in matrix formulation:
 \end{bmatrix} 
 + 
 \begin{bmatrix}
-    \gamma_{\mathrm{1, I}} \\
-    ... \\
-    \gamma_{\mathrm{m, I}}
+    \gamma_{\mathrm{1,1}} & ... & \gamma_{\mathrm{1,p}} \\
+    ... & ... & ... \\
+    \gamma_{\mathrm{m,1}} & ... & \gamma_{\mathrm{m,p}}
 \end{bmatrix}
 \begin{bmatrix}
-    I
-\end{bmatrix}_t \\
+    c_{\mathrm{1}} \\
+    ... \\
+    c_{\mathrm{m}}
+\end{bmatrix}_{t}
 +
 \begin{bmatrix}
 w_{1}\\
@@ -158,15 +159,15 @@ w_{m}
 \end{bmatrix}_t \\
 \end{equation}
 ```
-The $w_{t}$ erros follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix).
+The $w_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix).
 \begin{equation}
 \mathbf{w}_t \sim \,\text{MVN}
 \begin{pmatrix}
 0,
     \begin{bmatrix}
-        \sigma_{\mathrm{1}} & \sigma_{\mathrm{1,2}} & .... & \sigma_{\mathrm{1,m}} \\
+        \sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,m}} \\
         ... & ... & ... \\
-        \sigma_{\mathrm{m,1}} & \sigma_{\mathrm{m,2}} & ... & \sigma_{\mathrm{m}} \\ 
+        \sigma_{\mathrm{m,1}} & ... & \sigma_{\mathrm{m}} \\ 
         \end{bmatrix}
 \end{pmatrix}\\
 \end{equation}
@@ -193,60 +194,78 @@ The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
 The observation process ($\mathbf{Y}$) is described by:
 
 -   $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
--   $\mathbf{Z}_t$ is a $n \times m$ matrix which describes the relationship between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
+-   $\mathbf{Z}_t$ is a $n \times m$ matrix which describes the relationships ($\zeta$) between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
 -   $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
+-   $\mathbf{D}_t$ is a $n \times q$ matrix of $\delta$ coefficients of each of the $q$ covariates on each of the $n$ observations.
 -   $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
--   $\mathbf{D}_t$ is a $n \times q$ matrix of coefficients of each of the $q$ covariates on each of the $n$ observations.
 -   $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
 
-In matrix formulation: \begin{equation}
- \left[ \begin{array}{c}
-    y_{1} \\
-    ... \\
-    y_{n} 
-\end{array} \right]_t = 
-Z
-\begin{bmatrix}
-x_1\\
-...\\
-x_m
-\end{bmatrix}_t +  
-    \left[ \begin{array}{c}
-    a_{obs1} \\
-    ... \\
-    a_{obsn} \end{array} \right] +
-\begin{bmatrix}
-    \delta_{\mathrm{obs1, E}} \\
-    ... \\
-    \delta_{\mathrm{obsn, E}}
-\end{bmatrix}
-\begin{bmatrix}
-E
-\end{bmatrix}_t \\ +
-    \left[ \begin{array}{c}
-    v_{obs1} \\
-    ... \\
-    v_{obsn} \end{array} \right]_t
-\end{equation}
+In matrix formulation: 
 
 ```{=tex}
 \begin{equation}
-\mathbf{v}_t \sim \,\text{MVN}
-\begin{pmatrix}0,
-    \begin{bmatrix}
-        \sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,n}} \\
-        ... & ... & .... \\
-        \sigma_{\mathrm{n,1}} & ... & \sigma_{\mathrm{n}} \\ 
-    \end{bmatrix}
-\end{pmatrix}\\
+\begin{bmatrix}
+    y_{1}\\
+    ... \\
+    y_{n}
+    \end{bmatrix}_t = 
+\begin{bmatrix}
+    \zeta_{\mathrm{1,1}} & ... & \zeta_{\mathrm{1,m}} \\
+    ... & ... & ... \\
+    \zeta_{\mathrm{m,1}} & ... & \zeta_{\mathrm{m,m}}
+\end{bmatrix}
+\begin{bmatrix}
+    x_{1}\\
+    ... \\
+    x_{m}
+\end{bmatrix}_{t-1} 
++
+\begin{bmatrix}
+    a_{obs1}\\
+    ...\\
+    a_{obsn}
+\end{bmatrix} 
++
+\begin{bmatrix}
+    \delta_{\mathrm{1,1}} & ... & \delta_{\mathrm{1,q}} \\
+    ... & ... & ... \\
+    \delta_{\mathrm{n,1}} & ... & \delta_{\mathrm{q,q}}
+\end{bmatrix}
+\begin{bmatrix}
+    d_{\mathrm{1}} \\
+    ... \\
+    d_{\mathrm{q}}
+\end{bmatrix}_{t}
++
+\begin{bmatrix}
+v_{obs1}\\
+...\\
+v_{obsn}
+\end{bmatrix}_t \\
 \end{equation}
 ```
-The terms $\mathbf{y}_t$, $\mathbf{c}_t$ and $\mathbf{d}_t$ are empirical data that are provided by the user. The remaining terms $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be estimated or some of them (e.g. $\mathbf{u}$, $\mathbf{Q}$) can be fixed to certain values based on the assumptions about the system.
+
+The $v_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix).
+\begin{equation}
+\mathbf{v}_t \sim \,\text{MVN}
+\begin{pmatrix}
+0,
+    \begin{bmatrix}
+        \sigma_{\mathrm{1}} & ... & \sigma_{\mathrm{1,n}} \\
+        ... & ... & ... \\
+        \sigma_{\mathrm{n,1}} & ... & \sigma_{\mathrm{n}} \\ 
+        \end{bmatrix}
+\end{pmatrix}\\
+\end{equation}
+
+The terms $\mathbf{y}_t$, $\mathbf{c}_t$ and $\mathbf{d}_t$ are empirical data that are provided by the user.
+The remaining terms $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be estimated or some of them (e.g. $\mathbf{u}$, $\mathbf{Q}$) can be fixed to certain values based on the assumptions about the system.
 The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community. Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
+When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community.
+Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
 In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case.
 None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
@@ -278,7 +297,8 @@ diag(Z_I5) <- 1
 -   We assume that the system is at equillibrium, therefore: U = A = 0
 -   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
-Some of these assumptions are required to calculate certain multivariate stability metrics. Thus, calculation of asymptotic resilience that is used here and that follows @downing_temporal_2020, requires that process error is zero and that covariates are constant.
+Some of these assumptions are required to calculate certain multivariate stability metrics.
+Thus, calculation of asymptotic resilience that is used here and that follows @downing_temporal_2020, requires that process error is zero and that covariates are constant.
 
 Such model is formalized as:
 
@@ -376,13 +396,16 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate sta
 
 ## Reactivity
 
+What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
+
 ```{r}
-## V: please for each stability metric give one sentence on what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
 aquacomm.Bls %>%
   map(eStar::reactivity)
 ```
 
 ## Maximal amplification
+
+what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
 
 ```{r}
 aquacomm.Bls %>%
@@ -391,12 +414,16 @@ aquacomm.Bls %>%
 
 ## Initial resilience
 
+what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
+
 ```{r}
 aquacomm.Bls %>%
   map(eStar::init_resil)
 ```
 
 ## Asymptotic resilience
+
+What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
 aquacomm.Bls %>%
