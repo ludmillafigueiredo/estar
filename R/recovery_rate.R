@@ -6,6 +6,12 @@
 #' log-response ratio (LRR) of the state variable in the disturbed system
 #' compared to the baseline.
 #'
+#' @param bl a string stating whether the baseline is defined by a separate
+#' baseline that is specified by the user (\code{bl = "input"}) or by a
+#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
+#' @param metric_tf a numerical vector, specifying the beginning and end of the
+#' time period for which the stability metric should be measured.
+#'
 #' @inheritParams univar_params
 #'
 #' @return a double, the rate of recovery

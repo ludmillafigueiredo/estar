@@ -12,8 +12,22 @@
 #' \item the mean or median of pre-disturbance values of the state variable
 #' in the disturbed system over a period defined by \code{bl_tf}}
 #'
+#' @param response a string stating whether the stability metric should be calculated
+#' using the log-response ratio between the values in the disturbed system and
+#' the baseline (\code{response = "lrr"}) or using the state variable values in the
+#' disturbed system alone.
+#' @param bl a string stating whether the baseline is defined by a separate
+#' baseline that is specified by the user (\code{bl = "input"}) or by a
+#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
 #' @param t_rec An integer, time point at which the extent of recovery should be
 #' calculated.
+#' @param bl_tf a numerical vector, specifying the beginning and end of the
+#' pre-disturbance time period for the disturbed time-series that defines
+#' the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.
+#' @param summ_mode A string, stating whether the baseline should be summarized as
+#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+#' Defaults to "mean".
+#'
 #' @inheritParams univar_params
 #'
 #' @details Even though it is possible to use a single data value as baseline

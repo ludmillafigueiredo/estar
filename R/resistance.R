@@ -7,6 +7,15 @@
 #' at a specified time point.
 #' See details on how to specify the values.
 #'
+#' @param bl a string stating whether the baseline is defined by a separate
+#' baseline that is specified by the user (\code{bl = "input"}) or by a
+#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
+#' @param summ_mode A string, stating whether the baseline should be summarized as
+#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+#' Defaults to "mean".
+#' @param bl_tf a numerical vector, specifying the beginning and end of the
+#' pre-disturbance time period for the disturbed time-series that defines
+#' the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.
 #' @param res_mode A string stating whether the resistance should be calculated
 #' as the log response ratio of the state variable in the disturbed system
 #' compared to the baseline (\code{res_mode = "lrr"}) or the difference

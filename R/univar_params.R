@@ -18,34 +18,15 @@
 #' Obligatory argument if \code{bl = "bl"}.
 #' @param bl_data an optional data frame containing the time series of the
 #' state variable values in the baseline.
-#' @param bl a string stating whether the baseline is defined by a separate
-#' baseline that is specified by the user (\code{bl = "input"}) or by a
-#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
-#' @param bl_tf a numerical vector, specifying the beginning and end of the
-#' pre-disturbance time period for the disturbed time-series that defines
-#' the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.
-#' @param summ_mode A string, stating whether the baseline should be summarized as
-#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
-#' Defaults to "mean".
 #' @param na_rm a logical determining whether NAs should be taken out prior to the
 #' estimation of the stability metric. Defaults to TRUE.
-#' @param response a string stating whether the stability metric should be calculated
-#' using the log-response ratio between the values in the disturbed system and
-#' the baseline (\code{response = "lrr"}) or using the state variable values in the
-#' disturbed system alone.
-#' @param metric_tf a numerical vector, specifying the beginning and end of the
-#' time period for which the stability metric should be measured.
+
 univar_params <- function(svdb_i,
                               tdb_i,
                               db_data,
                               svbl_i,
                               tbl_i,
                               bl_data,
-                              bl,
-                              bl_tf,
-                              summ_mode,
-                              na_rm,
-                              response,
-                              metric_tf){
+                              na_rm){
     return(invisible(NULL))
 }

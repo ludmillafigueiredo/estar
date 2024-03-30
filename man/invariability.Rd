@@ -43,13 +43,11 @@ disturbed system alone.}
 
 \item{svbl_i}{a numeric vector containing the state variable in the baseline,
 or a string for the name of the column in \code{bl_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{bl = "bl"}.}
+variable in the dataframe with baseline values.}
 
 \item{tbl_i}{an optional numeric vector containing the time period over which
 the baseline was measured, or a string containing the name of the column in
-\code{bl_data}.
-Obligatory argument if \code{bl = "bl"}.}
+\code{bl_data}.}
 
 \item{bl_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}

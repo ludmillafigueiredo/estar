@@ -2,7 +2,7 @@
 % Please edit documentation in R/persistence.R
 \name{persistence}
 \alias{persistence}
-\title{Calculate the persistance of a state variable inside a defined interval}
+\title{Calculate the persistence of a state variable inside a defined interval}
 \usage{
 persistence(
   svdb_i,
@@ -63,16 +63,16 @@ a double, contained in [0,1]
 \code{persistence} returns the proportion of time the state
 variable remained inside the interval defined by the baseline's
 \eqn{\pm} sd. The proportion is calculated in relation to the time
-period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+period for which persistence should be calculated.
 }
 \details{
-If the baseline is defined by the pre-distrubed values of the
+If the baseline is defined by the pre-disturbed values of the
 state variable in the disturbed system (\code{bl = "db"}), this pre-disturbed
 time period used as baseline (\code{bl_tf}) cannot overlap with the time period
-for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
-the values over \code{bl_tf} define the interval for which the values in \code{metric_tf} are
-checked. If they are the same (or partly, if overlap is partial), the
-returned value of persistence will be falsely higher.
+for which the persistence is to be calculated (\code{metric_tf}), because of
+redundancy: the values over \code{bl_tf} define the interval for which the
+values in \code{metric_tf} are checked. If they are the same (or partly, if
+overlap is partial), the returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(

@@ -1,21 +1,30 @@
-#' Calculate the persistance of a state variable inside a defined interval
+#' Calculate the persistence of a state variable inside a defined interval
 #'
 #' \code{persistence} returns the proportion of time the state
 #' variable remained inside the interval defined by the baseline's
 #' \eqn{\pm} sd. The proportion is calculated in relation to the time
-#' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+#' period for which persistence should be calculated.
+#'
+#' @param bl a string stating whether the baseline is defined by a separate
+#' baseline that is specified by the user (\code{bl = "input"}) or by a
+#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
+#' @param metric_tf a numerical vector, specifying the beginning and end of the
+#' time period for which the stability metric should be measured.
+#' @param bl_tf a numerical vector, specifying the beginning and end of the
+#' pre-disturbance time period for the disturbed time-series that defines
+#' the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.
 #'
 #' @inheritParams univar_params
 #'
 #' @return a double, contained in \[0,1\]
 #'
-#' @details If the baseline is defined by the pre-distrubed values of the
+#' @details If the baseline is defined by the pre-disturbed values of the
 #' state variable in the disturbed system (\code{bl = "db"}), this pre-disturbed
 #' time period used as baseline (\code{bl_tf}) cannot overlap with the time period
-#' for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
-#' the values over \code{bl_tf} define the interval for which the values in \code{metric_tf} are
-#' checked. If they are the same (or partly, if overlap is partial), the
-#' returned value of persistence will be falsely higher.
+#' for which the persistence is to be calculated (\code{metric_tf}), because of
+#' redundancy: the values over \code{bl_tf} define the interval for which the
+#' values in \code{metric_tf} are checked. If they are the same (or partly, if
+#' overlap is partial), the returned value of persistence will be falsely higher.
 #'
 #' @examples
 #' persistence(

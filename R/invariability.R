@@ -10,10 +10,22 @@
 #' residuals of the linear model that uses the time as the predictor of the
 #' state variable.
 #'
+#' @inheritParams univar_params
+#' @param svbl_i a numeric vector containing the state variable in the baseline,
+#' or a string for the name of the column in \code{bl_data} containing said
+#' variable in the dataframe with baseline values.
+#' @param tbl_i an optional numeric vector containing the time period over which
+#' the baseline was measured, or a string containing the name of the column in
+#' \code{bl_data}.
 #' @param mode A string stating which variant of invariability should be calculated,
 #' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
 #' or the on ebased on fitting the linear model \code{"lm_res"}.
-#' @inheritParams univar_params
+#' @param response a string stating whether the stability metric should be calculated
+#' using the log-response ratio between the values in the disturbed system and
+#' the baseline (\code{response = "lrr"}) or using the state variable values in the
+#' disturbed system alone.
+#' @param metric_tf a numerical vector, specifying the beginning and end of the
+#' time period for which the stability metric should be measured.
 #'
 #' @return a numeric, the invariability value.
 #'
