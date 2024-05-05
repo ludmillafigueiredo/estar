@@ -2,7 +2,7 @@
 % Please edit documentation in R/persistence.R
 \name{persistence}
 \alias{persistence}
-\title{Calculate the persistance of a state variable inside a defined interval}
+\title{Calculate the persistence of a state variable inside a defined interval}
 \usage{
 persistence(
   svdb_i,
@@ -66,7 +66,7 @@ variable remained inside the interval defined by the baseline's
 period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
 }
 \details{
-If the baseline is defined by the pre-distrubed values of the
+If the baseline is defined by the pre-disturbed values of the
 state variable in the disturbed system (\code{bl = "db"}), this pre-disturbed
 time period used as baseline (\code{bl_tf}) cannot overlap with the time period
 for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
