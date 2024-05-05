@@ -39,10 +39,30 @@
 #' @export
 invariability <- function(svdb_i, tdb_i, mode, metric_tf, db_data = NULL, response,
                           svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
 
-  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, bl_data) %>%
-    dplyr::filter(t >= min(metric_tf), t <= max(metric_tf))
+  format_input <- function(input, sv_v, t_v, data) {
+    if (input == "db") {
+      if (is.null(data)) {
+        input_df <- data.frame("svdb_i" = sv_v, "tdb_i" = t_v)
+      } else {
+        input_df <- data.frame(svdb_i = data[[sv_v]], tdb_i = data[[t_v]])
+      }
+    } else if (input == "bl") {
+      if (is.null(data)) {
+        input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
+      } else {
+        input_df <- data.frame(svbl_i = data[[sv_v]], tbl_i = data[[t_v]])
+      }
+    } else {
+      stop("'input' argument must be \"db\" or \"bl\".")
+    }
+    return(input_df)
+  }
+
+  dbts_df <- format_input("db", svdb_i, tdb_i, db_data)
+
+  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, bl_data)
+  invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")
@@ -54,15 +74,12 @@ invariability <- function(svdb_i, tdb_i, mode, metric_tf, db_data = NULL, respon
 
   if (mode == "cv") {
     invar <- 1 / eStar::cv(invar_df$response, na_rm = na_rm)
-
+    return(invar)
+  } else if (mode == "lm_res") {
+    invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
     return(invar)
   } else {
-    if (mode == "lm_res") {
-      invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
-
-      return(invar)
-    } else {
-      stop("'mode' argument must be \"cv\" or \"lm_res\"")
-    }
+    stop("'mode' argument must be \"cv\" or \"lm_res\"")
   }
 }
+

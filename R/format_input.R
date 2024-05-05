@@ -14,23 +14,16 @@ format_input <- function(input, sv_v, t_v, data) {
     if (is.null(data)) {
       input_df <- data.frame("svdb_i" = sv_v, "tdb_i" = t_v)
     } else {
-      input_df <- dplyr::select(data,
-        "svdb_i" = dplyr::all_of(sv_v),
-        "tdb_i" = dplyr::all_of(t_v)
-      )
+      input_df <- data.frame(svdb_i = data[[sv_v]], tdb_i = data[[t_v]])
+    }
+  } else if (input == "bl") {
+    if (is.null(data)) {
+      input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
+    } else {
+      input_df <- data.frame(svbl_i = data[[sv_v]], tbl_i = data[[t_v]])
     }
   } else {
-      if(input == "bl"){
-          if (is.null(data)) {
-              input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
-          } else {
-              input_df <- dplyr::select(data,
-                                        "svbl_i" = dplyr::all_of(sv_v),
-                                        "tbl_i" = dplyr::all_of(t_v)
-                                        )
-          }
-      } else {
-          stop("'input' argument must be \"db\" or \"bl\".")
-      }
+    stop("'input' argument must be \"db\" or \"bl\".")
   }
+  return(input_df)
 }
