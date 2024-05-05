@@ -20,25 +20,20 @@
 #'
 #' @noRd
 #' @export
-sort_response <- function(response, dbts_df, svbl_i, tbl_i, bl_data){
-    if (response == "sv") {
-    response_df <- dplyr::rename(dbts_df,
-      "response" = svdb_i,
-      "t" = tdb_i
-    )
-  } else {
-    if (response == "lrr") {
-      blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
+sort_response <- function(response, dbts_df, svbl_i, tbl_i, bl_data) {
+  if (response == "sv") {
+    response_df <- setNames(dbts_df, c("response", "t"))
+  } else if (response == "lrr") {
+    blts_df <- format_input("bl", svbl_i, tbl_i, bl_data)
 
-      response_df <- dplyr::inner_join(
-        dplyr::rename(dbts_df, "t" = tdb_i),
-        dplyr::rename(blts_df, "t" = tbl_i),
-        by = "t"
-      ) %>%
-        dplyr::mutate("response" = log(svdb_i / svbl_i))
-    } else {
-      stop("'response' argument must be \"cv\" or \"lrr\".")
-    }
+    names(dbts_df)[names(dbts_df) == "tdb_i"] <- "t"
+    names(blts_df)[names(blts_df) == "tbl_i"] <- "t"
+
+    response_df <- merge(dbts_df, blts_df)
+    response_df$response <- log(response_df$svdb_i / response_df$svbl_i)
+  } else {
+    stop("'response' argument must be \"sv\" or \"lrr\".")
   }
-    return(response_df)
+
+  return(response_df)
 }
