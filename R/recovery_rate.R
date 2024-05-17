@@ -23,28 +23,25 @@
 recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
                           svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
+  names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
+
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
-    base_df <- dplyr::left_join(
-      dplyr::rename(dbts_df, "t" = tdb_i),
-      dplyr::rename(blts_df, "t" = tbl_i),
-      by = "t"
-    ) %>%
-      dplyr::mutate(extent = log(svdb_i / svbl_i)) %>%
-      dplyr::select(t, extent)
+
+    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
+    base_df <- merge(dbts_df, blts_df, all.x = TRUE)
+    base_df$extent = log(base_df$svdb_i / base_df$svbl_i)
+
   } else {
     if (bl == "db") {
-      base_df <- dbts_df %>%
-        dplyr::rename(
-          "extent" = svdb_i,
-          "t" = tdb_i
-        )
+      base_df <- dbts_df
+      names(base_df)[names(base_df) == 'svdb_i'] <- 'extent'
     } else {
       stop("bl must be \"input\" or \"db\".")
     }
   }
-  lm_df <- base_df %>%
-    dplyr::filter(t >= min(metric_tf), t <= max(metric_tf))
+  lm_df <- base_df[(base_df$t >= min(metric_tf) & base_df$t <= max(metric_tf)),
+                   c("t", "extent")]
 
   rate_lm <- stats::lm(extent ~ t, data = lm_df)
 
