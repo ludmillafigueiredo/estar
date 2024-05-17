@@ -92,24 +92,24 @@ for example, demographic or environmental stochasticity.
 \examples{
 recovery_extent(
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+  bl = "input", t_rec = 42, svbl_i = "statvar_bl", tbl_i = "time",
   bl_data = aquacomm_resps
 )
 recovery_extent(
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "diff",
-  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+  bl = "input", t_rec = 42, svbl_i = "statvar_bl", tbl_i = "time",
   bl_data = aquacomm_resps
 )
 recovery_extent(
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = 9
+  bl = "db", t_rec = 42, bl_tf = 9
 )
 recovery_extent(
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = c(5, 10)
+  bl = "db", t_rec = 42, bl_tf = c(5, 10)
 )
 recovery_extent(
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+  bl = "db", t_rec = 42, bl_tf = c(5, 10), summ_mode = "median"
 )
 }

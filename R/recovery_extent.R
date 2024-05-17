@@ -26,68 +26,65 @@
 #' @examples
 #' recovery_extent(
 #'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-#'   bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl = "input", t_rec = 42, svbl_i = "statvar_bl", tbl_i = "time",
 #'   bl_data = aquacomm_resps
 #' )
 #' recovery_extent(
 #'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "diff",
-#'   bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
+#'   bl = "input", t_rec = 42, svbl_i = "statvar_bl", tbl_i = "time",
 #'   bl_data = aquacomm_resps
 #' )
 #' recovery_extent(
 #'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-#'   bl = "db", t_rec = 50, bl_tf = 9
+#'   bl = "db", t_rec = 42, bl_tf = 9
 #' )
 #' recovery_extent(
 #'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-#'   bl = "db", t_rec = 50, bl_tf = c(5, 10)
+#'   bl = "db", t_rec = 42, bl_tf = c(5, 10)
 #' )
 #' recovery_extent(
 #'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-#'   bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+#'   bl = "db", t_rec = 42, bl_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
 recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
                             svbl_i = NULL, tbl_i = NULL, bl_data = NULL,
                             bl_tf = NULL, summ_mode = "mean",
                             na_rm = TRUE) {
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
+
+  dbts_df <- format_input("db", svdb_i, tdb_i, db_data)
+
   if (bl == "input") {
-    blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
-    extent_df <- dplyr::left_join(
-      dplyr::rename(dbts_df, "t" = tdb_i),
-      dplyr::rename(blts_df, "t" = tbl_i),
-      by = c("t")
-    ) %>%
-      dplyr::filter(t == t_rec)
+    blts_df <- format_input("bl", svbl_i, tbl_i, bl_data)
+
+    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
+    names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
+
+    extent_df <- merge(dbts_df, blts_df)
+
+    ifelse(!(t_rec %in% extent_df$t),
+           stop("Choose a t_rec for which you have input data."),
+           extent_df <- extent_df[extent_df$t == t_rec,])
   } else {
     if (bl == "db") {
       if (min(bl_tf) == max(bl_tf)) {
         warning("You are using a single point as baseline. Consider an interval, Details.")
       }
       bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
-
-      extent_df <- dbts_df %>%
-        dplyr::filter(tdb_i == t_rec) %>%
-        dplyr::mutate(svbl_i = bl)
+      extent_df <- dbts_df[dbts_df$tdb_i == t_rec, ]
+      extent_df$svbl_i <- bl
     } else {
       stop("bl must be \"input\", \"point\", or \"period\".")
     }
   }
 
   if (response == "lrr") {
-    extent <- extent_df %>%
-      dplyr::mutate(extent = log(svdb_i / svbl_i)) %>%
-      dplyr::pull(extent)
+    extent_df$extent <- log(extent_df$svdb_i / extent_df$svbl_i)
+  } else if (response == "diff") {
+    extent_df$extent <- extent_df$svdb_i - extent_df$svbl_i
   } else {
-    if (response == "diff") {
-      extent <- extent_df %>%
-        dplyr::mutate(extent = svdb_i - svbl_i) %>%
-        dplyr::pull(extent)
-    } else {
-      stop("response must be \"lrr\" or \"diff\"")
-    }
+    stop("response must be \"lrr\" or \"diff\"")
   }
 
-  return(extent)
+  return(extent_df$extent)
 }

@@ -223,22 +223,22 @@ knitr::include_graphics("figures/resistance.png")
 
 ## Extent of recovery
 Extent of recovery calculated as the log response ratio of the state variable in the 
-disturbed and baseline systems (`bl = "input"`), at the predefined time step 
-(`t_rec = 40`, Fig. 4-m,n).
-```{r eval=FALSE}
+disturbed and baseline systems (`bl = "input"`), at a user-defined time step
+(`t_rec = 42`, Fig. 4-m,n).
+```{r}
 # V: in the documentation for recovery_extnt (and probably for some other metrics, please check) please revise the documentation for  svbl_i and tbl_i. It now says that it is "Obligatory argument if bl = 'bl'. But I guess it should be if bl = 'input' (since according to this documentation the only two possible options for bl are: 'input' and 'db') 
 recovery_extent(
-   bl = "input", t_rec = max(aquacomm_fgps$time),  response = "lrr", 
+   bl = "input", t_rec = 42,  response = "lrr", 
    svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps 
 ) 
 ```
 Extent of recovery calculated as the difference between the state variables in a
 disturbed time-series and the baseline (`bl = "input"`), at the predefined
-time step (`t_rec = 50`, Fig. 4-o,p).
-```{r eval=FALSE}
+time step (`t_rec = 42`, Fig. 4-o,p).
+```{r}
 recovery_extent(
-   bl = "input", t_rec = max(aquacomm_fgps$time),  response = "diff", 
+   bl = "input", t_rec = 42,  response = "diff", 
    svdb_i = "statvar_db", tdb_i = "time", svbl_i = "statvar_bl", tbl_i = "time",
    db_data = aquacomm_resps, bl_data = aquacomm_resps
 )
@@ -247,8 +247,8 @@ Extent of recovery calculated as the log response ratio of the state variable
 in the disturbed time-series in relation to the state variable pre-disturbance 
 (`bl = "db"`), summarized by the mean value (`summ_mode = "mean"` - default,
 over a period `bl_tf = c(5, 10)`). The extent of recovery is calculated
-at the predefined time step (`t_rec = 50`).
-```{r eval=FALSE}
+at the end of the time series (`t_rec = max(aquacomm_fgps$time)`).
+```{r}
 recovery_extent(
   bl = "db", t_rec = max(aquacomm_fgps$time), bl_tf = c(5, 10), response = "lrr", 
   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps
