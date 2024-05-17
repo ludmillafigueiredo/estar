@@ -123,8 +123,9 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
         dplyr::filter(t >= min(res_tf), t <= max(res_tf)) %>%
         dplyr::mutate(res = ifelse(res_mode == "lrr", log(svdb_i / svbl_i), svdb_i - svbl_i)) %>%
         dplyr::ungroup() %>%
-        dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm)) %>%
-        dplyr::pull(res)
+        #dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm)) %>%
+        dplyr::pull(res) %>%
+        max(., na.rm = na_rm)
     } else {
       stop("res_time must be \"defined\" or \"max\".")
     }
