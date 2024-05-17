@@ -85,19 +85,19 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
 
-    res_df <- dplyr::inner_join(dplyr::rename(dbts_df, "t" = tdb_i),
-                                dplyr::rename(blts_df, "t" = tbl_i),
-                                by = c("t")
-    )
+    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
+    names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
+
+    res_df <- merge(dbts_df, blts_df)
   } else {
     if (bl == "db") {
       if (min(bl_tf) == max(bl_tf)) {
         warning("You are using a single time point as baseline. Consider a time period, see Details.")
       }
       bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
-      res_df <- dbts_df %>%
-        dplyr::rename("t" = tdb_i) %>%
-        dplyr::mutate(svbl_i = bl)
+      res_df <- data.frame("t" = dbts_df$tdb_i,
+                           "svdb_i" = dbts_df$svdb_i,
+                           "svbl_i" = bl)
     } else {
       stop("bl must be \"input\" or \"db\".")
     }
@@ -106,17 +106,17 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   if (res_time == "defined") {
     res <- res_df %>%
       dplyr::filter(t == res_t) %>%
-      dplyr::mutate(res = ifelse(res_mode == "lrr", log(svdb_i / svbl_i), svdb_i - svbl_i))%>%
+      dplyr::mutate(res = ifelse(res_mode == "lrr",
+                                 log(svdb_i / svbl_i), svdb_i - svbl_i))%>%
       dplyr::pull(res)
   } else {
     if (res_time == "max") {
-      res <- res_df %>%
-        dplyr::filter(t >= min(res_tf), t <= max(res_tf)) %>%
-        dplyr::mutate(res = ifelse(res_mode == "lrr", log(svdb_i / svbl_i), svdb_i - svbl_i)) %>%
-        dplyr::ungroup() %>%
-        #dplyr::filter(abs(res) == max(abs(res), na.rm = na_rm)) %>%
-        dplyr::pull(res) %>%
-        max(., na.rm = na_rm)
+      res_df <- res_df[(res_df$t >= min(res_tf) & res_df$t <= max(res_tf)),]
+      res_df$res <- ifelse(res_mode == "lrr",
+                           log(res_df$svdb_i/res_df$svbl_i),
+                           res_df$svdb_i - res_df$svbl_i)
+
+      res <- max(res_df$res, na.rm = na_rm)
     } else {
       stop("res_time must be \"defined\" or \"max\".")
     }
