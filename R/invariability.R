@@ -40,25 +40,6 @@
 invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
                           vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
 
-  format_input <- function(input, v_v, t_v, data) {
-    if (input == "d") {
-      if (is.null(data)) {
-        input_df <- data.frame("vd_i" = v_v, "td_i" = t_v)
-      } else {
-        input_df <- data.frame(vd_i = data[[v_v]], td_i = data[[t_v]])
-      }
-    } else if (input == "b") {
-      if (is.null(data)) {
-        input_df <- data.frame("vb_i" = v_v, "tb_i" = t_v)
-      } else {
-        input_df <- data.frame(vb_i = data[[v_v]], tb_i = data[[t_v]])
-      }
-    } else {
-      stop("'input' argument must be \"d\" or \"b\".")
-    }
-    return(input_df)
-  }
-
   dts_df <- format_input("d", vd_i, td_i, d_data)
 
   invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
@@ -82,4 +63,3 @@ invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
     stop("'mode' argument must be \"cv\" or \"lm_res\"")
   }
 }
-
