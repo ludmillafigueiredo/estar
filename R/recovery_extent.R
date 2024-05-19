@@ -7,11 +7,21 @@
 #' or as the difference between the state variables in a disturbed
 #' time-series and the baseline. The baseline can be
 #' \itemize{
-#' \item a separate baseline time-series, which is summarized as a mean or median
-#' according to \code{summ_mode}
-#' \item the mean or median of pre-disturbance values of the state variable
-#' in the disturbed system over a period defined by \code{b_tf}}
+#' \item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
+#' \item values of the state variable in the disturbed system over a period
+#' defined by \code{b_tf}
+#' },
 #'
+#' in both cases, a single baseline value is summarized as the the mean or
+#' median (\code{summ_mode}) of the values given.
+#'
+#' @param response a string stating whether the stability metric should be
+#' calculated using the log-response ratio between the values in the disturbed
+#' system and the baseline (\code{response = "lrr"}) or using the state
+#' variable values in the disturbed system alone.
+#' @param summ_mode A string, stating whether the baseline should be summarized as
+#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
+#' Defaults to "mean".
 #' @param t_rec An integer, time point at which the extent of recovery should be
 #' calculated.
 #' @inheritParams univar_params
@@ -72,7 +82,7 @@ recovery_extent <- function(vd_i, td_i, d_data, response, b, t_rec,
       extent_df <- dts_df[dts_df$td_i == t_rec, ]
       extent_df$vb_i <- b
     } else {
-      stop("b must be \"input\", \"point\", or \"period\".")
+      stop("b must be \"input\" or \"d\".")
     }
   }
 

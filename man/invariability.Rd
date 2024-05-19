@@ -28,7 +28,7 @@ in \code{d_data}.}
 
 \item{mode}{A string stating which variant of invariability should be calculated,
 the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-or the on ebased on fitting the linear model \code{"lm_res"}.}
+or the one based on fitting the linear model \code{"lm_res"}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period for which the stability metric should be measured.}
@@ -36,26 +36,25 @@ time period for which the stability metric should be measured.}
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
-\item{response}{a string stating whether the stability metric should be calculated
-using the log-response ratio between the values in the disturbed system and
-the baseline (\code{response = "lrr"}) or using the state variable values in the
-disturbed system alone.}
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone (\code{response == "v"}).}
 
-\item{vb_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{b_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{b = "b"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
 \item{tb_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{b_data}.
-Obligatory argument if \code{b = "b"}.}
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
@@ -73,11 +72,11 @@ state variable.
 }
 \examples{
 invariability(
-  vd_i = "statvar_db", td_i = "time", response = "sv", mode = "cv",
+  vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
   metric_tf = c(11, 50), d_data = aquacomm_resps
 )
 invariability(
-  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "sv",
+  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "v",
   mode = "cv", metric_tf = c(11, 50)
 )
 invariability(

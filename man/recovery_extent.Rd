@@ -31,27 +31,27 @@ in \code{d_data}.}
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
-\item{response}{a string stating whether the stability metric should be calculated
-using the log-response ratio between the values in the disturbed system and
-the baseline (\code{response = "lrr"}) or using the state variable values in the
-disturbed system alone.}
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone.}
 
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
-time period of the disturbed system (\code{b = "d"}), to be defined by \code{b_tf}.}
+time period of the disturbed system (\code{b = "d"}), to be defined
+by \code{b_tf}.}
 
 \item{t_rec}{An integer, time point at which the extent of recovery should be
 calculated.}
 
-\item{vb_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{b_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{b = "b"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
 \item{tb_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{b_data}.
-Obligatory argument if \code{b = "b"}.}
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
@@ -61,11 +61,11 @@ pre-disturbance time period for the disturbed time-series that defines
 the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 
 \item{summ_mode}{A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
 Defaults to "mean".}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a double, the extent of recovery
@@ -78,12 +78,15 @@ between the values in the disturbed system and the baseline
 or as the difference between the state variables in a disturbed
 time-series and the baseline. The baseline can be
 \itemize{
-\item a separate baseline time-series, which is summarized as a mean or median
-according to \code{summ_mode}
-\item the mean or median of pre-disturbance values of the state variable
-in the disturbed system over a period defined by \code{b_tf}}
+\item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
+\item values of the state variable in the disturbed system over a period
+defined by \code{b_tf}
+},
 }
 \details{
+in both cases, a single baseline value is summarized as the the mean or
+median (\code{summ_mode}) of the values given.
+
 Even though it is possible to use a single data value as baseline
 (by passing a double to \code{b_tf}), it is not recommended, because a
 single value does not account for any variability in the system arising from,

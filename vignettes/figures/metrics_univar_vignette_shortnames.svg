@@ -1638,9 +1638,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7902995"
-     inkscape:cx="94.118331"
-     inkscape:cy="818.29884"
+     inkscape:zoom="3.580599"
+     inkscape:cx="112.41136"
+     inkscape:cy="548.23229"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -2723,7 +2723,7 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path13046-9-3-9-57-8-1-4-2-4"
-       d="M 30.280173,155.05567 V 136.30328"
+       d="M 32.926008,155.05567 V 136.30328"
        style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
     <text
        inkscape:export-ydpi="600"
@@ -2747,12 +2747,12 @@
        inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
        id="text13082-9-6-9-1-4-6-2-9-0-9-5"
        y="157.9095"
-       x="37.627956"
+       x="39.215458"
        style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
        xml:space="preserve"><tspan
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
          y="157.9095"
-         x="37.627956"
+         x="39.215458"
          id="tspan13080-6-8-5-3-2-7-0-8-0-3-6"
          sodipodi:role="line">t<tspan
    id="tspan24875"
@@ -2763,12 +2763,12 @@
        inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
        id="text13082-9-6-9-1-4-6-2-9-0-9-4"
        y="147.52055"
-       x="32.579952"
+       x="34.167454"
        style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
        xml:space="preserve"><tspan
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
          y="147.52055"
-         x="32.579952"
+         x="34.167454"
          id="tspan13080-6-8-5-3-2-7-0-8-0-3-69"
          sodipodi:role="line"><tspan
    id="tspan11609"
@@ -2800,11 +2800,11 @@
        inkscape:export-xdpi="600"
        inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
        y="137.37303"
-       x="30.174944"
+       x="33.072918"
        height="3.2171621"
-       width="15.692913"
+       width="12.79494"
        id="rect26389"
-       style="opacity:0.6;fill:#0c0787;fill-opacity:0.564706;stroke:none;stroke-width:0.212175;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.941176" />
+       style="opacity:0.6;fill:#0c0787;fill-opacity:0.564706;stroke:none;stroke-width:0.191585;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.941176" />
     <text
        inkscape:export-ydpi="600"
        inkscape:export-xdpi="600"
@@ -2841,8 +2841,8 @@
        inkscape:export-ydpi="600"
        inkscape:export-xdpi="600"
        inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/eStar_main/eStar/vignettes/persistence.png"
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.174808;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL);marker-end:url(#StopL)"
-       d="m 30.23146,156.23434 c 15.635135,0 15.635135,0 15.635135,0"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.158128;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL);marker-end:url(#StopL)"
+       d="m 33.072917,156.23434 c 12.793678,0 12.793678,0 12.793678,0"
        id="path23808-7"
        inkscape:connector-curvature="0" />
     <text

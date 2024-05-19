@@ -3,7 +3,7 @@
 #' @param input a string stating whether the data frame to be created is
 #' for the disturbed system (\code{input = "d"}) or for the baseline
 #' (\code{input = "b"}))
-#' @param v_v a numerical vector passed to the function as \code{sv_resp} or
+#' @param v_v a numerical vector passed to the function as \code{v_resp} or
 #' \code{v_b}
 #' @param t_v a numerical vector passed to the function as \code{t_resp},
 #' \code{t_b} or \code{NULL}

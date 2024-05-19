@@ -30,26 +30,26 @@ state variable values in a disturbed system.}
 
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
-time period of the disturbed system (\code{b = "d"}), to be defined by \code{b_tf}.}
+time period of the disturbed system (\code{b = "d"}), to be defined
+by \code{b_tf}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period for which the stability metric should be measured.}
 
-\item{vb_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{b_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{b = "b"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
 \item{tb_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{b_data}.
-Obligatory argument if \code{b = "b"}.}
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a double, the rate of recovery

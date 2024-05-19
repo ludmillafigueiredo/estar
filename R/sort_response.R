@@ -1,7 +1,7 @@
 #' Organize the response variable upon which the statbility metric will be calculated
 #'
 #' @param response a string stating whether the values of the state variable in
-#' the disturbed scenario (\code{response == "sv"}) or its log ratio in relation
+#' the disturbed scenario (\code{response == "v"}) or its log ratio in relation
 #' to baseline should be taken as the response used to calculate the metric.
 #' @param dts_df the internal dataframe composed from the inputs regarding the
 #' disturbed scenario
@@ -21,7 +21,7 @@
 #' @noRd
 #' @export
 sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
-  if (response == "sv") {
+  if (response == "v") {
     response_df <- setNames(dts_df, c("response", "t"))
   } else if (response == "lrr") {
     bts_df <- format_input("b", vb_i, tb_i, b_data)
@@ -31,7 +31,7 @@ sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
     response_df$response <- log(response_df$vd_i / response_df$vb_i)
 
   } else {
-    stop("'response' argument must be \"sv\" or \"lrr\".")
+    stop("'response' argument must be \"v\" or \"lrr\".")
   }
 
   return(response_df)

@@ -3,23 +3,26 @@
 #' \code{resistance} returns the distance of a state variable to a baseline
 #' value at a specified time point. The distance is calculated as the maximal
 #' absolute difference between the state variables in the disturbed system and
-#' the baseline, or as the maximal log response ratio between these state variables,
-#' at a specified time point.
+#' the baseline, or as the maximal log response ratio between these state
+#' variables, at a specified time point.
 #' See details on how to specify the values.
 #'
 #' @param res_mode A string stating whether the resistance should be calculated
 #' as the log response ratio of the state variable in the disturbed system
 #' compared to the baseline (\code{res_mode = "lrr"}) or the difference
-#' (\code{res_mode = "diff"}) between the values of these state variables. See details.
+#' (\code{res_mode = "diff"}) between the values of these state variables.
+#' See details.
 #' @param res_time A string stating whether resistance should be calculated at
-#' a specific point in time (\code{res_time = "defined"}) or if it should be taken
-#' as the maximal difference between the disturbed and baseline state variables
-#' over a specified time period (\code{res_time = "max"}. Time point or the time
-#' period are defined by \code{res_t} and \code{res_tf}, respectively. See details.
+#' a specific point in time (\code{res_time = "defined"}) or if it should be
+#' taken as the maximal difference between the disturbed and baseline state
+#' variables over a specified time period (\code{res_time = "max"}. Time point
+#' or the time period are defined by \code{res_t} and \code{res_tf},
+#' respectively.
+#' See details.
 #' @param res_t An integer defining the time point when resistance should be
 #' measured if \code{res_time = "defined"}).
 #' @param res_tf A vector, specifying the time period for which the maximum
-#' resistance should be looked for, if \code{b = "input"}. ## V: but also if b = 'd', right?
+#' resistance should be looked for, if \code{res_time = "max"}.
 #' @inheritParams univar_params
 #'
 #' @details If resistance is calculated at a specific time point, it is
@@ -68,12 +71,12 @@
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   summ_mode = "median", res_mode = "lrr", b_tf = 9, res_time = "max",
+#'   res_mode = "lrr", b_tf = 9, res_time = "max",
 #'   res_tf = c(11, 50)
 #' )
 #' @export
-resistance <- function(vd_i, td_i, d_data = NULL, b, summ_mode = "mean",
-                       vb_i = NULL, tb_i = NULL, b_data = NULL, b_tf = NULL,
+resistance <- function(vd_i, td_i, d_data = NULL, b,vb_i = NULL,
+                       tb_i = NULL, b_data = NULL, b_tf = NULL,
                        res_mode, res_time, res_t = NULL, res_tf = NULL,
                        na_rm = TRUE) {
   if (!(res_mode %in% c("lrr", "diff"))) {
@@ -92,7 +95,7 @@ resistance <- function(vd_i, td_i, d_data = NULL, b, summ_mode = "mean",
       if (min(b_tf) == max(b_tf)) {
         warning("You are using a single time point as baseline. Consider a time period, see Details.")
       }
-      b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
+      b <- summ_d2b(dts_df, b_tf, "mean", na_rm)
       res_df <- data.frame("t" = dts_df$td_i,
                            "vd_i" = dts_df$vd_i,
                            "vb_i" = b)

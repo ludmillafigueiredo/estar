@@ -52,7 +52,7 @@ persistence <-
 
     if (b == "input") {
       bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
-      names(bts_df)[which(names(bts_df) == "vb_i")] <- "sv"
+      names(bts_df)[which(names(bts_df) == "vb_i")] <- "v"
     } else {
       if (b == "d") {
         if (max(b_tf) > min(metric_tf)) {
@@ -60,18 +60,18 @@ persistence <-
         }
         bts_df <-
           subset(dts_df, td_i >= min(b_tf) & td_i <= max(b_tf))
-        names(bts_df)[which(names(bts_df) == "vd_i")] <- "sv"
+        names(bts_df)[which(names(bts_df) == "vd_i")] <- "v"
       } else {
         stop("b must be \"input\" or \"d\".")
       }
     }
 
     perst_zone <- list(
-      mean_sv = mean(bts_df$sv, na.rm = na_rm),
-      sd_sv = sd(bts_df$sv, na.rm = na_rm)
+      mean_v = mean(bts_df$v, na.rm = na_rm),
+      sd_v = sd(bts_df$v, na.rm = na_rm)
     )
-    perst_zone$low_lim <- perst_zone$mean_sv - perst_zone$sd_sv
-    perst_zone$high_lim <- perst_zone$mean_sv + perst_zone$sd_sv
+    perst_zone$low_lim <- perst_zone$mean_v - perst_zone$sd_v
+    perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
 
     persistence_df <-
       subset(dts_df, td_i >= min(metric_tf) & td_i <= max(metric_tf))

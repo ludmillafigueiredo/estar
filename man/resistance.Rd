@@ -9,7 +9,6 @@ resistance(
   td_i,
   d_data = NULL,
   b,
-  summ_mode = "mean",
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
@@ -35,21 +34,17 @@ state variable values in a disturbed system.}
 
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
-time period of the disturbed system (\code{b = "d"}), to be defined by \code{b_tf}.}
+time period of the disturbed system (\code{b = "d"}), to be defined
+by \code{b_tf}.}
 
-\item{summ_mode}{A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
-Defaults to "mean".}
-
-\item{vb_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{b_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{b = "b"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
 \item{tb_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{b_data}.
-Obligatory argument if \code{b = "b"}.}
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
@@ -61,22 +56,25 @@ the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 \item{res_mode}{A string stating whether the resistance should be calculated
 as the log response ratio of the state variable in the disturbed system
 compared to the baseline (\code{res_mode = "lrr"}) or the difference
-(\code{res_mode = "diff"}) between the values of these state variables. See details.}
+(\code{res_mode = "diff"}) between the values of these state variables.
+See details.}
 
 \item{res_time}{A string stating whether resistance should be calculated at
-a specific point in time (\code{res_time = "defined"}) or if it should be taken
-as the maximal difference between the disturbed and baseline state variables
-over a specified time period (\code{res_time = "max"}. Time point or the time
-period are defined by \code{res_t} and \code{res_tf}, respectively. See details.}
+a specific point in time (\code{res_time = "defined"}) or if it should be
+taken as the maximal difference between the disturbed and baseline state
+variables over a specified time period (\code{res_time = "max"}. Time point
+or the time period are defined by \code{res_t} and \code{res_tf},
+respectively.
+See details.}
 
 \item{res_t}{An integer defining the time point when resistance should be
 measured if \code{res_time = "defined"}).}
 
 \item{res_tf}{A vector, specifying the time period for which the maximum
-resistance should be looked for, if \code{b = "input"}. ## V: but also if b = 'd', right?}
+resistance should be looked for, if \code{res_time = "max"}.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 A double, the resistance of the state variable to disturbance.
@@ -85,8 +83,8 @@ A double, the resistance of the state variable to disturbance.
 \code{resistance} returns the distance of a state variable to a baseline
 value at a specified time point. The distance is calculated as the maximal
 absolute difference between the state variables in the disturbed system and
-the baseline, or as the maximal log response ratio between these state variables,
-at a specified time point.
+the baseline, or as the maximal log response ratio between these state
+variables, at a specified time point.
 See details on how to specify the values.
 }
 \details{
@@ -134,7 +132,7 @@ resistance(
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  summ_mode = "median", res_mode = "lrr", b_tf = 9, res_time = "max",
+  res_mode = "lrr", b_tf = 9, res_time = "max",
   res_tf = c(11, 50)
 )
 }

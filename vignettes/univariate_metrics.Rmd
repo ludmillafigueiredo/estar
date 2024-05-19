@@ -121,12 +121,10 @@ The time frame is defined by `tb_i` and specified in the data frame
 `d_data` (`aquacomm_resps`, Fig. 2-a).
 
 ```{r}
-invariability(
-     response = "lrr", mode = "lm_res",
-     vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
-     metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
-     d_data = aquacomm_resps, b_data = aquacomm_resps
-)
+invariability(response = "lrr", mode = "lm_res",
+              vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time",
+              metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time",
+              d_data = aquacomm_resps, b_data = aquacomm_resps)
 ```
 
 Invariability calculated as the inverse of standard deviation of residuals of the
@@ -134,7 +132,7 @@ linear model fitted to predict the state variable in the disturbed system by
 time (Fig. 2-b).
 ```{r}
 invariability(
-  response = "sv", mode = "lm_res",
+  response = "v", mode = "lm_res",
      vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
      d_data = aquacomm_resps, b_data = aquacomm_resps
@@ -156,14 +154,14 @@ Invariability calculated as the inverse of the coefficient of variation of a sta
 variable in the disturbed system (Fig. 2-d).
 ```{r}
 invariability(
-     response = "sv", mode = "cv",
+     response = "v", mode = "cv",
      vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
      d_data = aquacomm_resps, b_data = aquacomm_resps
 )
 ```
 
-```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'SV' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
 knitr::include_graphics("figures/invariability.png")
 ```
 ## Resistance
@@ -173,8 +171,6 @@ as the log response ratio (`res_mode = "lrr"`) of the state variable in the
 disturbed and baseline systems at the first time step following 
 disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-e,f).
 ```{r}
-# V: please check in the code carefully whether the documentation for res_tf is correct. Does it work onlu for b = 'input', or does it also work if we use the pre-disturbed time series as input (i.e b = 'd')? Another point that has to be added here in the documentation: res_tf is needed if res_time = 'max'.
-# V: please remove the argument summ_mode from the resistance documentation, it is not needed to summarise the baseline time series in any way for calculating the resistance. Also, for the documentaton for summ_mode correct in one place to "median" instead of "mean" (as an option)
 resistance(
   b = "input", res_mode = "lrr", res_time = "defined", res_t = 1,
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time", 
@@ -216,8 +212,7 @@ resistance(
 )
 ```
 
-```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'SV' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
-# V: I think it may be helpful for the reader to explain what are R and Er on the plot (this Er may be misleading as below Er is used to denote extent of recovery....)
+```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
 ```
 
@@ -226,7 +221,6 @@ Extent of recovery calculated as the log response ratio of the state variable in
 disturbed and baseline systems (`b = "input"`), at a user-defined time step
 (`t_rec = 42`, Fig. 4-m,n).
 ```{r}
-# V: in the documentation for recovery_extnt (and probably for some other metrics, please check) please revise the documentation for  vb_i and tb_i. It now says that it is "Obligatory argument if b = 'b'. But I guess it should be if b = 'input' (since according to this documentation the only two possible options for b are: 'input' and 'd') 
 recovery_extent(
    b = "input", t_rec = 42,  response = "lrr", 
    vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
@@ -256,7 +250,6 @@ recovery_extent(
 ```
 
 ```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'Diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
-#V: unclear why on this figure there are m-n) and o-p) labels if there are two panels only? revise
 knitr::include_graphics("figures/extent_recovery.png")
 ```
 
@@ -277,8 +270,17 @@ Rate of recovery calculated as the slope of the linear model which predicts the
 the values of the state variable in the disturbed system (`b = "d`) 
 by time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-r).
 ```{r}
-#V: the documentation for b is written to be used generally but multiple functions but here it does not work so well. It says that there will be a time period defined by b_tf() (which is needed for other functions) but b_tf is unused and obsolete here. I do not have a good and parsimonious solution on how to write the documentation for b argument such that it could be reused across the metrics, perhaps in this case actually it has to be specifically written for those particular metrics?..
-# Maybe for the general description of this metris it would be good to add after "... or the log-response ratio (LRR) of the state variable in the disturbed system compared to the baseline" something like "if b = "input" (because I guess then it happens automatically, here the user does not need to explicitely state "lrr" as an option to some of the arguments)
+#V: the documentation for b is written to be used generally but multiple functions 
+# but here it does not work so well. It says that there will be a time period defined 
+# by b_tf() (which is needed for other functions) but b_tf is unused and obsolete here. 
+# I do not have a good and parsimonious solution on how to write the documentation for
+#  b argument such that it could be reused across the metrics, perhaps in this case actually 
+# it has to be specifically written for those particular metrics?..
+# Maybe for the general description of this metris it would be good to add after 
+# "... or the log-response ratio (LRR) of the state variable in the disturbed system 
+# compared to the baseline" something like "if b = "input" (because I guess then it 
+# happens automatically, here the user does not need to explicitely state "lrr" as an option
+#  to some of the arguments)
 recovery_rate(
   b = "d", metric_tf = c(1, max(aquacomm_fgps$time)), 
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
@@ -286,7 +288,7 @@ recovery_rate(
 )
 ```
 
-```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'SV' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
+```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
@@ -313,8 +315,10 @@ persistence(
 )
 ```
 
-```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'SV' refers to 'state variable', 'limu' and 'liml' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
-# V: for this figure please use as the beginning of the period over which the metric is calculated the first time point after the disturbance (so the first value for metric_tf should be "time of disturbance" + 1)
+```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+# V: for this figure please use as the beginning of the period over which the metric is calculated
+# the first time point after the disturbance (so the first value for metric_tf should be "time of disturbance" + 1)
+# TODO: is this function actually correct?
 knitr::include_graphics("figures/persistence.png")
 ```
 

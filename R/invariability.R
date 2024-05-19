@@ -12,18 +12,22 @@
 #'
 #' @param mode A string stating which variant of invariability should be calculated,
 #' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-#' or the on ebased on fitting the linear model \code{"lm_res"}.
+#' or the one based on fitting the linear model \code{"lm_res"}.
+#' @param response a string stating whether the stability metric should be
+#' calculated using the log-response ratio between the values in the disturbed
+#' system and the baseline (\code{response = "lrr"}) or using the state
+#' variable values in the disturbed system alone (\code{response == "v"}).
 #' @inheritParams univar_params
 #'
 #' @return a numeric, the invariability value.
 #'
 #' @examples
 #' invariability(
-#'   vd_i = "statvar_db", td_i = "time", response = "sv", mode = "cv",
+#'   vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
 #'   metric_tf = c(11, 50), d_data = aquacomm_resps
 #' )
 #' invariability(
-#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "sv",
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "v",
 #'   mode = "cv", metric_tf = c(11, 50)
 #' )
 #' invariability(

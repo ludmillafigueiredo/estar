@@ -11,7 +11,7 @@ format_input(input, v_v, t_v, data)
 for the disturbed system (\code{input = "d"}) or for the baseline
 (\code{input = "b"}))}
 
-\item{v_v}{a numerical vector passed to the function as \code{sv_resp} or
+\item{v_v}{a numerical vector passed to the function as \code{v_resp} or
 \code{v_b}}
 
 \item{t_v}{a numerical vector passed to the function as \code{t_resp},
