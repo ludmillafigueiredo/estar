@@ -23,19 +23,20 @@
 recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
                           svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
   dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
-  names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
 
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
 
-    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
-    base_df <- merge(dbts_df, blts_df, all.x = TRUE)
+    base_df <- merge(data.frame("svdb_i" = dbts_df$svdb_i, "t" = dbts_df$tdb_i),
+                     data.frame("svbl_i" = blts_df$svbl_i, "t" = blts_df$tbl_i),
+                     all.x = TRUE)
     base_df$extent = log(base_df$svdb_i / base_df$svbl_i)
 
   } else {
     if (bl == "db") {
       base_df <- dbts_df
       names(base_df)[names(base_df) == 'svdb_i'] <- 'extent'
+      names(base_df)[names(base_df) == 'tdb_i'] <- 't'
     } else {
       stop("bl must be \"input\" or \"db\".")
     }

@@ -85,10 +85,8 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
   if (bl == "input") {
     blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
 
-    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
-    names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
-
-    res_df <- merge(dbts_df, blts_df)
+    res_df <- merge(data.frame("svdb_i" = dbts_df$svdb_i, "t" = dbts_df$tdb_i),
+                    data.frame("svbl_i" = blts_df$svbl_i, "t" = blts_df$tbl_i))
   } else {
     if (bl == "db") {
       if (min(bl_tf) == max(bl_tf)) {

@@ -57,10 +57,8 @@ recovery_extent <- function(svdb_i, tdb_i, db_data, response, bl, t_rec,
   if (bl == "input") {
     blts_df <- format_input("bl", svbl_i, tbl_i, bl_data)
 
-    names(blts_df)[names(blts_df) == 'tbl_i'] <- 't'
-    names(dbts_df)[names(dbts_df) == 'tdb_i'] <- 't'
-
-    extent_df <- merge(dbts_df, blts_df)
+    extent_df <- merge(data.frame("svdb_i" = dbts_df$svdb_i, "t" = dbts_df$tdb_i),
+                       data.frame("svbl_i" = blts_df$svbl_i, "t" = blts_df$tbl_i))
 
     ifelse(!(t_rec %in% extent_df$t),
            stop("Choose a t_rec for which you have input data."),
