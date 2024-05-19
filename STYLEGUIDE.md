@@ -10,9 +10,9 @@ Object's names are composed of abbreviations indicating to which scenario they r
 and suffixes indicating the type of object they are(not necessarily R types):
 - `sv` state variable.
 - `t` time.
-- `db` refers to 'disturbed' system, usually the focus of analysis.
+- `d` refers to 'disturbed' system, usually the focus of analysis.
 - `udb` refers to 'undisturbed' system, usually the baseline.
-- `bl` baseline.
+- `b` baseline.
 - `_i` input vector or column name of **input**.
 - `_c` column name in **internal** data frame.
 - `_data` input dataframe.

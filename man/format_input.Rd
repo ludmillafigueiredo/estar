@@ -4,21 +4,21 @@
 \alias{format_input}
 \title{Compose a standardized dataframe to be wrangled by the function}
 \usage{
-format_input(input, sv_v, t_v, data)
+format_input(input, v_v, t_v, data)
 }
 \arguments{
 \item{input}{a string stating whether the data frame to be created is
-for the disturbed system (\code{input = "dtb"}) or for the baseline
-(\code{input = "bl"}))}
+for the disturbed system (\code{input = "d"}) or for the baseline
+(\code{input = "b"}))}
 
-\item{sv_v}{a numerical vector passed to the function as \code{sv_resp} or
-\code{sv_bl}}
+\item{v_v}{a numerical vector passed to the function as \code{sv_resp} or
+\code{v_b}}
 
 \item{t_v}{a numerical vector passed to the function as \code{t_resp},
-\code{t_bl} or \code{NULL}}
+\code{t_b} or \code{NULL}}
 
 \item{data}{a dataframe passed to the function as \code{data_resp},
-\code{data_bl} or \code{NULL}}
+\code{data_b} or \code{NULL}}
 }
 \description{
 Compose a standardized dataframe to be wrangled by the function

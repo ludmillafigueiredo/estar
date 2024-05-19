@@ -19,14 +19,14 @@
 #' @param res_t An integer defining the time point when resistance should be
 #' measured if \code{res_time = "defined"}).
 #' @param res_tf A vector, specifying the time period for which the maximum
-#' resistance should be looked for, if \code{bl = "input"}. ## V: but also if bl = 'db', right?
+#' resistance should be looked for, if \code{b = "input"}. ## V: but also if b = 'd', right?
 #' @inheritParams univar_params
 #'
 #' @details If resistance is calculated at a specific time point, it is
 #' conventionally the first time point after the disturbance.
 #'
 #' Even though it is possible to use a single data value as baseline
-#' (by passing a double to \code{bl_tf}), it is not recommended, because a
+#' (by passing a double to \code{b_tf}), it is not recommended, because a
 #' single value does not account for any variability in the system arising from,
 #' for example, demographic or environmental stochasticity.
 #'
@@ -34,70 +34,70 @@
 #'
 #' @examples
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
 #'   res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
 #'   res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-#'   bl_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-#'   bl_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
 #'   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps,
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
 #'   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-#'   res_mode = "lrr", bl_tf = 9, res_time = "max",
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   res_mode = "lrr", b_tf = 9, res_time = "max",
 #'   res_tf = c(11, 50)
 #' )
 #' resistance(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-#'   summ_mode = "median", res_mode = "lrr", bl_tf = 9, res_time = "max",
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   summ_mode = "median", res_mode = "lrr", b_tf = 9, res_time = "max",
 #'   res_tf = c(11, 50)
 #' )
 #' @export
-resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
-                       svbl_i = NULL, tbl_i = NULL, bl_data = NULL, bl_tf = NULL,
+resistance <- function(vd_i, td_i, d_data = NULL, b, summ_mode = "mean",
+                       vb_i = NULL, tb_i = NULL, b_data = NULL, b_tf = NULL,
                        res_mode, res_time, res_t = NULL, res_tf = NULL,
                        na_rm = TRUE) {
   if (!(res_mode %in% c("lrr", "diff"))) {
     stop("res_mode must be \"lrr\" or \"diff\".")
   }
 
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
+  dts_df <- format_input(input = "d", vd_i, td_i, d_data)
 
-  if (bl == "input") {
-    blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
+  if (b == "input") {
+    bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
 
-    res_df <- merge(data.frame("svdb_i" = dbts_df$svdb_i, "t" = dbts_df$tdb_i),
-                    data.frame("svbl_i" = blts_df$svbl_i, "t" = blts_df$tbl_i))
+    res_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+                    data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i))
   } else {
-    if (bl == "db") {
-      if (min(bl_tf) == max(bl_tf)) {
+    if (b == "d") {
+      if (min(b_tf) == max(b_tf)) {
         warning("You are using a single time point as baseline. Consider a time period, see Details.")
       }
-      bl <- summ_db2bl(dbts_df, bl_tf, summ_mode, na_rm)
-      res_df <- data.frame("t" = dbts_df$tdb_i,
-                           "svdb_i" = dbts_df$svdb_i,
-                           "svbl_i" = bl)
+      b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
+      res_df <- data.frame("t" = dts_df$td_i,
+                           "vd_i" = dts_df$vd_i,
+                           "vb_i" = b)
     } else {
-      stop("bl must be \"input\" or \"db\".")
+      stop("b must be \"input\" or \"d\".")
     }
   }
 
@@ -105,14 +105,14 @@ resistance <- function(svdb_i, tdb_i, db_data = NULL, bl, summ_mode = "mean",
     res <- res_df %>%
       dplyr::filter(t == res_t) %>%
       dplyr::mutate(res = ifelse(res_mode == "lrr",
-                                 log(svdb_i / svbl_i), svdb_i - svbl_i))%>%
+                                 log(vd_i / vb_i), vd_i - vb_i))%>%
       dplyr::pull(res)
   } else {
     if (res_time == "max") {
       res_df <- res_df[(res_df$t >= min(res_tf) & res_df$t <= max(res_tf)),]
       res_df$res <- ifelse(res_mode == "lrr",
-                           log(res_df$svdb_i/res_df$svbl_i),
-                           res_df$svdb_i - res_df$svbl_i)
+                           log(res_df$vd_i/res_df$vb_i),
+                           res_df$vd_i - res_df$vb_i)
 
       res <- max(res_df$res, na.rm = na_rm)
     } else {

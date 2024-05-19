@@ -12,33 +12,33 @@
 #'
 #' @examples
 #' recovery_rate(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
 #'   metric_tf = c(12, 50)
 #' )
 #' recovery_rate(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   metric_tf = c(12, 50), svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   metric_tf = c(12, 50), vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 #' )
 #' @export
-recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
-                          svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
+recovery_rate <- function(vd_i, td_i, d_data, b, metric_tf,
+                          vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
+  dts_df <- format_input(input = "d", vd_i, td_i, d_data)
 
-  if (bl == "input") {
-    blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
+  if (b == "input") {
+    bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
 
-    base_df <- merge(data.frame("svdb_i" = dbts_df$svdb_i, "t" = dbts_df$tdb_i),
-                     data.frame("svbl_i" = blts_df$svbl_i, "t" = blts_df$tbl_i),
+    base_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+                     data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i),
                      all.x = TRUE)
-    base_df$extent = log(base_df$svdb_i / base_df$svbl_i)
+    base_df$extent = log(base_df$vd_i / base_df$vb_i)
 
   } else {
-    if (bl == "db") {
-      base_df <- dbts_df
-      names(base_df)[names(base_df) == 'svdb_i'] <- 'extent'
-      names(base_df)[names(base_df) == 'tdb_i'] <- 't'
+    if (b == "d") {
+      base_df <- dts_df
+      names(base_df)[names(base_df) == 'vd_i'] <- 'extent'
+      names(base_df)[names(base_df) == 'td_i'] <- 't'
     } else {
-      stop("bl must be \"input\" or \"db\".")
+      stop("b must be \"input\" or \"d\".")
     }
   }
   lm_df <- base_df[(base_df$t >= min(metric_tf) & base_df$t <= max(metric_tf)),

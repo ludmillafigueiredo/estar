@@ -19,49 +19,49 @@
 #'
 #' @examples
 #' invariability(
-#'   svdb_i = "statvar_db", tdb_i = "time", response = "sv", mode = "cv",
-#'   metric_tf = c(11, 50), db_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", response = "sv", mode = "cv",
+#'   metric_tf = c(11, 50), d_data = aquacomm_resps
 #' )
 #' invariability(
-#'   svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "sv",
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "sv",
 #'   mode = "cv", metric_tf = c(11, 50)
 #' )
 #' invariability(
-#'   svdb_i = "statvar_db", tdb_i = "time", response = "lrr", mode = "lm_res",
-#'   metric_tf = c(11, 50), db_data = aquacomm_resps, svbl_i = "statvar_bl",
-#'   tbl_i = "time", bl_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
+#'   metric_tf = c(11, 50), d_data = aquacomm_resps, vb_i = "statvar_bl",
+#'   tb_i = "time", b_data = aquacomm_resps
 #' )
 #' invariability(
-#'   svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "lrr",
-#'   metric_tf = c(11, 50), mode = "lm_res", svbl_i = aquacomm_resps$statvar_bl,
-#'   tbl_i = aquacomm_resps$time
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "lrr",
+#'   metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
+#'   tb_i = aquacomm_resps$time
 #' )
 #' @export
-invariability <- function(svdb_i, tdb_i, mode, metric_tf, db_data = NULL, response,
-                          svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
+invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
+                          vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
 
-  format_input <- function(input, sv_v, t_v, data) {
-    if (input == "db") {
+  format_input <- function(input, v_v, t_v, data) {
+    if (input == "d") {
       if (is.null(data)) {
-        input_df <- data.frame("svdb_i" = sv_v, "tdb_i" = t_v)
+        input_df <- data.frame("vd_i" = v_v, "td_i" = t_v)
       } else {
-        input_df <- data.frame(svdb_i = data[[sv_v]], tdb_i = data[[t_v]])
+        input_df <- data.frame(vd_i = data[[v_v]], td_i = data[[t_v]])
       }
-    } else if (input == "bl") {
+    } else if (input == "b") {
       if (is.null(data)) {
-        input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
+        input_df <- data.frame("vb_i" = v_v, "tb_i" = t_v)
       } else {
-        input_df <- data.frame(svbl_i = data[[sv_v]], tbl_i = data[[t_v]])
+        input_df <- data.frame(vb_i = data[[v_v]], tb_i = data[[t_v]])
       }
     } else {
-      stop("'input' argument must be \"db\" or \"bl\".")
+      stop("'input' argument must be \"d\" or \"b\".")
     }
     return(input_df)
   }
 
-  dbts_df <- format_input("db", svdb_i, tdb_i, db_data)
+  dts_df <- format_input("d", vd_i, td_i, d_data)
 
-  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, bl_data)
+  invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
   invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
 
   if (any(is.na(invar_df$response))) {
