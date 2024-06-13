@@ -105,10 +105,11 @@ resistance <- function(vd_i, td_i, d_data = NULL, b,vb_i = NULL,
   }
 
   if (res_time == "defined") {
-    res <- res_df %>%
-      dplyr::filter(t == res_t) %>%
+    ## TODO: still some tidyverse functions and piping here to be replaced
+    res <- res_df |>
+      dplyr::filter(t == res_t) |>
       dplyr::mutate(res = ifelse(res_mode == "lrr",
-                                 log(vd_i / vb_i), vd_i - vb_i))%>%
+                                 log(vd_i / vb_i), vd_i - vb_i)) |>
       dplyr::pull(res)
   } else {
     if (res_time == "max") {

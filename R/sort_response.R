@@ -16,13 +16,10 @@
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tb_i} and \code{vb_i}, respectively.
 #'
-#' @inheritParams univar_params
-#'
-#' @noRd
 #' @export
 sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
   if (response == "v") {
-    response_df <- setNames(dts_df, c("response", "t"))
+    response_df <- stats::setNames(dts_df, c("response", "t"))
   } else if (response == "lrr") {
     bts_df <- format_input("b", vb_i, tb_i, b_data)
 
