@@ -6,16 +6,6 @@
 \title{Macroinvertebrate aquatic community.}
 \format{
 A data frame with five variables:
-\describe{
-\item{time}{sequential week number relative to the application of insecticide}
-\item{treat}{concentration of insecticide}
-\item{repli}{number of replicate}
-\item{herb}{abundance of herbivores}
-\item{detr_herb}{abundance of detri-herbivores}
-\item{carn}{abundance of carnivores}
-\item{omni}{abundance of omnivores}
-\item{detr}{abundance of detrivores}
-}
 }
 \usage{
 aquacomm_fgps
@@ -23,4 +13,24 @@ aquacomm_fgps
 \description{
 Dataset compiled from an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community \link{@vandenbrick_effects_1996; @vanwijngaarden_effects_1996}. The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
 }
+\section{Fields}{
+
+\describe{
+\item{\code{time}}{sequential week number relative to the application of insecticide}
+
+\item{\code{treat}}{concentration of insecticide}
+
+\item{\code{repli}}{number of replicate}
+
+\item{\code{herb}}{abundance of herbivores}
+
+\item{\code{detr_herb}}{abundance of detri-herbivores}
+
+\item{\code{carn}}{abundance of carnivores}
+
+\item{\code{omni}}{abundance of omnivores}
+
+\item{\code{detr}}{abundance of detrivores}
+}}
+
 \keyword{datasets}

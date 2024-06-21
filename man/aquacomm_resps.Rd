@@ -6,14 +6,6 @@
 \title{Macroinvertebrate aquatic community formatted for univariate metrics.}
 \format{
 A data frame with five variables:
-\describe{
-\item{time}{sequential week number relative to the application of insecticide}
-\item{carn_0}{mean abundance of carnivores in control replicates}
-\item{carn_0.1}{mean abundance of carnivores in eplicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide}
-\item{carn_0.9}{mean abundance of carnivores in replicates subjected to 0.9 nano g/L}
-\item{carn_6}{mean abundance of carnivores in replicates subjected to 6 nano g/L}
-\item{carn_44}{mean abundance of carnivores in replicates subjected to 44 nano g/L}
-}
 }
 \source{
 \code{
@@ -37,4 +29,20 @@ aquacomm_resps
 \description{
 Data frame compiled from \code{aquacomm_fgps}
 }
+\section{Fields}{
+
+\describe{
+\item{\code{time}}{sequential week number relative to the application of insecticide}
+
+\item{\code{carn_0}}{mean abundance of carnivores in control replicates}
+
+\item{\code{carn_0.1}}{mean abundance of carnivores in eplicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide}
+
+\item{\code{carn_0.9}}{mean abundance of carnivores in replicates subjected to 0.9 nano g/L}
+
+\item{\code{carn_6}}{mean abundance of carnivores in replicates subjected to 6 nano g/L}
+
+\item{\code{carn_44}}{mean abundance of carnivores in replicates subjected to 44 nano g/L}
+}}
+
 \keyword{datasets}

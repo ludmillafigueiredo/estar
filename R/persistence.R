@@ -68,7 +68,7 @@ persistence <-
 
     perst_zone <- list(
       mean_v = mean(bts_df$v, na.rm = na_rm),
-      sd_v = sd(bts_df$v, na.rm = na_rm)
+      sd_v = stats::sd(bts_df$v, na.rm = na_rm)
     )
     perst_zone$low_lim <- perst_zone$mean_v - perst_zone$sd_v
     perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
@@ -79,9 +79,9 @@ persistence <-
       sapply(persistence_df$vd_i, function(x)
         all(x >= perst_zone$low_lim & x <= perst_zone$high_lim))
     persistence_agg <-
-      aggregate(persistence_df$persist,
-                by = list(persistence_df$persist),
-                FUN = length)
+      stats::aggregate(persistence_df$persist,
+                       by = list(persistence_df$persist),
+                       FUN = length)
     colnames(persistence_agg) <- c("persist", "n_p")
 
     persistence = persistence_agg$n_p[which(persistence_agg$persist== TRUE)]/sum(persistence_agg$n_p)

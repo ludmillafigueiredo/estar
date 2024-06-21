@@ -29,14 +29,14 @@
 #' @param metric_tf a numerical vector, specifying the beginning and end of the
 #' time period for which the stability metric should be measured.
 univar_params <- function(vd_i,
-                              td_i,
-                              d_data,
-                              vb_i,
-                              tb_i,
-                              b_data,
-                              b,
-                              b_tf,
-                              na_rm,
-                              metric_tf){
+                          td_i,
+                          d_data,
+                          vb_i,
+                          tb_i,
+                          b_data,
+                          b,
+                          b_tf,
+                          na_rm,
+                          metric_tf){
     return(invisible(NULL))
 }
