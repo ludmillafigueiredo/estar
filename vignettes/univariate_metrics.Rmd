@@ -33,7 +33,7 @@ library(forcats)
 source("custom_aesthetics.R")
 
 label_intensity <- function(intensity){
-  paste0("Conc = ", intensity)
+  paste0("Conc = ", intensity, " mg/L")
 }
 ```
 <!-- colors : -->
@@ -45,17 +45,16 @@ label_intensity <- function(intensity){
 
 # Overview of demonstration data
 
-We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The used insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
-The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
+We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
+The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
 
-```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, and facets represent the different concentrations (micro g/L)."}
-# Vik: we discussed that optiion b = is not needed for the invariablity calculation. Ludmilla, please go over the functions / documentation and remove it for the invariability  /check where it needed to be kept for other metrics
+```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied, and facets represent the different concentrations (micro g/L)."}
 (aquacomm_fgps.logplot <- aquacomm_fgps %>%
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") %>%
   ## summarize to plot
   dplyr::group_by(time, treat, gp) %>%
-  dplyr::summarize(abund_logmean = mean(log(abund))) %>%
+  dplyr::summarize(abund_logmean = log(mean(abund))) %>%
   dplyr::ungroup() %>%
   dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
                       Herbivore = "herb",
@@ -80,7 +79,7 @@ ggsave(filename = "aquacomm_fgps_logplot.svg", plot = aquacomm_fgps.logplot,
        device = "svg")
 ```
 
-```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when chloryfiros insecticide was applied, and facets represent the different concentrations (micro g/L)."}
+```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied, and facets represent the different concentrations (micro g/L)."}
 (aquacomm_fgps.rawplot <- aquacomm_fgps %>%
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") %>%
@@ -161,7 +160,32 @@ invariability(
 )
 ```
 
-```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+
+```{r, include=FALSE, evaluate=FALSE}
+aquacomm_fgps.list <- aquacomm_fgps %>%
+  dplyr::select(time, treat, repli, herb, carn, detr) %>% 
+  dplyr::filter(treat %in% c(0.9, 6)) %>%
+  tidyr::pivot_longer(cols = c(herb, carn, detr),
+                      names_to = "gp", values_to = "abund") %>%
+  split(., .$gp)
+
+aquacomm_fgps.list %>% 
+  purrr::map(dplyr::group_by(., treat, repli) %>%
+               summarise(mean = mean(abund)))
+  
+  nest() %>% 
+  mutate(invariability = map(data, 
+                             invariability(response = "v", 
+                                           mode = "cv",
+                                           vd_i = "abund", 
+                                           td_i = "time", 
+                                           metric_tf = c(11,50),
+                                           d_data = .)))
+
+
+```
+
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
 knitr::include_graphics("figures/invariability.png")
 ```
 ## Resistance
@@ -237,11 +261,13 @@ recovery_extent(
    d_data = aquacomm_resps, b_data = aquacomm_resps
 )
 ```
+
 Extent of recovery calculated as the log response ratio of the state variable 
 in the disturbed time-series in relation to the state variable pre-disturbance 
 (`b = "d"`), summarized by the mean value (`summ_mode = "mean"` - default,
 over a period `b_tf = c(5, 10)`). The extent of recovery is calculated
 at the end of the time series (`t_rec = max(aquacomm_fgps$time)`).
+
 ```{r}
 recovery_extent(
   b = "d", t_rec = max(aquacomm_fgps$time), b_tf = c(5, 10), response = "lrr", 
@@ -249,7 +275,7 @@ recovery_extent(
   )
 ```
 
-```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'Diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
+```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
 knitr::include_graphics("figures/extent_recovery.png")
 ```
 
@@ -288,7 +314,7 @@ recovery_rate(
 )
 ```
 
-```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'LRR' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
+```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
@@ -321,6 +347,255 @@ persistence(
 # TODO: is this function actually correct?
 knitr::include_graphics("figures/persistence.png")
 ```
+
+```{r maintext-box, include=FALSE, evaluate=FALSE}
+aquacomm_text.longdf <- aquacomm_fgps %>%
+   dplyr::select(time, treat, repli, herb, carn, detr) %>% 
+   dplyr::filter(treat %in% c(0.0, 0.9, 6)) %>%
+   tidyr::pivot_longer(cols = c(herb, carn, detr),
+                       names_to = "gp", values_to = "abund") 
+
+(aquacomm_fgps.datafig <- aquacomm_text.longdf %>%
+   ## summarize to plot
+   dplyr::group_by(time, treat, gp) %>%
+   dplyr::summarize(abund_logmean = log(mean(abund))) %>%
+   dplyr::ungroup() %>%
+   dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
+                                          Herbivore = "herb",
+                                          Carnivore = "carn",
+                                          Detritivore = "detr")) %>%
+   ggplot(aes(x = time, y = abund_logmean, group = gp, colour = gp)) +
+   geom_line() +
+   geom_point(size = 1) +
+   geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
+   scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                     length.out = 5)]) +
+   facet_wrap(~treat, nrow = 3, 
+              labeller = labeller(treat = label_intensity)) +
+   labs(x = "Time (week)", y = "Log mean abundance", 
+        colour = "Functional\ngroup") +
+   theme_estar())
+
+ggplot2::ggsave(filename = "../box_fig.png", 
+                plot = aquacomm_fgps.datafig,
+                device = "png",
+                dpi = 600,
+                width = 10,
+                height = 12,
+                units = "cm")
+
+# calculate univariate metrics per group, per replicate, per concentration 
+# use mean of baseline as reference value
+(aquacomm_baseline.list <- aquacomm_text.longdf %>%
+  dplyr::filter(treat == 0.0) %>% 
+  dplyr::group_by(time, gp) %>% 
+  dplyr::summarise(meanabund_pertime = mean(abund)) %>% 
+  dplyr::ungroup() %>%   
+  split(.$gp) %>% 
+  purrr::map(~ dplyr::select(.x, -gp)))
+
+(aquacomm_baseline.summdf <- aquacomm_text.longdf %>%
+  dplyr::filter(treat == 0.0) %>% 
+  dplyr::group_by(time, gp) %>% 
+  dplyr::summarise(meanabund_pertime = mean(abund)) %>% 
+  dplyr::ungroup() %>%   
+  dplyr::group_by(gp) %>% 
+  dplyr::summarise(meanabund_pergp = mean(meanabund_pertime)))
+
+## Invariability
+inv.df <- aquacomm_text.longdf %>%
+  dplyr::group_split(repli, treat, gp) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat, gp) %>% 
+               dplyr::summarize(inv = 
+                               invariability(vd_i = "abund",
+                                             td_i = "time",
+                                             response = "v",
+                                             mode = "cv",
+                                             metric_tf = c(0, max(aquacomm_text.longdf$time)),
+                                             d_data = .))) %>% 
+  dplyr::bind_rows()
+
+(inv.summdf <- inv.df %>% 
+  dplyr::group_by(treat, gp) %>% 
+  dplyr::summarise(invariability = mean(inv)))
+
+##
+responses.list <- aquacomm_text.longdf %>%
+  split(.$gp) %>% 
+  purrr::map(~ dplyr::select(.x, -gp))
+
+resist_carn.df <- responses.list$carn %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(res = 
+                                  resistance(
+                                    b = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", 
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$carn
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+resist_herb.df <- responses.list$herb %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(res = 
+                                  resistance(
+                                    b = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", 
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$herb
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+resist_detr.df <- responses.list$detr %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(res = 
+                                  resistance(
+                                    b = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", 
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$detr
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+res.df <- dplyr::full_join(dplyr::full_join(cbind(resist_carn.df, gp = "carn"),
+                                            cbind(resist_herb.df, gp = "herb")),
+                           cbind(resist_detr.df, gp = "detr"))
+
+(res.summdf <- res.df %>% 
+  dplyr::group_by(treat, gp) %>% 
+  dplyr::summarise(resistance = mean(res)))
+
+## Extent of recovery
+extrec_carn.df <- responses.list$carn %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(extrec = 
+                                  recovery_extent(
+                                    b = "input", t_rec = 28, 
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", response = "lrr",
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$carn
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+extrec_herb.df <- responses.list$herb %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(extrec = 
+                                  recovery_extent(
+                                    b = "input", t_rec = 42, 
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", response = "lrr",
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$herb
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+extrec_detr.df <- responses.list$detr %>% 
+  dplyr::group_split(repli, treat) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat) %>% 
+               dplyr::summarize(extrec = 
+                                  recovery_extent(
+                                    b = "input", t_rec = 42, 
+                                    vd_i = "abund", td_i = "time", vb_i = "meanabund_pertime", tb_i = "time", response = "lrr",
+                                    d_data = ., 
+                                    b_data = aquacomm_baseline.list$detr
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+extrec.df <- dplyr::full_join(dplyr::full_join(cbind(extrec_carn.df, gp = "carn"),
+                                            cbind(extrec_herb.df, gp = "herb")),
+                           cbind(extrec_detr.df, gp = "detr"))
+
+(extrec.summdf <- extrec.df %>% 
+  dplyr::group_by(treat, gp) %>% 
+  dplyr::summarise(extent = mean(extrec)))
+
+## Rate of recovery
+recovery_rate
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   metric_tf = c(12, 50)
+#' )
+#' 
+raterec.df <- aquacomm_text.longdf %>%
+  dplyr::group_split(repli, treat, gp) %>% 
+  purrr::map(~ .x %>% dplyr::group_by(repli, treat, gp) %>% 
+               dplyr::summarize(rate = 
+                                  recovery_rate(
+                                    b = "d",
+                                    vd_i = "abund", td_i = "time",
+                                    d_data = ., 
+                                    metric_tf = c(1,28)
+                                  ))) %>% 
+  dplyr::bind_rows()
+
+rate.summdf <- raterec.df %>% 
+  dplyr::group_by(treat, gp) %>% 
+  dplyr::summarise(rate = mean(rate))
+
+(univar.df <- dplyr::full_join(tidyr::pivot_longer(inv.summdf, cols = "invariability", 
+                                                  names_to = "metric", values_to = "mean"),
+                              tidyr::pivot_longer(res.summdf, cols = "resistance", 
+                                                  names_to = "metric", values_to = "mean")) %>% 
+  dplyr::full_join(., tidyr::pivot_longer(extrec.summdf, cols = "extent",
+                                          names_to = "metric", values_to = "mean")) %>% 
+  dplyr::full_join(., tidyr::pivot_longer(rate.summdf, cols = "rate", 
+                                          names_to = "metric", values_to = "mean")))
+
+(univar.dataplot <- univar.df %>% 
+  dplyr::filter(treat !=0) %>% 
+  dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
+                                         Herbivore = "herb",
+                                         Carnivore = "carn",
+                                         Detritivore = "detr")) %>% 
+    dplyr::mutate(metric = forcats::fct_recode(factor(metric), 
+                                         Invariability = "invariability",
+                                         Resistance = "resistance",
+                                         "Extent\nof recovery" = "extent",
+                                         "Rate\nof recovery" = "rate")) %>%
+  ggplot(aes(x = metric, y = mean, group = treat, colour = gp)) +
+  geom_point(aes(fill= gp), colour = "black", size = 2, shape = 23) +
+  #geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
+  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                    length.out = 5)]) +
+  scale_fill_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                  length.out = 5)]) +
+  facet_wrap(~treat, nrow = 3, scales = "free_y",
+             labeller = labeller(treat = label_intensity)) +
+  labs(x = "", y = "Mean", 
+       fill = "Functional group") +
+  theme_estar())
+
+ggplot2::ggsave(filename = "../box_univar.png", 
+                plot = univar.dataplot,
+                device = "png",
+                dpi = 600,
+                width = 15,
+                height = 10,
+                units = "cm")
+
+box_grid <- plot_grid(plot_grid(aquacomm_fgps.datafig + theme(legend.position = "none"),
+                    univar.dataplot + theme(legend.position = "none"),
+                    ncol = 2,
+                    rel_widths = c(1.25, 1),
+                    label = c("a)", "b)")),
+          get_legend(univar.dataplot),
+          align = "v",
+          ncol = 1,
+          rel_heights = c(1, 0.1))
+
+
+ggplot2::ggsave(filename = "../box_grid.png", 
+                plot = box_grid,
+                device = "png",
+                dpi = 600,
+                width = 20,
+                height = 10,
+                units = "cm")
+```
+
 
 <details><summary>Session Info</summary>
 

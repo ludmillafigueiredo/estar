@@ -8,7 +8,7 @@ Follow R's [Tidyverse Style Guide](https://style.tidyverse.org/).
 ## Variable/Argument naming
 Object's names are composed of abbreviations indicating to which scenario they refer to, 
 and suffixes indicating the type of object they are(not necessarily R types):
-- `sv` state variable.
+- `v` state variable.
 - `t` time.
 - `d` refers to 'disturbed' system, usually the focus of analysis.
 - `udb` refers to 'undisturbed' system, usually the baseline.

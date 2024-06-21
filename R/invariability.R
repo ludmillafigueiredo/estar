@@ -46,7 +46,7 @@ invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
 
   dts_df <- format_input("d", vd_i, td_i, d_data)
 
-  invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
+  invar_df <- sort_response(response, dts_df, vb_i, tb_i, b_data)
   invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
 
   if (any(is.na(invar_df$response))) {
