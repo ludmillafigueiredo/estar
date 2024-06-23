@@ -30,14 +30,14 @@
 #' @field carn_44 mean abundance of carnivores in replicates subjected to 44 nano g/L
 #'
 #'@source \code{
-#'  aquacomm_resps <- aquacomm_fgps %>%
-#'  dplyr::select(-c(herb, detr_herb, omni, detr)) %>%
-#'  dplyr::group_by(time, treat) %>%
-#'  dplyr::summarize_at("carn", mean) %>%
-#'  dplyr::ungroup() %>%
+#'  aquacomm_resps <- aquacomm_fgps |>
+#'  dplyr::select(-c(herb, detr_herb, omni, detr)) |>
+#'  dplyr::group_by(time, treat) |>
+#'  dplyr::summarize_at("carn", mean) |>
+#'  dplyr::ungroup() |>
 #'  tidyr::pivot_wider(names_from = treat,
 #'  values_from = carn,
-#'  names_prefix = "carn_") %>%
+#'  names_prefix = "carn_") |>
 #'  dplyr::select(time,
 #'  "statvar_bl" = carn_0,
 #'  "statvar_db" = carn_6)

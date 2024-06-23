@@ -316,34 +316,34 @@ Thus, we use the species mean abundances summarized over all replicates:
 
 ```{r}
 ## calculate z-scores
-aquacommz_allscen.ldf <- aquacomm_fgps %>%
-    dplyr::filter(time >= 1 , time <= 28) %>%
-    ungroup() %>%
+aquacommz_allscen.ldf <- aquacomm_fgps |>
+    dplyr::filter(time >= 1 , time <= 28) |>
+    ungroup() |>
     dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr), 
-                     ~MARSS::zscore(.)) %>%
+                     ~MARSS::zscore(.)) |>
     dplyr::mutate(across(c(herb, detr_herb, carn, omni, detr),
-                         ~dplyr::na_if(., 0))) %>%
+                         ~dplyr::na_if(., 0))) |>
     tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                         names_to = "fgp",
                         values_to = "abund")
 
 ## summarize abunds over replicates
-aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
-    dplyr::group_by(time, treat, fgp) %>%
+aquacommz_allscen.summldf <- aquacommz_allscen.ldf |>
+    dplyr::group_by(time, treat, fgp) |>
     dplyr::summarize(abund_mu = mean (abund),
-                     abund_sd = sd(abund)) %>%
+                     abund_sd = sd(abund)) |>
     dplyr::ungroup()
 
 ## convert into time-series matrix
-(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
-    dplyr::select(time, treat, fgp, abund_mu) %>%
-    split(.$treat) %>%
-    map(~ dplyr::select(., time, fgp, abund_mu) %>%
-        unique() %>%
+(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf |>
+    dplyr::select(time, treat, fgp, abund_mu) |>
+    split(.$treat) |>
+    map(~ dplyr::select(., time, fgp, abund_mu) |>
+        unique() |>
         tidyr::pivot_wider(id_cols = fgp,
                            names_from = time, values_from = "abund_mu", 
-                           names_prefix = "time ") %>%
-        tibble::column_to_rownames(var = "fgp") %>%
+                           names_prefix = "time ") |>
+        tibble::column_to_rownames(var = "fgp") |>
         as.matrix()))
 ```
 
@@ -373,7 +373,7 @@ diag(Z_I5) <- 1
 ### multiple replicate/observation per process
 Z_r5 <- build_Zreps(4, 5)
 
-aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
+aquacommz_allscen.marssls <- aquacommz_allscen.summmxls |>
     map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
@@ -388,7 +388,7 @@ names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6",
 We provide the function `eStar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
-(aquacomm.Bls <- aquacommz_allscen.marssls %>%
+(aquacomm.Bls <- aquacommz_allscen.marssls |>
   map(~eStar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
@@ -400,7 +400,7 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate sta
 A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied.
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::reactivity)
 ```
 
@@ -409,7 +409,7 @@ aquacomm.Bls %>%
 The highest
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::max_amp)
 ```
 
@@ -418,7 +418,7 @@ aquacomm.Bls %>%
 what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::init_resil)
 ```
 
@@ -427,7 +427,7 @@ aquacomm.Bls %>%
 What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::asympt_resil)
 ```
 
@@ -438,7 +438,7 @@ What are the bounds of the metric (min and max) and how to interpret it (e.g. th
 What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::stoch_var)
 ```
 
