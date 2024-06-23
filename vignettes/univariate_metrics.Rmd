@@ -161,7 +161,7 @@ invariability(
 ```
 
 
-```{r, include=FALSE, evaluate=FALSE}
+```{r, include=FALSE, eval=FALSE}
 aquacomm_fgps.list <- aquacomm_fgps %>%
   dplyr::select(time, treat, repli, herb, carn, detr) %>% 
   dplyr::filter(treat %in% c(0.9, 6)) %>%
@@ -348,7 +348,7 @@ persistence(
 knitr::include_graphics("figures/persistence.png")
 ```
 
-```{r maintext-box, include=FALSE, evaluate=FALSE}
+```{r maintext-box, include=FALSE, eval=FALSE}
 aquacomm_text.longdf <- aquacomm_fgps %>%
    dplyr::select(time, treat, repli, herb, carn, detr) %>% 
    dplyr::filter(treat %in% c(0.0, 0.9, 6)) %>%

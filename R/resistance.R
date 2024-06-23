@@ -36,43 +36,43 @@
 #' @return A double, the resistance of the state variable to disturbance.
 #'
 #' @examples
+# resistance(
+#   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
+#   res_mode = "lrr", res_time = "defined", res_t = 12
+# )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "lrr", res_time = "defined", res_t = 11
-#' )
-#' resistance(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
-#'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "diff", res_time = "defined", res_t = 11
+#'   res_mode = "diff", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
+#'   b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
+#'   b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
+#'   res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "diff", res_time = "max", res_tf = c(11, 50)
-#' )
-#' resistance(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   res_mode = "lrr", b_tf = 9, res_time = "max",
-#'   res_tf = c(11, 50)
+#'   res_mode = "diff", res_time = "max", res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
 #'   res_mode = "lrr", b_tf = 9, res_time = "max",
-#'   res_tf = c(11, 50)
+#'   res_tf = c(12, 51)
+#' )
+#' resistance(
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   res_mode = "lrr", b_tf = 9, res_time = "max",
+#'   res_tf = c(12, 51)
 #' )
 #' @export
 resistance <- function(vd_i, td_i, d_data = NULL, b,vb_i = NULL,
@@ -105,15 +105,19 @@ resistance <- function(vd_i, td_i, d_data = NULL, b,vb_i = NULL,
   }
 
   if (res_time == "defined") {
-    ## TODO: still some tidyverse functions and piping here to be replaced
-    res <- res_df |>
-      dplyr::filter(t == res_t) |>
-      dplyr::mutate(res = ifelse(res_mode == "lrr",
-                                 log(vd_i / vb_i), vd_i - vb_i)) |>
-      dplyr::pull(res)
+    if (!res_t %in% res_df$t) {
+      stop("res_t must be a time step in both d_data and b_data (if b_data is used).")
+    }
+    res_df <- res_df[(res_df$t == res_t),]
+    res_df$res <- ifelse(res_mode == "lrr",
+                         log(res_df$vd_i / res_df$vb_i),
+                         res_df$vd_i - res_df$vb_i)
+
+    res <- res_df$res
+
   } else {
     if (res_time == "max") {
-      res_df <- res_df[(res_df$t >= min(res_tf) & res_df$t <= max(res_tf)),]
+      librarres_df <- res_df[(res_df$t >= min(res_tf) & res_df$t <= max(res_tf)),]
       res_df$res <- ifelse(res_mode == "lrr",
                            log(res_df$vd_i/res_df$vb_i),
                            res_df$vd_i - res_df$vb_i)

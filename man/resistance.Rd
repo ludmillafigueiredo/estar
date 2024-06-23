@@ -100,39 +100,34 @@ for example, demographic or environmental stochasticity.
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "lrr", res_time = "defined", res_t = 11
-)
-resistance(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
-  vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "diff", res_time = "defined", res_t = 11
+  res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 11
+  b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 11
+  b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "lrr", res_time = "max", res_tf = c(11, 50)
+  res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "diff", res_time = "max", res_tf = c(11, 50)
+  res_mode = "diff", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
   res_mode = "lrr", b_tf = 9, res_time = "max",
-  res_tf = c(11, 50)
+  res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
   res_mode = "lrr", b_tf = 9, res_time = "max",
-  res_tf = c(11, 50)
+  res_tf = c(12, 51)
 )
 }
