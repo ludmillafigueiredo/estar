@@ -11,7 +11,7 @@ A data frame with five variables:
 aquacomm_fgps
 }
 \description{
-Dataset compiled from an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community \link{@vandenbrick_effects_1996; @vanwijngaarden_effects_1996}. The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
+Dataset compiled from an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community (van den Brink et a. 1996, Wijngaarden_effects_1996). The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
 }
 \section{Fields}{
 
@@ -33,4 +33,9 @@ Dataset compiled from an ecotoxicological study about the effects of insecticide
 \item{\code{detr}}{abundance of detrivores}
 }}
 
+\references{
+van den Brink, P. J., Van Wijngaarden, R. P. A., Lucassen, W. G. H., Brock, T. C. M., & Leeuwangh, P. (1996). Effects of the insecticide dursban® 4E (active ingredient chlorpyrifos) in outdoor experimental ditches: II. Invertebrate community responses and recovery. Environmental Toxicology and Chemistry, 15(7), 1143–1153. https://doi.org/10.1002/etc.5620150719
+
+Wijngaarden, R. P. A. van, Brink, P. J. van den, Crum, S. J. H., Brock, T. C. M., Leeuwangh, P., & Voshaar, O. J. H. (1996). Effects of the insecticide dursban® 4E (active ingredient chlorpyrifos) in outdoor experimental ditches: I. Comparison of short-term toxicity between the laboratory and the field. Environmental Toxicology and Chemistry, 15(7), 1133–1142. https://doi.org/10.1002/etc.5620150718
+}
 \keyword{datasets}
