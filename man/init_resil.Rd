@@ -2,21 +2,24 @@
 % Please edit documentation in R/init_resil.R
 \name{init_resil}
 \alias{init_resil}
-\title{Calculate the initial resilience of a community from its community matrix.
-\code{initi_resil} calculates initial resilience as the initial rate of return to equilibrium (Downing et al. 2020).
-The larger its value, the more stable the system, as its “worst case” initial rate of return to equilibrium is faster (Downing et al. 2020).}
+\title{Calculate the initial resilience of a community from its community matrix.}
 \usage{
 init_resil(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}} from the
+\item{B}{a matrix, containing the interactions between the species
+or functional groups in the community.
+Can be calculated with \code{\link{extractB}} from the
 fitted MARSS object.}
 }
 \value{
 a numeric, the initial resilience
+
+VIK: please add an example
 }
 \description{
-Calculate the initial resilience of a community from its community matrix.
-\code{initi_resil} calculates initial resilience as the initial rate of return to equilibrium (Downing et al. 2020).
-The larger its value, the more stable the system, as its “worst case” initial rate of return to equilibrium is faster (Downing et al. 2020).
+\code{initi_resil} calculates initial resilience as the initial
+rate of return to equilibrium (Downing et al. 2020).
+The larger its value, the more stable the system, as its “worst case”
+initial rate of return to equilibrium is faster (Downing et al. 2020).
 }

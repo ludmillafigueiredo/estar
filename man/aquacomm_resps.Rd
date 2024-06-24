@@ -36,7 +36,7 @@ Data frame compiled from \code{aquacomm_fgps}
 
 \item{\code{carn_0}}{mean abundance of carnivores in control replicates}
 
-\item{\code{carn_0.1}}{mean abundance of carnivores in eplicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide}
+\item{\code{carn_0.1}}{mean abundance of carnivores in replicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide}
 
 \item{\code{carn_0.9}}{mean abundance of carnivores in replicates subjected to 0.9 nano g/L}
 

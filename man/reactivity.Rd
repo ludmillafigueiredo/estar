@@ -2,18 +2,23 @@
 % Please edit documentation in R/reactivity.R
 \name{reactivity}
 \alias{reactivity}
-\title{Calculate the reactivity of a community from its community matrix.
-\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is calculated as the largest eigenvalue of the Hermitian part of the community matrix $B$.}
+\title{Calculate the reactivity of a community from its community matrix.}
 \usage{
 reactivity(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.}
+\item{B}{a matrix, containing the interactions between the species
+or functional groups in the community.
+Can be calculated with \code{\link{extractB}} from the
+fitted MARSS object.}
 }
 \value{
 a numeric, the reactivity value
+VIK: please add an example
 }
 \description{
-Calculate the reactivity of a community from its community matrix.
-\code{reactitvity} calculates reactivity as the initial rate of return to equilibrium (Downing et al. 2020). Following Neubert et al. (1996), it is calculated as the largest eigenvalue of the Hermitian part of the community matrix $B$.
+\code{reactitvity} calculates reactivity as the initial rate
+of return to equilibrium (Downing et al. 2020). Following
+Neubert et al. (1996), it is calculated as the largest
+eigenvalue of the Hermitian part of the community matrix $B$.
 }

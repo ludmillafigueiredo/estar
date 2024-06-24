@@ -2,16 +2,20 @@
 % Please edit documentation in R/stoch_var.R
 \name{stoch_var}
 \alias{stoch_var}
-\title{Calculate the intrinsic stochastic invariability of a community from its community matrix.
-\code{stoch_var} calculates the intrinsic stochastic invariability a theoretical equivalent of the univariate measure of invariability (Arnoldi, Loreau, and Haegeman 2016).}
+\title{Calculate the intrinsic stochastic invariability of a
+community from its community matrix.}
 \usage{
 stoch_var(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}} from the
-fitted MARSS object.}
+\item{B}{a matrix, containing the interactions between the species
+or functional groups in the community. Can be calculated
+with \code{\link{extractB}} from the fitted MARSS object.
+VIK: please add an example}
 }
 \description{
-Calculate the intrinsic stochastic invariability of a community from its community matrix.
-\code{stoch_var} calculates the intrinsic stochastic invariability a theoretical equivalent of the univariate measure of invariability (Arnoldi, Loreau, and Haegeman 2016).
+\code{stoch_var} calculates the intrinsic stochastic
+invariability - a theoretical equivalent of the
+univariate measure of invariability (Arnoldi, Loreau,
+and Haegeman 2016).
 }

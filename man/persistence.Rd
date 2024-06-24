@@ -2,7 +2,8 @@
 % Please edit documentation in R/persistence.R
 \name{persistence}
 \alias{persistence}
-\title{Calculate the persistence of a state variable inside a defined interval}
+\title{Calculate the persistence of a state variable over a defined
+time interval}
 \usage{
 persistence(
   vd_i,
@@ -61,9 +62,10 @@ a double, contained in [0,1]
 }
 \description{
 \code{persistence} returns the proportion of time the state
-variable remained inside the interval defined by the baseline's
-\eqn{\pm} sd. The proportion is calculated in relation to the time
-period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+variable remained inside the interval defined by one baseline's
+\eqn{\pm} sd from the baseline's mean. The proportion
+is calculated in relation to the time period for which
+persistence should be calculated.
 }
 \details{
 If the baseline is defined by the pre-disturbed values of the

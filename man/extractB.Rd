@@ -13,6 +13,8 @@ extractB(marss_res, states_names = NULL)
 }
 \value{
 a named matrix
+
+VIK: please add an example
 }
 \description{
 Extract the community matrix (B) estimated by a MARSS model

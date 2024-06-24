@@ -2,18 +2,23 @@
 % Please edit documentation in R/asympt_resil.R
 \name{asympt_resil}
 \alias{asympt_resil}
-\title{Calculate the asymptotic resilience of a community from its community matrix.
-\code{init_resil} calculates asymptotic resilience as the slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation (Arnoldi et al. 2016, Downing et al. 2020).}
+\title{Calculate the asymptotic resilience of a community from its
+community matrix.}
 \usage{
 asympt_resil(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.}
+\item{B}{a matrix, containing the interactions between the species
+or functional groups in the community.
+Can be calculated with \code{\link{extractB}} from the
+fitted MARSS object.}
 }
 \value{
 a numeric, the asymptotic resilience
 }
 \description{
-Calculate the asymptotic resilience of a community from its community matrix.
-\code{init_resil} calculates asymptotic resilience as the slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation (Arnoldi et al. 2016, Downing et al. 2020).
+\code{init_resil} calculates asymptotic resilience as
+the slowest long-term asymptotic rate of return to
+equilibrium after a pulse perturbation (Arnoldi et al. 2016,
+Downing et al. 2020).
 }

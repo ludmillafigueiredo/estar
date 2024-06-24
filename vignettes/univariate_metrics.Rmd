@@ -45,7 +45,7 @@ label_intensity <- function(intensity){
 
 # Overview of demonstration data
 
-We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
+We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in **Figueiredo et al. XXX**), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
 
 ```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied, and facets represent the different concentrations (micro g/L)."}
@@ -185,7 +185,7 @@ aquacomm_fgps.list |>
 
 ```
 
-```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation --- VIK--- this fig still has SV on y axis, not "V", please update!--", out.width = '100%'}
 knitr::include_graphics("figures/invariability.png")
 ```
 ## Resistance
@@ -236,6 +236,8 @@ resistance(
 )
 ```
 
+**VIK comment** for resistance it would be good to still add one or two examples were it is calculated uisng as a baseline the pre-disturbed period from the disturbed time series, i.e. 'b = 'd''.
+
 ```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
 ```
@@ -283,7 +285,7 @@ knitr::include_graphics("figures/extent_recovery.png")
 
 Rate of recovery calculated as the slope of the linear model which predicts the 
 log response ratio of the state variable in the disturbed system compared to 
-the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-q).
+the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(1, max(aquacomm_fgps$time))`, Fig. 5-q).
 ```{r}
 recovery_rate(
   b = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
@@ -292,21 +294,8 @@ recovery_rate(
   )
 ```
 
-Rate of recovery calculated as the slope of the linear model which predicts the 
-the values of the state variable in the disturbed system (`b = "d`) 
-by time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-r).
+Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system (`b = "d"`) by time (over a time frame (`metric_tf = c(1, max(aquacomm_fgps$time))`, Fig. 5-r).
 ```{r}
-#V: the documentation for b is written to be used generally but multiple functions 
-# but here it does not work so well. It says that there will be a time period defined 
-# by b_tf() (which is needed for other functions) but b_tf is unused and obsolete here. 
-# I do not have a good and parsimonious solution on how to write the documentation for
-#  b argument such that it could be reused across the metrics, perhaps in this case actually 
-# it has to be specifically written for those particular metrics?..
-# Maybe for the general description of this metris it would be good to add after 
-# "... or the log-response ratio (LRR) of the state variable in the disturbed system 
-# compared to the baseline" something like "if b = "input" (because I guess then it 
-# happens automatically, here the user does not need to explicitely state "lrr" as an option
-#  to some of the arguments)
 recovery_rate(
   b = "d", metric_tf = c(1, max(aquacomm_fgps$time)), 
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
@@ -320,9 +309,7 @@ knitr::include_graphics("figures/rate_recovery.png")
 
 ## Persistence
 
-Limits of persistence defined by the state variable values in an independent 
-baseline (`b = "input"`) during the same post-disturbance time period 
-for which persistence is measured (`metric_tf = c(50, 100)`, Fig. 6).
+Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values in an independent baseline (`b = "input"`) during the same time period for which persistence is measured (`metric_tf = c(1, max(aquacomm_fgps$time))`, Fig. 6).
 ```{r}
 persistence(
   b = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
@@ -331,9 +318,8 @@ persistence(
 )
 ```
 
-Limits of persistence defined by the state variable values during a pre-disturbance
-(`b = "d"`) time period (`b_tf = c(1, 9)`). Persistence is measured for the 
-post-disturbance time period (`metric_tf = c(50, 100)`, Fig. 6).
+Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values during a pre-disturbance (`b = "d"`) time period (`b_tf = c(1, 9)`). Persistence is measured for the post-disturbance time period (`metric_tf = c(50, 100)`, Fig. 6).
+**Vik comment**: The code below uses for post-disutrbance time period "metric_tf = c(1, max(aquacomm_fgps$time))" but that is not what the text says. So please use in the text and in the code the period from 1 time step AFTER the disturbance (I think it does not occur on the first time step, if I understand everything correctly)
 ```{r}
 persistence(
   b = "d", b_tf = c(-4, 0.14), metric_tf = c(1, max(aquacomm_fgps$time)),
@@ -341,10 +327,8 @@ persistence(
 )
 ```
 
-```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits characterizing persistence, 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
-# V: for this figure please use as the beginning of the period over which the metric is calculated
-# the first time point after the disturbance (so the first value for metric_tf should be "time of disturbance" + 1)
-# TODO: is this function actually correct?
+```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits of "persistence interval" defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+
 knitr::include_graphics("figures/persistence.png")
 ```
 

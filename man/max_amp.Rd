@@ -2,18 +2,25 @@
 % Please edit documentation in R/max_amp.R
 \name{max_amp}
 \alias{max_amp}
-\title{Calculate the maximal amplification of a community from its community matrix.
-\code{max_amp} calculates the maximal amplification as the euclidean norm of a community matrix 4B$ (Neubert et al. 1996). We use the \code{expmat} function of the \code{hesim} package to calculate the exponential of the community matrix $B$, and then it's Euclidean norm.}
+\title{Calculate the maximal amplification of a community from its
+community matrix.}
 \usage{
 max_amp(B)
 }
 \arguments{
-\item{B}{a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.}
+\item{B}{a matrix, containing the interactions between the species
+or functional groups in the community.
+Can be calculated with \code{\link{extractB}} from the
+fitted MARSS object.}
 }
 \value{
 a numeric, the maximal amplification vector
+VIK: please add an example
 }
 \description{
-Calculate the maximal amplification of a community from its community matrix.
-\code{max_amp} calculates the maximal amplification as the euclidean norm of a community matrix 4B$ (Neubert et al. 1996). We use the \code{expmat} function of the \code{hesim} package to calculate the exponential of the community matrix $B$, and then it's Euclidean norm.
+\code{max_amp} calculates the maximal amplification as the euclidean
+norm of a community matrix $B$ (Neubert et al. 1996). We use the
+\code{expmat} function of the \code{hesim} package to calculate
+the exponential of the community matrix $B$, and then its
+Euclidean norm.
 }
