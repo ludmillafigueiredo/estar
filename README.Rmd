@@ -47,6 +47,11 @@ You can install the released version of eStar from [GitHub](https://github.com/)
 # install.packages("devtools")
 devtools::install_github("ludmillafigueiredo/eStar")
 ```
+
+<!-- ## Vik: It would be good if you give some more general info on the package here, at least about the distinction between univariate and multivariate metrics
+
+Maybe also mention the vignettes for more details on the use of the functions -->
+
 <!-- ## Example -->
 
 <!-- This is a basic example which shows you how to solve a common problem: -->

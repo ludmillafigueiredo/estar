@@ -1,10 +1,11 @@
 #' Calculate the resistance of a state variable to disturbance
 #'
-#' \code{resistance} returns the distance of a state variable to a baseline
-#' value at a specified time point. The distance is calculated as the maximal
-#' absolute difference between the state variables in the disturbed system and
-#' the baseline, or as the maximal log response ratio between these state
-#' variables, at a specified time point.
+#' \code{resistance} returns either the distance of a state variable to
+#' a baseline value at a specified time point or a maximum distance between the
+#' state variables in the disturbed system and the baseline over a specified
+#' period. The distance can be calculated either as the absolute difference
+#' between the state variables in the disturbed system and the baseline,
+#' or as the log response ratio between these state variables.
 #' See details on how to specify the values.
 #'
 #' @param res_mode A string stating whether the resistance should be calculated
@@ -15,12 +16,12 @@
 #' @param res_time A string stating whether resistance should be calculated at
 #' a specific point in time (\code{res_time = "defined"}) or if it should be
 #' taken as the maximal difference between the disturbed and baseline state
-#' variables over a specified time period (\code{res_time = "max"}. Time point
-#' or the time period are defined by \code{res_t} and \code{res_tf},
-#' respectively.
+#' variables over a specified time period (\code{res_time = "max"}).
+#' Time point and the time period are defined by \code{res_t} and
+#' \code{res_tf}, respectively.
 #' See details.
 #' @param res_t An integer defining the time point when resistance should be
-#' measured if \code{res_time = "defined"}).
+#' measured if \code{res_time = "defined"}.
 #' @param res_tf A vector, specifying the time period for which the maximum
 #' resistance should be looked for, if \code{res_time = "max"}.
 #' @inheritParams univar_params
