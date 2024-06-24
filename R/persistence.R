@@ -1,9 +1,11 @@
-#' Calculate the persistence of a state variable inside a defined interval
+#' Calculate the persistence of a state variable over a defined
+#' time interval
 #'
 #' \code{persistence} returns the proportion of time the state
-#' variable remained inside the interval defined by the baseline's
-#' \eqn{\pm} sd. The proportion is calculated in relation to the time
-#' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+#' variable remained inside the interval defined by one baseline's
+#' \eqn{\pm} sd from the baseline's mean. The proportion
+#' is calculated in relation to the time period for which
+#' persistence should be calculated.
 #'
 #' @inheritParams univar_params
 #'
