@@ -38,8 +38,8 @@ variable values in the disturbed system alone.}
 
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
-time period of the disturbed system (\code{b = "d"}), to be defined
-by \code{b_tf}.}
+period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+This period is specified by \code{b_tf}.}
 
 \item{t_rec}{An integer, time point at which the extent of recovery should be
 calculated.}
@@ -81,11 +81,13 @@ time-series and the baseline. The baseline can be
 \item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
 \item values of the state variable in the disturbed system over a period
 defined by \code{b_tf}
-},
+}.
 }
 \details{
-in both cases, a single baseline value is summarized as the the mean or
-median (\code{summ_mode}) of the values given.
+\strong{Ludmilla, please CHECK} In case a certain pre-disturbed period is used as a
+baseline (\code{b = "d"}), a single value over the specified period
+\code{b_tf} is summarized as the mean or median (\code{summ_mode}) of the
+values over that period.
 
 Even though it is possible to use a single data value as baseline
 (by passing a double to \code{b_tf}), it is not recommended, because a

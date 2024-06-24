@@ -31,7 +31,7 @@ the one based on the coefficient of variation of the state variable \code{mode =
 or the one based on fitting the linear model \code{"lm_res"}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time period for which the stability metric should be measured.}
+time period over which the stability metric should be measured.}
 
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
