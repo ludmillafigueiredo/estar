@@ -264,13 +264,13 @@ The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without a
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modelled community.
+When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
 Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
 In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case.
 None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
 
-We start from the minimal case of one single observation per state process and other simplifying assumptions, and complexify it step-wise.
+We start from the minimal case of one single observation per state process and other simplifying assumptions, and build its complexity up it step-wise.
 
 ## Minimal case
 
@@ -309,40 +309,41 @@ X = \mathbf{B}.X_{t-1} + C.0 + 0 + 0 \\
 Y =  Z.X_t + 0 + D_t.0 + v \\
 \end{equation}
 ```
+
 Thus, our [aquatic commmunity data](aquatic-data) must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of organisms counts under one treatment.
-We have replicates but we are modelling one observation as correponding to one state processes.
+We have replicates but we are modelling one observation as corresponding to one state processes.
 Thus, we use the species mean abundances summarized over all replicates:
 
 ```{r}
 ## calculate z-scores
-aquacommz_allscen.ldf <- aquacomm_fgps %>%
-    dplyr::filter(time >= 1 , time <= 28) %>%
-    ungroup() %>%
+aquacommz_allscen.ldf <- aquacomm_fgps |>
+    dplyr::filter(time >= 1 , time <= 28) |>
+    ungroup() |>
     dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr), 
-                     ~MARSS::zscore(.)) %>%
+                     ~MARSS::zscore(.)) |>
     dplyr::mutate(across(c(herb, detr_herb, carn, omni, detr),
-                         ~dplyr::na_if(., 0))) %>%
+                         ~dplyr::na_if(., 0))) |>
     tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                         names_to = "fgp",
                         values_to = "abund")
 
 ## summarize abunds over replicates
-aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
-    dplyr::group_by(time, treat, fgp) %>%
+aquacommz_allscen.summldf <- aquacommz_allscen.ldf |>
+    dplyr::group_by(time, treat, fgp) |>
     dplyr::summarize(abund_mu = mean (abund),
-                     abund_sd = sd(abund)) %>%
+                     abund_sd = sd(abund)) |>
     dplyr::ungroup()
 
 ## convert into time-series matrix
-(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
-    dplyr::select(time, treat, fgp, abund_mu) %>%
-    split(.$treat) %>%
-    map(~ dplyr::select(., time, fgp, abund_mu) %>%
-        unique() %>%
+(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf |>
+    dplyr::select(time, treat, fgp, abund_mu) |>
+    split(.$treat) |>
+    map(~ dplyr::select(., time, fgp, abund_mu) |>
+        unique() |>
         tidyr::pivot_wider(id_cols = fgp,
                            names_from = time, values_from = "abund_mu", 
-                           names_prefix = "time ") %>%
-        tibble::column_to_rownames(var = "fgp") %>%
+                           names_prefix = "time ") |>
+        tibble::column_to_rownames(var = "fgp") |>
         as.matrix()))
 ```
 
@@ -372,7 +373,7 @@ diag(Z_I5) <- 1
 ### multiple replicate/observation per process
 Z_r5 <- build_Zreps(4, 5)
 
-aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
+aquacommz_allscen.marssls <- aquacommz_allscen.summmxls |>
     map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
@@ -387,7 +388,7 @@ names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6",
 We provide the function `eStar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
-(aquacomm.Bls <- aquacommz_allscen.marssls %>%
+(aquacomm.Bls <- aquacommz_allscen.marssls |>
   map(~eStar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
@@ -396,19 +397,19 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate sta
 
 ## Reactivity
 
-What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
+A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied.
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::reactivity)
 ```
 
 ## Maximal amplification
 
-what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state)
+The highest
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::max_amp)
 ```
 
@@ -417,7 +418,7 @@ aquacomm.Bls %>%
 what are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::init_resil)
 ```
 
@@ -426,149 +427,20 @@ aquacomm.Bls %>%
 What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
 ```{r}
-aquacomm.Bls %>%
+aquacomm.Bls |>
   map(eStar::asympt_resil)
 ```
 
-<!-- #TODO -->
+What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
-<!-- - estimate B with Q calculated from processes variances. -->
+## Stochastic invariability
 
-<!-- - estimate B for each replicate and then average them. -->
+What are the bounds of the metric (min and max) and how to interpret it (e.g. the larger asymptotic resilience, the more stable is the system as such communities have a faster long-term return to stable state).
 
-<!-- ## Multiple observations per state process  -->
-
-<!-- In this case, $y = n \times x$. -->
-
-<!-- Even if some state processes lack one or more observations, these can be given as `NA` values in $Y$. -->
-
-<!-- We provide the function ` build_Zreps(n_reps, m_grps)`: -->
-
-<!-- ```{r} -->
-
-<!-- ``` -->
-
-<!-- ## Processes have the same variance and no covariance -->
-
-<!-- In this case, $Q = \text{"diagonal and unequal"}$ which equates to  -->
-
-<!-- \begin{equation} -->
-
-<!-- Q =  -->
-
-<!-- \begin{bmatrix}  -->
-
-<!--    \sigma & 0 & 0 \\ -->
-
-<!--     0 & \sigma & 0 \\ -->
-
-<!--     0 & 0 & \sigma -->
-
-<!-- \end{bmatrix} -->
-
-<!-- \end{equation}. -->
-
-<!-- ## Each process has its own variance and no covariance. -->
-
-<!-- In this case, $Q = \text{"diagonal and unequal"}$. -->
-
-<!-- \begin{equation} -->
-
-<!-- Q =  -->
-
-<!-- \begin{bmatrix}  -->
-
-<!--     \sigma_{1, 1} & 0 & 0 \\ -->
-
-<!--     0 & \sigma_{i, i} & 0 \\ -->
-
-<!--     0 & 0 & \sigma_{m, m} -->
-
-<!-- \end{bmatrix} -->
-
-<!-- \end{equation}. -->
-
-<!-- # Process and observations errors -->
-
-<!-- autoregressive and non-independent error can be included in B1 -->
-
-<!-- ## perfect scenario: -->
-
-<!-- ```{r eval=FALSE} -->
-
-<!-- load("../../data_prep/windblow_barkbeetle/windthrow_longts.RData") -->
-
-<!-- ``` -->
-
-<!-- ```{r eval=FALSE} -->
-
-<!-- pllongts_raw.forestlist[[1]] %>%  -->
-
-<!--   t %>% -->
-
-<!--   cbind("t" = as.integer(rownames(.)),.) %>% -->
-
-<!--   as_tibble()  -->
-
-<!-- ``` -->
-
-<!-- ```{r eval=FALSE} -->
-
-<!-- plot_raw <- function(df){ -->
-
-<!--   df %>% -->
-
-<!--   ggplot(aes(x = time, y = cover, colour = gp, group = gp)) + -->
-
-<!--   geom_line() + -->
-
-<!--   geom_point() + -->
-
-<!--   facet_wrap(~rep) + -->
-
-<!--   scale_colour_manual(values = viridis(n = 5)) + -->
-
-<!--   labs(x = "Time", y = "Cover (%)", colour = "Func.\ngroup") + -->
-
-<!--   theme_minimal() -->
-
-<!-- } -->
-
-<!-- pllongts_raw.forestdf %>% -->
-
-<!--   ## convert time to absolute, instead of time since disturbance -->
-
-<!--   dplyr::mutate(time = d_time + abs(min(d_time))) %>% -->
-
-<!--   tidyr::pivot_longer(col = gp1:gp5, -->
-
-<!--                       names_to = "gp", -->
-
-<!--                       values_to = "cover") %>% -->
-
-<!--   plot_raw() -->
-
-<!-- ``` -->
-
-<!-- ```{r eval=FALSE} -->
-
-<!-- pllongts_raw.barkdf %>% -->
-
-<!--   dplyr::rename(time = d_time) %>% -->
-
-<!--   tidyr::pivot_longer(col = gp1:gp5, -->
-
-<!--                       names_to = "gp", -->
-
-<!--                       values_to = "cover") %>% -->
-
-<!--   plot_raw() + -->
-
-<!--   geom_vline(xintercept = 0, color = "#ff0066") -->
-
-<!-- ``` -->
-
-<!-- MARSS takes y  s a  matrix ts object -->
+```{r}
+aquacomm.Bls |>
+  map(eStar::stoch_var)
+```
 
 <details>
 

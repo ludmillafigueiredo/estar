@@ -7,12 +7,10 @@
 #' @inheritParams univar_params
 #'
 #' @noRd
-summ_db2bl <- function(dbts_df, bl_tf, summ_mode, na_rm) {
+summ_d2b <- function(dts_df, b_tf, summ_mode, na_rm) {
   summ_f <- match.fun(summ_mode)
-  bl <- dbts_df %>%
-    dplyr::filter(tdb_i >= min(bl_tf), tdb_i <= max(bl_tf)) %>%
-    dplyr::ungroup() %>%
-    dplyr::summarize("svbl_i" = summ_f(svdb_i, na.rm = na_rm)) %>%
-    dplyr::pull(svbl_i)
-  return(bl)
+  b_df <- dts_df[(dts_df$td_i >= min(b_tf) & dts_df$td_i <= max(b_tf)),]
+  b <- summ_f(b_df$vd_i, na.rm = na_rm)
+
+  return(b)
 }

@@ -5,55 +5,56 @@
 \title{Calculate the invariability of a state variable after disturbance.}
 \usage{
 invariability(
-  svdb_i,
-  tdb_i,
+  vd_i,
+  td_i,
   mode,
   metric_tf,
-  db_data = NULL,
+  d_data = NULL,
   response,
-  svbl_i = NULL,
-  tbl_i = NULL,
-  bl_data = NULL,
+  vb_i = NULL,
+  tb_i = NULL,
+  b_data = NULL,
   na_rm = TRUE
 )
 }
 \arguments{
-\item{svdb_i}{a numeric vector containing the state variable in the
+\item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{db_data}.}
+containing said variable in the dataframe provided in \code{d_data}.}
 
-\item{tdb_i}{a numeric vector containing the time or a string specifying the
+\item{td_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{db_data}.}
+in \code{d_data}.}
 
 \item{mode}{A string stating which variant of invariability should be calculated,
 the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-or the on ebased on fitting the linear model \code{"lm_res"}.}
+or the one based on fitting the linear model \code{"lm_res"}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period for which the stability metric should be measured.}
 
-\item{db_data}{an optional data frame containing the time series of the
+\item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
-\item{response}{a string stating whether the stability metric should be calculated
-using the log-response ratio between the values in the disturbed system and
-the baseline (\code{response = "lrr"}) or using the state variable values in the
-disturbed system alone.}
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone (\code{response == "v"}).}
 
-\item{svbl_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{bl_data} containing said
-variable in the dataframe with baseline values.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
-\item{tbl_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{bl_data}.}
+\item{tb_i}{an optional numeric vector containing the time period over which
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
-\item{bl_data}{an optional data frame containing the time series of the
+\item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a numeric, the invariability value.
@@ -71,21 +72,21 @@ state variable.
 }
 \examples{
 invariability(
-  svdb_i = "statvar_db", tdb_i = "time", response = "sv", mode = "cv",
-  metric_tf = c(11, 50), db_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
+  metric_tf = c(11, 50), d_data = aquacomm_resps
 )
 invariability(
-  svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "sv",
+  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "v",
   mode = "cv", metric_tf = c(11, 50)
 )
 invariability(
-  svdb_i = "statvar_db", tdb_i = "time", response = "lrr", mode = "lm_res",
-  metric_tf = c(11, 50), db_data = aquacomm_resps, svbl_i = "statvar_bl",
-  tbl_i = "time", bl_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
+  metric_tf = c(11, 50), d_data = aquacomm_resps, vb_i = "statvar_bl",
+  tb_i = "time", b_data = aquacomm_resps
 )
 invariability(
-  svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "lrr",
-  metric_tf = c(11, 50), mode = "lm_res", svbl_i = aquacomm_resps$statvar_bl,
-  tbl_i = aquacomm_resps$time
+  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "lrr",
+  metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
+  tb_i = aquacomm_resps$time
 )
 }

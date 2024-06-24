@@ -5,56 +5,56 @@
 \title{Calculate the persistence of a state variable inside a defined interval}
 \usage{
 persistence(
-  svdb_i,
-  tdb_i,
-  db_data = NULL,
+  vd_i,
+  td_i,
+  d_data = NULL,
   metric_tf,
-  bl,
-  bl_tf = NULL,
-  svbl_i = NULL,
-  tbl_i = NULL,
-  bl_data = NULL,
+  b,
+  b_tf = NULL,
+  vb_i = NULL,
+  tb_i = NULL,
+  b_data = NULL,
   na_rm = TRUE
 )
 }
 \arguments{
-\item{svdb_i}{a numeric vector containing the state variable in the
+\item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{db_data}.}
+containing said variable in the dataframe provided in \code{d_data}.}
 
-\item{tdb_i}{a numeric vector containing the time or a string specifying the
+\item{td_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{db_data}.}
+in \code{d_data}.}
 
-\item{db_data}{an optional data frame containing the time series of the
+\item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period for which the stability metric should be measured.}
 
-\item{bl}{a string stating whether the baseline is defined by a separate
-baseline that is specified by the user (\code{bl = "input"}) or by a
-time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+\item{b}{a string stating whether the baseline is defined by a separate
+baseline that is specified by the user (\code{b = "input"}) or by a
+time period of the disturbed system (\code{b = "d"}), to be defined
+by \code{b_tf}.}
 
-\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+\item{b_tf}{a numerical vector, specifying the beginning and end of the
 pre-disturbance time period for the disturbed time-series that defines
-the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
+the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 
-\item{svbl_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{bl_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{bl = "bl"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
-\item{tbl_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{bl_data}.
-Obligatory argument if \code{bl = "bl"}.}
+\item{tb_i}{an optional numeric vector containing the time period over which
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
-\item{bl_data}{an optional data frame containing the time series of the
+\item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a double, contained in [0,1]
@@ -63,34 +63,34 @@ a double, contained in [0,1]
 \code{persistence} returns the proportion of time the state
 variable remained inside the interval defined by the baseline's
 \eqn{\pm} sd. The proportion is calculated in relation to the time
-period for which persistence should be calculated.
+period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
 }
 \details{
 If the baseline is defined by the pre-disturbed values of the
-state variable in the disturbed system (\code{bl = "db"}), this pre-disturbed
-time period used as baseline (\code{bl_tf}) cannot overlap with the time period
-for which the persistence is to be calculated (\code{metric_tf}), because of
-redundancy: the values over \code{bl_tf} define the interval for which the
-values in \code{metric_tf} are checked. If they are the same (or partly, if
-overlap is partial), the returned value of persistence will be falsely higher.
+state variable in the disturbed system (\code{b = "d"}), this pre-disturbed
+time period used as baseline (\code{b_tf}) cannot overlap with the time period
+for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
+the values over \code{b_tf} define the interval for which the values in \code{metric_tf} are
+checked. If they are the same (or partly, if overlap is partial), the
+returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-  bl_tf = c(1, 9), metric_tf = c(50, 100)
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+  b_tf = c(1, 9), metric_tf = c(50, 100)
 )
 persistence(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
-  bl_tf = c(1, 9), metric_tf = c(30, 100)
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+  b_tf = c(1, 9), metric_tf = c(30, 100)
 )
 persistence(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-  metric_tf = c(50, 100), svbl_i = "statvar_bl", tbl_i = "time",
-  bl_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+  metric_tf = c(50, 100), vb_i = "statvar_bl", tb_i = "time",
+  b_data = aquacomm_resps
 )
 persistence(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-  metric_tf = c(30, 100), svbl_i = "statvar_bl", tbl_i = "time",
-  bl_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+  metric_tf = c(30, 100), vb_i = "statvar_bl", tb_i = "time",
+  b_data = aquacomm_resps
 )
 }

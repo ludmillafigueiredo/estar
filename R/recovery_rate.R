@@ -6,51 +6,43 @@
 #' log-response ratio (LRR) of the state variable in the disturbed system
 #' compared to the baseline.
 #'
-#' @param bl a string stating whether the baseline is defined by a separate
-#' baseline that is specified by the user (\code{bl = "input"}) or by a
-#' time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.
-#' @param metric_tf a numerical vector, specifying the beginning and end of the
-#' time period for which the stability metric should be measured.
-#'
 #' @inheritParams univar_params
 #'
 #' @return a double, the rate of recovery
 #'
 #' @examples
 #' recovery_rate(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "db",
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
 #'   metric_tf = c(12, 50)
 #' )
 #' recovery_rate(
-#'   svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, bl = "input",
-#'   metric_tf = c(12, 50), svbl_i = "statvar_bl", tbl_i = "time", bl_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   metric_tf = c(12, 50), vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 #' )
 #' @export
-recovery_rate <- function(svdb_i, tdb_i, db_data, bl, metric_tf,
-                          svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
-  if (bl == "input") {
-    blts_df <- format_input(input = "bl", svbl_i, tbl_i, bl_data)
-    base_df <- dplyr::left_join(
-      dplyr::rename(dbts_df, "t" = tdb_i),
-      dplyr::rename(blts_df, "t" = tbl_i),
-      by = "t"
-    ) %>%
-      dplyr::mutate(extent = log(svdb_i / svbl_i)) %>%
-      dplyr::select(t, extent)
+recovery_rate <- function(vd_i, td_i, d_data, b, metric_tf,
+                          vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
+  dts_df <- format_input(input = "d", vd_i, td_i, d_data)
+
+  if (b == "input") {
+    bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
+
+    base_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+                     data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i),
+                     all.x = TRUE)
+    base_df$extent = log(base_df$vd_i / base_df$vb_i)
+
   } else {
-    if (bl == "db") {
-      base_df <- dbts_df %>%
-        dplyr::rename(
-          "extent" = svdb_i,
-          "t" = tdb_i
-        )
+    if (b == "d") {
+      base_df <- dts_df
+      names(base_df)[names(base_df) == 'vd_i'] <- 'extent'
+      names(base_df)[names(base_df) == 'td_i'] <- 't'
     } else {
-      stop("bl must be \"input\" or \"db\".")
+      stop("b must be \"input\" or \"d\".")
     }
   }
-  lm_df <- base_df %>%
-    dplyr::filter(t >= min(metric_tf), t <= max(metric_tf))
+  lm_df <- base_df[(base_df$t >= min(metric_tf) & base_df$t <= max(metric_tf)),
+                   c("t", "extent")]
 
   rate_lm <- stats::lm(extent ~ t, data = lm_df)
 
