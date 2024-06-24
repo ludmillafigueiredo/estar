@@ -5,6 +5,7 @@
 #'
 #' @return a named matrix
 #'
+#' VIK: please add an example
 #' @export
 extractB <- function(marss_res, states_names = NULL){
   if (is.null(states_names)) {

@@ -30,12 +30,12 @@ in \code{d_data}.}
 state variable values in a disturbed system.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time period for which the stability metric should be measured.}
+time period over which the stability metric should be measured.}
 
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
-time period of the disturbed system (\code{b = "d"}), to be defined
-by \code{b_tf}.}
+period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+This period is specified by \code{b_tf}.}
 
 \item{b_tf}{a numerical vector, specifying the beginning and end of the
 pre-disturbance time period for the disturbed time-series that defines
