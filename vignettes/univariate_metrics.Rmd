@@ -185,9 +185,11 @@ aquacomm_fgps.list |>
 
 ```
 
-```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation --- VIK--- this fig still has SV on y axis, not "V", please update!--", out.width = '100%'}
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
 knitr::include_graphics("figures/invariability.png")
 ```
+**VIK** this fig still has SV on y axis, not "v", please update!
+
 ## Resistance
 
 Resistance calculated in relation to a baseline time series (`b = "input"`), 
@@ -327,7 +329,7 @@ persistence(
 )
 ```
 
-```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits of "persistence interval" defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
 
 knitr::include_graphics("figures/persistence.png")
 ```
