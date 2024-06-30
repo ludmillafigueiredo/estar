@@ -1,22 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-# eStar <img class="resize" src="man/figures/logo.png" width="200" height="200" align="right" />
+
+# eStar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->
-`eStar` provides standardized functions to measure the following metrics of stability:
 
--   Resistance
--   Extent of recovery
--   Rate of recovery
--   Invariability
--   Persistences
--   Maximal amplification
--   Time to maximal amplification
--   Robustness
--   Asymptotic resilience
--   Initial resilience
--   Intrinsic stochastic invariability
+`eStar` provides standardized functions to measure the following metrics
+of stability:
+
+- Resistance
+- Extent of recovery
+- Rate of recovery
+- Invariability
+- Persistences
+- Maximal amplification
+- Time to maximal amplification
+- Robustness
+- Asymptotic resilience
+- Initial resilience
+- Intrinsic stochastic invariability
 
 ## Installation
 
@@ -24,13 +27,17 @@
 <!-- ``` r -->
 <!-- install.packages("eStar") -->
 <!-- ``` -->
-You can install the released version of eStar from [GitHub](https://github.com/) with:
+
+You can install the released version of eStar from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("ludmillafigueiredo/eStar")
 ```
 
+<!-- ## Vik: It would be good if you give some more general info on the package here, at least about the distinction between univariate and multivariate metrics
+&#10;Maybe also mention the vignettes for more details on the use of the functions -->
 <!-- ## Example -->
 <!-- This is a basic example which shows you how to solve a common problem: -->
 <!-- ```{r example} -->

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# eStar <img class="resize" src="man/figures/logo.png" width="200" height="200" align="right" />
+# eStar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->
