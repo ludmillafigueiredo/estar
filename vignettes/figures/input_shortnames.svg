@@ -22,6 +22,20 @@
   <defs
      id="defs2">
     <marker
+       style="overflow:visible"
+       id="StopL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="StopL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,5.65 L 0.0,-5.65"
+         id="path13608" />
+    </marker>
+    <marker
        inkscape:stockid="Arrow1Lstart"
        orient="auto"
        refY="0.0"
@@ -439,6 +453,21 @@
          style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
          transform="matrix(-0.8,0,0,-0.8,-10,0)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-8-4-8"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8502-08-8-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -447,9 +476,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4248732"
-     inkscape:cx="150.72953"
-     inkscape:cy="345.99747"
+     inkscape:zoom="1.7146443"
+     inkscape:cx="449.07274"
+     inkscape:cy="264.77795"
      inkscape:document-units="mm"
      inkscape:current-layer="layer3"
      showgrid="true"
@@ -520,7 +549,7 @@
          id="tspan4747"
          x="2.6824999"
          y="5.6811128"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583">Data input</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.264583">Minimal data input</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -545,7 +574,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="20.904829"
-       y="55.510792"
+       y="60.510792"
        id="text13082"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -553,15 +582,15 @@
          sodipodi:role="line"
          id="tspan13080"
          x="20.904829"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13084">d</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="129.84163"
-       y="66.710793"
+       y="80.469139"
        id="text13082-8"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -569,15 +598,15 @@
          sodipodi:role="line"
          id="tspan13080-9"
          x="129.84163"
-         y="66.710793"
+         y="80.469139"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13084-1">d</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="25.437468"
-       y="55.510792"
+       y="60.510792"
        id="text13082-9"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -585,15 +614,15 @@
          sodipodi:role="line"
          id="tspan13080-6"
          x="25.437468"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13084-3">d+1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="36.229401"
-       y="55.510792"
+       y="60.510792"
        id="text13082-9-6"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -601,15 +630,15 @@
          sodipodi:role="line"
          id="tspan13080-6-8"
          x="36.229401"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13128">high</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="74.022949"
-       y="55.510792"
+       y="60.510792"
        id="text13082-9-6-9-1"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -617,15 +646,15 @@
          sodipodi:role="line"
          id="tspan13080-6-8-5-3"
          x="74.022949"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13562">end</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="57.978127"
-       y="55.510792"
+       y="60.510792"
        id="text13082-9-6-9-1-2"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -633,14 +662,14 @@
          sodipodi:role="line"
          id="tspan13080-6-8-5-3-0"
          x="57.978127"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13708">post</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
-       x="-14.6129"
+       x="-19.6129"
        y="4.7017999"
        id="text13408-9"
        transform="rotate(-90)"
@@ -649,11 +678,11 @@
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
          id="tspan13406-2"
-         x="-14.6129"
+         x="-19.6129"
          y="4.7017999"
-         style="stroke-width:0.238125;font-style:italic">v</tspan><tspan
+         style="font-style:italic;stroke-width:0.238125">v</tspan><tspan
          sodipodi:role="line"
-         x="-14.6129"
+         x="-19.6129"
          y="8.6705494"
          style="stroke-width:0.238125"
          id="tspan3121" /></text>
@@ -661,7 +690,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="2.85395"
-       y="10.26695"
+       y="15.26695"
        id="text10302"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -669,11 +698,11 @@
          sodipodi:role="line"
          id="tspan10300"
          x="2.85395"
-         y="10.26695"
+         y="15.26695"
          style="stroke-width:0.238125">a)</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.250141;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#Arrow1Lend)"
-       d="M 6.270277,13.493749 V 51.59375 c 26.19375,0 52.387501,-10e-7 78.581256,0"
+       d="M 6.270277,18.493749 V 56.59375 c 26.19375,0 52.387501,-10e-7 78.581256,0"
        id="path8498"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
@@ -684,7 +713,7 @@
        sodipodi:nodetypes="ccc"
        inkscape:connector-curvature="0"
        id="path10112"
-       d="m 6.6145833,20.505748 c 3.1651934,3.935153 7.6845597,-4.491975 15.6626057,0 3.413644,14.287499 15.060197,23.812501 15.060197,23.812501"
+       d="m 6.6145833,25.505748 c 3.1651934,3.935153 7.6845597,-4.491975 15.6626057,0 3.413644,14.287499 15.060197,23.812501 15.060197,23.812501"
        style="fill:none;stroke:#cc4678;stroke-width:0.824348;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -693,14 +722,36 @@
        sodipodi:nodetypes="ccc"
        inkscape:connector-curvature="0"
        id="path10114"
-       d="m 36.980198,43.841999 c 9.885985,1.396205 10.63554,-26.256519 23.530819,-23.8125 7.657503,3.247986 12.01334,-3.245061 16.671512,2.171668"
+       d="m 36.980198,48.841999 c 9.885985,1.396205 10.63554,-26.256519 23.530819,-23.8125 7.657503,3.247986 12.01334,-3.245061 16.671512,2.171668"
        style="fill:none;stroke:#cc4678;stroke-width:0.789448;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
+    <g
+       id="g5871"
+       transform="matrix(0.70112698,0,0,0.6612158,31.345266,20.947472)">
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path10112-5"
+         d="m 124.35416,52.255747 c 3.1652,3.935153 7.68456,-4.491975 15.66261,0 3.41364,14.287499 15.0602,23.812501 15.0602,23.812501"
+         style="display:inline;fill:none;stroke:#cc4678;stroke-width:0.824348;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path10114-5"
+         d="m 154.71978,75.591998 c 9.88598,1.396205 10.63554,-26.256519 23.53082,-23.8125 7.6575,3.247986 12.01334,-3.245061 16.67151,2.171668"
+         style="display:inline;fill:none;stroke:#cc4678;stroke-width:0.789448;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+    </g>
     <path
        style="fill:none;stroke:#a5a5a5;stroke-width:0.912552;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.82511, 1.82511;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 21.687025,51.59375 c 0,-33.124645 0,-33.124645 0,-33.124645"
+       d="m 21.687025,56.59375 c 0,-33.124645 0,-33.124645 0,-33.124645"
        id="path13046-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
@@ -708,7 +759,7 @@
        inkscape:export-ydpi="600" />
     <path
        style="fill:none;stroke:#a5a5a5;stroke-width:0.915479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.83096, 1.83096;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 25.920356,51.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
+       d="m 25.920356,56.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
@@ -716,7 +767,7 @@
        inkscape:export-ydpi="600" />
     <path
        style="fill:none;stroke:#a5a5a5;stroke-width:0.915479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.83096, 1.83096;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 36.76828,51.806606 c 0,-33.3375 0,-33.3375 0,-33.3375"
+       d="m 36.76828,56.806606 c 0,-33.3375 0,-33.3375 0,-33.3375"
        id="path13046"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
@@ -724,7 +775,7 @@
        inkscape:export-ydpi="600" />
     <path
        style="fill:none;stroke:#a5a5a5;stroke-width:0.915479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.83096, 1.83096;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 76.984937,51.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
+       d="m 76.984937,56.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-3-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
@@ -732,18 +783,9 @@
        inkscape:export-ydpi="600" />
     <path
        style="fill:none;stroke:#a5a5a5;stroke-width:0.915479;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.83096, 1.83096;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 58.464107,51.806603 c 0,-33.337501 0,-33.337501 0,-33.337501"
+       d="m 58.464107,56.806603 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-3-9-2"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <path
-       style="fill:none;stroke:#7e03a8;stroke-width:0.672458;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 6.6145833,18.138608 c 3.3083863,1.574388 4.8732957,3.732687 9.5418707,1.085283 1.740301,-0.986877 4.954552,-1.186686 6.150714,-1.197045 2.312225,-0.01998 3.780957,0.470025 5.075556,0.981216 2.058267,0.812736 5.919677,-1.088172 7.994534,-0.652536 3.308138,0.694575 6.502344,1.042848 9.618481,1.17009 2.278237,0.09303 3.917283,-1.184679 6.126083,-1.278972 1.363006,-0.05823 6.174103,0.943524 7.485883,1.230642 3.091526,0.676647 5.343348,-0.883863 7.144012,-0.992835 3.375922,-0.2043 3.523125,0.821655 6.288281,0.815553 0.999013,-0.0018 3.768258,-1.228212 5.142531,-1.161396"
-       id="path10152-3"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csssssssssc"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
@@ -1030,18 +1072,18 @@
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <rect
-       style="display:inline;opacity:0.505;fill:#a5a5a5;fill-opacity:1;stroke:#161616;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect14597-4"
-       width="12.238036"
-       height="9.5249958"
-       x="118.73071"
-       y="53.975006"
+       style="display:inline;opacity:0.915;fill:#ffffff;fill-opacity:0.626598;stroke:#161616;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.17902812"
+       id="rect14597-4-5"
+       width="39.755001"
+       height="22.754166"
+       x="129.64583"
+       y="51.59375"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
-       style="display:inline;fill:none;stroke:#a5a5a5;stroke-width:0.421451;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.842903, 0.842903;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 130.96875,63.5 c 0,-10.00656 0,-10.00656 0,-10.00656"
+       style="display:inline;fill:none;stroke:#a5a5a5;stroke-width:0.609115;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.21824, 1.21824;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 129.68156,75.141666 c 0,-20.902083 0,-20.902083 0,-20.902083"
        id="path13046-9-3-4-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
@@ -1071,20 +1113,11 @@
          x="117.65781"
          y="44.22316"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">Pre-disturbance time-series</tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#cc4678;stroke-width:0.533;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       d="m 118.62343,53.523678 c 4.26865,4.295775 8.9345,-3.541724 12.34532,0"
-       id="path10152-8"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="116.93904"
-       y="66.710793"
+       y="80.469139"
        id="text13082-6-0-3-7"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -1092,9 +1125,9 @@
          sodipodi:role="line"
          id="tspan13080-7-0-7-2"
          x="116.93904"
-         y="66.710793"
+         y="80.469139"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13303">0</tspan></tspan></text>
     <text
        xml:space="preserve"
@@ -1110,14 +1143,59 @@
          id="tspan13406-2-5-6"
          x="-54.477203"
          y="116.26695"
-         style="stroke-width:0.238125;font-style:italic">v<tspan
-   style="font-size:2.06375px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
-   id="tspan10114">d</tspan></tspan></text>
+         style="font-style:italic;stroke-width:0.238125">v<tspan
+   style="font-style:italic;font-size:2.06375px;baseline-shift:sub;stroke-width:0.238125"
+   id="tspan10114" /></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
+       x="122.92228"
+       y="50.669971"
+       id="text13408-9-2-8-0"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       inkscape:transform-center-x="1.5821274"
+       inkscape:transform-center-y="1.6912396"><tspan
+         sodipodi:role="line"
+         id="tspan13406-2-5-6-6"
+         x="122.92228"
+         y="50.669971"
+         style="font-style:italic;stroke-width:0.238125">v<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan10551">P</tspan></tspan></text>
+    <path
+       style="display:inline;fill:none;stroke:#929292;stroke-width:0.231;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL);marker-end:url(#StopL)"
+       d="M 129.64583,52.3875 H 119.0625"
+       id="path8498-48-4-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
+       x="149.81706"
+       y="54.235065"
+       id="text13408-9-2-8-0-6"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600"
+       inkscape:transform-center-x="1.5821274"
+       inkscape:transform-center-y="1.6912396"><tspan
+         sodipodi:role="line"
+         id="tspan13406-2-5-6-6-7"
+         x="149.81706"
+         y="54.235065"
+         style="font-style:italic;stroke-width:0.238125">v<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan11761">d</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="171.9492"
-       y="67.181976"
+       y="80.940323"
        id="text13408-18-4"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -1125,7 +1203,7 @@
          sodipodi:role="line"
          id="tspan13406-3-2"
          x="171.9492"
-         y="67.181976"
+         y="80.940323"
          style="stroke-width:0.238125">time</tspan></text>
     <text
        xml:space="preserve"
@@ -1142,61 +1220,14 @@
          y="43.935005"
          style="stroke-width:0.238125">b.2)</tspan></text>
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.122765;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-2);marker-end:url(#Arrow1Lend-7-6)"
-       d="m 118.62343,50.095892 v 13.324213 c 18.04094,0 36.08189,0 54.12284,0"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.181439;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-2);marker-end:url(#Arrow1Lend-7-6)"
+       d="M 118.62343,46.302083 V 75.40625 c 18.04094,0 36.08189,0 54.12284,0"
        id="path8498-1-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
-    <g
-       id="g15892"
-       transform="translate(-7.9374975,-2.4669393)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
-         x="40.390972"
-         y="75.745354"
-         id="text4749-3"
-         inkscape:transform-center-x="-9.6518638"
-         inkscape:transform-center-y="-7.4245106"><tspan
-           sodipodi:role="line"
-           id="tspan4747-3"
-           x="40.390972"
-           y="75.745354"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">Disturbed time-series</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
-         x="40.390972"
-         y="71.22068"
-         id="text4749-3-5"
-         inkscape:transform-center-x="-9.6518638"
-         inkscape:transform-center-y="-7.4245106"><tspan
-           sodipodi:role="line"
-           id="tspan4747-3-2"
-           x="40.390972"
-           y="71.22068"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">Baseline time-series</tspan></text>
-      <rect
-         style="opacity:1;fill:#7e03a8;fill-opacity:1;stroke:#0f0c0c;stroke-width:0.3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-         id="rect5385"
-         width="2.6458333"
-         height="2.6458333"
-         x="34.395832"
-         y="68.61277" />
-      <rect
-         style="display:inline;opacity:1;fill:#cc4678;fill-opacity:0.941176;stroke:#0f0c0c;stroke-width:0.3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-         id="rect5385-7"
-         width="2.6458333"
-         height="2.6458333"
-         x="34.395832"
-         y="73.137444" />
-    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
@@ -1215,7 +1246,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="83.402565"
-       y="56.983974"
+       y="61.983974"
        id="text13408-18-4-5"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -1223,7 +1254,7 @@
          sodipodi:role="line"
          id="tspan13406-3-2-15"
          x="83.402565"
-         y="56.983974"
+         y="61.983974"
          style="stroke-width:0.238125">time</tspan></text>
     <text
        xml:space="preserve"
@@ -1243,7 +1274,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        x="2.9390399"
-       y="55.510792"
+       y="60.510792"
        id="text13082-6-0-3-7-79"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
        inkscape:export-xdpi="600"
@@ -1251,9 +1282,9 @@
          sodipodi:role="line"
          id="tspan13080-7-0-7-2-4"
          x="2.9390399"
-         y="55.510792"
+         y="60.510792"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125">t<tspan
-   style="font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125;font-style:italic"
+   style="font-style:italic;font-size:2.4765px;baseline-shift:sub;stroke-width:0.238125"
    id="tspan13303-54">0</tspan></tspan></text>
     <text
        xml:space="preserve"
