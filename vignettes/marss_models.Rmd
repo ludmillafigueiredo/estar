@@ -49,8 +49,30 @@ This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
-```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, and facets represent the different concentrations (micro g/L)."}
-knitr::include_graphics("aquacomm_fgps_logplot.svg")
+```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+(aquacomm_fgps.logplot <- aquacomm_fgps |>
+  tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
+                      names_to = "gp", values_to = "abund") |>
+  ## summarize to plot
+  dplyr::group_by(time, treat, gp) |>
+  dplyr::summarize(abund_logmean = log(mean(abund))) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(gp = forcats::fct_recode(factor(gp), 
+                      Herbivore = "herb",
+                      Detr_Herbivore = "detr_herb",
+                      Carnivore = "carn",
+                      Omnivore = "omni",
+                      Detritivore = "detr")) |>
+  ggplot(aes(x = time, y = abund_logmean, group = gp, colour = gp)) +
+  geom_line() +
+  geom_point(size = 1) +
+  geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
+  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
+                                                    length.out = 5)]) +
+  facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
+  labs(x = "Time (week)", y = "Mean abundance (log)", 
+       colour = "Functional\ngroup") +
+  theme_estar())
 ```
 
 # MARSS models
