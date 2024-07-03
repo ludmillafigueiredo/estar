@@ -1,11 +1,10 @@
 ---
-title: "MARSS in eStar"
+title: "MARSS in eStar and its multivariate metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
     toc_depth: 2 
     fig_caption: TRUE
-    df_print: kable
     code_folding: hide
 vignette: >
   %\VignetteIndexEntry{marss_estar}
@@ -19,23 +18,16 @@ editor_options:
 
 ```{r knit-setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  eval = FALSE
+  comment = "#>"
   )
-options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly dfifferent and this avoids a warning message every time it's rendered
-rmarkdown::html_document(df_print = knitr::kable)
+options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly different and this avoids a warning message every time it's rendered
 ```
 
 ```{r message=FALSE}
 library(eStar)
 library(tidyverse)
 library(viridis)
-library(kableExtra)
-##library(imputeTS)
 library(MARSS)
-library(cowplot)
-library(ggsci)
 library(hesim)
 source("custom_aesthetics.R")
 ```
@@ -53,8 +45,8 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
 The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016].
-This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level.
-Additionally, four replicates were used as control, undisturbed systems ('baseline' in estar terminology).
+This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
+Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
 ```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied, and facets represent the different concentrations (micro g/L)."}
@@ -314,43 +306,43 @@ Thus, our [aquatic commmunity data](aquatic-data) must be split by the concentra
 We have two replicates per treatment and four replicates for the control but we are modelling one observation as corresponding to one state processes, therefore a choice must be made how to deal with this. One possibility is to randomly pick one of the replicates per treatment. Alternatively, one can choose to average the data over replicates. 
 We here use the mean of species abundances over all replicates:
 
-```{r}
-## calculate z-scores
-aquacommz_allscen.ldf <- aquacomm_fgps |>
-    dplyr::filter(time >= 1 , time <= 28) |>
-    ungroup() |>
+```{r collapse=TRUE}
+## calculate z-scores of abundances
+aquacommz_allscen.ldf <- aquacomm_fgps %>%
+    dplyr::filter(time >= 1 , time <= 28) %>%
+    ungroup() %>%
     dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr), 
-                     ~MARSS::zscore(.)) |>
+                     ~MARSS::zscore(.)) %>%
     dplyr::mutate(across(c(herb, detr_herb, carn, omni, detr),
-                         ~dplyr::na_if(., 0))) |>
+                         ~dplyr::na_if(., 0))) %>%
     tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                         names_to = "fgp",
-                        values_to = "abund")
+                        values_to = "abund_z")
 
 ## summarize abunds over replicates
-aquacommz_allscen.summldf <- aquacommz_allscen.ldf |>
-    dplyr::group_by(time, treat, fgp) |>
-    dplyr::summarize(abund_mu = mean (abund),
-                     abund_sd = sd(abund)) |>
+aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
+    dplyr::group_by(time, treat, fgp) %>%
+    dplyr::summarize(abundz_mu = mean (abund_z),
+                     abundz_sd = sd(abund_z)) %>%
     dplyr::ungroup()
 
 ## convert into time-series matrix
-(aquacommz_allscen.summmxls <- aquacommz_allscen.summldf |>
-    dplyr::select(time, treat, fgp, abund_mu) |>
-    split(.$treat) |>
-    map(~ dplyr::select(., time, fgp, abund_mu) |>
-        unique() |>
+aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
+    dplyr::select(time, treat, fgp, abundz_mu) %>%
+    split(.$treat) %>%
+    map(~ dplyr::select(., time, fgp, abundz_mu) %>%
+        unique() %>%
         tidyr::pivot_wider(id_cols = fgp,
-                           names_from = time, values_from = "abund_mu", 
-                           names_prefix = "time ") |>
-        tibble::column_to_rownames(var = "fgp") |>
-        as.matrix()))
+                           names_from = time, values_from = "abundz_mu", 
+                           names_prefix = "time ") %>%
+        tibble::column_to_rownames(var = "fgp") %>%
+        as.matrix())
 ```
 
 Next, we prepare the arguments to be used for specifying the MARSS model according to the minimal requirements case outlined above.
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
 
-```{r cache = TRUE}
+```{r cache = TRUE, collapse=TRUE}
 ## 5 groups
 ### no process variance, 5 gps
 Q_05 <- matrix(list(0), 5, 5)
@@ -364,16 +356,16 @@ R_05 <- matrix(list(0), 5, 5)
 ### single error variancee: 0 reps (summarized data), 5 gps
 R_I5 <- matrix(list(0), 5, 5)
 diag(R_I5) <- rep("var_r", 5)
-### single error variancee: 4 reps, 11 gps
+### single error variancee: 4 reps, 5 gps
 R_Ir5 <- matrix(list(0), 4*5, 4*5)
 diag(R_Ir5) <- rep("var_r", 4*5)
-### single replicate/observation per process: 0 reps, 5 gps
+### single replicate/observation per process: 1 reps, 5 gps
 Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ### multiple replicate/observation per process
 Z_r5 <- build_Zreps(4, 5)
 
-aquacommz_allscen.marssls <- aquacommz_allscen.summmxls |>
+aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
@@ -382,13 +374,13 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls |>
                      R = R_05,
                      tinitx = 1),
                 method = "BFGS"))
-names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " nano g/L")
+names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " micro g/L")
 ```
 
 We provide the function `eStar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
-(aquacomm.Bls <- aquacommz_allscen.marssls |>
+(aquacomm.Bls <- aquacommz_allscen.marssls %>%
   map(~eStar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
@@ -400,7 +392,7 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate sta
 A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied.
 
 ```{r}
-aquacomm.Bls |>
+aquacomm.Bls %>%
   map(eStar::reactivity)
 ```
 
@@ -409,7 +401,7 @@ aquacomm.Bls |>
 The largest response of the community to the perturbation, it is a measure of the transient behaviour of the system.
 
 ```{r}
-aquacomm.Bls |>
+aquacomm.Bls %>%
   map(eStar::max_amp)
 ```
 
@@ -418,7 +410,7 @@ aquacomm.Bls |>
 Initial resilience is the initial rate of return to equilibrium. The larger its value, the more stable the system, as its “worst case” initial rate of return to equilibrium is faster (Downing et al. 2020).
 
 ```{r}
-aquacomm.Bls |>
+aquacomm.Bls %>%
   map(eStar::init_resil)
 ```
 
@@ -427,19 +419,22 @@ aquacomm.Bls |>
 The slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation. Asymptotic resilience can take on positive real numbers. The larger its value, the more stable the system as such communities have a faster long-term return to stable state.
 
 ```{r}
-aquacomm.Bls |>
+aquacomm.Bls %>%
   map(eStar::asympt_resil)
 ```
-
 
 ## Stochastic invariability
 
 Inverse of the maximal response variance to white noise. The larger its value, the more stable the system as it indicates less variability due to random displacements of the system from the equilibrium.
 
 ```{r}
-aquacomm.Bls |>
+aquacomm.Bls %>%
   map(eStar::stoch_var)
 ```
+
+# References
+
+--------------------------------------------------------------------------------
 
 <details>
 
@@ -454,6 +449,3 @@ sessionInfo()
 
 <br>
 
-------------------------------------------------------------------------
-
-# References

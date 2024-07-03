@@ -5,7 +5,6 @@ output:
     toc: TRUE
     toc_depth: 2 
     fig_caption: TRUE
-    df_print: kable
 vignette: >
   %\VignetteIndexEntry{univariate_metrics}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,8 +26,6 @@ library(eStar)
 library(ggplot2)
 library(cowplot)
 library(viridis)
-library(kableExtra)
-library(ggsci)
 library(forcats)
 source("custom_aesthetics.R")
 
