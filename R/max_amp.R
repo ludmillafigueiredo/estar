@@ -13,7 +13,8 @@
 #' fitted MARSS object.
 #'
 #' @return a numeric, the maximal amplification vector
-#' VIK: please add an example
+#'
+#' @example man/examples/eg_max_amp.R
 #'
 #' @export
 max_amp <- function(B){

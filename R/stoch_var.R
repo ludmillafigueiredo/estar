@@ -9,7 +9,8 @@
 #' @param B a matrix, containing the interactions between the species
 #' or functional groups in the community. Can be calculated
 #' with \code{\link{extractB}} from the fitted MARSS object.
-#' VIK: please add an example
+#'
+#' @example man/examples/eg_stoch_var.R
 #'
 #' @export
 stoch_var <- function(B){

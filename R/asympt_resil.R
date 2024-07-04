@@ -13,6 +13,8 @@
 #'
 #' @return a numeric, the asymptotic resilience
 #'
+#' @example man/examples/eg_asympt_resil.R
+#'
 #' @export
 asympt_resil <- function(B){
     l_dom <- eigen(B)$values[1]

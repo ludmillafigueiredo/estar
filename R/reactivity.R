@@ -11,7 +11,8 @@
 #' fitted MARSS object.
 #'
 #' @return a numeric, the reactivity value
-#' VIK: please add an example
+#'
+#' @example man/examples/eg_reactivity.R
 #'
 #' @export
 reactivity <- function(B){
