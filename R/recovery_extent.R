@@ -12,7 +12,7 @@
 #' defined by \code{b_tf}
 #' }.
 #'
-#' **Ludmilla, please CHECK** In case a certain pre-disturbed period is used as a
+#' In case a certain pre-disturbed period is used as a
 #' baseline (\code{b = "d"}), a single value over the specified period
 #' \code{b_tf} is summarized as the mean or median (\code{summ_mode}) of the
 #' values over that period.
