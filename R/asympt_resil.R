@@ -1,12 +1,22 @@
-#' Calculate the asymptotic resilience of a community from its community matrix.
-#' \code{init_resil} calculates asymptotic resilience as the slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation (Arnoldi et al. 2016, Downing et al. 2020).
+#' Calculate the asymptotic resilience of a community from its
+#' community matrix.
 #'
-#' @param B a matrix, containing the species or functional groups in the community. Can be calculated with \code{\link{extractB}}.
+#' \code{init_resil} calculates asymptotic resilience as
+#' the slowest long-term asymptotic rate of return to
+#' equilibrium after a pulse perturbation (Arnoldi et al. 2016,
+#' Downing et al. 2020).
+#'
+#' @param B a matrix, containing the interactions between the species
+#' or functional groups in the community.
+#' Can be calculated with \code{\link{extractB}} from the
+#' fitted MARSS object.
 #'
 #' @return a numeric, the asymptotic resilience
 #'
+#' @example man/examples/eg_asympt_resil.R
+#'
 #' @export
-asympt_resil <- function(B){
-    l_dom <- eigen(B)$values[1]
-    i_s <- -log(abs(l_dom))
+asympt_resil <- function(B) {
+  l_dom <- eigen(B)$values[1]
+  i_s <- -log(abs(l_dom))
 }

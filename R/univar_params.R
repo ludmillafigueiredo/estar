@@ -19,15 +19,24 @@
 #' state variable values in the baseline.
 #' @param b a string stating whether the baseline is defined by a separate
 #' baseline that is specified by the user (\code{b = "input"}) or by a
+<<<<<<< HEAD
 #' time period of the disturbed system (\code{b = "d"}), to be defined
 #' by \code{b_tf}.
+=======
+#' period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+#' This period is specified by \code{b_tf}.
+>>>>>>> base_r
 #' @param b_tf a numerical vector, specifying the beginning and end of the
 #' pre-disturbance time period for the disturbed time-series that defines
 #' the baseline. Obligatory if (\code{b = "d"}), see 'Details'.
 #' @param na_rm a logical determining whether NAs should be taken out prior
 #' to the estimation of the stability metric. Defaults to TRUE.
 #' @param metric_tf a numerical vector, specifying the beginning and end of the
+<<<<<<< HEAD
 #' time period for which the stability metric should be measured.
+=======
+#' time period over which the stability metric should be measured.
+>>>>>>> base_r
 univar_params <- function(vd_i,
                           td_i,
                           d_data,
@@ -37,6 +46,11 @@ univar_params <- function(vd_i,
                           b,
                           b_tf,
                           na_rm,
+<<<<<<< HEAD
                           metric_tf){
     return(invisible(NULL))
+=======
+                          metric_tf) {
+  return(invisible(NULL))
+>>>>>>> base_r
 }

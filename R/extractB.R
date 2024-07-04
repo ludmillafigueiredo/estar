@@ -5,13 +5,24 @@
 #'
 #' @return a named matrix
 #'
+#' @example man/examples/eg_extractB.R
+#'
 #' @export
-extractB <- function(marss_res, states_names = NULL){
+extractB <- function(marss_res, states_names = NULL) {
   if (is.null(states_names)) {
     states_names <- 1:sqrt(length(stats::coef(marss_res)$B))
   }
 
   stats::coef(marss_res)$B |>
+<<<<<<< HEAD
     matrix(nrow = length(states_names), ncol = length(states_names), byrow = FALSE,
            dimnames = list(states_names, states_names))
+=======
+    matrix(
+      nrow = length(states_names),
+      ncol = length(states_names),
+      byrow = FALSE,
+      dimnames = list(states_names, states_names)
+    )
+>>>>>>> base_r
 }

@@ -10,10 +10,19 @@
 #' \item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
 #' \item values of the state variable in the disturbed system over a period
 #' defined by \code{b_tf}
+<<<<<<< HEAD
 #' },
 #'
 #' in both cases, a single baseline value is summarized as the the mean or
 #' median (\code{summ_mode}) of the values given.
+=======
+#' }.
+#'
+#' In case a certain pre-disturbed period is used as a
+#' baseline (\code{b = "d"}), a single value over the specified period
+#' \code{b_tf} is summarized as the mean or median (\code{summ_mode}) of the
+#' values over that period.
+>>>>>>> base_r
 #'
 #' @param response a string stating whether the stability metric should be
 #' calculated using the log-response ratio between the values in the disturbed
@@ -57,22 +66,46 @@
 #'   b = "d", t_rec = 42, b_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
+<<<<<<< HEAD
 recovery_extent <- function(vd_i, td_i, d_data, response, b, t_rec,
                             vb_i = NULL, tb_i = NULL, b_data = NULL,
                             b_tf = NULL, summ_mode = "mean",
                             na_rm = TRUE) {
 
+=======
+recovery_extent <- function(response,
+                            t_rec,
+                            summ_mode = "mean",
+                            b,
+                            b_tf = NULL,
+                            vd_i,
+                            td_i,
+                            d_data,
+                            vb_i = NULL,
+                            tb_i = NULL,
+                            b_data = NULL,
+                            na_rm = TRUE) {
+>>>>>>> base_r
   dts_df <- format_input("d", vd_i, td_i, d_data)
 
   if (b == "input") {
     bts_df <- format_input("b", vb_i, tb_i, b_data)
 
+<<<<<<< HEAD
     extent_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
                        data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i))
 
     ifelse(!(t_rec %in% extent_df$t),
            stop("Choose a t_rec for which you have input data."),
            extent_df <- extent_df[extent_df$t == t_rec,])
+=======
+    extent_df <- merge(
+      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
+    )
+
+    ifelse(!(t_rec %in% extent_df$t), stop("Choose a t_rec for which you have input data."), extent_df <- extent_df[extent_df$t == t_rec, ])
+>>>>>>> base_r
   } else {
     if (b == "d") {
       if (min(b_tf) == max(b_tf)) {

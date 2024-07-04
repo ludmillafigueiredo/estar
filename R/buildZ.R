@@ -6,11 +6,11 @@
 #' @return a numeric (design) matrix
 #'
 #' @export
-build_Zreps  <- function(reps, m){
-    ## n = reps*m
-    Z <- matrix(list(0), reps*m, m)
-    for(m_i in seq(0,m-1)){
-        Z[(reps*m_i+1):(reps*m_i+1+(reps-1)), m_i+1] = 1
-    }
-    return(Z)
+build_Zreps  <- function(reps, m) {
+  ## n = reps*m
+  Z <- matrix(list(0), reps * m, m)
+  for (m_i in seq(0, m - 1)) {
+    Z[(reps * m_i + 1):(reps * m_i + 1 + (reps - 1)), m_i + 1] = 1
+  }
+  return(Z)
 }

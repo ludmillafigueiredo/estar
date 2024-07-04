@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 #' Calculate the persistence of a state variable inside a defined interval
+=======
+#' Calculate the persistence of a state variable over a defined
+#' time interval
+>>>>>>> base_r
 #'
 #' \code{persistence} returns the proportion of time the state
-#' variable remained inside the interval defined by the baseline's
-#' \eqn{\pm} sd. The proportion is calculated in relation to the time
-#' period for which persistence should be calculated. ## V: actually tend to exclude persistence altogether from the package.
+#' variable remained inside the interval defined by one baseline's
+#' \eqn{\pm} sd from the baseline's mean. The proportion
+#' is calculated in relation to the time period for which
+#' persistence should be calculated.
 #'
 #' @inheritParams univar_params
 #'
@@ -38,12 +44,21 @@
 #' )
 #' @export
 persistence <-
+<<<<<<< HEAD
   function(vd_i,
            td_i,
            d_data = NULL,
            metric_tf,
            b,
            b_tf = NULL,
+=======
+  function(metric_tf,
+           b,
+           b_tf = NULL,
+           vd_i,
+           td_i,
+           d_data = NULL,
+>>>>>>> base_r
            vb_i = NULL,
            tb_i = NULL,
            b_data = NULL,
@@ -74,7 +89,12 @@ persistence <-
     perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
 
     persistence_df <-
+<<<<<<< HEAD
       subset(dts_df, td_i >= min(metric_tf) & td_i <= max(metric_tf))
+=======
+      subset(dts_df, td_i >= min(metric_tf) &
+               td_i <= max(metric_tf))
+>>>>>>> base_r
     persistence_df$persist <-
       sapply(persistence_df$vd_i, function(x)
         all(x >= perst_zone$low_lim & x <= perst_zone$high_lim))
@@ -84,13 +104,24 @@ persistence <-
                        FUN = length)
     colnames(persistence_agg) <- c("persist", "n_p")
 
+<<<<<<< HEAD
     persistence = persistence_agg$n_p[which(persistence_agg$persist== TRUE)]/sum(persistence_agg$n_p)
+=======
+    persistence = persistence_agg$n_p[which(persistence_agg$persist == TRUE)] /
+      sum(persistence_agg$n_p)
+>>>>>>> base_r
 
     ## necessary if all persist values are FALSE, and data frame ends up empty
     if (nrow(persistence_df) == 0) {
       persistence <- 0
+<<<<<<< HEAD
 
     }
     return(persistence)
   }
+=======
+>>>>>>> base_r
 
+    }
+    return(persistence)
+  }

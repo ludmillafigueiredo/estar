@@ -5,5 +5,5 @@
 #' @param low_lim a double, the upper limit defined
 #' @noRd
 check_lim <- function(v_c, up_lim, low_lim) {
-    (v_c <= up_lim & v_c >= low_lim)
+  (v_c <= up_lim & v_c >= low_lim)
 }

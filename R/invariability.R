@@ -41,6 +41,7 @@
 #'   tb_i = aquacomm_resps$time
 #' )
 #' @export
+<<<<<<< HEAD
 invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
                           vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
 
@@ -48,6 +49,23 @@ invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
 
   invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
   invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
+=======
+invariability <- function(mode,
+                          response,
+                          metric_tf,
+                          vd_i,
+                          td_i,
+                          d_data = NULL,
+                          vb_i = NULL,
+                          tb_i = NULL,
+                          b_data = NULL,
+                          na_rm = TRUE) {
+  dts_df <- format_input("d", vd_i, td_i, d_data)
+
+  invar_df <- estar::sort_response(response, dts_df, vb_i, tb_i, b_data)
+  invar_df <- invar_df[invar_df$t >= min(metric_tf) &
+                         invar_df$t <= max(metric_tf), ]
+>>>>>>> base_r
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")
@@ -58,7 +76,11 @@ invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
   }
 
   if (mode == "cv") {
+<<<<<<< HEAD
     invar <- 1 / eStar::cv(invar_df$response, na_rm = na_rm)
+=======
+    invar <- 1 / estar::cv(invar_df$response, na_rm = na_rm)
+>>>>>>> base_r
     return(invar)
   } else if (mode == "lm_res") {
     invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)

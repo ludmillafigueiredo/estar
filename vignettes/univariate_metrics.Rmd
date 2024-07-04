@@ -5,7 +5,6 @@ output:
     toc: TRUE
     toc_depth: 2 
     fig_caption: TRUE
-    df_print: kable
 vignette: >
   %\VignetteIndexEntry{univariate_metrics}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,26 +13,26 @@ bibliography: references.bib
 ---
 
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 options(rmarkdown.html_vignette.check_title = FALSE)
 set.seed(123)
 ```
 
 ```{r, setup, include=FALSE}
-library(eStar)
+library(estar)
 library(ggplot2)
 library(cowplot)
 library(viridis)
-library(kableExtra)
-library(ggsci)
 library(forcats)
 source("custom_aesthetics.R")
 
+<<<<<<< HEAD
 label_intensity <- function(intensity){
   paste0("Conc = ", intensity, " mg/L")
+=======
+label_intensity <- function(intensity, mu) {
+  paste0("Conc = ", intensity, " micro g/L")
+>>>>>>> base_r
 }
 ```
 <!-- colors : -->
@@ -45,6 +44,7 @@ label_intensity <- function(intensity){
 
 # Overview of demonstration data
 
+<<<<<<< HEAD
 We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in main text), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
 
@@ -105,10 +105,113 @@ ggsave(filename = "aquacomm_fgps_logplot.svg", plot = aquacomm_fgps.logplot,
   facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
   labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
   theme_estar())
+=======
+We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in **Figueiredo et al. XXX**), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
+The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
+
+```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+(
+  aquacomm_fgps.logplot <- aquacomm_fgps |>
+    tidyr::pivot_longer(
+      cols = c(herb, detr_herb, carn, omni, detr),
+      names_to = "gp",
+      values_to = "abund"
+    ) |>
+    ## summarize to plot
+    dplyr::group_by(time, treat, gp) |>
+    dplyr::summarize(abund_logmean = log(mean(abund))) |>
+    dplyr::ungroup() |>
+    dplyr::mutate(
+      gp = forcats::fct_recode(
+        factor(gp),
+        Herbivore = "herb",
+        Detr_Herbivore = "detr_herb",
+        Carnivore = "carn",
+        Omnivore = "omni",
+        Detritivore = "detr"
+      )
+    ) |>
+    ggplot(aes(
+      x = time,
+      y = abund_logmean,
+      group = gp,
+      colour = gp
+    )) +
+    geom_line() +
+    geom_point(size = 1) +
+    geom_vline(
+      aes(xintercept = 0),
+      linetype = 2,
+      colour = "black"
+    ) +
+    scale_colour_manual(values = intensity_colors[seq(from = 1,
+                                                      by = 2,
+                                                      length.out = 5)]) +
+    facet_wrap(
+      ~ treat,
+      nrow = 5,
+      labeller = labeller(treat = label_intensity)
+    ) +
+    labs(x = "Time (week)", y = "Mean abundance (log)", colour = "Functional\ngroup") +
+    theme_estar()
+)
+```
+```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+(
+  aquacomm_fgps.rawplot <- aquacomm_fgps |>
+    tidyr::pivot_longer(
+      cols = c(herb, detr_herb, carn, omni, detr),
+      names_to = "gp",
+      values_to = "abund"
+    ) |>
+    ## summarize to plot
+    dplyr::group_by(time, treat, gp) |>
+    dplyr::summarize(abund.mean = mean(abund), abund.sd = sd(abund)) |>
+    dplyr::ungroup() |>
+    dplyr::mutate(
+      gp = forcats::fct_recode(
+        factor(gp),
+        Herbivore = "herb",
+        Detr_Herbivore = "detr_herb",
+        Carnivore = "carn",
+        Omnivore = "omni",
+        Detritivore = "detr"
+      )
+    ) |>
+    ggplot(aes(
+      x = time,
+      y = abund.mean,
+      group = gp,
+      colour = gp
+    )) +
+    geom_ribbon(
+      aes(ymin = abund.mean - abund.sd, ymax = abund.mean + abund.sd),
+      col = "gainsboro",
+      fill = "gainsboro"
+    ) +
+    geom_line() +
+    geom_point(size = 1) +
+    geom_vline(
+      aes(xintercept = 0),
+      linetype = 2,
+      colour = "black"
+    ) +
+    scale_colour_manual(values = intensity_colors[seq(from = 1,
+                                                      by = 2,
+                                                      length.out = 5)]) +
+    facet_wrap(
+      ~ treat,
+      nrow = 5,
+      labeller = labeller(treat = label_intensity)
+    ) +
+    labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
+    theme_estar()
+)
+>>>>>>> base_r
 ```
  
 # Main functions
-Examples of each function applied to the example dataset.
+Examples of each function applied to the example dataset. For the functions that require a user-defined time step when were the system has recovered, we use week 28, when all groups seem to have stabilized their growth curve (Fig.1).
 
 ## Invariability
 
@@ -120,10 +223,24 @@ The time frame is defined by `tb_i` and specified in the data frame
 `d_data` (`aquacomm_resps`, Fig. 2-a).
 
 ```{r}
+<<<<<<< HEAD
 invariability(response = "lrr", mode = "lm_res",
               vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time",
               metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time",
               d_data = aquacomm_resps, b_data = aquacomm_resps)
+=======
+invariability(
+  mode = "lm_res",
+  response = "lrr",
+  metric_tf = c(1, max(aquacomm_fgps$time)),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+>>>>>>> base_r
 ```
 
 Invariability calculated as the inverse of standard deviation of residuals of the
@@ -131,10 +248,22 @@ linear model fitted to predict the state variable in the disturbed system by
 time (Fig. 2-b).
 ```{r}
 invariability(
+<<<<<<< HEAD
   response = "v", mode = "lm_res",
      vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
      d_data = aquacomm_resps, b_data = aquacomm_resps
+=======
+  mode = "lm_res",
+  metric_tf = c(1, max(aquacomm_fgps$time)),
+  response = "v",
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+>>>>>>> base_r
 )
 ```
 
@@ -142,10 +271,22 @@ Invariability calculated as the inverse of the coefficient of variation of the l
 response ratio of the state variable in the disturbed and baseline systems (Fig. 2-c).
 ```{r}
 invariability(
+<<<<<<< HEAD
   response = "lrr", mode = "cv",
      vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
      d_data = aquacomm_resps, b_data = aquacomm_resps
+=======
+  response = "lrr",
+  mode = "cv",
+  metric_tf = c(1, max(aquacomm_fgps$time)),
+  vd_i = "statvar_db",
+  td_i = "time",
+  b_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  d_data = aquacomm_resps
+>>>>>>> base_r
 )
 ```
 
@@ -153,6 +294,7 @@ Invariability calculated as the inverse of the coefficient of variation of a sta
 variable in the disturbed system (Fig. 2-d).
 ```{r}
 invariability(
+<<<<<<< HEAD
      response = "v", mode = "cv",
      vd_i = "statvar_db", vb_i = "statvar_bl", td_i = "time", 
      metric_tf = c(1, max(aquacomm_fgps$time)), tb_i = "time", 
@@ -186,61 +328,166 @@ aquacomm_fgps.list |>
 ```
 
 ```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+=======
+  response = "v",
+  mode = "cv",
+  metric_tf = c(1, max(aquacomm_fgps$time)),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+>>>>>>> base_r
 knitr::include_graphics("figures/invariability.png")
 ```
+
 ## Resistance
 
 Resistance calculated in relation to a baseline time series (`b = "input"`), 
 as the log response ratio (`res_mode = "lrr"`) of the state variable in the 
 disturbed and baseline systems at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-e,f).
+disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-a).
 ```{r}
 resistance(
+<<<<<<< HEAD
   b = "input", res_mode = "lrr", res_time = "defined", res_t = 1,
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time", 
   d_data = aquacomm_resps, b_data = aquacomm_resps
+=======
+  b = "input",
+  res_mode = "lrr",
+  res_time = "defined",
+  res_t = 1,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+>>>>>>> base_r
 )
 ```
 
 Resistance calculated in relation to a baseline time series (`b = "input"`), 
 as the highest (`res_time = "max"`) log response ratio (`res_mode = "lrr"`) 
 of the state variable in the disturbed and baseline systems during a 
-given time frame (`res_tf = c(1, 20)`, Fig. 3-g,h).
+given time frame (`res_tf = c(1, 20)`, Fig. 3-b).
 ```{r}
 resistance(
+<<<<<<< HEAD
    b = "input", res_mode = "lrr", res_time = "max", res_tf = c(1, 20),
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time", 
   d_data = aquacomm_resps, b_data = aquacomm_resps
   )
+=======
+  b = "input",
+  res_mode = "lrr",
+  res_time = "max",
+  res_tf = c(1, 20),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+>>>>>>> base_r
 ```
 
 Resistance calculated in relation to a baseline time series (`b = "input"`), 
 as the difference (`res_mode = "diff"`) at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-i,j).
+disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-c).
 ```{r}
 resistance(
+<<<<<<< HEAD
    b = "input", res_mode = "diff", res_time = "defined", res_t = 1,
    vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
    d_data = aquacomm_resps, b_data = aquacomm_resps
+=======
+  b = "input",
+  res_mode = "diff",
+  res_time = "defined",
+  res_t = 1,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+>>>>>>> base_r
 )
 ```
 
 Resistance calculated in relation to a baseline time series (`b = "input"`), 
 as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) 
-during a given time frame (`res_tf = c(11, 50)`, Fig. 3-k,l).
+during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
 ```{r}
 resistance(
+<<<<<<< HEAD
    b = "input", res_mode = "diff", res_time = "max", res_tf = c(1, 20),
    vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
    d_data = aquacomm_resps, b_data = aquacomm_resps
 )
 ```
 
+=======
+  b = "input",
+  res_mode = "diff",
+  res_time = "max",
+  res_tf = c(1, 20),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
+```{r}
+resistance(
+  b = "d",
+  b_tf = c(-4, -0.14),
+  res_time = "max",
+  res_mode = "diff",
+  res_tf = c(1, 20),
+  vd_i = "statvar_bl",
+  td_i = "time",
+  d_data = aquacomm_resps
+)
+```
+
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), 
+composed of the state variable values in the three time steps before 
+disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) 
+absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
+
+```{r}
+resistance(
+  b = "d",
+  b_tf = c(-4, -0.14),
+  res_mode = "lrr",
+  res_time = "defined",
+  res_t = 1,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps
+)
+```
+
+>>>>>>> base_r
 ```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
 ```
 
 ## Extent of recovery
+<<<<<<< HEAD
 Extent of recovery calculated as the log response ratio of the state variable in the 
 disturbed and baseline systems (`b = "input"`), at a user-defined time step
 (`t_rec = 42`, Fig. 4-m,n).
@@ -273,6 +520,60 @@ recovery_extent(
   b = "d", t_rec = max(aquacomm_fgps$time), b_tf = c(5, 10), response = "lrr", 
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps
   )
+=======
+Extent of recovery calculated as the log response ratio (`response = "lrr"`) of
+the state variable in the disturbed and baseline systems (`b = "input"`), 
+at a user-defined time step (`t_rec = 28`, Fig. 4-a).
+```{r}
+recovery_extent(
+  response = "lrr",
+  b = "input",
+  t_rec = 28,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+) 
+```
+
+Extent of recovery calculated as the difference (`response = "lrr"`) between 
+the state variables in a disturbed time-series and the baseline (`b = "input"`),
+at the predefined time step (`t_rec = 28`, Fig. 4-b).
+```{r}
+recovery_extent(
+  response = "diff",
+  b = "input",
+  t_rec = 28,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+Extent of recovery calculated as the log response ratio (`response = "lrr"`) 
+of the state variable in the disturbed time-series in relation to the state 
+variable pre-disturbance (`b = "d"`), summarized by the mean value 
+(`summ_mode = "mean"` - default, over a period `b_tf = c(5, 10)`). 
+The extent of recovery is calculated at the point we understand all 
+groups have stabilized (`t_rec = 28`).
+
+```{r}
+recovery_extent(
+  response = "lrr",
+  b = "d",
+  summ_mode = "mean",
+  b_tf = c(5, 10),
+  t_rec = 28,
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps
+)
+>>>>>>> base_r
 ```
 
 ```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
@@ -283,6 +584,7 @@ knitr::include_graphics("figures/extent_recovery.png")
 
 Rate of recovery calculated as the slope of the linear model which predicts the 
 log response ratio of the state variable in the disturbed system compared to 
+<<<<<<< HEAD
 the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(12, 50)`, Fig. 5-q).
 ```{r}
 recovery_rate(
@@ -314,12 +616,45 @@ recovery_rate(
 )
 ```
 
+=======
+the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig. 5-a).
+```{r}
+recovery_rate(
+  b = "input",
+  metric_tf = c(1, 28),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+Rate of recovery calculated as the slope of the linear model which predicts the
+values of the state variable in the disturbed system (`b = "d"`) by time (over 
+a time frame (`metric_tf = c(1, 28)`, Fig. 5-b).
+```{r}
+recovery_rate(
+  b = "d",
+  metric_tf = c(1, 28),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+>>>>>>> base_r
 ```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
 ## Persistence
 
+<<<<<<< HEAD
 Limits of persistence defined by the state variable values in an independent 
 baseline (`b = "input"`) during the same post-disturbance time period 
 for which persistence is measured (`metric_tf = c(50, 100)`, Fig. 6).
@@ -345,6 +680,36 @@ persistence(
 # V: for this figure please use as the beginning of the period over which the metric is calculated
 # the first time point after the disturbance (so the first value for metric_tf should be "time of disturbance" + 1)
 # TODO: is this function actually correct?
+=======
+Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values in an independent baseline (`b = "input"`) during the same time period for which persistence is measured (`metric_tf = c(28, max(aquacomm_fgps$time))`, Fig. 6).
+```{r}
+persistence(
+  b = "input",
+  metric_tf = c(28, max(aquacomm_fgps$time)),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
+```
+
+Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values during a pre-disturbance (`b = "d"`) time period (`b_tf = c(-4, 0.14)`). Persistence is measured for the post-disturbance time period (`metric_tf = c(1, 60)`, Fig. 6).
+```{r}
+persistence(
+  b = "d",
+  b_tf = c(-4, 0.14),
+  metric_tf = c(28, max(aquacomm_fgps$time)),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps
+)
+```
+
+```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+
+>>>>>>> base_r
 knitr::include_graphics("figures/persistence.png")
 ```
 

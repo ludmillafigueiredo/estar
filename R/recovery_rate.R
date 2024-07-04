@@ -20,16 +20,36 @@
 #'   metric_tf = c(12, 50), vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 #' )
 #' @export
+<<<<<<< HEAD
 recovery_rate <- function(vd_i, td_i, d_data, b, metric_tf,
                           vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
+=======
+recovery_rate <- function(b,
+                          metric_tf,
+                          vd_i,
+                          td_i,
+                          d_data,
+                          vb_i = NULL,
+                          tb_i = NULL,
+                          b_data = NULL,
+                          na_rm = TRUE) {
+>>>>>>> base_r
   dts_df <- format_input(input = "d", vd_i, td_i, d_data)
 
   if (b == "input") {
     bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
 
+<<<<<<< HEAD
     base_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
                      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i),
                      all.x = TRUE)
+=======
+    base_df <- merge(
+      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i),
+      all.x = TRUE
+    )
+>>>>>>> base_r
     base_df$extent = log(base_df$vd_i / base_df$vb_i)
 
   } else {
@@ -41,8 +61,13 @@ recovery_rate <- function(vd_i, td_i, d_data, b, metric_tf,
       stop("b must be \"input\" or \"d\".")
     }
   }
+<<<<<<< HEAD
   lm_df <- base_df[(base_df$t >= min(metric_tf) & base_df$t <= max(metric_tf)),
                    c("t", "extent")]
+=======
+  lm_df <- base_df[(base_df$t >= min(metric_tf) &
+                      base_df$t <= max(metric_tf)), c("t", "extent")]
+>>>>>>> base_r
 
   rate_lm <- stats::lm(extent ~ t, data = lm_df)
 

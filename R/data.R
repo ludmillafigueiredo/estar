@@ -28,7 +28,7 @@
 #'
 #' @field time sequential week number relative to the application of insecticide
 #' @field carn_0 mean abundance of carnivores in control replicates
-#' @field carn_0.1 mean abundance of carnivores in eplicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide
+#' @field carn_0.1 mean abundance of carnivores in replicates subjected to pulse application of 0.1 nano g/L of chlorpyrifos insecticide
 #' @field carn_0.9 mean abundance of carnivores in replicates subjected to 0.9 nano g/L
 #' @field carn_6 mean abundance of carnivores in replicates subjected to 6 nano g/L
 #' @field carn_44 mean abundance of carnivores in replicates subjected to 44 nano g/L

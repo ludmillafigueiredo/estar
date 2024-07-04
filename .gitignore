@@ -8,3 +8,5 @@ doc
 Meta
 *.odg
 *.DS_Store
+vignettes/marss_models_cache/*
+*chunk*
