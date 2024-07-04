@@ -311,14 +311,17 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), 
+composed of the state variable values in the three time steps before 
+disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) 
+absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
 
 ```{r}
 resistance(
   b = "d",
   b_tf = c(-4, -0.14),
   res_mode = "lrr",
-  res_time = "max",
+  res_time = "defined",
   res_t = 1,
   vd_i = "statvar_db",
   td_i = "time",
@@ -365,18 +368,20 @@ recovery_extent(
 )
 ```
 
-Extent of recovery calculated as the log response ratio of the state variable 
-in the disturbed time-series in relation to the state variable pre-disturbance 
-(`b = "d"`), summarized by the mean value (`summ_mode = "mean"` - default,
-over a period `b_tf = c(5, 10)`). The extent of recovery is calculated
-at the point we understand all groups have stabilized (`t_rec = 28`).
+Extent of recovery calculated as the log response ratio (`response = "lrr"`) 
+of the state variable in the disturbed time-series in relation to the state 
+variable pre-disturbance (`b = "d"`), summarized by the mean value 
+(`summ_mode = "mean"` - default, over a period `b_tf = c(5, 10)`). 
+The extent of recovery is calculated at the point we understand all 
+groups have stabilized (`t_rec = 28`).
 
 ```{r}
 recovery_extent(
-  b = "d",
-  t_rec = 28,
-  b_tf = c(5, 10),
   response = "lrr",
+  b = "d",
+  summ_mode = "mean",
+  b_tf = c(5, 10),
+  t_rec = 28,
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps
@@ -405,7 +410,9 @@ recovery_rate(
 )
 ```
 
-Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system (`b = "d"`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig. 5-b).
+Rate of recovery calculated as the slope of the linear model which predicts the
+values of the state variable in the disturbed system (`b = "d"`) by time (over 
+a time frame (`metric_tf = c(1, 28)`, Fig. 5-b).
 ```{r}
 recovery_rate(
   b = "d",
