@@ -17,7 +17,6 @@
 #' @example man/examples/eg_max_amp.R
 #'
 #' @export
-max_amp <- function(B){
-  Matrix::norm(hesim::expmat(B)[,,1], type = "f")
+max_amp <- function(B) {
+  Matrix::norm(hesim::expmat(B)[, , 1], type = "f")
 }
-

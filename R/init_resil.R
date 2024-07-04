@@ -15,8 +15,7 @@
 #' @example man/examples/eg_init_resil.R
 #'
 #' @export
-init_resil <- function(B){
-    l_dom <- eigen(t(B)*B)$values[1]
-    i_s <- -log(sqrt(l_dom))
+init_resil <- function(B) {
+  l_dom <- eigen(t(B) * B)$values[1]
+  i_s <- -log(sqrt(l_dom))
 }
-

@@ -23,8 +23,10 @@ sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
   } else if (response == "lrr") {
     bts_df <- format_input("b", vb_i, tb_i, b_data)
 
-    response_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
-                         data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i))
+    response_df <- merge(
+      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
+    )
     response_df$response <- log(response_df$vd_i / response_df$vb_i)
 
   } else {

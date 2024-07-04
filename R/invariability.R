@@ -41,13 +41,21 @@
 #'   tb_i = aquacomm_resps$time
 #' )
 #' @export
-invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
-                          vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
-
+invariability <- function(mode,
+                          response,
+                          metric_tf,
+                          vd_i,
+                          td_i,
+                          d_data = NULL,
+                          vb_i = NULL,
+                          tb_i = NULL,
+                          b_data = NULL,
+                          na_rm = TRUE) {
   dts_df <- format_input("d", vd_i, td_i, d_data)
 
   invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
-  invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
+  invar_df <- invar_df[invar_df$t >= min(metric_tf) &
+                         invar_df$t <= max(metric_tf), ]
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")

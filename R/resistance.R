@@ -76,9 +76,18 @@
 #'   res_tf = c(12, 51)
 #' )
 #' @export
-resistance <- function(res_mode, res_time, res_t = NULL, res_tf = NULL, b,
-                       b_tf = NULL, vb_i = NULL, tb_i = NULL, b_data = NULL,
-                       vd_i, td_i, d_data,
+resistance <- function(res_mode,
+                       res_time,
+                       res_t = NULL,
+                       res_tf = NULL,
+                       b,
+                       b_tf = NULL,
+                       vb_i = NULL,
+                       tb_i = NULL,
+                       b_data = NULL,
+                       vd_i,
+                       td_i,
+                       d_data,
                        na_rm = TRUE) {
   if (!(res_mode %in% c("lrr", "diff"))) {
     stop("res_mode must be \"lrr\" or \"diff\".")
@@ -89,12 +98,16 @@ resistance <- function(res_mode, res_time, res_t = NULL, res_tf = NULL, b,
   if (b == "input") {
     bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
 
-    res_df <- merge(data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
-                    data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i))
+    res_df <- merge(
+      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
+    )
   } else {
     if (b == "d") {
       if (min(b_tf) == max(b_tf)) {
-        warning("You are using a single time point as baseline. Consider a time period, see Details.")
+        warning(
+          "You are using a single time point as baseline. Consider a time period, see Details."
+        )
       }
       b <- summ_d2b(dts_df, b_tf, "mean", na_rm)
       res_df <- data.frame("t" = dts_df$td_i,
@@ -109,7 +122,7 @@ resistance <- function(res_mode, res_time, res_t = NULL, res_tf = NULL, b,
     if (!res_t %in% res_df$t) {
       stop("res_t must be a time step in both d_data and b_data (if b_data is used).")
     }
-    res_df <- res_df[(res_df$t == res_t),]
+    res_df <- res_df[(res_df$t == res_t), ]
     res_df$res <- ifelse(res_mode == "lrr",
                          log(res_df$vd_i / res_df$vb_i),
                          res_df$vd_i - res_df$vb_i)
@@ -118,9 +131,10 @@ resistance <- function(res_mode, res_time, res_t = NULL, res_tf = NULL, b,
 
   } else {
     if (res_time == "max") {
-      librarres_df <- res_df[(res_df$t >= min(res_tf) & res_df$t <= max(res_tf)),]
+      librarres_df <- res_df[(res_df$t >= min(res_tf) &
+                                res_df$t <= max(res_tf)), ]
       res_df$res <- ifelse(res_mode == "lrr",
-                           log(res_df$vd_i/res_df$vb_i),
+                           log(res_df$vd_i / res_df$vb_i),
                            res_df$vd_i - res_df$vb_i)
 
       res <- max(res_df$res, na.rm = na_rm)

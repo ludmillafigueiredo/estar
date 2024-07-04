@@ -5,11 +5,11 @@
 \title{Calculate the rate of recovery.}
 \usage{
 recovery_rate(
+  b,
+  metric_tf,
   vd_i,
   td_i,
   d_data,
-  b,
-  metric_tf,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
@@ -17,6 +17,14 @@ recovery_rate(
 )
 }
 \arguments{
+\item{b}{a string stating whether the baseline is defined by a separate
+baseline that is specified by the user (\code{b = "input"}) or by a
+period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+This period is specified by \code{b_tf}.}
+
+\item{metric_tf}{a numerical vector, specifying the beginning and end of the
+time period over which the stability metric should be measured.}
+
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
 containing said variable in the dataframe provided in \code{d_data}.}
@@ -27,14 +35,6 @@ in \code{d_data}.}
 
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
-
-\item{b}{a string stating whether the baseline is defined by a separate
-baseline that is specified by the user (\code{b = "input"}) or by a
-period of the disturbed system (\code{b = "d"}) prior to the disturbance.
-This period is specified by \code{b_tf}.}
-
-\item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time period over which the stability metric should be measured.}
 
 \item{vb_i}{an optional numeric vector containing the state variable in
 the baseline, or a string for the name of the column in \code{b_data}

@@ -15,6 +15,6 @@
 #' @example man/examples/eg_reactivity.R
 #'
 #' @export
-reactivity <- function(B){
-  react <- max(eigen((B+t(B))/2)$values)
+reactivity <- function(B) {
+  react <- max(eigen((B + t(B)) / 2)$values)
 }

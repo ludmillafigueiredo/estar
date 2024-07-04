@@ -24,7 +24,6 @@ the exponential of the community matrix $B$, and then its
 Euclidean norm.
 }
 \examples{
-# Load MARSS library
 library(MARSS)
 
 # smaller dataset for example:
@@ -36,12 +35,12 @@ data_df <- subset(
   select = c(time, treat, repli, herb, carn, detr)
 )
 
-# Apply z-score transformation and replace zeros with NA
+# estimate z-score transformation and replace zeros with NA
 data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], MARSS::zscore)
 data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], function(x)
   replace(x, x == 0, NA))
 
-# Reshape data from wide to long format
+# reshape data from wide to long format
 data_z_ldf <- reshape(
   data_df,
   varying = list(c("herb", "carn", "detr")),
@@ -54,13 +53,14 @@ data_z_ldf <- reshape(
 
 data_z_ldf <- data_z_ldf[order(data_z_ldf$time, data_z_ldf$treat, data_z_ldf$fgp), ]
 
-# Calculate mean and sd
+# summarize mean and sd
 data_z_summldf <- aggregate(abund_z ~ time + treat + fgp, data_z_ldf, function(x)
   c(mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE)))
 data_z_summldf <- do.call(data.frame, data_z_summldf)
 names(data_z_summldf)[4:5] <- c("abundz_mu", "abundz_sd")
 
-# Convert to list to apply the MARSS model more easily
+# split dataframe per functional groups
+# into list to apply the MARSS model more easily
 split_data_z <- split(data_z_summldf[, c("time", "fgp", "abundz_mu")], data_z_summldf$treat)
 
 reshape_to_wide <- function(df) {
@@ -75,7 +75,7 @@ reshape_to_wide <- function(df) {
 
 data_z_summls <- lapply(split_data_z, reshape_to_wide)
 
-# Fit MARSS models
+# fit MARSS models
 data.marssls <- list(
   MARSS(
     data_z_summls[[1]],
@@ -118,11 +118,10 @@ data.marssls <- list(
   )
 )
 
-
-# Set names for the list of MARSS models
+# identify experiments
 names(data.marssls) <- paste0("Conc. = ", c("0", "0.9", "44"), " micro g/L")
 
-# Extract community matrices (B)
+# extract community matrices (B)
 data.Bls <- list(
   extractB(
     data.marssls[[1]],

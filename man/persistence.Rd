@@ -6,12 +6,12 @@
 time interval}
 \usage{
 persistence(
-  vd_i,
-  td_i,
-  d_data = NULL,
   metric_tf,
   b,
   b_tf = NULL,
+  vd_i,
+  td_i,
+  d_data = NULL,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
@@ -19,17 +19,6 @@ persistence(
 )
 }
 \arguments{
-\item{vd_i}{a numeric vector containing the state variable in the
-disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{d_data}.}
-
-\item{td_i}{a numeric vector containing the time or a string specifying the
-name of the column containing the time in the dataframe provided
-in \code{d_data}.}
-
-\item{d_data}{an optional data frame containing the time series of the
-state variable values in a disturbed system.}
-
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period over which the stability metric should be measured.}
 
@@ -41,6 +30,17 @@ This period is specified by \code{b_tf}.}
 \item{b_tf}{a numerical vector, specifying the beginning and end of the
 pre-disturbance time period for the disturbed time-series that defines
 the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
+
+\item{vd_i}{a numeric vector containing the state variable in the
+disturbed system or a string specifying the name of the column
+containing said variable in the dataframe provided in \code{d_data}.}
+
+\item{td_i}{a numeric vector containing the time or a string specifying the
+name of the column containing the time in the dataframe provided
+in \code{d_data}.}
+
+\item{d_data}{an optional data frame containing the time series of the
+state variable values in a disturbed system.}
 
 \item{vb_i}{an optional numeric vector containing the state variable in
 the baseline, or a string for the name of the column in \code{b_data}

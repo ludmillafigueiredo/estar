@@ -37,6 +37,6 @@ univar_params <- function(vd_i,
                           b,
                           b_tf,
                           na_rm,
-                          metric_tf){
-    return(invisible(NULL))
+                          metric_tf) {
+  return(invisible(NULL))
 }

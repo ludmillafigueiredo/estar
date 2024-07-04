@@ -40,12 +40,12 @@
 #' )
 #' @export
 persistence <-
-  function(vd_i,
-           td_i,
-           d_data = NULL,
-           metric_tf,
+  function(metric_tf,
            b,
            b_tf = NULL,
+           vd_i,
+           td_i,
+           d_data = NULL,
            vb_i = NULL,
            tb_i = NULL,
            b_data = NULL,
@@ -76,7 +76,8 @@ persistence <-
     perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
 
     persistence_df <-
-      subset(dts_df, td_i >= min(metric_tf) & td_i <= max(metric_tf))
+      subset(dts_df, td_i >= min(metric_tf) &
+               td_i <= max(metric_tf))
     persistence_df$persist <-
       sapply(persistence_df$vd_i, function(x)
         all(x >= perst_zone$low_lim & x <= perst_zone$high_lim))
@@ -86,7 +87,8 @@ persistence <-
                        FUN = length)
     colnames(persistence_agg) <- c("persist", "n_p")
 
-    persistence = persistence_agg$n_p[which(persistence_agg$persist== TRUE)]/sum(persistence_agg$n_p)
+    persistence = persistence_agg$n_p[which(persistence_agg$persist == TRUE)] /
+      sum(persistence_agg$n_p)
 
     ## necessary if all persist values are FALSE, and data frame ends up empty
     if (nrow(persistence_df) == 0) {
@@ -95,4 +97,3 @@ persistence <-
     }
     return(persistence)
   }
-

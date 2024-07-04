@@ -5,21 +5,42 @@
 \title{Calculate the extent of recovery}
 \usage{
 recovery_extent(
+  response,
+  t_rec,
+  summ_mode = "mean",
+  b,
+  b_tf = NULL,
   vd_i,
   td_i,
   d_data,
-  response,
-  b,
-  t_rec,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
-  b_tf = NULL,
-  summ_mode = "mean",
   na_rm = TRUE
 )
 }
 \arguments{
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone.}
+
+\item{t_rec}{An integer, time point at which the extent of recovery should be
+calculated.}
+
+\item{summ_mode}{A string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
+Defaults to "mean".}
+
+\item{b}{a string stating whether the baseline is defined by a separate
+baseline that is specified by the user (\code{b = "input"}) or by a
+period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+This period is specified by \code{b_tf}.}
+
+\item{b_tf}{a numerical vector, specifying the beginning and end of the
+pre-disturbance time period for the disturbed time-series that defines
+the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
+
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
 containing said variable in the dataframe provided in \code{d_data}.}
@@ -30,19 +51,6 @@ in \code{d_data}.}
 
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
-
-\item{response}{a string stating whether the stability metric should be
-calculated using the log-response ratio between the values in the disturbed
-system and the baseline (\code{response = "lrr"}) or using the state
-variable values in the disturbed system alone.}
-
-\item{b}{a string stating whether the baseline is defined by a separate
-baseline that is specified by the user (\code{b = "input"}) or by a
-period of the disturbed system (\code{b = "d"}) prior to the disturbance.
-This period is specified by \code{b_tf}.}
-
-\item{t_rec}{An integer, time point at which the extent of recovery should be
-calculated.}
 
 \item{vb_i}{an optional numeric vector containing the state variable in
 the baseline, or a string for the name of the column in \code{b_data}
@@ -55,14 +63,6 @@ with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
-
-\item{b_tf}{a numerical vector, specifying the beginning and end of the
-pre-disturbance time period for the disturbed time-series that defines
-the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
-
-\item{summ_mode}{A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
-Defaults to "mean".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}

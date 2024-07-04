@@ -9,7 +9,8 @@
 #' @noRd
 summ_d2b <- function(dts_df, b_tf, summ_mode, na_rm) {
   summ_f <- match.fun(summ_mode)
-  b_df <- dts_df[(dts_df$td_i >= min(b_tf) & dts_df$td_i <= max(b_tf)),]
+  b_df <- dts_df[(dts_df$td_i >= min(b_tf) &
+                    dts_df$td_i <= max(b_tf)), ]
   b <- summ_f(b_df$vd_i, na.rm = na_rm)
 
   return(b)

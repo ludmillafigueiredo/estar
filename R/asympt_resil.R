@@ -16,7 +16,7 @@
 #' @example man/examples/eg_asympt_resil.R
 #'
 #' @export
-asympt_resil <- function(B){
-    l_dom <- eigen(B)$values[1]
-    i_s <- -log(abs(l_dom))
+asympt_resil <- function(B) {
+  l_dom <- eigen(B)$values[1]
+  i_s <- -log(abs(l_dom))
 }

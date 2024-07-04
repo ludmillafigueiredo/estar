@@ -5,12 +5,12 @@
 \title{Calculate the invariability of a state variable after disturbance.}
 \usage{
 invariability(
+  mode,
+  response,
+  metric_tf,
   vd_i,
   td_i,
-  mode,
-  metric_tf,
   d_data = NULL,
-  response,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
@@ -18,6 +18,18 @@ invariability(
 )
 }
 \arguments{
+\item{mode}{A string stating which variant of invariability should be calculated,
+the one based on the coefficient of variation of the state variable \code{mode = "cv"},
+or the one based on fitting the linear model \code{"lm_res"}.}
+
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone (\code{response == "v"}).}
+
+\item{metric_tf}{a numerical vector, specifying the beginning and end of the
+time period over which the stability metric should be measured.}
+
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
 containing said variable in the dataframe provided in \code{d_data}.}
@@ -26,20 +38,8 @@ containing said variable in the dataframe provided in \code{d_data}.}
 name of the column containing the time in the dataframe provided
 in \code{d_data}.}
 
-\item{mode}{A string stating which variant of invariability should be calculated,
-the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-or the one based on fitting the linear model \code{"lm_res"}.}
-
-\item{metric_tf}{a numerical vector, specifying the beginning and end of the
-time period over which the stability metric should be measured.}
-
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
-
-\item{response}{a string stating whether the stability metric should be
-calculated using the log-response ratio between the values in the disturbed
-system and the baseline (\code{response = "lrr"}) or using the state
-variable values in the disturbed system alone (\code{response == "v"}).}
 
 \item{vb_i}{an optional numeric vector containing the state variable in
 the baseline, or a string for the name of the column in \code{b_data}
