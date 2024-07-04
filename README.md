@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit only the Rmd file -->
 
-# eStar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
+# estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-`eStar` provides standardized functions to measure the following metrics
+`estar` provides standardized functions to measure the following metrics
 of stability:
 
 - Resistance
@@ -23,17 +23,17 @@ of stability:
 
 ## Installation
 
-<!-- You can install the released version of eStar from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of estar from [CRAN](https://CRAN.R-project.org) with: -->
 <!-- ``` r -->
-<!-- install.packages("eStar") -->
+<!-- install.packages("estar") -->
 <!-- ``` -->
 
-You can install the released version of eStar from
+You can install the released version of estar from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ludmillafigueiredo/eStar")
+devtools::install_github("ludmillafigueiredo/estar")
 ```
 
 `estar` provides two sets of functions. The first set corresponds to
@@ -58,7 +58,7 @@ metrics.
 <!-- ## Example -->
 <!-- This is a basic example which shows you how to solve a common problem: -->
 <!-- ```{r example} -->
-<!-- library(eStar) -->
+<!-- library(estar) -->
 <!-- ## basic example code -->
 <!-- ``` -->
 <!-- What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so: -->

@@ -1,5 +1,5 @@
 ---
-title: "MARSS in eStar and its multivariate metrics"
+title: "MARSS in estar and its multivariate metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -24,7 +24,7 @@ options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexE
 ```
 
 ```{r message=FALSE}
-library(eStar)
+library(estar)
 library(tidyverse)
 library(viridis)
 library(MARSS)
@@ -403,11 +403,11 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
 names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " micro g/L")
 ```
 
-We provide the function `eStar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
+We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
 (aquacomm.Bls <- aquacommz_allscen.marssls %>%
-  map(~eStar::extractB(., 
+  map(~estar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
 
@@ -419,7 +419,7 @@ A positive value indicates the system is reactive and the higher its value, the 
 
 ```{r}
 aquacomm.Bls %>%
-  map(eStar::reactivity)
+  map(estar::reactivity)
 ```
 
 ## Maximal amplification
@@ -428,7 +428,7 @@ The largest response of the community to the perturbation, it is a measure of th
 
 ```{r}
 aquacomm.Bls %>%
-  map(eStar::max_amp)
+  map(estar::max_amp)
 ```
 
 ## Initial resilience
@@ -437,7 +437,7 @@ Initial resilience is the initial rate of return to equilibrium. The larger its 
 
 ```{r}
 aquacomm.Bls %>%
-  map(eStar::init_resil)
+  map(estar::init_resil)
 ```
 
 ## Asymptotic resilience
@@ -446,7 +446,7 @@ The slowest/long-term asymptotic rate of return to equilibrium after a pulse per
 
 ```{r}
 aquacomm.Bls %>%
-  map(eStar::asympt_resil)
+  map(estar::asympt_resil)
 ```
 
 ## Stochastic invariability
@@ -455,7 +455,7 @@ Inverse of the maximal response variance to white noise. The larger its value, t
 
 ```{r}
 aquacomm.Bls %>%
-  map(eStar::stoch_var)
+  map(estar::stoch_var)
 ```
 
 # References

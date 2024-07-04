@@ -19,7 +19,7 @@ set.seed(123)
 ```
 
 ```{r, setup, include=FALSE}
-library(eStar)
+library(estar)
 library(ggplot2)
 library(cowplot)
 library(viridis)
@@ -156,14 +156,14 @@ The time frame is defined by `tb_i` and specified in the data frame
 
 ```{r}
 invariability(
-  response = "lrr",
   mode = "lm_res",
-  vd_i = "statvar_db",
-  vb_i = "statvar_bl",
-  td_i = "time",
+  response = "lrr",
   metric_tf = c(1, max(aquacomm_fgps$time)),
-  tb_i = "time",
+  vd_i = "statvar_db",
+  td_i = "time",
   d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
   b_data = aquacomm_resps
 )
 ```
@@ -173,9 +173,9 @@ linear model fitted to predict the state variable in the disturbed system by
 time (Fig. 2-b).
 ```{r}
 invariability(
-  response = "v",
   mode = "lm_res",
   metric_tf = c(1, max(aquacomm_fgps$time)),
+  response = "v",
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps,

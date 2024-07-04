@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# eStar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
+# estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -42,17 +42,17 @@ In the long term, stability can be measured as:
 
 ## Installation
 
-<!-- You can install the released version of eStar from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of estar from [CRAN](https://CRAN.R-project.org) with: -->
 
 <!-- ``` r -->
-<!-- install.packages("eStar") -->
+<!-- install.packages("estar") -->
 <!-- ``` -->
 
-You can install the released version of eStar from [GitHub](https://github.com/) with:
+You can install the released version of estar from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ludmillafigueiredo/eStar")
+devtools::install_github("ludmillafigueiredo/estar")
 ```
 
 The package includes two vignettes demonstrating the use of all functions, as well as a brief introduction to multivariate autoregressive state-space models necessary for the second set of metrics. 
@@ -62,7 +62,7 @@ The package includes two vignettes demonstrating the use of all functions, as we
 <!-- This is a basic example which shows you how to solve a common problem: -->
 
 <!-- ```{r example} -->
-<!-- library(eStar) -->
+<!-- library(estar) -->
 <!-- ## basic example code -->
 <!-- ``` -->
 
