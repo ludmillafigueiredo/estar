@@ -5,67 +5,67 @@
 \title{Calculate the extent of recovery}
 \usage{
 recovery_extent(
-  svdb_i,
-  tdb_i,
-  db_data,
+  vd_i,
+  td_i,
+  d_data,
   response,
-  bl,
+  b,
   t_rec,
-  svbl_i = NULL,
-  tbl_i = NULL,
-  bl_data = NULL,
-  bl_tf = NULL,
+  vb_i = NULL,
+  tb_i = NULL,
+  b_data = NULL,
+  b_tf = NULL,
   summ_mode = "mean",
   na_rm = TRUE
 )
 }
 \arguments{
-\item{svdb_i}{a numeric vector containing the state variable in the
+\item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{db_data}.}
+containing said variable in the dataframe provided in \code{d_data}.}
 
-\item{tdb_i}{a numeric vector containing the time or a string specifying the
+\item{td_i}{a numeric vector containing the time or a string specifying the
 name of the column containing the time in the dataframe provided
-in \code{db_data}.}
+in \code{d_data}.}
 
-\item{db_data}{an optional data frame containing the time series of the
+\item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
-\item{response}{a string stating whether the stability metric should be calculated
-using the log-response ratio between the values in the disturbed system and
-the baseline (\code{response = "lrr"}) or using the state variable values in the
-disturbed system alone.}
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone.}
 
-\item{bl}{a string stating whether the baseline is defined by a separate
-baseline that is specified by the user (\code{bl = "input"}) or by a
-time period of the disturbed system (\code{bl = "db"}), to be defined by \code{bl_tf}.}
+\item{b}{a string stating whether the baseline is defined by a separate
+baseline that is specified by the user (\code{b = "input"}) or by a
+time period of the disturbed system (\code{b = "d"}), to be defined
+by \code{b_tf}.}
 
 \item{t_rec}{An integer, time point at which the extent of recovery should be
 calculated.}
 
-\item{svbl_i}{a numeric vector containing the state variable in the baseline,
-or a string for the name of the column in \code{bl_data} containing said
-variable in the dataframe with baseline values.
-Obligatory argument if \code{bl = "bl"}.}
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
 
-\item{tbl_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string containing the name of the column in
-\code{bl_data}.
-Obligatory argument if \code{bl = "bl"}.}
+\item{tb_i}{an optional numeric vector containing the time period over which
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
 
-\item{bl_data}{an optional data frame containing the time series of the
+\item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{bl_tf}{a numerical vector, specifying the beginning and end of the
+\item{b_tf}{a numerical vector, specifying the beginning and end of the
 pre-disturbance time period for the disturbed time-series that defines
-the baseline. Obligatory if (\code{bl = "db"}), see 'Details'.}
+the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 
 \item{summ_mode}{A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "mean"}).
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
 Defaults to "mean".}
 
-\item{na_rm}{a logical determining whether NAs should be taken out prior to the
-estimation of the stability metric. Defaults to TRUE.}
+\item{na_rm}{a logical determining whether NAs should be taken out prior
+to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
 a double, the extent of recovery
@@ -78,38 +78,41 @@ between the values in the disturbed system and the baseline
 or as the difference between the state variables in a disturbed
 time-series and the baseline. The baseline can be
 \itemize{
-\item a separate baseline time-series, which is summarized as a mean or median
-according to \code{summ_mode}
-\item the mean or median of pre-disturbance values of the state variable
-in the disturbed system over a period defined by \code{bl_tf}}
+\item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
+\item values of the state variable in the disturbed system over a period
+defined by \code{b_tf}
+},
 }
 \details{
+in both cases, a single baseline value is summarized as the the mean or
+median (\code{summ_mode}) of the values given.
+
 Even though it is possible to use a single data value as baseline
-(by passing a double to \code{bl_tf}), it is not recommended, because a
+(by passing a double to \code{b_tf}), it is not recommended, because a
 single value does not account for any variability in the system arising from,
 for example, demographic or environmental stochasticity.
 }
 \examples{
 recovery_extent(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
-  bl_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+  b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
+  b_data = aquacomm_resps
 )
 recovery_extent(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "diff",
-  bl = "input", t_rec = 50, svbl_i = "statvar_bl", tbl_i = "time",
-  bl_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "diff",
+  b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
+  b_data = aquacomm_resps
 )
 recovery_extent(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = 9
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+  b = "d", t_rec = 42, b_tf = 9
 )
 recovery_extent(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = c(5, 10)
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+  b = "d", t_rec = 42, b_tf = c(5, 10)
 )
 recovery_extent(
-  svdb_i = "statvar_db", tdb_i = "time", db_data = aquacomm_resps, response = "lrr",
-  bl = "db", t_rec = 50, bl_tf = c(5, 10), summ_mode = "median"
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+  b = "d", t_rec = 42, b_tf = c(5, 10), summ_mode = "median"
 )
 }

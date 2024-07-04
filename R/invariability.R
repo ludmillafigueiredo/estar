@@ -10,51 +10,44 @@
 #' residuals of the linear model that uses the time as the predictor of the
 #' state variable.
 #'
-#' @inheritParams univar_params
-#' @param svbl_i a numeric vector containing the state variable in the baseline,
-#' or a string for the name of the column in \code{bl_data} containing said
-#' variable in the dataframe with baseline values.
-#' @param tbl_i an optional numeric vector containing the time period over which
-#' the baseline was measured, or a string containing the name of the column in
-#' \code{bl_data}.
 #' @param mode A string stating which variant of invariability should be calculated,
 #' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-#' or the on ebased on fitting the linear model \code{"lm_res"}.
-#' @param response a string stating whether the stability metric should be calculated
-#' using the log-response ratio between the values in the disturbed system and
-#' the baseline (\code{response = "lrr"}) or using the state variable values in the
-#' disturbed system alone.
-#' @param metric_tf a numerical vector, specifying the beginning and end of the
-#' time period for which the stability metric should be measured.
+#' or the one based on fitting the linear model \code{"lm_res"}.
+#' @param response a string stating whether the stability metric should be
+#' calculated using the log-response ratio between the values in the disturbed
+#' system and the baseline (\code{response = "lrr"}) or using the state
+#' variable values in the disturbed system alone (\code{response == "v"}).
+#' @inheritParams univar_params
 #'
 #' @return a numeric, the invariability value.
 #'
 #' @examples
 #' invariability(
-#'   svdb_i = "statvar_db", tdb_i = "time", response = "sv", mode = "cv",
-#'   metric_tf = c(11, 50), db_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
+#'   metric_tf = c(11, 50), d_data = aquacomm_resps
 #' )
 #' invariability(
-#'   svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "sv",
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "v",
 #'   mode = "cv", metric_tf = c(11, 50)
 #' )
 #' invariability(
-#'   svdb_i = "statvar_db", tdb_i = "time", response = "lrr", mode = "lm_res",
-#'   metric_tf = c(11, 50), db_data = aquacomm_resps, svbl_i = "statvar_bl",
-#'   tbl_i = "time", bl_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
+#'   metric_tf = c(11, 50), d_data = aquacomm_resps, vb_i = "statvar_bl",
+#'   tb_i = "time", b_data = aquacomm_resps
 #' )
 #' invariability(
-#'   svdb_i = aquacomm_resps$statvar_db, tdb_i = aquacomm_resps$time, response = "lrr",
-#'   metric_tf = c(11, 50), mode = "lm_res", svbl_i = aquacomm_resps$statvar_bl,
-#'   tbl_i = aquacomm_resps$time
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "lrr",
+#'   metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
+#'   tb_i = aquacomm_resps$time
 #' )
 #' @export
-invariability <- function(svdb_i, tdb_i, mode, metric_tf, db_data = NULL, response,
-                          svbl_i = NULL, tbl_i = NULL, bl_data = NULL, na_rm = TRUE) {
-  dbts_df <- format_input(input = "db", svdb_i, tdb_i, db_data)
+invariability <- function(vd_i, td_i, mode, metric_tf, d_data = NULL, response,
+                          vb_i = NULL, tb_i = NULL, b_data = NULL, na_rm = TRUE) {
 
-  invar_df <- eStar::sort_response(response, dbts_df, svbl_i, tbl_i, bl_data) %>%
-    dplyr::filter(t >= min(metric_tf), t <= max(metric_tf))
+  dts_df <- format_input("d", vd_i, td_i, d_data)
+
+  invar_df <- eStar::sort_response(response, dts_df, vb_i, tb_i, b_data)
+  invar_df <- invar_df[invar_df$t >= min(metric_tf) & invar_df$t <= max(metric_tf), ]
 
   if (any(is.na(invar_df$response))) {
     warning("NAs detected among the entries of the state variable")
@@ -66,15 +59,11 @@ invariability <- function(svdb_i, tdb_i, mode, metric_tf, db_data = NULL, respon
 
   if (mode == "cv") {
     invar <- 1 / eStar::cv(invar_df$response, na_rm = na_rm)
-
+    return(invar)
+  } else if (mode == "lm_res") {
+    invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
     return(invar)
   } else {
-    if (mode == "lm_res") {
-      invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
-
-      return(invar)
-    } else {
-      stop("'mode' argument must be \"cv\" or \"lm_res\"")
-    }
+    stop("'mode' argument must be \"cv\" or \"lm_res\"")
   }
 }

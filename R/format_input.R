@@ -1,36 +1,29 @@
 #' Compose a standardized dataframe to be wrangled by the function
 #'
 #' @param input a string stating whether the data frame to be created is
-#' for the disturbed system (\code{input = "dtb"}) or for the baseline
-#' (\code{input = "bl"}))
-#' @param sv_v a numerical vector passed to the function as \code{sv_resp} or
-#' \code{sv_bl}
+#' for the disturbed system (\code{input = "d"}) or for the baseline
+#' (\code{input = "b"}))
+#' @param v_v a numerical vector passed to the function as \code{v_resp} or
+#' \code{v_b}
 #' @param t_v a numerical vector passed to the function as \code{t_resp},
-#' \code{t_bl} or \code{NULL}
+#' \code{t_b} or \code{NULL}
 #' @param data a dataframe passed to the function as \code{data_resp},
-#' \code{data_bl} or \code{NULL}
-format_input <- function(input, sv_v, t_v, data) {
-  if (input == "db") {
+#' \code{data_b} or \code{NULL}
+format_input <- function(input, v_v, t_v, data) {
+  if (input == "d") {
     if (is.null(data)) {
-      input_df <- data.frame("svdb_i" = sv_v, "tdb_i" = t_v)
+      input_df <- data.frame("vd_i" = v_v, "td_i" = t_v)
     } else {
-      input_df <- dplyr::select(data,
-        "svdb_i" = dplyr::all_of(sv_v),
-        "tdb_i" = dplyr::all_of(t_v)
-      )
+      input_df <- data.frame(vd_i = data[[v_v]], td_i = data[[t_v]])
+    }
+  } else if (input == "b") {
+    if (is.null(data)) {
+      input_df <- data.frame("vb_i" = v_v, "tb_i" = t_v)
+    } else {
+      input_df <- data.frame(vb_i = data[[v_v]], tb_i = data[[t_v]])
     }
   } else {
-      if(input == "bl"){
-          if (is.null(data)) {
-              input_df <- data.frame("svbl_i" = sv_v, "tbl_i" = t_v)
-          } else {
-              input_df <- dplyr::select(data,
-                                        "svbl_i" = dplyr::all_of(sv_v),
-                                        "tbl_i" = dplyr::all_of(t_v)
-                                        )
-          }
-      } else {
-          stop("'input' argument must be \"db\" or \"bl\".")
-      }
+    stop("'input' argument must be \"d\" or \"b\".")
   }
+  return(input_df)
 }
