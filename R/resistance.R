@@ -76,9 +76,9 @@
 #'   res_tf = c(12, 51)
 #' )
 #' @export
-resistance <- function(vd_i, td_i, d_data = NULL, b,vb_i = NULL,
-                       tb_i = NULL, b_data = NULL, b_tf = NULL,
-                       res_mode, res_time, res_t = NULL, res_tf = NULL,
+resistance <- function(res_mode, res_time, res_t = NULL, res_tf = NULL, b,
+                       b_tf = NULL, vb_i = NULL, tb_i = NULL, b_data = NULL,
+                       vd_i, td_i, d_data,
                        na_rm = TRUE) {
   if (!(res_mode %in% c("lrr", "diff"))) {
     stop("res_mode must be \"lrr\" or \"diff\".")

@@ -5,54 +5,22 @@
 \title{Calculate the resistance of a state variable to disturbance}
 \usage{
 resistance(
-  vd_i,
-  td_i,
-  d_data = NULL,
-  b,
-  vb_i = NULL,
-  tb_i = NULL,
-  b_data = NULL,
-  b_tf = NULL,
   res_mode,
   res_time,
   res_t = NULL,
   res_tf = NULL,
+  b,
+  b_tf = NULL,
+  vb_i = NULL,
+  tb_i = NULL,
+  b_data = NULL,
+  vd_i,
+  td_i,
+  d_data,
   na_rm = TRUE
 )
 }
 \arguments{
-\item{vd_i}{a numeric vector containing the state variable in the
-disturbed system or a string specifying the name of the column
-containing said variable in the dataframe provided in \code{d_data}.}
-
-\item{td_i}{a numeric vector containing the time or a string specifying the
-name of the column containing the time in the dataframe provided
-in \code{d_data}.}
-
-\item{d_data}{an optional data frame containing the time series of the
-state variable values in a disturbed system.}
-
-\item{b}{a string stating whether the baseline is defined by a separate
-baseline that is specified by the user (\code{b = "input"}) or by a
-period of the disturbed system (\code{b = "d"}) prior to the disturbance.
-This period is specified by \code{b_tf}.}
-
-\item{vb_i}{an optional numeric vector containing the state variable in
-the baseline, or a string for the name of the column in \code{b_data}
-containing said variable in the dataframe with baseline values.}
-
-\item{tb_i}{an optional numeric vector containing the time period over which
-the baseline was measured, or a string for the name of the column in
-\code{b_data} containing said the time variable in the dataframe
-with baseline values.}
-
-\item{b_data}{an optional data frame containing the time series of the
-state variable values in the baseline.}
-
-\item{b_tf}{a numerical vector, specifying the beginning and end of the
-pre-disturbance time period for the disturbed time-series that defines
-the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
-
 \item{res_mode}{A string stating whether the resistance should be calculated
 as the log response ratio of the state variable in the disturbed system
 compared to the baseline (\code{res_mode = "lrr"}) or the difference
@@ -72,6 +40,38 @@ measured if \code{res_time = "defined"}.}
 
 \item{res_tf}{A vector, specifying the time period for which the maximum
 resistance should be looked for, if \code{res_time = "max"}.}
+
+\item{b}{a string stating whether the baseline is defined by a separate
+baseline that is specified by the user (\code{b = "input"}) or by a
+period of the disturbed system (\code{b = "d"}) prior to the disturbance.
+This period is specified by \code{b_tf}.}
+
+\item{b_tf}{a numerical vector, specifying the beginning and end of the
+pre-disturbance time period for the disturbed time-series that defines
+the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
+
+\item{vb_i}{an optional numeric vector containing the state variable in
+the baseline, or a string for the name of the column in \code{b_data}
+containing said variable in the dataframe with baseline values.}
+
+\item{tb_i}{an optional numeric vector containing the time period over which
+the baseline was measured, or a string for the name of the column in
+\code{b_data} containing said the time variable in the dataframe
+with baseline values.}
+
+\item{b_data}{an optional data frame containing the time series of the
+state variable values in the baseline.}
+
+\item{vd_i}{a numeric vector containing the state variable in the
+disturbed system or a string specifying the name of the column
+containing said variable in the dataframe provided in \code{d_data}.}
+
+\item{td_i}{a numeric vector containing the time or a string specifying the
+name of the column containing the time in the dataframe provided
+in \code{d_data}.}
+
+\item{d_data}{an optional data frame containing the time series of the
+state variable values in a disturbed system.}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}

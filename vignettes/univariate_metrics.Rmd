@@ -204,12 +204,30 @@ during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
 ```{r}
 resistance(
    b = "input", res_mode = "diff", res_time = "max", res_tf = c(1, 20),
-   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
+   vd_i = "statvar_db", td_i = "time", 
+   vb_i = "statvar_bl", tb_i = "time",
    d_data = aquacomm_resps, b_data = aquacomm_resps
 )
 ```
 
-**VIK comment** for resistance it would be good to still add one or two examples were it is calculated uisng as a baseline the pre-disturbed period from the disturbed time series, i.e. 'b = 'd''.
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
+```{r}
+resistance(
+   b = "d", b_tf = c(-4, -0.14), res_mode = "diff",
+   res_time = "max", res_tf = c(1, 20),
+   vd_i = "statvar_bl", td_i = "time", d_data = aquacomm_resps
+)
+```
+
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
+
+```{r}
+resistance(
+   b = "d", b_tf = c(-4, -0.14), res_mode = "lrr",
+   res_time = "defined", res_t = 1,
+   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps
+)
+```
 
 ```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
@@ -241,11 +259,11 @@ Extent of recovery calculated as the log response ratio of the state variable
 in the disturbed time-series in relation to the state variable pre-disturbance 
 (`b = "d"`), summarized by the mean value (`summ_mode = "mean"` - default,
 over a period `b_tf = c(5, 10)`). The extent of recovery is calculated
-at the end of the time series (`t_rec = max(aquacomm_fgps$time)`).
+at the point we understand all groups have stabilized (`t_rec = 28`).
 
 ```{r}
 recovery_extent(
-  b = "d", t_rec = max(aquacomm_fgps$time), b_tf = c(5, 10), response = "lrr", 
+  b = "d", t_rec = 28, b_tf = c(5, 10), response = "lrr", 
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps
   )
 ```
@@ -258,19 +276,19 @@ knitr::include_graphics("figures/extent_recovery.png")
 
 Rate of recovery calculated as the slope of the linear model which predicts the 
 log response ratio of the state variable in the disturbed system compared to 
-the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(1, max(aquacomm_fgps$time))`, Fig. 5-a).
+the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig. 5-a).
 ```{r}
 recovery_rate(
-  b = "input", metric_tf = c(1, max(aquacomm_fgps$time)), 
+  b = "input", metric_tf = c(1, 28), 
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
   d_data = aquacomm_resps, b_data = aquacomm_resps
   )
 ```
 
-Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system (`b = "d"`) by time (over a time frame (`metric_tf = c(1, max(aquacomm_fgps$time))`, Fig. 5-b).
+Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system (`b = "d"`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig. 5-b).
 ```{r}
 recovery_rate(
-  b = "d", metric_tf = c(1, max(aquacomm_fgps$time)), 
+  b = "d", metric_tf = c(1, 28), 
   vd_i = "statvar_db", td_i = "time", vb_i = "statvar_bl", tb_i = "time",
   d_data = aquacomm_resps, b_data = aquacomm_resps
 )
