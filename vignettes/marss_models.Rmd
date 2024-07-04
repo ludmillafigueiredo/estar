@@ -30,6 +30,10 @@ library(viridis)
 library(MARSS)
 library(hesim)
 source("custom_aesthetics.R")
+
+label_intensity <- function(intensity, mu){
+  paste0("Conc = ", intensity, " micro g/L")
+}
 ```
 
 Calculation of the so-called "multivariate stability metrics" (in the context of the `estar` package) relies on the interaction strengths between species composing a community.
