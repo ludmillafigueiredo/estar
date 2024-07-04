@@ -53,7 +53,7 @@ This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
-```{r fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (aquacomm_fgps.logplot <- aquacomm_fgps |>
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") |>

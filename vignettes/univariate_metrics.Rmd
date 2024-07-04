@@ -42,7 +42,7 @@ label_intensity <- function(intensity, mu) {
 We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016]. This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in **Figueiredo et al. XXX**), @radchuk_biodiversity_2016 reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
 
-```{r echo=FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
   aquacomm_fgps.logplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
@@ -89,7 +89,8 @@ The community is composed of 128 species, classified into 5 functional groups: h
     theme_estar()
 )
 ```
-```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap = "Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+
+```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap="Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
   aquacomm_fgps.rawplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
@@ -217,7 +218,7 @@ invariability(
 )
 ```
 
-```{r invar_schem, echo=FALSE, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
+```{r invar_schem, echo=FALSE, fig.height = 4, fig.cap="Figure 2: Schematic representation of the possible metrics of invariability available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, and 'v' to 'state variable' in the disturbed system. a) and b) demonstrate calculation of invariability based on the standard deviation of the residuals of the fitted linear model, whereby the linear model fit is shown by a blue solid line. c) and d) demonstrate calculation of invariability based on the coefficient of variation", out.width = '100%'}
 knitr::include_graphics("figures/invariability.png")
 ```
 
@@ -329,7 +330,7 @@ resistance(
 )
 ```
 
-```{r resistance_schem, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
+```{r resistance_schem, fig.height = 4, echo=FALSE, fig.cap="Figure 3: Schematic representation of the possible metrics of resistance available in the estar package. 'lrr' and 'diff' refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), 'v' to 'state variable', 'td+1', to the first time step after disturbance, and 'tlow', to the time step of the highest response in relation to the baseline.", out.width = '100%'}
 knitr::include_graphics("figures/resistance.png")
 ```
 
@@ -388,7 +389,7 @@ recovery_extent(
 )
 ```
 
-```{r echo=FALSE, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
+```{r echo=FALSE, fig.height = 4, fig.cap="Figure 4: Schematic representation of the possible metrics of extent of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'diff' to the difference between them, and 'tpost', to a post-disturbance time step, specified by the user.", out.width = '100%'}
 knitr::include_graphics("figures/extent_recovery.png")
 ```
 
@@ -426,7 +427,7 @@ recovery_rate(
 )
 ```
 
-```{r echo=FALSE, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
+```{r echo=FALSE, fig.height = 4, fig.cap="Figure 5: Schematic representation of the possible metrics of rate of recovery available in the estar package. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'v' to 'state variable'. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '100%'}
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
@@ -458,7 +459,7 @@ persistence(
 )
 ```
 
-```{r fig.height = 2.5, fig.width = 3.5, fig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits.", out.width = '100%'}
+```{r echo=FALSE, out.width = '50%',vfig.cap="Figure 6: Schematic representation of the possible metrics of persistence available in the estar package. 'v' refers to 'state variable', 'lim_u' and 'lim_l' are the upper and lower limits defined as +1 and -1 standard deviation of the baseline state variable around the mean of the baseline state variable. 'ta' is the period for which persistence is calculated for, and 'tP', the period during which the state variable remained inside the limits."}
 
 knitr::include_graphics("figures/persistence.png")
 ```
