@@ -8,7 +8,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="input_shortnames.svg"
+   sodipodi:docname="input.svg"
    inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
    inkscape:export-xdpi="600"
    inkscape:export-ydpi="600"
@@ -476,9 +476,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7146443"
-     inkscape:cx="449.07274"
-     inkscape:cy="264.77795"
+     inkscape:zoom="0.85732215"
+     inkscape:cx="189.54369"
+     inkscape:cy="323.09908"
      inkscape:document-units="mm"
      inkscape:current-layer="layer3"
      showgrid="true"
@@ -680,7 +680,9 @@
          id="tspan13406-2"
          x="-19.6129"
          y="4.7017999"
-         style="font-style:italic;stroke-width:0.238125">v</tspan><tspan
+         style="font-style:italic;stroke-width:0.238125">v<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan2754">d</tspan></tspan><tspan
          sodipodi:role="line"
          x="-19.6129"
          y="8.6705494"
@@ -729,7 +731,10 @@
        inkscape:export-ydpi="600" />
     <g
        id="g5871"
-       transform="matrix(0.70112698,0,0,0.6612158,31.345266,20.947472)">
+       transform="matrix(0.70112698,0,0,0.6612158,31.345266,20.947472)"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600">
       <path
          sodipodi:nodetypes="ccc"
          inkscape:connector-curvature="0"
@@ -1144,8 +1149,8 @@
          x="-54.477203"
          y="116.26695"
          style="font-style:italic;stroke-width:0.238125">v<tspan
-   style="font-style:italic;font-size:2.06375px;baseline-shift:sub;stroke-width:0.238125"
-   id="tspan10114" /></tspan></text>
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan6818">d</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
