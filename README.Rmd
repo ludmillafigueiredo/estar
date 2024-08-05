@@ -39,45 +39,10 @@ In the long term, stability can be measured as:
 - Asymptotic resilience
 - Intrinsic stochastic invariability
 
-
-## Installation
+The package includes two vignettes demonstrating the use of all functions, as well as a brief introduction to multivariate autoregressive state-space models necessary for the second set of metrics. 
 
 <!-- You can install the released version of estar from [CRAN](https://CRAN.R-project.org) with: -->
 
 <!-- ``` r -->
 <!-- install.packages("estar") -->
 <!-- ``` -->
-
-You can install the released version of estar from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("ludmillafigueiredo/estar")
-```
-
-The package includes two vignettes demonstrating the use of all functions, as well as a brief introduction to multivariate autoregressive state-space models necessary for the second set of metrics. 
-
-<!-- ## Example -->
-
-<!-- This is a basic example which shows you how to solve a common problem: -->
-
-<!-- ```{r example} -->
-<!-- library(estar) -->
-<!-- ## basic example code -->
-<!-- ``` -->
-
-<!-- What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so: -->
-
-<!-- ```{r cars} -->
-<!-- summary(cars) -->
-<!-- ``` -->
-
-<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. -->
-
-<!-- You can also embed plots, for example: -->
-
-<!-- ```{r pressure, echo = FALSE} -->
-<!-- plot(pressure) -->
-<!-- ``` -->
-
-<!-- In that case, don't forget to commit and push the resulting figure files, so they display on GitHub! -->
