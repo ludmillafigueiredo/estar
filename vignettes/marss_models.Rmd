@@ -47,8 +47,8 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 # Overview of demonstration data
 
-Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
-The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species [@radchuk_biodiversity_2016].
+Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates (references anonymized for review).
+The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species (references anonymized for review).
 This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
