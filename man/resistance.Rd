@@ -101,6 +101,11 @@ for example, demographic or environmental stochasticity.
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
+  res_mode = "lrr", res_time = "defined", res_t = 12
+)
+resistance(
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+  vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
   res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
