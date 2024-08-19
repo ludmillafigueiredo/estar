@@ -10,10 +10,10 @@ invariability(
   metric_tf,
   vd_i,
   td_i,
-  d_data = NULL,
-  vb_i = NULL,
-  tb_i = NULL,
-  b_data = NULL,
+  d_data,
+  vb_i,
+  tb_i,
+  b_data,
   na_rm = TRUE
 )
 }

@@ -71,10 +71,10 @@ recovery_extent <- function(response,
                             tb_i = NULL,
                             b_data = NULL,
                             na_rm = TRUE) {
-  dts_df <- format_input("d", vd_i, td_i, d_data)
+  dts_df <- estar:::format_input("d", vd_i, td_i, d_data)
 
   if (b == "input") {
-    bts_df <- format_input("b", vb_i, tb_i, b_data)
+    bts_df <- estar:::format_input("b", vb_i, tb_i, b_data)
 
     extent_df <- merge(
       data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
@@ -87,7 +87,7 @@ recovery_extent <- function(response,
       if (min(b_tf) == max(b_tf)) {
         warning("You are using a single point as baseline. Consider an interval, Details.")
       }
-      b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
+      b <- estar:::summ_d2b(dts_df, b_tf, summ_mode, na_rm)
       extent_df <- dts_df[dts_df$td_i == t_rec, ]
       extent_df$vb_i <- b
     } else {
