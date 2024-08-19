@@ -4,6 +4,8 @@
 # estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `estar` provides two sets of functions.
