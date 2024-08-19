@@ -1952,10 +1952,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7902995"
-     inkscape:cx="292.40918"
-     inkscape:cy="970.7873"
+     inkscape:cx="320.33746"
+     inkscape:cy="972.46299"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer3"
      showgrid="true"
      inkscape:window-width="1780"
      inkscape:window-height="1046"
@@ -2002,6 +2002,21 @@
        id="path10152-2-0-3-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cssssccsssc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="bottom">
+    <rect
+       style="display:inline;opacity:0.915;fill:#ffffff;stroke:#ffffff;stroke-width:0.374999"
+       id="rect2259"
+       width="165.36458"
+       height="76.729164"
+       x="0"
+       y="220.92708"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
   </g>
   <g
      inkscape:groupmode="layer"

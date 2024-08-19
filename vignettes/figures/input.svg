@@ -477,10 +477,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.85732215"
-     inkscape:cx="189.54369"
-     inkscape:cy="323.09908"
+     inkscape:cx="242.03271"
+     inkscape:cy="335.92973"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:snap-grids="true"
      showguides="true"
@@ -508,6 +508,21 @@
     </rdf:RDF>
   </metadata>
   <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="bottom">
+    <rect
+       style="display:inline;opacity:0.915;fill:#ffffff;stroke:#ffffff;stroke-width:0.367422"
+       id="rect1213"
+       width="190.5"
+       height="132.29167"
+       x="0"
+       y="0"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
+  </g>
+  <g
      inkscape:label="ts_lines"
      inkscape:groupmode="layer"
      id="layer1"
@@ -528,7 +543,7 @@
        id="text4749-3-3"
        inkscape:transform-center-x="-9.6525441"
        inkscape:transform-center-y="-7.4245313"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -542,7 +557,7 @@
        x="2.6824999"
        y="5.6811128"
        id="text4749"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -556,7 +571,7 @@
        x="2.6824999"
        y="88.190094"
        id="text4749-6"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -576,7 +591,7 @@
        x="20.904829"
        y="60.510792"
        id="text13082"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -592,7 +607,7 @@
        x="129.84163"
        y="80.469139"
        id="text13082-8"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -608,7 +623,7 @@
        x="25.437468"
        y="60.510792"
        id="text13082-9"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -624,7 +639,7 @@
        x="36.229401"
        y="60.510792"
        id="text13082-9-6"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -640,7 +655,7 @@
        x="74.022949"
        y="60.510792"
        id="text13082-9-6-9-1"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -656,7 +671,7 @@
        x="57.978127"
        y="60.510792"
        id="text13082-9-6-9-1-2"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -673,7 +688,7 @@
        y="4.7017999"
        id="text13408-9"
        transform="rotate(-90)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -694,7 +709,7 @@
        x="2.85395"
        y="15.26695"
        id="text10302"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -708,7 +723,7 @@
        id="path8498"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -717,7 +732,7 @@
        id="path10112"
        d="m 6.6145833,25.505748 c 3.1651934,3.935153 7.6845597,-4.491975 15.6626057,0 3.413644,14.287499 15.060197,23.812501 15.060197,23.812501"
        style="fill:none;stroke:#cc4678;stroke-width:0.824348;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -726,13 +741,13 @@
        id="path10114"
        d="m 36.980198,48.841999 c 9.885985,1.396205 10.63554,-26.256519 23.530819,-23.8125 7.657503,3.247986 12.01334,-3.245061 16.671512,2.171668"
        style="fill:none;stroke:#cc4678;stroke-width:0.789448;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <g
        id="g5871"
        transform="matrix(0.70112698,0,0,0.6612158,31.345266,20.947472)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600">
       <path
@@ -759,7 +774,7 @@
        d="m 21.687025,56.59375 c 0,-33.124645 0,-33.124645 0,-33.124645"
        id="path13046-9"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -767,7 +782,7 @@
        d="m 25.920356,56.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-1"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -775,7 +790,7 @@
        d="m 36.76828,56.806606 c 0,-33.3375 0,-33.3375 0,-33.3375"
        id="path13046"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -783,7 +798,7 @@
        d="m 76.984937,56.806606 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-3-9"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -791,7 +806,7 @@
        d="m 58.464107,56.806603 c 0,-33.337501 0,-33.337501 0,-33.337501"
        id="path13046-9-3-9-2"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -799,7 +814,7 @@
        id="path13046-9-3-4-5"
        d="m 167.35695,33.427134 c 0,-8.276905 0,-8.276905 0,-8.276905"
        style="display:inline;fill:none;stroke:#a5a5a5;stroke-width:0.404034;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.808068, 0.808068;stroke-dashoffset:0;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -807,7 +822,7 @@
        id="path10116"
        d="M 116.21415,25.835118 Z"
        style="fill:none;stroke:#000000;stroke-width:0.182232px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -816,7 +831,7 @@
        id="path10152"
        d="m 118.65881,24.166718 c 2.28859,1.084361 3.37111,2.570884 6.60062,0.747488 1.20386,-0.679709 3.42733,-0.817327 4.25478,-0.824463 1.59949,-0.01379 2.61549,0.323732 3.51104,0.675814 1.42381,0.559768 4.09496,-0.749482 5.53024,-0.449437 2.28842,0.47839 4.49802,0.71826 6.65362,0.8059 1.57598,0.06407 2.70979,-0.815946 4.23774,-0.880892 0.94286,-0.04008 4.27096,0.649854 5.17839,0.847602 2.13857,0.466038 3.69627,-0.608758 4.94189,-0.683811 2.33531,-0.140711 2.43714,0.565917 4.34994,0.561713 0.69107,-0.0015 2.60671,-0.845936 3.55736,-0.799914"
        style="fill:none;stroke:#7e03a8;stroke-width:0.464163;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -827,7 +842,7 @@
        x="117.6825"
        style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
@@ -841,7 +856,7 @@
        x="116.93904"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
@@ -857,7 +872,7 @@
        x="164.37318"
        style="font-style:normal;font-weight:normal;font-size:3.81px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
@@ -874,7 +889,7 @@
        x="-24.958487"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125;font-style:italic"
@@ -890,7 +905,7 @@
        x="109.73012"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125"
@@ -906,7 +921,7 @@
        id="path10152-2"
        d="m 6.9870939,114.6941 c 3.1285181,1.97472 8.1706871,-0.86349 14.2206341,-0.0938 2.057571,0.26179 -2.314383,0.0938 6.92691,4.99239 2.141661,1.13525 6.544866,2.24513 10.630296,1.80954 1.930221,-0.2058 2.750286,-0.75503 5.311741,-2.49439 1.413585,-0.95989 3.126146,-1.68466 4.598932,-1.79887 4.745863,-1.22427 6.704861,-2.07285 9.508363,-2.4149 1.808277,-0.23291 5.574998,0.5738 6.968473,0.53444 1.136867,-0.0321 3.382533,-0.92251 4.230626,-0.97147 3.538926,-0.2043 3.602997,0.82166 6.501663,0.81556 1.047249,-0.002 3.637062,-0.44536 5.077692,-0.37853"
        style="display:inline;fill:none;stroke:#f89441;stroke-width:0.6885;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -917,7 +932,7 @@
        x="7.6394906"
        style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
@@ -941,7 +956,7 @@
        id="path8498-1-5"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -950,7 +965,7 @@
        x="2.8253748"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125"
@@ -965,7 +980,7 @@
        x="-102.83331"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125;font-style:italic"
@@ -976,7 +991,7 @@
     <g
        transform="matrix(0.81987932,0,0,0.79492302,106.0418,79.845747)"
        id="g13388-2-4"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600">
       <path
@@ -998,7 +1013,7 @@
        id="path8498-48-4"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -1007,7 +1022,7 @@
        id="path10000"
        d="m 112.54961,104.58331 71.06931,0.0259"
        style="fill:none;stroke:#000000;stroke-width:0.238802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker10265)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -1018,7 +1033,7 @@
        x="112.0634"
        style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.238125"
@@ -1044,7 +1059,7 @@
        xml:space="preserve"
        inkscape:transform-center-x="1.7937853"
        inkscape:transform-center-y="0.67266949"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125"
@@ -1059,7 +1074,7 @@
        x="-107.36515"
        style="font-style:normal;font-weight:normal;font-size:3.175px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.238125"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          style="stroke-width:0.238125;font-style:italic"
@@ -1073,7 +1088,7 @@
        id="path8498-1"
        d="m 118.62343,20.102933 v 13.324213 c 18.04094,0 36.08189,0 54.12283,0"
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.122765;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6);marker-end:url(#Arrow1Lend-7)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <rect
@@ -1083,7 +1098,7 @@
        height="22.754166"
        x="129.64583"
        y="51.59375"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -1091,7 +1106,7 @@
        d="m 129.68156,75.141666 c 0,-20.902083 0,-20.902083 0,-20.902083"
        id="path13046-9-3-4-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <path
@@ -1099,7 +1114,7 @@
        d="M 118.85962,55.101478 Z"
        id="path10116-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -1110,7 +1125,7 @@
        id="text4749-3-3-2-7-3-0"
        inkscape:transform-center-x="-9.6518638"
        inkscape:transform-center-y="-7.4245106"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1124,7 +1139,7 @@
        x="116.93904"
        y="80.469139"
        id="text13082-6-0-3-7"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1141,7 +1156,7 @@
        y="116.26695"
        id="text13408-9-2-8"
        transform="rotate(-90)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1157,7 +1172,7 @@
        x="122.92228"
        y="50.669971"
        id="text13408-9-2-8-0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"
        inkscape:transform-center-x="1.5821274"
@@ -1175,7 +1190,7 @@
        id="path8498-48-4-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -1184,7 +1199,7 @@
        x="149.81706"
        y="54.235065"
        id="text13408-9-2-8-0-6"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"
        inkscape:transform-center-x="1.5821274"
@@ -1202,7 +1217,7 @@
        x="171.9492"
        y="80.940323"
        id="text13408-18-4"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1216,7 +1231,7 @@
        x="109.73017"
        y="43.935005"
        id="text10302-6-8"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1230,7 +1245,7 @@
        id="path8498-1-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600" />
     <text
@@ -1239,7 +1254,7 @@
        x="171.9492"
        y="36.832035"
        id="text13408-18-4-8"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1253,7 +1268,7 @@
        x="83.402565"
        y="61.983974"
        id="text13408-18-4-5"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1267,7 +1282,7 @@
        x="81.949203"
        y="128.33998"
        id="text13408-18-4-5-6"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1281,7 +1296,7 @@
        x="2.9390399"
        y="60.510792"
        id="text13082-6-0-3-7-79"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1297,7 +1312,7 @@
        x="2.9390397"
        y="126.51079"
        id="text13082-6-0-3-7-79-8"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
@@ -1313,7 +1328,7 @@
        x="180.28148"
        y="109.81915"
        id="text13408-18-4-5-6-0"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input_shortnames.png"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\input.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600"><tspan
          sodipodi:role="line"
