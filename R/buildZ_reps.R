@@ -5,7 +5,7 @@
 #'
 #' @return a numeric (design) matrix
 #'
-#' @export
+#' @keywords internal
 build_Zreps  <- function(reps, m) {
   ## n = reps*m
   Z <- matrix(list(0), reps * m, m)
