@@ -389,7 +389,7 @@ diag(R_Ir5) <- rep("var_r", 4*5)
 Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ### multiple replicate/observation per process
-Z_r5 <- build_Zreps(4, 5)
+Z_r5 <- estar::build_Zreps(4, 5)
 
 aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     map(~ MARSS(.,

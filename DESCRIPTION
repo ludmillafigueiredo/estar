@@ -20,7 +20,8 @@ Suggests:
     tidyr,
     utils,
     MARSS,
-    magrittr
+    magrittr,
+    tidyverse
 Depends: 
     R (>= 3.5.0)
 Imports:
