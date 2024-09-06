@@ -20,6 +20,7 @@ set.seed(123)
 
 ```{r, setup, include=FALSE}
 library(estar)
+library(tidyverse)
 library(ggplot2)
 library(cowplot)
 library(viridis)
@@ -44,7 +45,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
 
 ```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
-  aquacomm_fgps.logplot <- aquacomm_fgps |>
+  aquacomm_resps.logplot <- aquacomm_resps |>
     tidyr::pivot_longer(
       cols = c(herb, detr_herb, carn, omni, detr),
       names_to = "gp",
@@ -92,7 +93,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
 
 ```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap="Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
-  aquacomm_fgps.rawplot <- aquacomm_fgps |>
+  aquacomm_resps.rawplot <- aquacomm_resps |>
     tidyr::pivot_longer(
       cols = c(herb, detr_herb, carn, omni, detr),
       names_to = "gp",
@@ -159,7 +160,7 @@ The time frame is defined by `tb_i` and specified in the data frame
 invariability(
   mode = "lm_res",
   response = "lrr",
-  metric_tf = c(1, max(aquacomm_fgps$time)),
+  metric_tf = c(1, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps,
@@ -175,7 +176,7 @@ time (Fig. 2-b).
 ```{r}
 invariability(
   mode = "lm_res",
-  metric_tf = c(1, max(aquacomm_fgps$time)),
+  metric_tf = c(1, max(aquacomm_resps$time)),
   response = "v",
   vd_i = "statvar_db",
   td_i = "time",
@@ -192,7 +193,7 @@ response ratio of the state variable in the disturbed and baseline systems (Fig.
 invariability(
   response = "lrr",
   mode = "cv",
-  metric_tf = c(1, max(aquacomm_fgps$time)),
+  metric_tf = c(1, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
   td_i = "time",
   b_data = aquacomm_resps,
@@ -208,7 +209,7 @@ variable in the disturbed system (Fig. 2-d).
 invariability(
   response = "v",
   mode = "cv",
-  metric_tf = c(1, max(aquacomm_fgps$time)),
+  metric_tf = c(1, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps,
@@ -433,11 +434,11 @@ knitr::include_graphics("figures/rate_recovery.png")
 
 ## Persistence
 
-Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values in an independent baseline (`b = "input"`) during the same time period for which persistence is measured (`metric_tf = c(28, max(aquacomm_fgps$time))`, Fig. 6).
+Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values in an independent baseline (`b = "input"`) during the same time period for which persistence is measured (`metric_tf = c(28, max(aquacomm_resps$time))`, Fig. 6).
 ```{r}
 persistence(
   b = "input",
-  metric_tf = c(28, max(aquacomm_fgps$time)),
+  metric_tf = c(28, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps,
@@ -452,7 +453,7 @@ Proportion of time over which the system persisted as defined by it being within
 persistence(
   b = "d",
   b_tf = c(-4, 0.14),
-  metric_tf = c(28, max(aquacomm_fgps$time)),
+  metric_tf = c(28, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps
