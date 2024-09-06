@@ -30,3 +30,4 @@ baseline values of the state variable. Time and value columns must be named
 \description{
 Organize the response variable upon which the statbility metric will be calculated
 }
+\keyword{internal}

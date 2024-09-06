@@ -2,7 +2,6 @@
 
 export(asympt_resil)
 export(build_Zreps)
-export(cv)
 export(extractB)
 export(init_resil)
 export(invariability)
@@ -12,5 +11,4 @@ export(reactivity)
 export(recovery_extent)
 export(recovery_rate)
 export(resistance)
-export(sort_response)
 export(stoch_var)

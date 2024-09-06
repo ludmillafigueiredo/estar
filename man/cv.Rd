@@ -16,3 +16,4 @@ processing.}
 \description{
 Calculate coefficient of variation of a vector
 }
+\keyword{internal}

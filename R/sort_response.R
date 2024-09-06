@@ -15,8 +15,7 @@
 #' @param b_data an optional data frame containing the time-series of the
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tb_i} and \code{vb_i}, respectively.
-#'
-#' @export
+#' @keywords internal
 sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
   if (response == "v") {
     response_df <- stats::setNames(dts_df, c("response", "t"))

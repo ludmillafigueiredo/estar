@@ -8,7 +8,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Suggests: 
-    testthat,
+    testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     Matrix,
@@ -20,10 +20,12 @@ Suggests:
     tidyr,
     utils,
     MARSS,
-    magrittr
+    magrittr,
+    tidyverse
 Depends: 
     R (>= 3.5.0)
 Imports:
     dplyr,
     stats
 VignetteBuilder: knitr
+Config/testthat/edition: 3

@@ -29,10 +29,10 @@ recovery_rate <- function(b,
                           tb_i = NULL,
                           b_data = NULL,
                           na_rm = TRUE) {
-  dts_df <- format_input(input = "d", vd_i, td_i, d_data)
+  dts_df <- format_input("d", vd_i, td_i, d_data)
 
   if (b == "input") {
-    bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
+    bts_df <- format_input("b", vb_i, tb_i, b_data)
 
     base_df <- merge(
       data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),

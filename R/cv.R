@@ -5,7 +5,7 @@
 #' @param na_rm a logical indicating whether NA values should be removed before
 #' processing.
 #'
-#' @export
+#' @keywords internal
 cv <- function(vct, na_rm) {
   stats::sd(vct, na.rm = na_rm) / mean(vct, na.rm = na_rm)
 }

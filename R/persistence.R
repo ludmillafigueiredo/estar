@@ -50,10 +50,10 @@ persistence <-
            tb_i = NULL,
            b_data = NULL,
            na_rm = TRUE) {
-    dts_df <- format_input(input = "d", vd_i, td_i, d_data)
+    dts_df <- estar:::format_input("d", vd_i, td_i, d_data)
 
     if (b == "input") {
-      bts_df <- format_input(input = "b", vb_i, tb_i, b_data)
+      bts_df <- estar:::format_input("b", vb_i, tb_i, b_data)
       names(bts_df)[which(names(bts_df) == "vb_i")] <- "v"
     } else {
       if (b == "d") {

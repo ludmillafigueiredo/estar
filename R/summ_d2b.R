@@ -5,8 +5,7 @@
 #' disturbed system.
 #'
 #' @inheritParams univar_params
-#'
-#' @noRd
+#' @keywords internal
 summ_d2b <- function(dts_df, b_tf, summ_mode, na_rm) {
   summ_f <- match.fun(summ_mode)
   b_df <- dts_df[(dts_df$td_i >= min(b_tf) &
