@@ -45,7 +45,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
 
 ```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
-  aquacomm_resps.logplot <- aquacomm_resps |>
+  aquacomm_resps.logplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
       cols = c(herb, detr_herb, carn, omni, detr),
       names_to = "gp",
@@ -93,7 +93,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
 
 ```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap="Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
-  aquacomm_resps.rawplot <- aquacomm_resps |>
+  aquacomm_resps.rawplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
       cols = c(herb, detr_herb, carn, omni, detr),
       names_to = "gp",
