@@ -368,7 +368,7 @@ aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
 Next, we prepare the arguments to be used for specifying the MARSS model according to the minimal requirements case outlined above.
 As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
 
-```{r cache = TRUE, collapse=TRUE}
+```{r collapse=TRUE}
 ## 5 groups
 ### no process variance, 5 gps
 Q_05 <- matrix(list(0), 5, 5)
@@ -389,7 +389,7 @@ diag(R_Ir5) <- rep("var_r", 4*5)
 Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ### multiple replicate/observation per process
-Z_r5 <- estar::build_Zreps(4, 5)
+Z_r5 <- build_Zreps(4, 5)
 
 aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     map(~ MARSS(.,

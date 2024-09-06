@@ -17,4 +17,3 @@ a numeric (design) matrix
 \description{
 Build a design matrix with equal number of observations per state process
 }
-\keyword{internal}
