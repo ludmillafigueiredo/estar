@@ -112,4 +112,4 @@ data.Bls <- list(
 )
 
 # calculate initial resilience for each of the B matrices
-list(data.Bls, init_resil)
+purrr::map(data.Bls, init_resil)

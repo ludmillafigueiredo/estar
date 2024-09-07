@@ -112,4 +112,4 @@ data.Bls <- list(
 )
 
 # calculate reactivity for each of the B matrices
-list(data.Bls, reactivity)
+purrr::map(data.Bls, reactivity)

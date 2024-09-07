@@ -112,4 +112,4 @@ data.Bls <- list(
 )
 
 # calculate maximal amplification for each of the B matrices
-list(data.Bls, max_amp)
+purrr::map(data.Bls, max_amp)

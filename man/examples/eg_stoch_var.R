@@ -112,4 +112,4 @@ data.Bls <- list(
 )
 
 # calculate intrinsic stochastic variability for each of the B matrices
-list(data.Bls, stoch_var)
+purrr::map(data.Bls, stoch_var)

@@ -16,5 +16,6 @@
 #'
 #' @export
 reactivity <- function(B) {
-  react <- max(eigen((B + t(B)) / 2)$values)
+  r_a <- max(eigen((B + t(B)) / 2)$values)
+  return(r_a)
 }

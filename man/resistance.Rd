@@ -110,11 +110,11 @@ resistance(
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 12
+  b_tf = 8, res_mode = "lrr", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 12
+  b_tf = 8, res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
@@ -128,12 +128,12 @@ resistance(
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  res_mode = "lrr", b_tf = 9, res_time = "max",
+  res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  res_mode = "lrr", b_tf = 9, res_time = "max",
+  res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 }

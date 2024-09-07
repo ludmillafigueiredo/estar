@@ -22,20 +22,20 @@
 #' @examples
 #' persistence(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = c(1, 9), metric_tf = c(50, 100)
+#'   b_tf = c(1, 9), metric_tf = c(28, 56)
 #' )
 #' persistence(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = c(1, 9), metric_tf = c(30, 100)
+#'   b_tf = c(1, 9), metric_tf = c(28, 56)
 #' )
 #' persistence(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
-#'   metric_tf = c(50, 100), vb_i = "statvar_bl", tb_i = "time",
+#'   metric_tf = c(28, 56), vb_i = "statvar_bl", tb_i = "time",
 #'   b_data = aquacomm_resps
 #' )
 #' persistence(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
-#'   metric_tf = c(30, 100), vb_i = "statvar_bl", tb_i = "time",
+#'   metric_tf = c(28, 56), vb_i = "statvar_bl", tb_i = "time",
 #'   b_data = aquacomm_resps
 #' )
 #' @export

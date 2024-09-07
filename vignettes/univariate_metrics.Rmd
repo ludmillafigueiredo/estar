@@ -304,7 +304,7 @@ Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), com
 ```{r}
 resistance(
   b = "d",
-  b_tf = c(-4, -0.14),
+  b_tf = c(-4, 0.14),
   res_time = "max",
   res_mode = "diff",
   res_tf = c(1, 20),
@@ -322,7 +322,7 @@ absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fi
 ```{r}
 resistance(
   b = "d",
-  b_tf = c(-4, -0.14),
+  b_tf = c(-4, 0.14),
   res_mode = "lrr",
   res_time = "defined",
   res_t = 1,

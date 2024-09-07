@@ -17,7 +17,7 @@ fitted MARSS object.}
 a numeric, the asymptotic resilience
 }
 \description{
-\code{init_resil} calculates asymptotic resilience as
+\code{asympt_resil} calculates asymptotic resilience as
 the slowest long-term asymptotic rate of return to
 equilibrium after a pulse perturbation (Arnoldi et al. 2016,
 Downing et al. 2020).

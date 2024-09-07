@@ -112,4 +112,4 @@ data.Bls <- list(
 )
 
 # calculate asymptotic resilience for each of the B matrices
-list(data.Bls, asympt_resil)
+purrr::map(data.Bls, asympt_resil)

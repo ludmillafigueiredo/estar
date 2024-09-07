@@ -107,7 +107,7 @@ recovery_extent(
 )
 recovery_extent(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-  b = "d", t_rec = 42, b_tf = 9
+  b = "d", t_rec = 42, b_tf = 8
 )
 recovery_extent(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",

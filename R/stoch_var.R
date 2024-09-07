@@ -16,6 +16,7 @@
 stoch_var <- function(B) {
   id <- diag(nrow(B))
   kron_sum <- Matrix::kronecker(B, id) + Matrix::kronecker(id, B)
-  Nu_s <- norm(solve(kron_sum), type = '2')
-  I_s <- 1 / 2 * Nu_s
+  nu_s <- norm(solve(kron_sum), type = '2')
+  i_s <- 1 / 2 * nu_s
+  return(i_s)
 }

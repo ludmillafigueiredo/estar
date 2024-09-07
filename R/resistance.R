@@ -49,11 +49,11 @@
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 9, res_mode = "lrr", res_time = "defined", res_t = 12
+#'   b_tf = 8, res_mode = "lrr", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 9, res_mode = "diff", res_time = "defined", res_t = 12
+#'   b_tf = 8, res_mode = "diff", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
@@ -67,12 +67,12 @@
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   res_mode = "lrr", b_tf = 9, res_time = "max",
+#'   res_mode = "lrr", b_tf = 8, res_time = "max",
 #'   res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   res_mode = "lrr", b_tf = 9, res_time = "max",
+#'   res_mode = "lrr", b_tf = 8, res_time = "max",
 #'   res_tf = c(12, 51)
 #' )
 #' @export
@@ -91,6 +91,10 @@ resistance <- function(res_mode,
                        na_rm = TRUE) {
   if (!(res_mode %in% c("lrr", "diff"))) {
     stop("res_mode must be \"lrr\" or \"diff\".")
+  }
+
+  if (b == "d" && !all(b_tf %in% d_data[[td_i]])) {
+    stop("b_tf must be a time step in your data.")
   }
 
   dts_df <- format_input("d", vd_i, td_i, d_data)

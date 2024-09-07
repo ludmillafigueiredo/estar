@@ -17,5 +17,6 @@
 #' @export
 init_resil <- function(B) {
   l_dom <- eigen(t(B) * B)$values[1]
-  i_s <- -log(sqrt(l_dom))
+  r_0 <- -log(sqrt(l_dom))
+  return(r_0)
 }
