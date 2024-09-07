@@ -25,7 +25,11 @@ options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexE
 
 ```{r message=FALSE}
 library(estar)
-library(tidyverse)
+library(tidyr)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(purrr)
 library(viridis)
 library(MARSS)
 library(hesim)
@@ -356,7 +360,7 @@ aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
 aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
     dplyr::select(time, treat, fgp, abundz_mu) %>%
     split(.$treat) %>%
-    map(~ dplyr::select(., time, fgp, abundz_mu) %>%
+    purrr::map(~ dplyr::select(., time, fgp, abundz_mu) %>%
         unique() %>%
         tidyr::pivot_wider(id_cols = fgp,
                            names_from = time, values_from = "abundz_mu", 
@@ -392,7 +396,7 @@ diag(Z_I5) <- 1
 Z_r5 <- build_Zreps(4, 5)
 
 aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
-    map(~ MARSS(.,
+    purrr::map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
                      Z = "identity", ## Z_I5 could also have been provided here 
@@ -407,7 +411,7 @@ We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matri
 
 ```{r}
 (aquacomm.Bls <- aquacommz_allscen.marssls %>%
-  map(~estar::extractB(., 
+  purrr::map(~estar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
 
@@ -419,7 +423,7 @@ A positive value indicates the system is reactive and the higher its value, the 
 
 ```{r}
 aquacomm.Bls %>%
-  map(estar::reactivity)
+  purrr::map(estar::reactivity)
 ```
 
 ## Maximal amplification
@@ -428,7 +432,7 @@ The largest response of the community to the perturbation, it is a measure of th
 
 ```{r}
 aquacomm.Bls %>%
-  map(estar::max_amp)
+  purrr::map(estar::max_amp)
 ```
 
 ## Initial resilience
@@ -437,7 +441,7 @@ Initial resilience is the initial rate of return to equilibrium. The larger its 
 
 ```{r}
 aquacomm.Bls %>%
-  map(estar::init_resil)
+  purrr::map(estar::init_resil)
 ```
 
 ## Asymptotic resilience
@@ -446,7 +450,7 @@ The slowest/long-term asymptotic rate of return to equilibrium after a pulse per
 
 ```{r}
 aquacomm.Bls %>%
-  map(estar::asympt_resil)
+  purrr::map(estar::asympt_resil)
 ```
 
 ## Stochastic invariability

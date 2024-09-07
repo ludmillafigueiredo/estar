@@ -20,7 +20,8 @@ set.seed(123)
 
 ```{r, setup, include=FALSE}
 library(estar)
-library(tidyverse)
+library(tidyr)
+library(dplyr)
 library(ggplot2)
 library(cowplot)
 library(viridis)
