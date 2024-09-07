@@ -10,10 +10,10 @@ invariability(
   metric_tf,
   vd_i,
   td_i,
-  d_data,
-  vb_i,
-  tb_i,
-  b_data,
+  d_data = NULL,
+  vb_i = NULL,
+  tb_i = NULL,
+  b_data = NULL,
   na_rm = TRUE
 )
 }
@@ -74,10 +74,6 @@ state variable.
 invariability(
   vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
   metric_tf = c(11, 50), d_data = aquacomm_resps
-)
-invariability(
-  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "v",
-  mode = "cv", metric_tf = c(11, 50)
 )
 invariability(
   vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
