@@ -51,9 +51,9 @@ invariability <- function(mode,
                           tb_i = NULL,
                           b_data = NULL,
                           na_rm = TRUE) {
-  dts_df <- estar:::format_input("d", vd_i, td_i, d_data)
+  dts_df <- format_input("d", vd_i, td_i, d_data)
 
-  invar_df <- estar:::sort_response(response, dts_df, vb_i, tb_i, b_data)
+  invar_df <- sort_response(response, dts_df, vb_i, tb_i, b_data)
   invar_df <- invar_df[invar_df$t >= min(metric_tf) &
                          invar_df$t <= max(metric_tf), ]
 
@@ -66,7 +66,7 @@ invariability <- function(mode,
   }
 
   if (mode == "cv") {
-    invar <- 1 / estar:::cv(invar_df$response, na_rm = na_rm)
+    invar <- 1 / cv(invar_df$response, na_rm = na_rm)
     return(invar)
   } else if (mode == "lm_res") {
     invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)

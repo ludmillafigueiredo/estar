@@ -93,10 +93,10 @@ resistance <- function(res_mode,
     stop("res_mode must be \"lrr\" or \"diff\".")
   }
 
-  dts_df <- estar:::format_input("d", vd_i, td_i, d_data)
+  dts_df <- format_input("d", vd_i, td_i, d_data)
 
   if (b == "input") {
-    bts_df <- estar:::format_input("b", vb_i, tb_i, b_data)
+    bts_df <- format_input("b", vb_i, tb_i, b_data)
 
     res_df <- merge(
       data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
@@ -109,7 +109,7 @@ resistance <- function(res_mode,
           "You are using a single time point as baseline. Consider a time period, see Details."
         )
       }
-      b <- estar:::summ_d2b(dts_df, b_tf, "mean", na_rm)
+      b <- summ_d2b(dts_df, b_tf, "mean", na_rm)
       res_df <- data.frame("t" = dts_df$td_i,
                            "vd_i" = dts_df$vd_i,
                            "vb_i" = b)
