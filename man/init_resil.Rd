@@ -120,21 +120,10 @@ data.marssls <- list(
 names(data.marssls) <- paste0("Conc. = ", c("0", "0.9", "44"), " micro g/L")
 
 # extract community matrices (B)
-data.Bls <- list(
-  extractB(
-    data.marssls[[1]],
-    states_names = c("Herbivores", "Carnivores", "Detrivores")
-  ),
-  extractB(
-    data.marssls[[2]],
-    states_names = c("Herbivores", "Carnivores", "Detrivores")
-  ),
-  extractB(
-    data.marssls[[3]],
-    states_names = c("Herbivores", "Carnivores", "Detrivores")
-  )
-)
+data.Bls <- data.marssls |>
+  lapply(extractB,
+         states_names = c("Herbivores", "Carnivores", "Detrivores"))
 
 # calculate initial resilience for each of the B matrices
-list(data.Bls, init_resil)
+purrr::map(data.Bls, init_resil)
 }
