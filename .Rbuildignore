@@ -7,3 +7,4 @@
 ^Meta$
 ^STYLEGUIDE.md$
 ^\.github$
+^codecov\.yml$

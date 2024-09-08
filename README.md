@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/ludmillafigueiredo/estar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ludmillafigueiredo/estar?branch=main)
 <!-- badges: end -->
 
 `estar` provides two sets of functions.
