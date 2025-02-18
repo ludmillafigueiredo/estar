@@ -33,6 +33,7 @@ library(purrr)
 library(viridis)
 library(MARSS)
 library(hesim)
+library(kableExtra)
 source("custom_aesthetics.R")
 
 label_intensity <- function(intensity, mu){
@@ -51,8 +52,8 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 # Overview of demonstration data
 
-Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates (references anonymized for review).
-The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species (references anonymized for review).
+Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
+The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species.
 This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
@@ -288,15 +289,18 @@ The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without a
 
 When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
 Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
-In this section we detail what are these assumptions and show how they might affect the estimation of ($\mathbf{B}$) by applying them to the same study case.
 None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
 
-We start from the minimal case of one single observation per state process and other simplifying assumptions, and build its complexity up it step-wise.
+When fitting MARSS models, the user can have up to eight matrices or vectors of parameters estimated (Holmes, Scheuerell, et al., 2024). This is true for all other parameters of the model, which refer to the (co ) variances and errors of abundance and observation processes. The species interaction matrix (B) is usually fully estimated, i.e. all interaction strengths are estimated. It is however possible to constrain values to specific values or in relation to each other. We showcase the use of MARSS in a system assumed to be at equilibrium, with zero observational error, zero covariates (e..g. environmental conditions affecting abundances or the observation). These assumptions reflect knowledge about the system, which, in our case we assume to be minimal. However, for that reason, we also leave it for the user to define their own assumptions. They will affect the estimation of B. Moreover, it is important to point out that the calculation of asymptotic resilience (Downing et al., 2020) implemented in the package requires that process error and constant covariates.
+
+Pay attention to careful specification of the parameters for the options. For example, a care should be made when specifying the initial and the final time step of the time series. If the user knows the exact timing when the disturbance took place, then the time series should start right from that time point or one time step (whatever appropriate time step is useful) after.  
+
+We present a minimal case of one single observation per state process and other simplifying assumptions.
 
 ## Minimal case
 
-In our minimal case, we consider that
+The calculation of asymptotic resilience (@downing_temporal_2020) that is used in the package requires zero process error and constant covariates. Therefore, our minimal case assumes that:
 
 -   Each observation corresponds to one state process ($y_i = x_i$), thus $\mathbf{Z}$ = "identity". In our case we have 5 functional groups, therefore $\mathbf{Z}$ corresponds to a $5 \times 5$ identity matrix, since $n = m$:
 
@@ -305,7 +309,7 @@ Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ```
 
--   All functional groups have the same state processes variance\*: $w_t = \sigma$, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to \begin{equation}
+-   All functional groups have the same state processes variance: $w_t = \sigma$, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to \begin{equation}
     \begin{bmatrix}
           \sigma & 0 & 0 & 0 & 0 \\
           0 & \sigma & 0 & 0 & 0 \\
@@ -315,12 +319,9 @@ diag(Z_I5) <- 1
           \end{bmatrix}
     \end{equation}\
 -   Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = v$, thus `R = 0`
--   Constant covariates\*: $C_{t} = C$ and $c_{t} = c = 0$
--   We assume that the system is at equillibrium, therefore: U = A = 0
+-   Constant covariates: $C_{t} = C$ and $c_{t} = c = 0$
+-   We assume that the system is at equilibrium, therefore: $U$ = $A$ = 0
 -   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
-
-Some of these assumptions are required to calculate certain multivariate stability metrics.
-Thus, calculation of asymptotic resilience that is used here and that follows @downing_temporal_2020, requires that process error is zero and that covariates are constant.
 
 Such model is formalized as:
 
@@ -374,26 +375,8 @@ As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
 
 ```{r collapse=TRUE}
 ## 5 groups
-### no process variance, 5 gps
-Q_05 <- matrix(list(0), 5, 5)
-## single process variance, no covariance
-Q_I5 <- matrix(list(0), 5, 5)
-diag(Q_I5) <- rep("var_q", 5)
-### no observation error variance: 4 reps, 5 gps
-R_0r5 <- matrix(list(0), 4*5, 4*5)
 ### no observation error variance: 0 reps (summarized data), 5 gps
 R_05 <- matrix(list(0), 5, 5)
-### single error variancee: 0 reps (summarized data), 5 gps
-R_I5 <- matrix(list(0), 5, 5)
-diag(R_I5) <- rep("var_r", 5)
-### single error variancee: 4 reps, 5 gps
-R_Ir5 <- matrix(list(0), 4*5, 4*5)
-diag(R_Ir5) <- rep("var_r", 4*5)
-### single replicate/observation per process: 1 reps, 5 gps
-Z_I5 <- matrix(list(0), 5, 5)
-diag(Z_I5) <- 1
-### multiple replicate/observation per process
-Z_r5 <- build_Zreps(4, 5)
 
 aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
     purrr::map(~ MARSS(.,
@@ -428,7 +411,7 @@ aquacomm.Bls %>%
 
 ## Maximal amplification
 
-The largest response of the community to the perturbation, it is a measure of the transient behaviour of the system.
+The largest response of the community to the perturbation, it is a measure of the transient behavior of the system.
 
 ```{r}
 aquacomm.Bls %>%
@@ -461,6 +444,25 @@ Inverse of the maximal response variance to white noise. The larger its value, t
 aquacomm.Bls %>%
   map(estar::stoch_var)
 ```
+
+# Performance of multivariate metrics
+
+We conducted the benchmark analysis of the execution time of the different multivariate metrics. The code used for the analysis is available in `performance_analysis.R`.
+
+While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example.
+
+```{r}
+load("multivar_performance.rda")
+```
+
+```{r}
+multivar_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different functions used to calculate multivariate metrics, as demonstrated in this vignette.](figures/multivar_benchmark.png){width=100%}
 
 # References
 

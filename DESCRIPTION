@@ -39,7 +39,8 @@ Suggests:
     magrittr,
     dplyr,
     purrr,
-    tibble
+    tibble,
+    kableExtra
 Depends: 
     R (>= 3.5.0)
 Imports:

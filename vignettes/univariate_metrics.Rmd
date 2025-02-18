@@ -7,9 +7,12 @@ output:
     fig_caption: TRUE
 vignette: >
   %\VignetteIndexEntry{univariate_metrics}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, echo=FALSE}
@@ -26,23 +29,41 @@ library(ggplot2)
 library(cowplot)
 library(viridis)
 library(forcats)
+library(kableExtra)
 source("custom_aesthetics.R")
 
 label_intensity <- function(intensity, mu) {
   paste0("Conc = ", intensity, " micro g/L")
 }
 ```
+
 <!-- colors : -->
+
 <!-- Deep blue "#0D0887FF"  -->
+
 <!-- Purple "#7E03A8FF"  -->
+
 <!-- Dark pink "#CC4678FF"  -->
+
 <!-- Orange "#F89441FF"  -->
+
 <!-- Yellow "#F0F921FF" -->
 
 # Overview of demonstration data
 
-We illustrate the use of `estar` functions on a dataset from an ecotoxicological study about the effects of the chlorpyrifos insecticide on a community of aquatic macroinvertebrates (references anonymized for review). The insecticide negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species (references anonymized for review). This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two replicates per concentration level. Additionally, four replicates were used as control, undisturbed systems ('baseline' in `estar` terminology). In response to a pulse disturbance (Glossary in main text), (reference anonymized for review) reports decreased and destabilized community diversity, but no effects on gross primary production nor respiration. 
-The community is composed of 128 species, classified into 5 functional groups: herbivores, detriti-herbivores, carnivores, omnivores, and detritivores.
+We illustrate the use of `estar` functions on a dataset from an
+ecotoxicological study about the effects of the chlorpyrifos insecticide
+on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater
+macroinvertebrates, and, to a lesser degree, zooplankton species. This insecticide was applied at four
+different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two
+replicates per concentration level. Additionally, four replicates were
+used as control, undisturbed systems ('baseline' in `estar`
+terminology). In response to a pulse disturbance (Glossary in main
+text), @van_den_brink_effects_1996 reports decreased and
+destabilized community diversity, but no effects on gross primary
+production nor respiration. The community is composed of 128 species,
+classified into 5 functional groups: herbivores, detriti-herbivores,
+carnivores, omnivores, and detritivores.
 
 ```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
@@ -144,18 +165,22 @@ The community is composed of 128 species, classified into 5 functional groups: h
     theme_estar()
 )
 ```
- 
+
 # Main functions
-Examples of each function applied to the example dataset. For the functions that require a user-defined time step when were the system has recovered, we use week 28, when all groups seem to have stabilized their growth curve (Fig.1).
+
+Examples of each function applied to the example dataset. For the
+functions that require a user-defined time step when were the system has
+recovered, we use week 28, when all groups seem to have stabilized their
+growth curve (Fig.1).
 
 ## Invariability
 
-Invariability calculated as the inverse of standard deviation of residuals of the 
-linear model that predicts the log response ratio of the state variable in the 
-disturbed and baseline systems by time. The baseline system in our example dataset
-is reflected by control ditches, to which no pesticide was applied.
-The time frame is defined by `tb_i` and specified in the data frame 
-`d_data` (`aquacomm_resps`, Fig. 2-a).
+Invariability calculated as the inverse of standard deviation of
+residuals of the linear model that predicts the log response ratio of
+the state variable in the disturbed and baseline systems by time. The
+baseline system in our example dataset is reflected by control ditches,
+to which no pesticide was applied. The time frame is defined by `tb_i`
+and specified in the data frame `d_data` (`aquacomm_resps`, Fig. 2-a).
 
 ```{r}
 invariability(
@@ -171,9 +196,10 @@ invariability(
 )
 ```
 
-Invariability calculated as the inverse of standard deviation of residuals of the
-linear model fitted to predict the state variable in the disturbed system by 
-time (Fig. 2-b).
+Invariability calculated as the inverse of standard deviation of
+residuals of the linear model fitted to predict the state variable in
+the disturbed system by time (Fig. 2-b).
+
 ```{r}
 invariability(
   mode = "lm_res",
@@ -188,8 +214,10 @@ invariability(
 )
 ```
 
-Invariability calculated as the inverse of the coefficient of variation of the log
-response ratio of the state variable in the disturbed and baseline systems (Fig. 2-c).
+Invariability calculated as the inverse of the coefficient of variation
+of the log response ratio of the state variable in the disturbed and
+baseline systems (Fig. 2-c).
+
 ```{r}
 invariability(
   response = "lrr",
@@ -204,8 +232,9 @@ invariability(
 )
 ```
 
-Invariability calculated as the inverse of the coefficient of variation of a state 
-variable in the disturbed system (Fig. 2-d).
+Invariability calculated as the inverse of the coefficient of variation
+of a state variable in the disturbed system (Fig. 2-d).
+
 ```{r}
 invariability(
   response = "v",
@@ -226,10 +255,12 @@ knitr::include_graphics("figures/invariability.png")
 
 ## Resistance
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), 
-as the log response ratio (`res_mode = "lrr"`) of the state variable in the 
-disturbed and baseline systems at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-a).
+Resistance calculated in relation to a baseline time series
+(`b = "input"`), as the log response ratio (`res_mode = "lrr"`) of the
+state variable in the disturbed and baseline systems at the first time
+step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig.
+3-a).
+
 ```{r}
 resistance(
   b = "input",
@@ -245,10 +276,11 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), 
-as the highest (`res_time = "max"`) log response ratio (`res_mode = "lrr"`) 
-of the state variable in the disturbed and baseline systems during a 
-given time frame (`res_tf = c(1, 20)`, Fig. 3-b).
+Resistance calculated in relation to a baseline time series
+(`b = "input"`), as the highest (`res_time = "max"`) log response ratio
+(`res_mode = "lrr"`) of the state variable in the disturbed and baseline
+systems during a given time frame (`res_tf = c(1, 20)`, Fig. 3-b).
+
 ```{r}
 resistance(
   b = "input",
@@ -264,9 +296,11 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), 
-as the difference (`res_mode = "diff"`) at the first time step following 
-disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-c).
+Resistance calculated in relation to a baseline time series
+(`b = "input"`), as the difference (`res_mode = "diff"`) at the first
+time step following disturbance (`res_time = "defined"`, `res_t = 1`,
+Fig. 3-c).
+
 ```{r}
 resistance(
   b = "input",
@@ -282,9 +316,11 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), 
-as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) 
-during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
+Resistance calculated in relation to a baseline time series
+(`b = "input"`), as the highest (`res_time = "max"`) absolute difference
+(`res_mode = "diff"`) during a given time frame (`res_tf = c(11, 50)`,
+Fig. 3-d).
+
 ```{r}
 resistance(
   b = "input",
@@ -300,7 +336,12 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
+Resistance calculated in relation to a pre-disturbance baseline
+(`b = "d"`), composed of the state variable values in the three time
+steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest
+(`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a
+given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
+
 ```{r}
 resistance(
   b = "d",
@@ -314,10 +355,11 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), 
-composed of the state variable values in the three time steps before 
-disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) 
-absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
+Resistance calculated in relation to a pre-disturbance baseline
+(`b = "d"`), composed of the state variable values in the three time
+steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest
+(`res_time = "defined"`) absolute log-ratio (`res_mode = "lrr"`) at a
+precise time step (`res_t = 1)`, Fig. 3-d).
 
 ```{r}
 resistance(
@@ -337,9 +379,12 @@ knitr::include_graphics("figures/resistance.png")
 ```
 
 ## Extent of recovery
-Extent of recovery calculated as the log response ratio (`response = "lrr"`) of
-the state variable in the disturbed and baseline systems (`b = "input"`), 
-at a user-defined time step (`t_rec = 28`, Fig. 4-a).
+
+Extent of recovery calculated as the log response ratio
+(`response = "lrr"`) of the state variable in the disturbed and baseline
+systems (`b = "input"`), at a user-defined time step (`t_rec = 28`, Fig.
+4-a).
+
 ```{r}
 recovery_extent(
   response = "lrr",
@@ -354,9 +399,10 @@ recovery_extent(
 ) 
 ```
 
-Extent of recovery calculated as the difference (`response = "lrr"`) between 
-the state variables in a disturbed time-series and the baseline (`b = "input"`),
-at the predefined time step (`t_rec = 28`, Fig. 4-b).
+Extent of recovery calculated as the difference (`response = "lrr"`)
+between the state variables in a disturbed time-series and the baseline
+(`b = "input"`), at the predefined time step (`t_rec = 28`, Fig. 4-b).
+
 ```{r}
 recovery_extent(
   response = "diff",
@@ -371,12 +417,12 @@ recovery_extent(
 )
 ```
 
-Extent of recovery calculated as the log response ratio (`response = "lrr"`) 
-of the state variable in the disturbed time-series in relation to the state 
-variable pre-disturbance (`b = "d"`), summarized by the mean value 
-(`summ_mode = "mean"` - default, over a period `b_tf = c(5, 10)`). 
-The extent of recovery is calculated at the point we understand all 
-groups have stabilized (`t_rec = 28`).
+Extent of recovery calculated as the log response ratio
+(`response = "lrr"`) of the state variable in the disturbed time-series
+in relation to the state variable pre-disturbance (`b = "d"`),
+summarized by the mean value (`summ_mode = "mean"` - default, over a
+period `b_tf = c(5, 10)`). The extent of recovery is calculated at the
+point we understand all groups have stabilized (`t_rec = 28`).
 
 ```{r}
 recovery_extent(
@@ -397,9 +443,11 @@ knitr::include_graphics("figures/extent_recovery.png")
 
 ## Rate of recovery
 
-Rate of recovery calculated as the slope of the linear model which predicts the 
-log response ratio of the state variable in the disturbed system compared to 
-the baseline (`b = "input`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig. 5-a).
+Rate of recovery calculated as the slope of the linear model which
+predicts the log response ratio of the state variable in the disturbed
+system compared to the baseline (`b = "input`) by time (over a time
+frame (`metric_tf = c(1, 28)`, Fig. 5-a).
+
 ```{r}
 recovery_rate(
   b = "input",
@@ -413,9 +461,11 @@ recovery_rate(
 )
 ```
 
-Rate of recovery calculated as the slope of the linear model which predicts the
-values of the state variable in the disturbed system (`b = "d"`) by time (over 
-a time frame (`metric_tf = c(1, 28)`, Fig. 5-b).
+Rate of recovery calculated as the slope of the linear model which
+predicts the values of the state variable in the disturbed system
+(`b = "d"`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig.
+5-b).
+
 ```{r}
 recovery_rate(
   b = "d",
@@ -435,7 +485,12 @@ knitr::include_graphics("figures/rate_recovery.png")
 
 ## Persistence
 
-Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values in an independent baseline (`b = "input"`) during the same time period for which persistence is measured (`metric_tf = c(28, max(aquacomm_resps$time))`, Fig. 6).
+Proportion of time over which the system persisted as defined by it
+being within 1 standard deviation from the mean of the state variable
+values in an independent baseline (`b = "input"`) during the same time
+period for which persistence is measured
+(`metric_tf = c(28, max(aquacomm_resps$time))`, Fig. 6).
+
 ```{r}
 persistence(
   b = "input",
@@ -449,7 +504,12 @@ persistence(
 )
 ```
 
-Proportion of time over which the system persisted as defined by it being within 1 standard deviation from the mean of the state variable values during a pre-disturbance (`b = "d"`) time period (`b_tf = c(-4, 0.14)`). Persistence is measured for the post-disturbance time period (`metric_tf = c(1, 60)`, Fig. 6).
+Proportion of time over which the system persisted as defined by it
+being within 1 standard deviation from the mean of the state variable
+values during a pre-disturbance (`b = "d"`) time period
+(`b_tf = c(-4, 0.14)`). Persistence is measured for the post-disturbance
+time period (`metric_tf = c(1, 60)`, Fig. 6).
+
 ```{r}
 persistence(
   b = "d",
@@ -466,15 +526,71 @@ persistence(
 knitr::include_graphics("figures/persistence.png")
 ```
 
-<details><summary>Session Info</summary>
+# Performance
 
-```{r sessionInfo}
-Sys.time()
-sessionInfo()
+We conducted the benchmark analysis of the execution time of the different forms of calculating the univariate metrics. The number attached to the function name in "Function calls" identifies the order in which the function call appears in the vignette. The code used for the analysis is available in `performance_analysis.R`.
+
+While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.01 seconds for our example.
+
+```{r echo=FALSE}
+load("univariate_performance.rda")
 ```
 
-</details><br>
+## Invariability
 
----
+```{r}
+df_list$inv_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `invariability()` function demonstrated in the vignette.](figures/inv_benchmark.png){width=100%}
+
+## Resistance
+
+```{r}
+df_list$resis_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `resistance()` function demonstrated in the vignette.](figures/resis_benchmark.png){width=100%}
+
+## Recovery rate
+
+```{r}
+df_list$rate_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `recovery_rate()` function demonstrated in the vignette.](figures/rate_benchmark.png){width=100%}
+
+## Recovery extent
+
+```{r}
+df_list$extent %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `recovery_extent()` function demonstrated in the vignette.](figures/extent_benchmark.png){width=100%}
+
+## Persistence
+
+```{r}
+df_list$persist_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `persistence()` function demonstrated in the vignette.](figures/persist_benchmark.png){width=100%}
+
+------------------------------------------------------------------------
 
 # References
