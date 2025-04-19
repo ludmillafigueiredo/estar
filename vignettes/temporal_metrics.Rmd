@@ -1,12 +1,12 @@
 ---
-title: "Univariate metrics"
+title: "Temporal metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
     toc_depth: 2 
     fig_caption: TRUE
 vignette: >
-  %\VignetteIndexEntry{univariate_metrics}
+  %\VignetteIndexEntry{temporal_metrics}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 bibliography: references.bib
@@ -528,7 +528,7 @@ knitr::include_graphics("figures/persistence.png")
 
 # Performance
 
-We conducted the benchmark analysis of the execution time of the different forms of calculating the univariate metrics. The number attached to the function name in "Function calls" identifies the order in which the function call appears in the vignette. The code used for the analysis is available in `performance_analysis.R`.
+We conducted the benchmark analysis of the execution time of the different forms of calculating the temporal metrics. The number attached to the function name in "Function calls" identifies the order in which the function call appears in the vignette. The code used for the analysis is available in `performance_analysis.R`.
 
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.01 seconds for our example.
 

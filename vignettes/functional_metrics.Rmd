@@ -1,5 +1,5 @@
 ---
-title: "MARSS in estar and its multivariate metrics"
+title: "Functional metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -41,7 +41,7 @@ label_intensity <- function(intensity, mu){
 }
 ```
 
-Calculation of the so-called "multivariate stability metrics" (in the context of the `estar` package) relies on the interaction strengths between species composing a community.
+Calculation of the so-called "functional stability metrics" (in the context of the `estar` package) relies on the interaction strengths between species composing a community.
 This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models.
@@ -52,7 +52,7 @@ For a more general and formal definition, refer to the [`MARSS` package document
 
 # Overview of demonstration data
 
-Similar to what we did for the univariate stability metrics, we illustrate the use of multivariate stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
+Similar to what we did for the univariate stability metrics, we illustrate the use of functional stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
 The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species.
 This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
@@ -287,7 +287,7 @@ The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without a
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the multivariate metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
+When calculating the functional metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
 Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
 None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
@@ -398,7 +398,7 @@ We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matri
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
 
-Finally, having estimated $\mathbf{B}$ we can calculate all the multivariate stability metrics:
+Finally, having estimated $\mathbf{B}$ we can calculate all the functional stability metrics:
 
 ## Reactivity
 
@@ -445,9 +445,9 @@ aquacomm.Bls %>%
   map(estar::stoch_var)
 ```
 
-# Performance of multivariate metrics
+# Performance of functional metrics
 
-We conducted the benchmark analysis of the execution time of the different multivariate metrics. The code used for the analysis is available in `performance_analysis.R`.
+We conducted the benchmark analysis of the execution time of the different functional metrics. The code used for the analysis is available in `performance_analysis.R`.
 
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example.
 
@@ -462,7 +462,7 @@ multivar_benchmark %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-![Density distribution of execution times of 100 runs of each of the different functions used to calculate multivariate metrics, as demonstrated in this vignette.](figures/multivar_benchmark.png){width=100%}
+![Density distribution of execution times of 100 runs of each of the different functions used to calculate functional metrics, as demonstrated in this vignette.](figures/multivar_benchmark.png){width=100%}
 
 # References
 
