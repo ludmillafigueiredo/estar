@@ -1,5 +1,5 @@
 ---
-title: "Functional metrics"
+title: "Jacobian metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE

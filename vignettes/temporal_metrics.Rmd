@@ -49,7 +49,7 @@ label_intensity <- function(intensity, mu) {
 
 <!-- Yellow "#F0F921FF" -->
 
-# Overview of demonstration data
+# Overview of the data
 
 We illustrate the use of `estar` functions on a dataset from an
 ecotoxicological study about the effects of the chlorpyrifos insecticide
@@ -173,7 +173,9 @@ functions that require a user-defined time step when were the system has
 recovered, we use week 28, when all groups seem to have stabilized their
 growth curve (Fig.1).
 
-## Invariability
+## Functional stability
+
+### Invariability
 
 Invariability calculated as the inverse of standard deviation of
 residuals of the linear model that predicts the log response ratio of
@@ -253,7 +255,7 @@ invariability(
 knitr::include_graphics("figures/invariability.png")
 ```
 
-## Resistance
+### Resistance
 
 Resistance calculated in relation to a baseline time series
 (`b = "input"`), as the log response ratio (`res_mode = "lrr"`) of the
@@ -378,7 +380,7 @@ resistance(
 knitr::include_graphics("figures/resistance.png")
 ```
 
-## Extent of recovery
+### Extent of recovery
 
 Extent of recovery calculated as the log response ratio
 (`response = "lrr"`) of the state variable in the disturbed and baseline
@@ -441,7 +443,7 @@ recovery_extent(
 knitr::include_graphics("figures/extent_recovery.png")
 ```
 
-## Rate of recovery
+### Rate of recovery
 
 Rate of recovery calculated as the slope of the linear model which
 predicts the log response ratio of the state variable in the disturbed
@@ -483,7 +485,7 @@ recovery_rate(
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
-## Persistence
+### Persistence
 
 Proportion of time over which the system persisted as defined by it
 being within 1 standard deviation from the mean of the state variable
@@ -525,6 +527,58 @@ persistence(
 
 knitr::include_graphics("figures/persistence.png")
 ```
+
+
+## Compositional stability
+
+IDEA TODO: this block is probably going to have to be a form of block that I call from most functions and then do specific stuff with, depending on the 
+
+```{r}
+(comp_table <- aquacomm_fgps |>
+    dplyr::group_by(time, treat) |>
+    dplyr::summarize_at(vars(herb, detr_herb, carn, omni, detr),
+                        mean) |>
+    dplyr::ungroup()
+    )
+```
+
+### Invariability
+
+TODO: filter the time steps I want to demonstrate each case and split those for the matrix (not even sure that will be necessary).
+
+```{r}
+# this is a list of dissimilarity matrices
+(comp_list <- comp_table %>% 
+   dplyr::filter(time %in% seq(1, max(aquacomm_fgps$time))) %>% 
+   group_by(time) %>% 
+   group_split() %>%
+   # each matrix contains the dissimilarities between the control and each treatment, for a given time step
+   map(vegdist) %>% 
+   map(., ~ as.matrix(.x)[,1]) %>%
+   map(., ~ data.frame(dissim = .x[-1])))
+```
+```{r}
+comp_list[[1]]
+```
+
+### Resistance
+
+Sensu Hillebrand: initial, first time after disturbance
+```{r}
+
+```
+
+We also offer at a time of choice
+```{r}
+
+```
+
+And the max value
+```{r}
+
+```
+
+To calculate the compositional stability, we need a matrix of species abundances where the rows are the disturbed and undisturbed states of the community. For 
 
 # Performance
 
