@@ -1943,6 +1943,36 @@
          style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
          transform="scale(0.8)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-863-4-1"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8502-7-7-8"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend-7-3-2"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8505-23-5-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1951,11 +1981,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7902995"
-     inkscape:cx="320.33746"
-     inkscape:cy="972.46299"
+     inkscape:zoom="0.89514975"
+     inkscape:cx="341.28368"
+     inkscape:cy="797.6319"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:window-width="1780"
      inkscape:window-height="1046"
@@ -2006,18 +2036,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="bottom">
-    <rect
-       style="display:inline;opacity:0.915;fill:#ffffff;stroke:#ffffff;stroke-width:0.374999"
-       id="rect2259"
-       width="165.36458"
-       height="76.729164"
-       x="0"
-       y="220.92708"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-  </g>
+     inkscape:label="bottom" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
@@ -2768,128 +2787,6 @@
     <text
        inkscape:export-ydpi="600"
        inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       id="text4749-0-4"
-       y="226.71086"
-       x="113.74283"
-       style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="226.71086"
-         x="113.74283"
-         id="tspan4747-2-9"
-         sodipodi:role="line">Extent of recovery (Er)</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:transform-center-y="-7.4245106"
-       inkscape:transform-center-x="-9.6518638"
-       id="text4749-3-8-9-8"
-       y="226.15707"
-       x="111.08293"
-       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="226.15707"
-         x="111.08293"
-         id="tspan4747-3-3-9-4"
-         sodipodi:role="line">c)</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       id="text11613-5"
-       y="245.50684"
-       x="111.23704"
-       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
-         y="245.50684"
-         x="111.23704"
-         id="tspan11611-2"
-         sodipodi:role="line">Er</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       transform="scale(1.0009486,0.9990523)"
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.25928px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211807"
-       x="155.07796"
-       y="253.42857"
-       id="text13082-9-6-9-1-4-6-5-1-0-9-8"><tspan
-         sodipodi:role="line"
-         x="155.07796"
-         y="253.42857"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.211807"
-         id="tspan15765-71-8-1-8">time</tspan></text>
-    <g
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       transform="matrix(0.81,0,0,0.81,109.92251,162.75356)"
-       id="g10964-9"
-       style="display:inline">
-      <path
-         style="fill:none;stroke:#000000;stroke-width:0.170675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-04-1);marker-end:url(#Arrow1Lend-7-7-7-4-6)"
-         d="m 5.6059167,82.765246 v 25.372674 c 18.3118293,0 36.6236713,0 54.9355073,0"
-         id="path8498-1-5-6-4-9"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="ccc" />
-    </g>
-    <path
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path13046-7-81-7"
-       d="m 142.4869,245.16128 -27.988,-2.4e-4"
-       style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.495764;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.991531, 0.991531;stroke-dashoffset:0;stroke-opacity:0.941176" />
-    <path
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path13046-9-4"
-       d="m 142.33575,250.33732 -0.0744,-18.73923"
-       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.37665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.7533, 0.7533;stroke-dashoffset:0;stroke-opacity:0.941176" />
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8-1"
-       y="253.3819"
-       x="139.24033"
-       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"><tspan
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="253.3819"
-         x="139.24033"
-         id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4-5"
-         sodipodi:role="line">t<tspan
-   id="tspan11527-0"
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">post</tspan></tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       transform="rotate(-90)"
-       id="text11859-3-4-5-2-00"
-       y="112.73736"
-       x="-230.50558"
-       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"><tspan
-         style="font-style:italic;stroke-width:0.214312"
-         y="112.73736"
-         x="-230.50558"
-         id="tspan11857-9-9-5-9-9"
-         sodipodi:role="line">l</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
        inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\extent_recovery.png"
        transform="rotate(-90)"
        id="text11859-3-4-5-2-0"
@@ -3164,20 +3061,6 @@
          y="4.1717"
          x="107.74284"
          id="tspan4747-7"
-         sodipodi:role="line">Resistance (R)</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       id="text4749-9-9"
-       y="226.69658"
-       x="59.742825"
-       style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="226.69658"
-         x="59.742825"
-         id="tspan4747-7-4"
          sodipodi:role="line">Resistance (R)</tspan></text>
     <text
        inkscape:export-ydpi="600"
@@ -3680,142 +3563,6 @@
        id="path23808-79-3"
        d="m 97.453115,15.860393 c 0,13.396407 0,13.396407 0,13.396407"
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.161804;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575-8-7);marker-end:url(#marker25951-1-7)" />
-    <g
-       id="g83572"
-       transform="translate(-1.0373414,13.560817)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600">
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:transform-center-y="-7.4245106"
-         inkscape:transform-center-x="-9.6518638"
-         id="text4749-3-3"
-         y="212.59639"
-         x="3.9321854"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="212.59639"
-           x="3.9321854"
-           id="tspan4747-3-0"
-           sodipodi:role="line">a)</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path10112-5"
-         d="m 7.417594,219.97457 c 1.689072,2.12499 4.100785,-2.42566 8.358187,0 1.821656,7.71525 8.036718,12.85876 8.036718,12.85876"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.442518;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path10114-6"
-         d="m 23.619618,232.83333 c 5.758221,0.75395 6.194809,-14.17853 13.705832,-12.85875 4.460216,1.75391 6.997331,-1.75234 9.710539,1.1727"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.442746;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path8498-4"
-         d="m 7.436665,216.12673 v 20.55451 c 14.756132,0 29.512264,0 44.268397,0"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-89);marker-end:url(#Arrow1Lend-8)" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         id="text13082-9-6-9-1-4-6-5-2"
-         y="239.54381"
-         x="47.10371"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           id="tspan15765-9"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="239.54381"
-           x="47.10371"
-           sodipodi:role="line">time</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path15917-32"
-         d="M 7.498523,225.60434 C 47.03377,224.79429 47.03377,224.79429 47.03377,224.79429"
-         style="display:inline;fill:none;stroke:#757478;stroke-width:0.45846;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-2"
-         d="m 23.8125,232.83333 c 0,-7.62149 0,-7.62149 0,-7.62149"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-3"
-         d="m 35.435266,225.06429 c 0,-4.94258 0,-4.94258 0,-4.94258"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-5-9"
-         d="m 44.610525,224.7964 c 0,-4.87561 0,-4.87561 0,-4.87561"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-5-1-4"
-         d="m 8.485473,225.73402 c 0,-5.21048 0,-5.21048 0,-5.21048"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-5-1-1-3"
-         d="m 15.704492,225.32521 c 0,-5.51 0,-5.51 0,-5.51"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.308502;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.308502, 0.308502;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         id="text11703-6-1-3-7"
-         y="228.39178"
-         x="50.099056"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
-           y="228.39178"
-           x="50.099056"
-           id="tspan11701-1-4-7-5"
-           sodipodi:role="line">I</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         transform="rotate(-90)"
-         id="text11859-8-2"
-         y="5.8357916"
-         x="-217.02031"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;stroke-width:0.214312"
-           y="5.8357916"
-           x="-217.02031"
-           id="tspan11857-3-2"
-           sodipodi:role="line">v</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         inkscape:connector-curvature="0"
-         id="path23808-79-3-9"
-         d="m 48.563607,219.71941 c 0,13.39641 0,13.39641 0,13.39641"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.161804;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575-8-7-7);marker-end:url(#marker25951-1-7-2)" />
-    </g>
     <path
        inkscape:export-ydpi="600"
        inkscape:export-xdpi="600"
@@ -3889,260 +3636,6 @@
        transform="scale(0.26458333)"
        id="text35442"
        style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect35444)" />
-    <g
-       id="g6609"
-       transform="translate(0,-0.52499204)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600">
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-         id="text4749-8-3-3"
-         y="261.69675"
-         x="67.151161"
-         style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="261.69675"
-           x="67.151161"
-           id="tspan4747-6-8-4"
-           sodipodi:role="line">Persistence (P)</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         inkscape:transform-center-y="-7.4245106"
-         inkscape:transform-center-x="-9.6518638"
-         id="text4749-3-6-2-1"
-         y="261.1572"
-         x="64.805473"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="261.1572"
-           x="64.805473"
-           id="tspan4747-3-80-1-7"
-           sodipodi:role="line">e)</tspan></text>
-      <g
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="g13388-7-9-9"
-         transform="matrix(0.4860002,0,0,0.48599999,64.269629,256.45851)"
-         style="display:inline;stroke:#000000;stroke-opacity:0.941176">
-        <path
-           style="fill:none;stroke:#000000;stroke-width:0.910532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-           d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
-           id="path10112-5-3-4"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccc" />
-        <path
-           style="fill:none;stroke:#000000;stroke-width:0.911;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-           d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
-           id="path10114-4-5-8"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccc" />
-      </g>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path8498-4-4-0"
-         d="m 68.146324,264.80712 v 22.82672 c 14.756139,0 29.512283,0 44.268466,0"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.145322;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-26-6-1);marker-end:url(#Arrow1Lend-6-0-1)" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-5-5-2-0"
-         y="290.20978"
-         x="108.87174"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           id="tspan15765-5-7-1"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="290.20978"
-           x="108.87174"
-           sodipodi:role="line">time</tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-0"
-         d="M 76.585798,287.2967 V 268.54431"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-6-7"
-         d="M 107.77497,287.58067 V 268.82828"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         inkscape:connector-curvature="0"
-         id="path23808-6"
-         d="m 76.584783,292.91861 c 31.191117,0 31.191117,0 31.191117,0"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.246901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575-7);marker-end:url(#marker25951-0)" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-4-4"
-         d="M 94.834351,287.58067 V 268.82828"
-         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.941176" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-43"
-         y="295.47128"
-         x="94.192612"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="295.47128"
-           x="94.192612"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-9"
-           sodipodi:role="line">t<tspan
-   id="tspan24852-8"
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-5-9"
-         y="290.96365"
-         x="101.1238"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="290.96365"
-           x="101.1238"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-6-7"
-           sodipodi:role="line">t<tspan
-   id="tspan24875-1"
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">P</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-4-9"
-         y="280.04556"
-         x="96.07579"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="280.04556"
-           x="96.07579"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-04"
-           sodipodi:role="line"><tspan
-   id="tspan11609-3"
-   style="font-weight:bold;font-size:2.82222px;stroke-width:0.214312">P</tspan> = t<tspan
-   id="tspan26319-0"
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">P</tspan>/t<tspan
-   id="tspan24852-6-5"
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-8-5"
-         d="M 68.127102,269.89984 H 107.77497"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path13046-9-3-9-57-8-1-4-2-8-9-5"
-         d="M 68.127102,273.11453 H 107.77497"
-         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.993464" />
-      <rect
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         y="269.89804"
-         x="94.981262"
-         height="3.2171621"
-         width="12.79494"
-         id="rect26389-3"
-         style="display:inline;opacity:0.6;fill:#0c0787;fill-opacity:0.564706;stroke:none;stroke-width:0.191585;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.941176" />
-      <path
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         style="display:inline;fill:none;stroke:#000000;stroke-width:0.158128;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL-5);marker-end:url(#StopL-5)"
-         d="m 94.98126,288.75934 c 12.79371,0 12.79371,0 12.79371,0"
-         id="path23808-7-9"
-         inkscape:connector-curvature="0" />
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         transform="rotate(-90)"
-         id="text11859-3-4-5-2-04-3-4"
-         y="66.133636"
-         x="-265.68628"
-         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;stroke-width:0.214312"
-           y="66.133636"
-           x="-265.68628"
-           id="tspan11857-9-9-5-9-1-6-2"
-           sodipodi:role="line">v</tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-6-1-4"
-         y="273.21454"
-         x="58.270985"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
-           y="273.21454"
-           x="58.270985"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-6-5"
-           sodipodi:role="line">v<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan4714">b</tspan> - sd<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan35760">b</tspan></tspan></text>
-      <text
-         inkscape:export-ydpi="600"
-         inkscape:export-xdpi="600"
-         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
-         id="text13082-9-6-9-1-4-6-2-9-0-9-6-1-4-1"
-         y="269.76303"
-         x="57.741817"
-         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-         xml:space="preserve"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
-           y="269.76303"
-           x="57.741817"
-           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-6-5-7"
-           sodipodi:role="line">v<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan3396">b</tspan> + sd<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan35760-6">b</tspan></tspan></text>
-    </g>
     <text
        inkscape:export-ydpi="600"
        inkscape:export-xdpi="600"
@@ -4390,279 +3883,802 @@
    id="tspan3396-7">b</tspan> + sd<tspan
    style="font-size:65%;baseline-shift:sub"
    id="tspan35760-6-1">b</tspan></tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       inkscape:transform-center-y="-7.4245106"
-       inkscape:transform-center-x="-9.6518638"
-       id="text4749-3-8-2"
-       y="226.26224"
-       x="56.897133"
-       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="226.26224"
-         x="56.897133"
-         id="tspan4747-3-3-3"
-         sodipodi:role="line">b)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       x="57.794266"
-       y="247.50705"
-       id="text11556-93"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600"><tspan
-         sodipodi:role="line"
-         id="tspan11554-2"
-         x="57.794266"
-         y="247.50705"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312">R</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       x="-230.14667"
-       y="58.737358"
-       id="text11859-3-4-9"
-       transform="rotate(-90)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600"><tspan
-         sodipodi:role="line"
-         id="tspan11857-9-9-6"
-         x="-230.14667"
-         y="58.737358"
-         style="font-style:italic;stroke-width:0.214312">l</tspan></text>
-    <path
-       style="display:inline;fill:none;stroke:#f89441;stroke-width:0.37179;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       d="m 60.325,242.35839 c 1.6894,1.06636 3.94935,-0.40317 7.21632,0.0125 1.11109,0.14136 -0.954196,2.82161 4.036104,5.46691 1.1565,0.61304 3.53423,1.21238 5.74036,0.97717 1.04232,-0.11114 1.48516,-0.40773 2.86835,-1.34699 0.76333,-0.51834 1.68811,-0.90971 2.48342,-0.97139 2.56277,-0.66111 3.62063,-1.11935 5.13452,-1.30406 0.97647,-0.12577 3.0105,0.30985 3.76297,0.2886 0.61391,-0.0173 1.82657,-0.49816 2.28454,-0.5246 1.91102,-0.11032 1.94562,0.4437 3.5109,0.44042 0.56551,-8.1e-4 1.96402,-0.2405 2.741956,-0.20442"
-       id="path10152-2-0-3"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cssssccsssc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <path
-       style="display:inline;fill:none;stroke:#f89441;stroke-width:0.37179;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-       d="m 114.5646,242.35875 c 1.6894,1.06636 3.94935,-0.40317 7.21632,0.0125 1.11109,0.14136 -0.95419,2.82161 4.0361,5.46691 1.1565,0.61304 3.53423,1.21238 5.74036,0.97717 1.04232,-0.11114 1.48516,-0.40773 2.86835,-1.34699 0.76333,-0.51834 1.68811,-0.90971 2.48342,-0.97139 2.56277,-0.66111 3.62063,-1.11935 5.13452,-1.30406 0.97647,-0.12577 3.0105,0.30985 3.76297,0.2886 0.61391,-0.0173 1.82657,-0.49816 2.28454,-0.5246 1.91102,-0.11032 1.94562,0.4437 3.5109,0.44042 0.56551,-8.1e-4 1.96402,-0.2405 2.74196,-0.20442"
-       id="path10152-2-0-3-9"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cssssccsssc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.138143;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-3);marker-end:url(#Arrow1Lend-7-7-7-3)"
-       d="m 60.201531,229.78182 v 20.52098 c 14.832755,0 29.665531,0 44.498289,0"
-       id="path8498-1-5-6-7"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <path
-       style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.37665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.7533, 0.7533;stroke-dashoffset:0;stroke-opacity:0.941176"
-       d="m 70.049374,250.31711 -0.0744,-18.83927"
-       id="path13046-4"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <path
-       style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.49572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.99144, 0.99144;stroke-dashoffset:0;stroke-opacity:0.941176"
-       d="M 69.568704,246.8553 H 59.924645"
-       id="path13046-7-4"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       x="67.400558"
-       y="253.3819"
-       id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-5"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-       inkscape:export-xdpi="600"
-       inkscape:export-ydpi="600"><tspan
-         sodipodi:role="line"
-         id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-6"
-         x="67.400558"
-         y="253.3819"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312">t<tspan
-   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312"
-   id="tspan11502-5">d+1</tspan></tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       id="text13082-9-6-9-1-4-6-5-6-0-1-5-1"
-       y="253.19823"
-       x="100.96343"
-       style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
-         id="tspan15765-7-8-0-3-7"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="253.19823"
-         x="100.96343"
-         sodipodi:role="line">time</tspan></text>
-    <text
-       inkscape:export-ydpi="600"
-       inkscape:export-xdpi="600"
-       id="text4749-1"
-       y="226.69658"
-       x="5.9085598"
-       style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-       xml:space="preserve"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-         y="226.69658"
-         x="5.9085598"
-         id="tspan4747-1"
-         sodipodi:role="line">Invariability (I)</tspan></text>
     <g
-       id="g6630"
-       transform="translate(0,-0.52500043)"
-       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+       id="g18321"
+       inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\submission\MEE\2nd\univar_metrics.png"
        inkscape:export-xdpi="600"
        inkscape:export-ydpi="600">
+      <rect
+         style="display:inline;opacity:0.915;fill:#ffffff;stroke:#ffffff;stroke-width:0.374999"
+         id="rect2259"
+         width="165.36458"
+         height="76.729164"
+         x="0"
+         y="220.92708"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         id="text4749-0-4"
+         y="226.18599"
+         x="114.25282"
+         style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="226.18599"
+           x="114.25282"
+           id="tspan4747-2-9"
+           sodipodi:role="line">Extent of recovery (Er)</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:transform-center-y="-7.4245106"
+         inkscape:transform-center-x="-9.6518638"
+         id="text4749-3-8-9-8"
+         y="226.01506"
+         x="111.08293"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="226.01506"
+           x="111.08293"
+           id="tspan4747-3-3-9-4"
+           sodipodi:role="line">c)</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         id="text11613-5"
+         y="245.50684"
+         x="111.23704"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
+           y="245.50684"
+           x="111.23704"
+           id="tspan11611-2"
+           sodipodi:role="line">Er</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         transform="scale(1.0009486,0.9990523)"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:2.25928px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.211807"
+         x="155.07796"
+         y="253.42857"
+         id="text13082-9-6-9-1-4-6-5-1-0-9-8"><tspan
+           sodipodi:role="line"
+           x="155.07796"
+           y="253.42857"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.211807"
+           id="tspan15765-71-8-1-8">time</tspan></text>
       <g
-         id="g83443"
-         transform="translate(-0.19769903,6.0555123)"
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         transform="matrix(0.81,0,0,0.81,109.92251,162.75356)"
+         id="g10964-9"
+         style="display:inline">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.170675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-04-1);marker-end:url(#Arrow1Lend-7-7-7-4-6)"
+           d="m 5.6059167,82.765246 v 25.372674 c 18.3118293,0 36.6236713,0 54.9355073,0"
+           id="path8498-1-5-6-4-9"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+      </g>
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-7-81-7"
+         d="m 142.4869,245.16128 -27.988,-2.4e-4"
+         style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.495764;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.991531, 0.991531;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-4"
+         d="m 142.33575,250.33732 -0.0744,-18.73923"
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.37665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.7533, 0.7533;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-1-8-1"
+         y="253.3819"
+         x="139.24033"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="253.3819"
+           x="139.24033"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-0-4-5"
+           sodipodi:role="line">t<tspan
+   id="tspan11527-0"
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">post</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         transform="rotate(-90)"
+         id="text11859-3-4-5-2-00"
+         y="112.73736"
+         x="-230.50558"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;stroke-width:0.214312"
+           y="112.73736"
+           x="-230.50558"
+           id="tspan11857-9-9-5-9-9"
+           sodipodi:role="line">l</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         id="text4749-9-9"
+         y="226.17171"
+         x="60.359825"
+         style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="226.17171"
+           x="60.359825"
+           id="tspan4747-7-4"
+           sodipodi:role="line">Resistance (R)</tspan></text>
+      <g
+         id="g83572"
+         transform="translate(-1.0373414,13.560817)"
          inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
          inkscape:export-xdpi="600"
          inkscape:export-ydpi="600">
-        <path
-           sodipodi:nodetypes="cc"
-           inkscape:connector-curvature="0"
-           id="path13046-9-3-9-57-8-4-4-8-8"
-           d="M 7.0086933,275.58296 H 46.656503"
-           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
         <text
            inkscape:export-ydpi="600"
            inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
            inkscape:transform-center-y="-7.4245106"
            inkscape:transform-center-x="-9.6518638"
-           id="text4749-3-5-0"
-           y="255.20685"
-           x="3.071969"
-           style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-             y="255.20685"
-             x="3.071969"
-             id="tspan4747-3-37-3"
-             sodipodi:role="line">d)</tspan></text>
-        <g
-           inkscape:export-ydpi="600"
-           inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           id="g13388-6-1"
-           transform="matrix(0.48599999,0,0,0.48599999,3.0738733,248.22157)"
-           style="display:inline;stroke:#000000;stroke-opacity:0.941176">
-          <path
-             style="fill:none;stroke:#000000;stroke-width:0.910532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-             d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
-             id="path10112-8-9"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="ccc" />
-          <path
-             style="fill:none;stroke:#000000;stroke-width:0.911;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
-             d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
-             id="path10114-13-4"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="ccc" />
-        </g>
-        <path
-           inkscape:export-ydpi="600"
-           inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           sodipodi:nodetypes="ccc"
-           inkscape:connector-curvature="0"
-           id="path8498-6-3"
-           d="m 6.9505733,258.84235 v 20.55456 c 14.7561297,0 29.5122597,0 44.2683897,0"
-           style="display:inline;fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-863-4);marker-end:url(#Arrow1Lend-7-3)" />
-        <text
-           inkscape:export-ydpi="600"
-           inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           id="text13082-9-6-9-1-4-6-5-4-9"
-           y="282.2594"
-           x="47.713707"
-           style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
-           xml:space="preserve"><tspan
-             id="tspan15765-0-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-             y="282.2594"
-             x="47.713707"
-             sodipodi:role="line">time</tspan></text>
-        <text
-           inkscape:export-ydpi="600"
-           inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           id="text11578-9-2"
-           y="271.29099"
-           x="33.787682"
+           id="text4749-3-3"
+           y="212.45425"
+           x="3.9188082"
            style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
            xml:space="preserve"><tspan
-             style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.214312"
-             y="271.29099"
-             x="33.787682"
-             id="tspan11576-9-0"
-             sodipodi:role="line">v = <tspan
-   id="tspan11580-1-5"
-   style="font-weight:bold;font-size:2.82222px;stroke-width:0.214312">Rr .</tspan>t + i</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+             y="212.45425"
+             x="3.9188082"
+             id="tspan4747-3-0"
+             sodipodi:role="line">a)</tspan></text>
         <path
            inkscape:export-ydpi="600"
            inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           sodipodi:nodetypes="cc"
+           sodipodi:nodetypes="ccc"
            inkscape:connector-curvature="0"
-           id="path11272-3-6"
-           d="m 30.427083,268.55208 c 4.2478,2.13096 2.54439,6.77896 2.54439,6.77896"
-           style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.227;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176;marker-start:url(#DotM-1);marker-end:url(#marker112402-2)" />
+           id="path10112-5"
+           d="m 7.417594,219.97457 c 1.689072,2.12499 4.100785,-2.42566 8.358187,0 1.821656,7.71525 8.036718,12.85876 8.036718,12.85876"
+           style="display:inline;fill:none;stroke:#000000;stroke-width:0.442518;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
         <path
            inkscape:export-ydpi="600"
            inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           sodipodi:nodetypes="cc"
+           sodipodi:nodetypes="ccc"
            inkscape:connector-curvature="0"
-           id="path15917-3-6"
-           d="m 23.664303,275.5948 11.90805,-13.03106"
-           style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.326038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+           id="path10114-6"
+           d="m 23.619618,232.83333 c 5.758221,0.75395 6.194809,-14.17853 13.705832,-12.85875 4.460216,1.75391 6.997331,-1.75234 9.710539,1.1727"
+           style="display:inline;fill:none;stroke:#000000;stroke-width:0.442746;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           sodipodi:nodetypes="ccc"
+           inkscape:connector-curvature="0"
+           id="path8498-4"
+           d="m 7.436665,216.12673 v 20.55451 c 14.756132,0 29.512264,0 44.268397,0"
+           style="display:inline;fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-89);marker-end:url(#Arrow1Lend-8)" />
         <text
            inkscape:export-ydpi="600"
            inkscape:export-xdpi="600"
-           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
-           transform="rotate(-90)"
-           id="text11859-3-4-5-2-04-7-1"
-           y="4.475584"
-           x="-259.73593"
+           id="text13082-9-6-9-1-4-6-5-2"
+           y="239.54381"
+           x="47.10371"
            style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
            xml:space="preserve"><tspan
-             id="tspan12134-0"
+             id="tspan15765-9"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+             y="239.54381"
+             x="47.10371"
+             sodipodi:role="line">time</tspan></text>
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path15917-32"
+           d="M 7.498523,225.60434 C 47.03377,224.79429 47.03377,224.79429 47.03377,224.79429"
+           style="display:inline;fill:none;stroke:#757478;stroke-width:0.45846;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path13046-9-3-9-57-2"
+           d="m 23.8125,232.83333 c 0,-7.62149 0,-7.62149 0,-7.62149"
+           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path13046-9-3-9-57-8-3"
+           d="m 35.435266,225.06429 c 0,-4.94258 0,-4.94258 0,-4.94258"
+           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path13046-9-3-9-57-8-5-9"
+           d="m 44.610525,224.7964 c 0,-4.87561 0,-4.87561 0,-4.87561"
+           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path13046-9-3-9-57-8-5-1-4"
+           d="m 8.485473,225.73402 c 0,-5.21048 0,-5.21048 0,-5.21048"
+           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:connector-curvature="0"
+           id="path13046-9-3-9-57-8-5-1-1-3"
+           d="m 15.704492,225.32521 c 0,-5.51 0,-5.51 0,-5.51"
+           style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.308502;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.308502, 0.308502;stroke-dashoffset:0;stroke-opacity:0.993464" />
+        <text
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           id="text11703-6-1-3-7"
+           y="228.39178"
+           x="50.099056"
+           style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:Lato;stroke-width:0.214312"
+             y="228.39178"
+             x="50.099056"
+             id="tspan11701-1-4-7-5"
+             sodipodi:role="line">I</tspan></text>
+        <text
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           transform="rotate(-90)"
+           id="text11859-8-2"
+           y="5.8357916"
+           x="-217.02031"
+           style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+           xml:space="preserve"><tspan
              style="font-style:italic;stroke-width:0.214312"
-             y="4.475584"
-             x="-259.73593"
+             y="5.8357916"
+             x="-217.02031"
+             id="tspan11857-3-2"
              sodipodi:role="line">v</tspan></text>
+        <path
+           inkscape:export-ydpi="600"
+           inkscape:export-xdpi="600"
+           inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+           inkscape:connector-curvature="0"
+           id="path23808-79-3-9"
+           d="m 48.563607,219.71941 c 0,13.39641 0,13.39641 0,13.39641"
+           style="display:inline;fill:none;stroke:#000000;stroke-width:0.161804;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575-8-7-7);marker-end:url(#marker25951-1-7-2)" />
       </g>
       <text
          inkscape:export-ydpi="600"
          inkscape:export-xdpi="600"
          inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
-         id="text4749-8-9"
-         y="261.71103"
-         x="5.742825"
+         id="text4749-8-3-3"
+         y="262.17175"
+         x="92.297829"
          style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
          xml:space="preserve"><tspan
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
-           y="261.71103"
-           x="5.742825"
+           y="262.17175"
+           x="92.297829"
+           id="tspan4747-6-8-4"
+           sodipodi:role="line">Persistence (P)</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         inkscape:transform-center-y="-7.4245106"
+         inkscape:transform-center-x="-9.6518638"
+         id="text4749-3-6-2-1"
+         y="262.01508"
+         x="88.928192"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="262.01508"
+           x="88.928192"
+           id="tspan4747-3-80-1-7"
+           sodipodi:role="line">e)</tspan></text>
+      <g
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="g13388-7-9-9"
+         transform="matrix(0.4860002,0,0,0.48599999,88.392345,254.75169)"
+         style="display:inline;stroke:#000000;stroke-opacity:0.941176">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.910532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+           d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
+           id="path10112-5-3-4"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.911;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+           d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
+           id="path10114-4-5-8"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+      </g>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-5-5-2-0"
+         y="289.09726"
+         x="132.99446"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           id="tspan15765-5-7-1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="289.09726"
+           x="132.99446"
+           sodipodi:role="line">time</tspan></text>
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-1-4-2-0"
+         d="M 100.70851,285.75 V 269.01932"
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.342454;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.342454, 0.342454;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-1-4-2-6-7"
+         d="M 131.89769,285.75 V 269.30329"
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.339535;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.339535, 0.339535;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         inkscape:connector-curvature="0"
+         id="path23808-6"
+         d="m 100.7075,291.80611 c 31.19112,0 31.19112,0 31.19112,0"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:0.246901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25575-7);marker-end:url(#marker25951-0)" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-1-4-2-4-4"
+         d="M 118.95707,285.75 V 269.30329"
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.339535;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.339535, 0.339535;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-43"
+         y="294.35876"
+         x="118.31533"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="294.35876"
+           x="118.31533"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-9"
+           sodipodi:role="line">t<tspan
+   id="tspan24852-8"
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-5-9"
+         y="289.85114"
+         x="125.24652"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="289.85114"
+           x="125.24652"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-6-7"
+           sodipodi:role="line">t<tspan
+   id="tspan24875-1"
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">P</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-4-9"
+         y="280.52057"
+         x="120.19851"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="280.52057"
+           x="120.19851"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-04"
+           sodipodi:role="line"><tspan
+   id="tspan11609-3"
+   style="font-weight:bold;font-size:2.82222px;stroke-width:0.214312">P</tspan> = t<tspan
+   id="tspan26319-0"
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">P</tspan>/t<tspan
+   id="tspan24852-6-5"
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312">a</tspan></tspan></text>
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-1-4-2-8-5"
+         d="M 92.249818,268.25817 H 131.89769"
+         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.993464" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-1-4-2-8-9-5"
+         d="M 92.249818,272.00203 H 131.89769"
+         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.362555;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.362555, 0.362555;stroke-dashoffset:0;stroke-opacity:0.993464" />
+      <rect
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         y="268.78552"
+         x="119.10398"
+         height="3.2171621"
+         width="12.79494"
+         id="rect26389-3"
+         style="display:inline;opacity:0.6;fill:#0c0787;fill-opacity:0.564706;stroke:none;stroke-width:0.191585;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.941176" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:0.158128;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#StopL-5);marker-end:url(#StopL-5)"
+         d="m 119.10398,287.64684 c 12.79371,0 12.79371,0 12.79371,0"
+         id="path23808-7-9"
+         inkscape:connector-curvature="0" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         transform="rotate(-90)"
+         id="text11859-3-4-5-2-04-3-4"
+         y="90.256355"
+         x="-265.10294"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;stroke-width:0.214312"
+           y="90.256355"
+           x="-265.10294"
+           id="tspan11857-9-9-5-9-1-6-2"
+           sodipodi:role="line">v</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-6-1-4"
+         y="272.10202"
+         x="82.3937"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
+           y="272.10202"
+           x="82.3937"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-6-5"
+           sodipodi:role="line">v<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4714">b</tspan> - sd<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan35760">b</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/persistence.png"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-6-1-4-1"
+         y="268.65051"
+         x="81.864532"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;baseline-shift:sub;stroke-width:0.214312"
+           y="268.65051"
+           x="81.864532"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-8-6-5-7"
+           sodipodi:role="line">v<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan3396">b</tspan> + sd<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan35760-6">b</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:transform-center-y="-7.4245106"
+         inkscape:transform-center-x="-9.6518638"
+         id="text4749-3-8-2"
+         y="226.14488"
+         x="56.897133"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="226.14488"
+           x="56.897133"
+           id="tspan4747-3-3-3"
+           sodipodi:role="line"><tspan
+   style="font-weight:bold;font-size:2.82222px"
+   id="tspan9467">b</tspan>)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         x="57.794266"
+         y="247.50705"
+         id="text11556-93"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600"><tspan
+           sodipodi:role="line"
+           id="tspan11554-2"
+           x="57.794266"
+           y="247.50705"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312">R</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         x="-230.14667"
+         y="58.737358"
+         id="text11859-3-4-9"
+         transform="rotate(-90)"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600"><tspan
+           sodipodi:role="line"
+           id="tspan11857-9-9-6"
+           x="-230.14667"
+           y="58.737358"
+           style="font-style:italic;stroke-width:0.214312">l</tspan></text>
+      <path
+         style="display:inline;fill:none;stroke:#f89441;stroke-width:0.37179;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         d="m 60.325,242.35839 c 1.6894,1.06636 3.94935,-0.40317 7.21632,0.0125 1.11109,0.14136 -0.954196,2.82161 4.036104,5.46691 1.1565,0.61304 3.53423,1.21238 5.74036,0.97717 1.04232,-0.11114 1.48516,-0.40773 2.86835,-1.34699 0.76333,-0.51834 1.68811,-0.90971 2.48342,-0.97139 2.56277,-0.66111 3.62063,-1.11935 5.13452,-1.30406 0.97647,-0.12577 3.0105,0.30985 3.76297,0.2886 0.61391,-0.0173 1.82657,-0.49816 2.28454,-0.5246 1.91102,-0.11032 1.94562,0.4437 3.5109,0.44042 0.56551,-8.1e-4 1.96402,-0.2405 2.741956,-0.20442"
+         id="path10152-2-0-3"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cssssccsssc"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <path
+         style="display:inline;fill:none;stroke:#f89441;stroke-width:0.37179;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+         d="m 114.5646,242.35875 c 1.6894,1.06636 3.94935,-0.40317 7.21632,0.0125 1.11109,0.14136 -0.95419,2.82161 4.0361,5.46691 1.1565,0.61304 3.53423,1.21238 5.74036,0.97717 1.04232,-0.11114 1.48516,-0.40773 2.86835,-1.34699 0.76333,-0.51834 1.68811,-0.90971 2.48342,-0.97139 2.56277,-0.66111 3.62063,-1.11935 5.13452,-1.30406 0.97647,-0.12577 3.0105,0.30985 3.76297,0.2886 0.61391,-0.0173 1.82657,-0.49816 2.28454,-0.5246 1.91102,-0.11032 1.94562,0.4437 3.5109,0.44042 0.56551,-8.1e-4 1.96402,-0.2405 2.74196,-0.20442"
+         id="path10152-2-0-3-9"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cssssccsssc"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <path
+         style="display:inline;fill:none;stroke:#000000;stroke-width:0.138143;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6-18-40-3);marker-end:url(#Arrow1Lend-7-7-7-3)"
+         d="m 60.201531,229.78182 v 20.52098 c 14.832755,0 29.665531,0 44.498289,0"
+         id="path8498-1-5-6-7"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccc"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <path
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.37665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.7533, 0.7533;stroke-dashoffset:0;stroke-opacity:0.941176"
+         d="m 70.049374,250.31711 -0.0744,-18.83927"
+         id="path13046-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <path
+         style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.49572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.99144, 0.99144;stroke-dashoffset:0;stroke-opacity:0.941176"
+         d="M 69.568704,246.8553 H 59.924645"
+         id="path13046-7-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         x="67.400558"
+         y="253.3819"
+         id="text13082-9-6-9-1-4-6-2-9-0-9-4-5-1-5"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         inkscape:export-xdpi="600"
+         inkscape:export-ydpi="600"><tspan
+           sodipodi:role="line"
+           id="tspan13080-6-8-5-3-2-7-0-8-0-3-69-0-7-6"
+           x="67.400558"
+           y="253.3819"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312">t<tspan
+   style="font-size:2.82222px;baseline-shift:sub;stroke-width:0.214312"
+   id="tspan11502-5">d+1</tspan></tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         id="text13082-9-6-9-1-4-6-5-6-0-1-5-1"
+         y="253.19823"
+         x="100.96343"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
+           id="tspan15765-7-8-0-3-7"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="253.19823"
+           x="100.96343"
+           sodipodi:role="line">time</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         id="text4749-1"
+         y="226.17171"
+         x="6.4085598"
+         style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="226.17171"
+           x="6.4085598"
+           id="tspan4747-1"
+           sodipodi:role="line">Invariability (I)</tspan></text>
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path13046-9-3-9-57-8-4-4-8-8"
+         d="m 28.760674,282.11347 h 39.64781"
+         style="display:inline;opacity:0.6;fill:none;stroke:#4f4f4f;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.3, 0.3;stroke-dashoffset:0;stroke-opacity:0.993464" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         inkscape:transform-center-y="-7.4245106"
+         inkscape:transform-center-x="-9.6518638"
+         id="text4749-3-5-0"
+         y="262.1449"
+         x="24.872999"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="262.1449"
+           x="24.872999"
+           id="tspan4747-3-37-3"
+           sodipodi:role="line">d)</tspan></text>
+      <g
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         id="g13388-6-1"
+         transform="matrix(0.48599999,0,0,0.48599999,24.825854,254.75208)"
+         style="display:inline;stroke:#000000;stroke-opacity:0.941176">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.910532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+           d="m 7.9375,29.770833 c 3.475458,4.372392 8.43783,-4.991084 17.197917,0 3.748263,15.874999 16.536457,26.458334 16.536457,26.458334"
+           id="path10112-8-9"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.911;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176"
+           d="m 41.274999,56.229167 c 11.848192,1.551339 12.746521,-29.17391 28.201303,-26.458333 9.177392,3.608873 14.397792,-3.605623 19.980535,2.412965"
+           id="path10114-13-4"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+      </g>
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path8498-6-3"
+         d="m 28.702554,265.37286 v 20.55456 c 14.75613,0 29.51226,0 44.26839,0"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-863-4);marker-end:url(#Arrow1Lend-7-3)" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path8498-6-3-9"
+         d="m 92.339584,265.37271 v 20.55456 c 14.756136,0 29.512266,0 44.268396,0"
+         style="display:inline;fill:none;stroke:#000000;stroke-width:0.1379;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-863-4-1);marker-end:url(#Arrow1Lend-7-3-2)" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         id="text13082-9-6-9-1-4-6-5-4-9"
+         y="288.78992"
+         x="69.465691"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           id="tspan15765-0-6"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="288.78992"
+           x="69.465691"
+           sodipodi:role="line">time</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         id="text11578-9-2"
+         y="277.8215"
+         x="55.539661"
+         style="font-style:normal;font-weight:normal;font-size:2.82222px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Lato;-inkscape-font-specification:'Lato Italic';stroke-width:0.214312"
+           y="277.8215"
+           x="55.539661"
+           id="tspan11576-9-0"
+           sodipodi:role="line">v = <tspan
+   id="tspan11580-1-5"
+   style="font-weight:bold;font-size:2.82222px;stroke-width:0.214312">Rr .</tspan>t + i</tspan></text>
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path11272-3-6"
+         d="m 52.179064,275.08259 c 4.2478,2.13096 2.54439,6.77896 2.54439,6.77896"
+         style="display:inline;fill:none;stroke:#0d0887;stroke-width:0.227;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176;marker-start:url(#DotM-1);marker-end:url(#marker112402-2)" />
+      <path
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path15917-3-6"
+         d="m 45.416284,282.12531 11.90805,-13.03106"
+         style="display:inline;opacity:0.6;fill:none;stroke:#0d0887;stroke-width:0.326038;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.941176" />
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="/home/luf74xx/Dokumente/postdoc/estar_main/estar/vignettes/rate_recovery.png"
+         transform="rotate(-90)"
+         id="text11859-3-4-5-2-04-7-1"
+         y="26.227564"
+         x="-266.26645"
+         style="font-style:normal;font-weight:normal;font-size:2.286px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           id="tspan12134-0"
+           style="font-style:italic;stroke-width:0.214312"
+           y="26.227564"
+           x="-266.26645"
+           sodipodi:role="line">v</tspan></text>
+      <text
+         inkscape:export-ydpi="600"
+         inkscape:export-xdpi="600"
+         inkscape:export-filename="C:\Users\fx97izoz\Documents\mine\estar_project\estar\vignettes\figures\univariate_metrics.png"
+         id="text4749-8-9"
+         y="262.18604"
+         x="28.242825"
+         style="font-style:normal;font-weight:normal;font-size:2.8575px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.214312"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:lato;-inkscape-font-specification:lato;stroke-width:0.214312"
+           y="262.18604"
+           x="28.242825"
            id="tspan4747-6-6"
            sodipodi:role="line">Rate of recovery (Rr)</tspan></text>
     </g>
