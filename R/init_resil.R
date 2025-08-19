@@ -16,7 +16,7 @@
 #'
 #' @export
 init_resil <- function(B) {
-  l_dom <- eigen(t(B) * B)$values[1]
+  l_dom <- eigen(t(B) * B, symmetric = TRUE)$values[1]
   r_0 <- -log(sqrt(l_dom))
   return(r_0)
 }
