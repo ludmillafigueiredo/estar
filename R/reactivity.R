@@ -16,6 +16,6 @@
 #'
 #' @export
 reactivity <- function(B) {
-  r_a <- max(eigen((B + t(B)) / 2)$values)
+  r_a <- max(eigen(B + t(B), symmetric = TRUE)$values)
   return(r_a)
 }

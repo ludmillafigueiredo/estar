@@ -146,21 +146,37 @@ resistance <- function(type,
         stop("res_t must be a time step in both d_data and b_data (if b_data is used).")
       }
       res_df <- res_df[(res_df$t == res_t), ]
-      res_df$res <- ifelse(res_mode == "lrr",
-                           log(res_df$vd_i / res_df$vb_i),
-                           res_df$vd_i - res_df$vb_i)
+      if (identical(res_mode, "lrr")) {
+        # Safety: log-ratio requires positive values
+        if (any(res_df$vd_i <= 0 | res_df$vb_i <= 0, na.rm = TRUE)) {
+          stop("log-ratio requires vd_i > 0 and vb_i > 0 in the filtered data.")
+        }
+        res_df$res <- log(res_df$vd_i / res_df$vb_i)   # natural log; use log10() if you prefer base-10
+      } else if (identical(res_mode, "diff")) {
+        res_df$res <- res_df$vd_i - res_df$vb_i
+      } else {
+        stop("Unknown res_mode. Use 'lrr' or 'diff'.")
+      }
 
       res <- res_df$res
 
     } else {
-        res_df <- res_df[(res_df$t >= min(res_tf) &
-                                  res_df$t <= max(res_tf)), ]
-        res_df$res <- ifelse(res_mode == "lrr",
-                             log(res_df$vd_i / res_df$vb_i),
-                             res_df$vd_i - res_df$vb_i)
-
-        res <- max(res_df$res, na.rm = na_rm)
+      res_df <- res_df[(res_df$t >= min(res_tf) &
+                          res_df$t <= max(res_tf)), ]
+      if (identical(res_mode, "lrr")) {
+        # Safety: log-ratio requires positive values
+        if (any(res_df$vd_i <= 0 | res_df$vb_i <= 0, na.rm = TRUE)) {
+          stop("log-ratio requires vd_i > 0 and vb_i > 0 in the filtered data.")
+        }
+        res_df$res <- log(res_df$vd_i / res_df$vb_i)   # natural log; use log10() if you prefer base-10
+      } else if (identical(res_mode, "diff")) {
+        res_df$res <- res_df$vd_i - res_df$vb_i
+      } else {
+        stop("Unknown res_mode. Use 'lrr' or 'diff'.")
       }
+
+      res <- res_df[which(abs(res_df$res) == max(abs(res_df$res), na.rm = na_rm)), "res"]
+    }
   } else {
 
     if (res_time == "defined") {

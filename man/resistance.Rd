@@ -10,14 +10,14 @@ resistance(
   res_time = NULL,
   res_t = NULL,
   res_tf = NULL,
-  b,
+  b = NULL,
   b_tf = NULL,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
-  vd_i,
-  td_i,
-  d_data,
+  vd_i = NULL,
+  td_i = NULL,
+  d_data = NULL,
   comm_b = NULL,
   comm_d = NULL,
   comm_t = NULL,
@@ -119,41 +119,41 @@ for example, demographic or environmental stochasticity.
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "lrr", res_time = "defined", res_t = 12, type = "temporal"
+  res_mode = "lrr", res_time = "defined", res_t = 12, type = "functional"
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  type = "temporal", res_mode = "diff", res_time = "defined", res_t = 12
+  type = "functional", res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 8, type = "temporal", res_mode = "lrr",
+  b_tf = 8, type = "functional", res_mode = "lrr",
   res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 8, type = "temporal", res_mode = "diff",
+  b_tf = 8, type = "functional", res_mode = "diff",
   res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  type = "temporal", res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
+  type = "functional", res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  type = "temporal", res_mode = "diff", res_time = "max", res_tf = c(12, 51)
+  type = "functional", res_mode = "diff", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  type = "temporal", res_mode = "lrr", b_tf = 8, res_time = "max",
+  type = "functional", res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  type = "temporal", res_mode = "lrr", b_tf = 8, res_time = "max",
+  type = "functional", res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 }
