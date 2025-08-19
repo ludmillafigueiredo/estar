@@ -44,6 +44,8 @@ Suggests:
 Depends: 
     R (>= 3.5.0)
 Imports:
-    stats
+    stats,
+    vegan,
+    zoo
 VignetteBuilder: knitr
 Config/testthat/edition: 3

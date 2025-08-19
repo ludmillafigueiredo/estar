@@ -5,18 +5,26 @@
 \title{Calculate the rate of recovery.}
 \usage{
 recovery_rate(
-  b,
+  type,
+  b = NULL,
   metric_tf,
-  vd_i,
-  td_i,
-  d_data,
+  vd_i = NULL,
+  td_i = NULL,
+  d_data = NULL,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
+  comm_d = NULL,
+  comm_b = NULL,
+  comm_t = NULL,
+  method = "bray",
+  binary = "FALSE",
   na_rm = TRUE
 )
 }
 \arguments{
+\item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
 \item{b}{a string stating whether the baseline is defined by a separate
 baseline that is specified by the user (\code{b = "input"}) or by a
 period of the disturbed system (\code{b = "d"}) prior to the disturbance.
@@ -48,6 +56,16 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
+\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_t}{the name of the time variable in comm_b and comm_d.}
+
+\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
+\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
@@ -63,11 +81,12 @@ compared to the baseline.
 }
 \examples{
 recovery_rate(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  metric_tf = c(12, 50)
+  type = "functional", vd_i = "statvar_db", td_i = "time",
+  d_data = aquacomm_resps, b = "d", metric_tf = c(12, 50)
 )
 recovery_rate(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
-  metric_tf = c(12, 50), vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
+  type = "functional", vd_i = "statvar_db", td_i = "time",
+  d_data = aquacomm_resps, b = "input", metric_tf = c(12, 50),
+  vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 )
 }

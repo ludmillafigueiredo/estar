@@ -5,21 +5,29 @@
 \title{Calculate the extent of recovery}
 \usage{
 recovery_extent(
-  response,
+  type,
+  response = NULL,
   t_rec,
   summ_mode = "mean",
-  b,
+  b = NULL,
   b_tf = NULL,
-  vd_i,
-  td_i,
-  d_data,
+  vd_i = NULL,
+  td_i = NULL,
+  d_data = NULL,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
+  comm_d = NULL,
+  comm_b = NULL,
+  comm_t = NULL,
+  method = "bray",
+  binary = "FALSE",
   na_rm = TRUE
 )
 }
 \arguments{
+\item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
 \item{response}{a string stating whether the stability metric should be
 calculated using the log-response ratio between the values in the disturbed
 system and the baseline (\code{response = "lrr"}) or using the state
@@ -64,6 +72,16 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
+\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_t}{the name of the time variable in comm_b and comm_d.}
+
+\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
+\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
@@ -96,25 +114,26 @@ for example, demographic or environmental stochasticity.
 }
 \examples{
 recovery_extent(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-  b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
-  b_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+  response = "lrr", b = "input", t_rec = 42, vb_i = "statvar_bl",
+  tb_i = "time", b_data = aquacomm_resps, type = "functional"
 )
 recovery_extent(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "diff",
-  b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
-  b_data = aquacomm_resps
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+  response = "diff", b = "input", t_rec = 42, vb_i = "statvar_bl",
+  tb_i = "time", b_data = aquacomm_resps, type = "functional"
 )
 recovery_extent(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-  b = "d", t_rec = 42, b_tf = 8
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+  response = "lrr", b = "d", t_rec = 42, b_tf = 8, type = "functional"
 )
 recovery_extent(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-  b = "d", t_rec = 42, b_tf = c(5, 10)
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+  response = "lrr", b = "d", t_rec = 42, b_tf = c(5, 10), type = "functional"
 )
 recovery_extent(
-  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+  vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+  response = "lrr", type = "functional",
   b = "d", t_rec = 42, b_tf = c(5, 10), summ_mode = "median"
 )
 }

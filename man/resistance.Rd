@@ -5,8 +5,9 @@
 \title{Calculate the resistance of a state variable to disturbance}
 \usage{
 resistance(
-  res_mode,
-  res_time,
+  type,
+  res_mode = NULL,
+  res_time = NULL,
   res_t = NULL,
   res_tf = NULL,
   b,
@@ -17,10 +18,17 @@ resistance(
   vd_i,
   td_i,
   d_data,
+  comm_b = NULL,
+  comm_d = NULL,
+  comm_t = NULL,
+  method = "bray",
+  binary = "FALSE",
   na_rm = TRUE
 )
 }
 \arguments{
+\item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
 \item{res_mode}{A string stating whether the resistance should be calculated
 as the log response ratio of the state variable in the disturbed system
 compared to the baseline (\code{res_mode = "lrr"}) or the difference
@@ -73,6 +81,16 @@ in \code{d_data}.}
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
+\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_t}{an optional string with the name of the time variable in the community data. Only necessary when calculating maximal resistance.}
+
+\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
+\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
@@ -101,39 +119,41 @@ for example, demographic or environmental stochasticity.
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "lrr", res_time = "defined", res_t = 12
+  res_mode = "lrr", res_time = "defined", res_t = 12, type = "temporal"
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "diff", res_time = "defined", res_t = 12
+  type = "temporal", res_mode = "diff", res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 8, res_mode = "lrr", res_time = "defined", res_t = 12
+  b_tf = 8, type = "temporal", res_mode = "lrr",
+  res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  b_tf = 8, res_mode = "diff", res_time = "defined", res_t = 12
+  b_tf = 8, type = "temporal", res_mode = "diff",
+  res_time = "defined", res_t = 12
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
+  type = "temporal", res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-  res_mode = "diff", res_time = "max", res_tf = c(12, 51)
+  type = "temporal", res_mode = "diff", res_time = "max", res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  res_mode = "lrr", b_tf = 8, res_time = "max",
+  type = "temporal", res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 resistance(
   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-  res_mode = "lrr", b_tf = 8, res_time = "max",
+  type = "temporal", res_mode = "lrr", b_tf = 8, res_time = "max",
   res_tf = c(12, 51)
 )
 }

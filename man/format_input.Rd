@@ -4,7 +4,7 @@
 \alias{format_input}
 \title{Compose a standardized dataframe to be wrangled by the function}
 \usage{
-format_input(input, v_v, t_v, data)
+format_input(input = NULL, v_v = NULL, t_v = NULL, data)
 }
 \arguments{
 \item{input}{a string stating whether the data frame to be created is

@@ -24,54 +24,75 @@
 #' @examples
 #' invariability(
 #'   vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
-#'   metric_tf = c(11, 50), d_data = aquacomm_resps
+#'   metric_tf = c(11, 50), d_data = aquacomm_resps, type = "functional"
 #' )
 #' invariability(
 #'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time,
-#'   response = "v", mode = "cv", metric_tf = c(11, 50)
+#'   response = "v", mode = "cv", metric_tf = c(11, 50), type = "functional"
 #' )
 #' invariability(
 #'   vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
 #'   metric_tf = c(11, 50), d_data = aquacomm_resps, vb_i = "statvar_bl",
-#'   tb_i = "time", b_data = aquacomm_resps
+#'   tb_i = "time", b_data = aquacomm_resps, type = "functional"
 #' )
 #' invariability(
-#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "lrr",
+#'   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time,
+#'   response = "lrr", type = "functional",
 #'   metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
 #'   tb_i = aquacomm_resps$time
 #' )
 #' @export
-invariability <- function(mode,
-                          response,
+invariability <- function(type,
+                          mode = NULL,
+                          response = NULL,
                           metric_tf,
-                          vd_i,
-                          td_i,
+                          vd_i = NULL,
+                          td_i = NULL,
                           d_data = NULL,
                           vb_i = NULL,
                           tb_i = NULL,
                           b_data = NULL,
+                          comm_b = NULL,
+                          comm_d = NULL,
+                          comm_t = NULL,
+                          method = "bray",
+                          binary = "FALSE",
                           na_rm = TRUE) {
-  dts_df <- format_input("d", vd_i, td_i, d_data)
+  if (type == "functional") {
 
-  invar_df <- sort_response(response, dts_df, vb_i, tb_i, b_data)
-  invar_df <- invar_df[invar_df$t >= min(metric_tf) &
-                         invar_df$t <= max(metric_tf), ]
+    dts_df <- format_input("d", vd_i, td_i, d_data)
 
-  if (any(is.na(invar_df$response))) {
-    warning("NAs detected among the entries of the state variable")
+    invar_df <- sort_response(response, dts_df, vb_i, tb_i, b_data)
+    invar_df <- invar_df[invar_df$t >= min(metric_tf) &
+                           invar_df$t <= max(metric_tf), ]
 
-    if (sum(!is.na(invar_df$response)) < 10) {
-      warning("Less than 10 data points are available for measuring invariability.")
+    if (any(is.na(invar_df$response))) {
+      warning("NAs detected among the entries of the state variable")
+
+      if (sum(!is.na(invar_df$response)) < 10) {
+        warning("Less than 10 data points are available for measuring invariability.")
+      }
     }
+
+    if (mode == "cv") {
+      invar <- 1 / cv(invar_df$response, na_rm = na_rm)
+      return(invar)
+    } else if (mode == "lm_res") {
+      invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
+      return(invar)
+    } else {
+      stop("'mode' argument must be \"cv\" or \"lm_res\"")
+    }
+
+  } else {
+
+    invar_df <- rbind(comm_d, comm_b) |>
+      (\(.) subset(., .[[comm_t]] >= min(metric_tf) &
+                     .[[comm_t]] <= max(metric_tf)))()
+
+    dissim <- calc_dissim(invar_df, comm_t, method, binary)
+
+    invar <- 1 / stats::sd(stats::lm(unlist(dissim, use.names = FALSE) ~ as.numeric(names(dissim)))$residuals)
   }
 
-  if (mode == "cv") {
-    invar <- 1 / cv(invar_df$response, na_rm = na_rm)
-    return(invar)
-  } else if (mode == "lm_res") {
-    invar <- 1 / stats::sd(stats::lm(invar_df$response ~ invar_df$t)$residuals)
-    return(invar)
-  } else {
-    stop("'mode' argument must be \"cv\" or \"lm_res\"")
-  }
 }

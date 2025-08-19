@@ -1,6 +1,7 @@
 test_that("extent of recovery is numeric", {
   expect_equal(is.numeric(
     recovery_extent(
+      type = "temporal",
       response = "lrr",
       b = "input",
       t_rec = 42,

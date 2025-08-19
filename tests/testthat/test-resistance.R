@@ -1,6 +1,7 @@
 test_that("resistance is numeric", {
   expect_equal(is.numeric(
     resistance(
+      type = "temporal",
       b = "input",
       res_mode = "lrr",
       res_time = "defined",

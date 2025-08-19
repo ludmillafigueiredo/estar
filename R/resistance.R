@@ -24,6 +24,7 @@
 #' measured if \code{res_time = "defined"}.
 #' @param res_tf A vector, specifying the time period for which the maximum
 #' resistance should be looked for, if \code{res_time = "max"}.
+#' @param comm_t an optional string with the name of the time variable in the community data. Only necessary when calculating maximal resistance.
 #' @inheritParams univar_params
 #'
 #' @details If resistance is calculated at a specific time point, it is
@@ -40,110 +41,145 @@
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "lrr", res_time = "defined", res_t = 12
+#'   res_mode = "lrr", res_time = "defined", res_t = 12, type = "functional"
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "diff", res_time = "defined", res_t = 12
+#'   type = "functional", res_mode = "diff", res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 8, res_mode = "lrr", res_time = "defined", res_t = 12
+#'   b_tf = 8, type = "functional", res_mode = "lrr",
+#'   res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   b_tf = 8, res_mode = "diff", res_time = "defined", res_t = 12
+#'   b_tf = 8, type = "functional", res_mode = "diff",
+#'   res_time = "defined", res_t = 12
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
+#'   type = "functional", res_mode = "lrr", res_time = "max", res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps,
-#'   res_mode = "diff", res_time = "max", res_tf = c(12, 51)
+#'   type = "functional", res_mode = "diff", res_time = "max", res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   res_mode = "lrr", b_tf = 8, res_time = "max",
+#'   type = "functional", res_mode = "lrr", b_tf = 8, res_time = "max",
 #'   res_tf = c(12, 51)
 #' )
 #' resistance(
 #'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
-#'   res_mode = "lrr", b_tf = 8, res_time = "max",
+#'   type = "functional", res_mode = "lrr", b_tf = 8, res_time = "max",
 #'   res_tf = c(12, 51)
 #' )
 #' @export
-resistance <- function(res_mode,
-                       res_time,
+resistance <- function(type,
+                       res_mode = NULL,
+                       res_time = NULL,
                        res_t = NULL,
                        res_tf = NULL,
-                       b,
+                       b = NULL,
                        b_tf = NULL,
                        vb_i = NULL,
                        tb_i = NULL,
                        b_data = NULL,
-                       vd_i,
-                       td_i,
-                       d_data,
+                       vd_i = NULL,
+                       td_i = NULL,
+                       d_data = NULL,
+                       comm_b = NULL,
+                       comm_d = NULL,
+                       comm_t = NULL,
+                       method = "bray",
+                       binary = "FALSE",
                        na_rm = TRUE) {
-  if (!(res_mode %in% c("lrr", "diff"))) {
-    stop("res_mode must be \"lrr\" or \"diff\".")
+  if (!(type %in% c("functional", "compositional"))) {
+    stop("type must be \"functional\" or \"compositional\".")
   }
 
-  if (b == "d" && !all(b_tf %in% d_data[[td_i]])) {
-    stop("b_tf must be a time step in your data.")
-  }
+  if (type == "functional") {
 
-  dts_df <- format_input("d", vd_i, td_i, d_data)
+    if (!(res_mode %in% c("lrr", "diff"))) {
+      stop("res_mode must be \"lrr\" or \"diff\".")
+    }
 
-  if (b == "input") {
-    bts_df <- format_input("b", vb_i, tb_i, b_data)
+    if (b == "d" && !all(b_tf %in% d_data[[td_i]])) {
+      stop("b_tf must be a time step in your data.")
+    }
 
-    res_df <- merge(
-      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
-      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
-    )
-  } else {
-    if (b == "d") {
-      if (min(b_tf) == max(b_tf)) {
-        warning(
-          "You are using a single time point as baseline. Consider a time period, see Details."
-        )
-      }
-      b <- summ_d2b(dts_df, b_tf, "mean", na_rm)
-      res_df <- data.frame("t" = dts_df$td_i,
-                           "vd_i" = dts_df$vd_i,
-                           "vb_i" = b)
+    if (!(res_time %in% c("defined", "max"))) {
+      stop("res_time must be \"defined\" or \"max\".")
+    }
+
+    dts_df <- format_input("d", vd_i, td_i, d_data)
+
+    if (b == "input") {
+      bts_df <- format_input("b", vb_i, tb_i, b_data)
+
+      res_df <- merge(
+        data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+        data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
+      )
     } else {
-      stop("b must be \"input\" or \"d\".")
+      if (b == "d") {
+        if (min(b_tf) == max(b_tf)) {
+          warning(
+            "You are using a single time point as baseline. Consider a time period, see Details."
+          )
+        }
+        b <- summ_d2b(dts_df, b_tf, "mean", na_rm)
+        res_df <- data.frame("t" = dts_df$td_i,
+                             "vd_i" = dts_df$vd_i,
+                             "vb_i" = b)
+      } else {
+        stop("b must be \"input\" or \"d\".")
+      }
     }
-  }
 
-  if (res_time == "defined") {
-    if (!res_t %in% res_df$t) {
-      stop("res_t must be a time step in both d_data and b_data (if b_data is used).")
-    }
-    res_df <- res_df[(res_df$t == res_t), ]
-    res_df$res <- ifelse(res_mode == "lrr",
-                         log(res_df$vd_i / res_df$vb_i),
-                         res_df$vd_i - res_df$vb_i)
-
-    res <- res_df$res
-
-  } else {
-    if (res_time == "max") {
-      librarres_df <- res_df[(res_df$t >= min(res_tf) &
-                                res_df$t <= max(res_tf)), ]
+    if (res_time == "defined") {
+      if (!res_t %in% res_df$t) {
+        stop("res_t must be a time step in both d_data and b_data (if b_data is used).")
+      }
+      res_df <- res_df[(res_df$t == res_t), ]
       res_df$res <- ifelse(res_mode == "lrr",
                            log(res_df$vd_i / res_df$vb_i),
                            res_df$vd_i - res_df$vb_i)
 
-      res <- max(res_df$res, na.rm = na_rm)
+      res <- res_df$res
+
     } else {
-      stop("res_time must be \"defined\" or \"max\".")
+        res_df <- res_df[(res_df$t >= min(res_tf) &
+                                  res_df$t <= max(res_tf)), ]
+        res_df$res <- ifelse(res_mode == "lrr",
+                             log(res_df$vd_i / res_df$vb_i),
+                             res_df$vd_i - res_df$vb_i)
+
+        res <- max(res_df$res, na.rm = na_rm)
+      }
+  } else {
+
+    if (res_time == "defined") {
+
+      res_df <- rbind(comm_b, comm_d) |>
+        (\(.) subset(., .[[comm_t]] == res_t))()
+
+      res <- calc_dissim(res_df, comm_t, method, binary)
+
+    } else {
+      ## Combine disturbed and baseline data into a single one
+      res_df <- rbind(comm_d, comm_b) |>
+        (\(.) subset(., .[[comm_t]] >= min(res_tf) &
+                       .[[comm_t]] <= max(res_tf)))()
+
+      dissim <- calc_dissim(res_df, comm_t, method, binary)
+
+      res <- max(unlist(dissim), na.rm = TRUE)
+
     }
   }
   return(res)

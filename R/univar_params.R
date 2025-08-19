@@ -1,5 +1,6 @@
 #' Define parameters that are common to all functions
 #'
+#' @param type a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.
 #' @param vd_i a numeric vector containing the state variable in the
 #' disturbed system or a string specifying the name of the column
 #' containing said variable in the dataframe provided in \code{d_data}.
@@ -28,7 +29,13 @@
 #' to the estimation of the stability metric. Defaults to TRUE.
 #' @param metric_tf a numerical vector, specifying the beginning and end of the
 #' time period over which the stability metric should be measured.
-univar_params <- function(vd_i,
+#' @param comm_b a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.
+#' @param comm_d a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.
+#' @param comm_t the name of the time variable in comm_b and comm_d.
+#' @param method a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
+#' @param binary a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
+univar_params <- function(type,
+                          vd_i,
                           td_i,
                           d_data,
                           vb_i,
@@ -37,6 +44,11 @@ univar_params <- function(vd_i,
                           b,
                           b_tf,
                           na_rm,
-                          metric_tf) {
+                          metric_tf,
+                          comm_d,
+                          comm_b,
+                          comm_t,
+                          method,
+                          binary) {
   return(invisible(NULL))
 }

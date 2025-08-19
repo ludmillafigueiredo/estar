@@ -1,6 +1,6 @@
 #' Macroinvertebrate aquatic community.
 #'
-#' Dataset compiled from an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community (van den Brink et a. 1996, Wijngaarden_effects_1996). The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
+#' Dataset collected in an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community (van den Brink et a. 1996, Wijngaarden_effects_1996). The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
 #'
 #' @format A data frame with five variables:
 #'
@@ -22,7 +22,7 @@
 
 #' Macroinvertebrate aquatic community formatted for univariate metrics.
 #'
-#' Data frame compiled from \code{aquacomm_fgps}
+#' Data frame created from \code{aquacomm_fgps}
 #'
 #' @format A data frame with five variables:
 #'
@@ -49,3 +49,31 @@
 #'  }
 #'
 "aquacomm_resps"
+
+#' Macroinvertebrate aquatic community data formatted for calculation of compositional stability metrics
+#'
+#' Data frame created with \code{data-raw/estar_data.R}. Data for the baseline community: mean abundance calculated from the values for the control experiments one and 42 days after application of the insecticide.
+#'
+#' @format A data frame with five variables:
+#' @field time sequential week number relative to the application of insecticide
+#' @field herb mean abundance of herbivores
+#' @field detr_herb mean abundance of detri-herbivores
+#' @field carn mean abundance of carnivores
+#' @field omni mean abundance of omnivores
+#' @field detr mean abundance of detrivores
+
+"comm_base"
+
+#' Macroinvertebrate aquatic community data formatted for calculation of compositional stability metrics
+#'
+#' Data frame created with \code{data-raw/estar_data.R}. Data for a disturbed community: mean abundance calculated from the values for the experiments under treatment with 6 microg / L of insecticide.
+#'
+#' @format A data frame with five variables:
+#' @field time sequential week number relative to the application of insecticide
+#' @field herb mean abundance of herbivores
+#' @field detr_herb mean abundance of detri-herbivores
+#' @field carn mean abundance of carnivores
+#' @field omni mean abundance of omnivores
+#' @field detr mean abundance of detrivores
+
+"comm_dist"

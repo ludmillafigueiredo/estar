@@ -1,6 +1,7 @@
 test_that("rate of recovery is numeric", {
   expect_equal(is.numeric(
     recovery_rate(
+      type = "temporal",
       b = "d",
       metric_tf = c(12, 50),
       vd_i = "statvar_db",

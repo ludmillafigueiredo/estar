@@ -5,19 +5,27 @@
 \title{Calculate the invariability of a state variable after disturbance.}
 \usage{
 invariability(
-  mode,
-  response,
+  type,
+  mode = NULL,
+  response = NULL,
   metric_tf,
-  vd_i,
-  td_i,
+  vd_i = NULL,
+  td_i = NULL,
   d_data = NULL,
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
+  comm_b = NULL,
+  comm_d = NULL,
+  comm_t = NULL,
+  method = "bray",
+  binary = "FALSE",
   na_rm = TRUE
 )
 }
 \arguments{
+\item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
 \item{mode}{A string stating which variant of invariability should be calculated,
 the one based on the coefficient of variation of the state variable \code{mode = "cv"},
 or the one based on fitting the linear model \code{"lm_res"}.}
@@ -53,6 +61,16 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
+\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_t}{the name of the time variable in comm_b and comm_d.}
+
+\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
+\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
@@ -73,19 +91,20 @@ state variable.
 \examples{
 invariability(
   vd_i = "statvar_db", td_i = "time", response = "v", mode = "cv",
-  metric_tf = c(11, 50), d_data = aquacomm_resps
+  metric_tf = c(11, 50), d_data = aquacomm_resps, type = "functional"
 )
 invariability(
   vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time,
-  response = "v", mode = "cv", metric_tf = c(11, 50)
+  response = "v", mode = "cv", metric_tf = c(11, 50), type = "functional"
 )
 invariability(
   vd_i = "statvar_db", td_i = "time", response = "lrr", mode = "lm_res",
   metric_tf = c(11, 50), d_data = aquacomm_resps, vb_i = "statvar_bl",
-  tb_i = "time", b_data = aquacomm_resps
+  tb_i = "time", b_data = aquacomm_resps, type = "functional"
 )
 invariability(
-  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time, response = "lrr",
+  vd_i = aquacomm_resps$statvar_db, td_i = aquacomm_resps$time,
+  response = "lrr", type = "functional",
   metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
   tb_i = aquacomm_resps$time
 )

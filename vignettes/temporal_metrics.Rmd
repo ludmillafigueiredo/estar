@@ -30,6 +30,7 @@ library(cowplot)
 library(viridis)
 library(forcats)
 library(kableExtra)
+library(vegan)
 source("custom_aesthetics.R")
 
 label_intensity <- function(intensity, mu) {
@@ -186,6 +187,7 @@ and specified in the data frame `d_data` (`aquacomm_resps`, Fig. 2-a).
 
 ```{r}
 invariability(
+  type = "temporal",
   mode = "lm_res",
   response = "lrr",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -204,6 +206,7 @@ the disturbed system by time (Fig. 2-b).
 
 ```{r}
 invariability(
+  type = "temporal",
   mode = "lm_res",
   metric_tf = c(1, max(aquacomm_resps$time)),
   response = "v",
@@ -222,6 +225,7 @@ baseline systems (Fig. 2-c).
 
 ```{r}
 invariability(
+  type = "temporal",
   response = "lrr",
   mode = "cv",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -239,6 +243,7 @@ of a state variable in the disturbed system (Fig. 2-d).
 
 ```{r}
 invariability(
+  type = "temporal",
   response = "v",
   mode = "cv",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -265,6 +270,7 @@ step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig.
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "input",
   res_mode = "lrr",
   res_time = "defined",
@@ -285,6 +291,7 @@ systems during a given time frame (`res_tf = c(1, 20)`, Fig. 3-b).
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "input",
   res_mode = "lrr",
   res_time = "max",
@@ -305,6 +312,7 @@ Fig. 3-c).
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "input",
   res_mode = "diff",
   res_time = "defined",
@@ -325,6 +333,7 @@ Fig. 3-d).
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "input",
   res_mode = "diff",
   res_time = "max",
@@ -346,6 +355,7 @@ given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "d",
   b_tf = c(-4, 0.14),
   res_time = "max",
@@ -365,6 +375,7 @@ precise time step (`res_t = 1)`, Fig. 3-d).
 
 ```{r}
 resistance(
+  type = "temporal",
   b = "d",
   b_tf = c(-4, 0.14),
   res_mode = "lrr",
@@ -389,6 +400,7 @@ systems (`b = "input"`), at a user-defined time step (`t_rec = 28`, Fig.
 
 ```{r}
 recovery_extent(
+  type = "temporal",
   response = "lrr",
   b = "input",
   t_rec = 28,
@@ -407,6 +419,7 @@ between the state variables in a disturbed time-series and the baseline
 
 ```{r}
 recovery_extent(
+  type = "temporal",
   response = "diff",
   b = "input",
   t_rec = 28,
@@ -428,6 +441,7 @@ point we understand all groups have stabilized (`t_rec = 28`).
 
 ```{r}
 recovery_extent(
+  type = "temporal",
   response = "lrr",
   b = "d",
   summ_mode = "mean",
@@ -452,6 +466,7 @@ frame (`metric_tf = c(1, 28)`, Fig. 5-a).
 
 ```{r}
 recovery_rate(
+  type = "temporal",
   b = "input",
   metric_tf = c(1, 28),
   vd_i = "statvar_db",
@@ -470,6 +485,7 @@ predicts the values of the state variable in the disturbed system
 
 ```{r}
 recovery_rate(
+  type = "temporal",
   b = "d",
   metric_tf = c(1, 28),
   vd_i = "statvar_db",
@@ -534,7 +550,17 @@ knitr::include_graphics("figures/persistence.png")
 IDEA TODO: this block is probably going to have to be a form of block that I call from most functions and then do specific stuff with, depending on the 
 
 ```{r}
-(comp_table <- aquacomm_fgps |>
+(comm_data <- aquacomm_fgps |>
+    dplyr::group_by(time, treat) |>
+    dplyr::filter(treat %in% c(0, 44)) |>
+    dplyr::summarize_at(vars(herb, detr_herb, carn, omni, detr),
+                        mean) |>
+    dplyr::ungroup()
+    )
+
+
+
+(comm_data <- aquacomm_fgps |>
     dplyr::group_by(time, treat) |>
     dplyr::summarize_at(vars(herb, detr_herb, carn, omni, detr),
                         mean) |>
@@ -546,39 +572,35 @@ IDEA TODO: this block is probably going to have to be a form of block that I cal
 
 TODO: filter the time steps I want to demonstrate each case and split those for the matrix (not even sure that will be necessary).
 
-```{r}
+```{r eval=FALSE}
 # this is a list of dissimilarity matrices
-(comp_list <- comp_table %>% 
-   dplyr::filter(time %in% seq(1, max(aquacomm_fgps$time))) %>% 
-   group_by(time) %>% 
-   group_split() %>%
-   # each matrix contains the dissimilarities between the control and each treatment, for a given time step
-   map(vegdist) %>% 
-   map(., ~ as.matrix(.x)[,1]) %>%
-   map(., ~ data.frame(dissim = .x[-1])))
-```
-```{r}
-comp_list[[1]]
+comp_list <- comp_table[which(comp_table$time %in% seq(1, max(aquacomm_fgps$time))),] |>
+  split(f = ~time) |>
+  # each matrix contains the dissimilarities between the control and each treatment, for a given time step
+  lapply(\(.) .[,-which(names(.) %in% c("treat", "time"))]) |>
+  lapply(vegan::vegdist) |>
+  lapply(\(.) as.matrix(.)[,1]) |>
+  lapply(\(.) data.frame(dissim = .[-1]))
 ```
 
 ### Resistance
 
 Sensu Hillebrand: initial, first time after disturbance
-```{r}
-
+```{r eval=FALSE}
+comp_list[[1]]
 ```
 
 We also offer at a time of choice
-```{r}
-
+```{r eval=FALSE}
+comp_list[[4]]
 ```
 
 And the max value
-```{r}
-
+```{r eval=FALSE}
+max(unlist(comp_list))
 ```
 
-To calculate the compositional stability, we need a matrix of species abundances where the rows are the disturbed and undisturbed states of the community. For 
+
 
 # Performance
 

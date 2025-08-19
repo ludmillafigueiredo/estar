@@ -6,6 +6,7 @@
 time interval}
 \usage{
 persistence(
+  type,
   metric_tf,
   b,
   b_tf = NULL,
@@ -15,10 +16,19 @@ persistence(
   vb_i = NULL,
   tb_i = NULL,
   b_data = NULL,
+  comm_d = NULL,
+  comm_b = NULL,
+  comm_t = NULL,
+  method = "bray",
+  binary = "FALSE",
+  low_lim = NULL,
+  high_lim = NULL,
   na_rm = TRUE
 )
 }
 \arguments{
+\item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period over which the stability metric should be measured.}
 
@@ -53,6 +63,16 @@ with baseline values.}
 
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
+
+\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+
+\item{comm_t}{the name of the time variable in comm_b and comm_d.}
+
+\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+
+\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}

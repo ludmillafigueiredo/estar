@@ -8,3 +8,4 @@
 ^STYLEGUIDE.md$
 ^\.github$
 ^codecov\.yml$
+^data-raw$

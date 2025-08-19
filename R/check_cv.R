@@ -4,6 +4,7 @@
 #' @param up_lim a double, the upper limit defined
 #' @param low_lim a double, the upper limit defined
 #' @noRd
+#' @keywords internal
 check_lim <- function(v_c, up_lim, low_lim) {
   (v_c <= up_lim & v_c >= low_lim)
 }

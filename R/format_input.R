@@ -10,7 +10,7 @@
 #' @param data a dataframe passed to the function as \code{data_resp},
 #' \code{data_b} or \code{NULL}
 #' @keywords internal
-format_input <- function(input, v_v, t_v, data) {
+format_input <- function(input = NULL, v_v = NULL, t_v = NULL, data) {
   if (input == "d") {
     if (is.null(data)) {
       input_df <- data.frame("vd_i" = v_v, "td_i" = t_v)

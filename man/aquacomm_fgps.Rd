@@ -11,7 +11,7 @@ A data frame with five variables:
 aquacomm_fgps
 }
 \description{
-Dataset compiled from an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community (van den Brink et a. 1996, Wijngaarden_effects_1996). The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
+Dataset collected in an ecotoxicological study about the effects of insecticide (chlorpyrifos) use on a macroinvertebrate aquatic community (van den Brink et a. 1996, Wijngaarden_effects_1996). The community is composed of 128 species, classified into 5 functional groups: herbivores, detri-herbivores, carnivores, omnivores, and detrivores.
 }
 \section{Fields}{
 

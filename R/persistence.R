@@ -40,7 +40,8 @@
 #' )
 #' @export
 persistence <-
-  function(metric_tf,
+  function(type,
+           metric_tf,
            b,
            b_tf = NULL,
            vd_i,
@@ -49,51 +50,85 @@ persistence <-
            vb_i = NULL,
            tb_i = NULL,
            b_data = NULL,
+           comm_d = NULL,
+           comm_b = NULL,
+           comm_t = NULL,
+           method = "bray",
+           binary = "FALSE",
+           low_lim = NULL,
+           high_lim = NULL,
            na_rm = TRUE) {
     dts_df <- format_input("d", vd_i, td_i, d_data)
 
-    if (b == "input") {
-      bts_df <- format_input("b", vb_i, tb_i, b_data)
-      names(bts_df)[which(names(bts_df) == "vb_i")] <- "v"
-    } else {
-      if (b == "d") {
-        if (max(b_tf) > min(metric_tf)) {
-          stop("Baseline overlaps with persistence period. Check Details.")
-        }
-        bts_df <-
-          subset(dts_df, td_i >= min(b_tf) & td_i <= max(b_tf))
-        names(bts_df)[which(names(bts_df) == "vd_i")] <- "v"
+    if (type == "functional"){
+      if (b == "input") {
+        bts_df <- format_input("b", vb_i, tb_i, b_data)
+        names(bts_df)[which(names(bts_df) == "vb_i")] <- "v"
       } else {
-        stop("b must be \"input\" or \"d\".")
+        if (b == "d") {
+          if (max(b_tf) > min(metric_tf)) {
+            stop("Baseline overlaps with persistence period. Check Details.")
+          }
+          bts_df <-
+            subset(dts_df, td_i >= min(b_tf) & td_i <= max(b_tf))
+          names(bts_df)[which(names(bts_df) == "vd_i")] <- "v"
+        } else {
+          stop("b must be \"input\" or \"d\".")
+        }
       }
+
+      perst_zone <- list(
+        mean_v = mean(bts_df$v, na.rm = na_rm),
+        sd_v = stats::sd(bts_df$v, na.rm = na_rm)
+      )
+      perst_zone$low_lim <- perst_zone$mean_v - perst_zone$sd_v
+      perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
+
+      persistence_df <-
+        subset(dts_df, td_i >= min(metric_tf) &
+                 td_i <= max(metric_tf))
+      persistence_df$persist <-
+        sapply(persistence_df$vd_i, function(x)
+          all(x >= perst_zone$low_lim & x <= perst_zone$high_lim))
+      persistence_agg <-
+        stats::aggregate(persistence_df$persist,
+                         by = list(persistence_df$persist),
+                         FUN = length)
+      colnames(persistence_agg) <- c("persist", "n_p")
+
+      persistence = persistence_agg$n_p[which(persistence_agg$persist == TRUE)] /
+        sum(persistence_agg$n_p)
+
+      ## necessary if all persist values are FALSE, and data frame ends up empty
+      if (is.na(persistence[1])) {
+        persistence <- 0
+      }
+    } else {
+
+      base_df <- rbind(comm_d, comm_b) |>
+        (\(.) .[.[[comm_t]] >= min(metric_tf) &
+                  .[[comm_t]] <= max(metric_tf), ])()
+
+      dissim <- calc_dissim(base_df, comm_t, method, binary)
+
+      persist <-
+        sapply(unlist(dissim, use.names = FALSE), function(x)
+          all(x >= low_lim & x <= high_lim))
+      persistence_agg <-
+        stats::aggregate(persistence_df$persist,
+                         by = list(persistence_df$persist),
+                         FUN = length)
+      colnames(persistence_agg) <- c("persist", "n_p")
+
+      persistence = persistence_agg$n_p[which(persistence_agg$persist == TRUE)] /
+        sum(persistence_agg$n_p)
+
+      ## necessary if all persist values are FALSE, and data frame ends up empty
+      if (is.na(persistence[1])) {
+        persistence <- 0
+      }
+
     }
 
-    perst_zone <- list(
-      mean_v = mean(bts_df$v, na.rm = na_rm),
-      sd_v = stats::sd(bts_df$v, na.rm = na_rm)
-    )
-    perst_zone$low_lim <- perst_zone$mean_v - perst_zone$sd_v
-    perst_zone$high_lim <- perst_zone$mean_v + perst_zone$sd_v
-
-    persistence_df <-
-      subset(dts_df, td_i >= min(metric_tf) &
-               td_i <= max(metric_tf))
-    persistence_df$persist <-
-      sapply(persistence_df$vd_i, function(x)
-        all(x >= perst_zone$low_lim & x <= perst_zone$high_lim))
-    persistence_agg <-
-      stats::aggregate(persistence_df$persist,
-                       by = list(persistence_df$persist),
-                       FUN = length)
-    colnames(persistence_agg) <- c("persist", "n_p")
-
-    persistence = persistence_agg$n_p[which(persistence_agg$persist == TRUE)] /
-      sum(persistence_agg$n_p)
-
-    ## necessary if all persist values are FALSE, and data frame ends up empty
-    if (nrow(persistence_df) == 0) {
-      persistence <- 0
-
-    }
     return(persistence)
   }

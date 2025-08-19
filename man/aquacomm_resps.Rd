@@ -27,7 +27,7 @@ A data frame with five variables:
 aquacomm_resps
 }
 \description{
-Data frame compiled from \code{aquacomm_fgps}
+Data frame created from \code{aquacomm_fgps}
 }
 \section{Fields}{
 

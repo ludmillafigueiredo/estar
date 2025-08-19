@@ -37,71 +37,95 @@
 #'
 #' @examples
 #' recovery_extent(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-#'   b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
-#'   b_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+#'   response = "lrr", b = "input", t_rec = 42, vb_i = "statvar_bl",
+#'   tb_i = "time", b_data = aquacomm_resps, type = "functional"
 #' )
 #' recovery_extent(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "diff",
-#'   b = "input", t_rec = 42, vb_i = "statvar_bl", tb_i = "time",
-#'   b_data = aquacomm_resps
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+#'   response = "diff", b = "input", t_rec = 42, vb_i = "statvar_bl",
+#'   tb_i = "time", b_data = aquacomm_resps, type = "functional"
 #' )
 #' recovery_extent(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-#'   b = "d", t_rec = 42, b_tf = 8
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+#'   response = "lrr", b = "d", t_rec = 42, b_tf = 8, type = "functional"
 #' )
 #' recovery_extent(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
-#'   b = "d", t_rec = 42, b_tf = c(5, 10)
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+#'   response = "lrr", b = "d", t_rec = 42, b_tf = c(5, 10), type = "functional"
 #' )
 #' recovery_extent(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, response = "lrr",
+#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps,
+#'   response = "lrr", type = "functional",
 #'   b = "d", t_rec = 42, b_tf = c(5, 10), summ_mode = "median"
 #' )
 #' @export
-recovery_extent <- function(response,
+recovery_extent <- function(type,
+                            response = NULL,
                             t_rec,
                             summ_mode = "mean",
-                            b,
+                            b = NULL,
                             b_tf = NULL,
-                            vd_i,
-                            td_i,
-                            d_data,
+                            vd_i = NULL,
+                            td_i = NULL,
+                            d_data = NULL,
                             vb_i = NULL,
                             tb_i = NULL,
                             b_data = NULL,
+                            comm_d = NULL,
+                            comm_b = NULL,
+                            comm_t = NULL,
+                            method = "bray",
+                            binary = "FALSE",
                             na_rm = TRUE) {
-  dts_df <- format_input("d", vd_i, td_i, d_data)
+  if (!(type %in% c("functional", "compositional"))) {
+    stop("type must be \"functional\" or \"compositional\".")
+  }
 
-  if (b == "input") {
-    bts_df <- format_input("b", vb_i, tb_i, b_data)
+  if (type == "functional") {
 
-    extent_df <- merge(
-      data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
-      data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
-    )
+    dts_df <- format_input("d", vd_i, td_i, d_data)
 
-    ifelse(!(t_rec %in% extent_df$t), stop("Choose a t_rec for which you have input data."), extent_df <- extent_df[extent_df$t == t_rec, ])
-  } else {
-    if (b == "d") {
-      if (min(b_tf) == max(b_tf)) {
-        warning("You are using a single point as baseline. Consider an interval, Details.")
-      }
-      b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
-      extent_df <- dts_df[dts_df$td_i == t_rec, ]
-      extent_df$vb_i <- b
+    if (b == "input") {
+      bts_df <- format_input("b", vb_i, tb_i, b_data)
+
+      extent_df <- merge(
+        data.frame("vd_i" = dts_df$vd_i, "t" = dts_df$td_i),
+        data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
+      )
+
+      ifelse(!(t_rec %in% extent_df$t), stop("Choose a t_rec for which you have input data."), extent_df <- extent_df[extent_df$t == t_rec, ])
     } else {
-      stop("b must be \"input\" or \"d\".")
+      if (b == "d") {
+        if (min(b_tf) == max(b_tf)) {
+          warning("You are using a single point as baseline. Consider an interval, Details.")
+        }
+        b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
+        extent_df <- dts_df[dts_df$td_i == t_rec, ]
+        extent_df$vb_i <- b
+      } else {
+        stop("b must be \"input\" or \"d\".")
+      }
     }
-  }
 
-  if (response == "lrr") {
-    extent_df$extent <- log(extent_df$vd_i / extent_df$vb_i)
-  } else if (response == "diff") {
-    extent_df$extent <- extent_df$vd_i - extent_df$vb_i
+    if (response == "lrr") {
+
+      extent_df$extent <- log(extent_df$vd_i / extent_df$vb_i)
+    } else if (response == "diff") {
+      extent_df$extent <- extent_df$vd_i - extent_df$vb_i
+    } else {
+      stop("response must be \"lrr\" or \"diff\"")
+    }
+
+    return(extent_df$extent)
+
   } else {
-    stop("response must be \"lrr\" or \"diff\"")
-  }
 
-  return(extent_df$extent)
+    rec_df <- rbind(comm_b, comm_d) |>
+      (\(.) .[.[[comm_t]] == t_rec, ])()
+
+    dissim <- calc_dissim(rec_df, comm_t, method, binary)
+
+    return(unlist(dissim, use.names = FALSE))
+  }
 }
