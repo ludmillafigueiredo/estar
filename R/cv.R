@@ -7,5 +7,5 @@
 #'
 #' @keywords internal
 cv <- function(vct, na_rm) {
-  stats::sd(vct, na.rm = na_rm) / mean(vct, na.rm = na_rm)
+  stats::sd(vct, na.rm = na_rm) / abs(mean(vct, na.rm = na_rm))
 }
