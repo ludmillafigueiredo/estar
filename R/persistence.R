@@ -58,9 +58,10 @@ persistence <-
            low_lim = NULL,
            high_lim = NULL,
            na_rm = TRUE) {
-    dts_df <- format_input("d", vd_i, td_i, d_data)
 
     if (type == "functional"){
+      dts_df <- format_input("d", vd_i, td_i, d_data)
+
       if (b == "input") {
         bts_df <- format_input("b", vb_i, tb_i, b_data)
         names(bts_df)[which(names(bts_df) == "vb_i")] <- "v"
@@ -105,7 +106,12 @@ persistence <-
       }
     } else {
 
-      base_df <- rbind(comm_d, comm_b) |>
+      common_t <- intersect(comm_d[[comm_t]], comm_b[[comm_t]])
+
+      comm_b_sub <- comm_b[comm_b[[comm_t]] %in% common_t, ]
+      comm_d_sub <- comm_d[comm_d[[comm_t]] %in% common_t, ]
+
+      base_df <- rbind(comm_d_sub, comm_b_sub) |>
         (\(.) .[.[[comm_t]] >= min(metric_tf) &
                   .[[comm_t]] <= max(metric_tf), ])()
 
@@ -115,8 +121,8 @@ persistence <-
         sapply(unlist(dissim, use.names = FALSE), function(x)
           all(x >= low_lim & x <= high_lim))
       persistence_agg <-
-        stats::aggregate(persistence_df$persist,
-                         by = list(persistence_df$persist),
+        stats::aggregate(persist,
+                         by = list(persist),
                          FUN = length)
       colnames(persistence_agg) <- c("persist", "n_p")
 

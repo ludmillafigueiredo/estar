@@ -155,7 +155,7 @@ resistance <- function(type,
       } else if (identical(res_mode, "diff")) {
         res_df$res <- res_df$vd_i - res_df$vb_i
       } else {
-        stop("Unknown res_mode. Use 'lrr' or 'diff'.")
+        stop("res_mode must be 'lrr' or 'diff'.")
       }
 
       res <- res_df$res
@@ -166,13 +166,13 @@ resistance <- function(type,
       if (identical(res_mode, "lrr")) {
         # Safety: log-ratio requires positive values
         if (any(res_df$vd_i <= 0 | res_df$vb_i <= 0, na.rm = TRUE)) {
-          stop("log-ratio requires vd_i > 0 and vb_i > 0 in the filtered data.")
+          stop("log-ratio requires vd_i > 0 and vb_i > 0.")
         }
         res_df$res <- log(res_df$vd_i / res_df$vb_i)   # natural log; use log10() if you prefer base-10
       } else if (identical(res_mode, "diff")) {
         res_df$res <- res_df$vd_i - res_df$vb_i
       } else {
-        stop("Unknown res_mode. Use 'lrr' or 'diff'.")
+        stop("res_mode must be 'lrr' or 'diff'.")
       }
 
       res <- res_df[which(abs(res_df$res) == max(abs(res_df$res), na.rm = na_rm)), "res"]
@@ -192,9 +192,9 @@ resistance <- function(type,
         (\(.) subset(., .[[comm_t]] >= min(res_tf) &
                        .[[comm_t]] <= max(res_tf)))()
 
-      dissim <- calc_dissim(res_df, comm_t, method, binary)
+      dissim <- unlist(calc_dissim(res_df, comm_t, method, binary))
 
-      res <- max(unlist(dissim), na.rm = TRUE)
+      res <- dissim[which(abs(dissim) == max(abs(dissim), na.rm = TRUE))]
 
     }
   }

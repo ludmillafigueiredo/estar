@@ -24,6 +24,7 @@
 recovery_rate <- function(type,
                           b = NULL,
                           metric_tf,
+                          response = NULL,
                           vd_i = NULL,
                           td_i = NULL,
                           d_data = NULL,
@@ -47,16 +48,20 @@ recovery_rate <- function(type,
         data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i),
         all.x = TRUE
       )
-      base_df$extent = log(base_df$vd_i / base_df$vb_i)
 
     } else {
       if (b == "d") {
         base_df <- dts_df
-        names(base_df)[names(base_df) == 'vd_i'] <- 'extent'
         names(base_df)[names(base_df) == 'td_i'] <- 't'
       } else {
         stop("b must be \"input\" or \"d\".")
       }
+    }
+
+    if (response == "lrr"){
+      base_df$extent = log(base_df$vd_i / base_df$vb_i)
+    } else {
+      base_df$extent = base_df$vd_i
     }
 
     lm_df <- base_df[(base_df$t >= min(metric_tf) &

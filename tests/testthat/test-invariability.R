@@ -1,7 +1,7 @@
 test_that("invariability is a numeric value", {
   expect_equal(is.numeric(
     invariability(
-      type = "temporal",
+      type = "functional",
       response = "lrr",
       mode = "lm_res",
       metric_tf = c(11, 50),

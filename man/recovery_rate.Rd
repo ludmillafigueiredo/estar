@@ -8,6 +8,7 @@ recovery_rate(
   type,
   b = NULL,
   metric_tf,
+  response = NULL,
   vd_i = NULL,
   td_i = NULL,
   d_data = NULL,
@@ -32,6 +33,11 @@ This period is specified by \code{b_tf}.}
 
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period over which the stability metric should be measured.}
+
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone (\code{response == "v"}).}
 
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
