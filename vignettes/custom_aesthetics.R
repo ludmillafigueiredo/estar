@@ -4,13 +4,14 @@ options(ggplot2.fill.colour = "viridis")
 options(ggplot2.fill.colour = "viridis")
 
 colors <- viridis(n = 5, option = "inferno")
-#"#000004FF" "#56106EFF" "#BB3754FF" "#F98C0AFF" "#FCFFA4FF"
+# "#000004FF" "#56106EFF" "#BB3754FF" "#F98C0AFF" "#FCFFA4FF"
 
-## possibly color-clind safe color scheme
-#c("#67001f", "#a50026", "#d73027", "#f46d43", "#fdae61",
-#  "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1",
-#  "#4575b4", "#313695")
+# ## possibly color-clind safe color scheme
+# c("#67001f", "#a50026", "#d73027", "#f46d43", "#fdae61",
+#   "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1",
+#   "#4575b4", "#313695")
 
+gp_colours_full <- c("#313695", "#DD3F4A", "#FFCF37", "#f46d43",  "#74add1")
 gp_colours <- c("#313695", "#DD3F4A", "#FFCF37")
 treat_colours <- c("#B256B4", "#8E2E79")
 

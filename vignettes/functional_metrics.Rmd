@@ -101,9 +101,7 @@ carnivores, omnivores, and detritivores.
       linetype = 2,
       colour = "black"
     ) +
-    scale_colour_manual(values = intensity_colors[seq(from = 1,
-                                                      by = 2,
-                                                      length.out = 5)]) +
+    scale_colour_manual(values = gp_colours_full) +
     facet_wrap(
       ~ treat,
       nrow = 5,
@@ -154,9 +152,7 @@ carnivores, omnivores, and detritivores.
       linetype = 2,
       colour = "black"
     ) +
-    scale_colour_manual(values = intensity_colors[seq(from = 1,
-                                                      by = 2,
-                                                      length.out = 5)]) +
+    scale_colour_manual(values = gp_colours_full) +
     facet_wrap(
       ~ treat,
       nrow = 5,

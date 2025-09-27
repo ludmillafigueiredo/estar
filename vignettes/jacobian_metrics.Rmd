@@ -1,5 +1,5 @@
 ---
-title: "Jacobian metrics"
+title: "Jacobian stability metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -76,8 +76,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
   geom_line() +
   geom_point(size = 1) +
   geom_vline(aes(xintercept = 0), linetype = 2, colour = "black") +
-  scale_colour_manual(values = intensity_colors[seq(from = 1, by = 2, 
-                                                    length.out = 5)]) +
+  scale_colour_manual(values = gp_colours_full) +
   facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
   labs(x = "Time (week)", y = "Mean abundance (log)", 
        colour = "Functional\ngroup") +
