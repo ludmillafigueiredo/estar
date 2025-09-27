@@ -13,10 +13,6 @@
 #' @param mode A string stating which variant of invariability should be calculated,
 #' the one based on the coefficient of variation of the state variable \code{mode = "cv"},
 #' or the one based on fitting the linear model \code{"lm_res"}.
-#' @param response a string stating whether the stability metric should be
-#' calculated using the log-response ratio between the values in the disturbed
-#' system and the baseline (\code{response = "lrr"}) or using the state
-#' variable values in the disturbed system alone (\code{response == "v"}).
 #' @inheritParams univar_params
 #'
 #' @return a numeric, the invariability value.
