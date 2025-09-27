@@ -6,6 +6,7 @@
 \usage{
 univar_params(
   type,
+  response,
   vd_i,
   td_i,
   d_data,
@@ -25,6 +26,11 @@ univar_params(
 }
 \arguments{
 \item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
+
+\item{response}{a string stating whether the stability metric should be
+calculated using the log-response ratio between the values in the disturbed
+system and the baseline (\code{response = "lrr"}) or using the state
+variable values in the disturbed system alone (\code{response == "v"}).}
 
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
