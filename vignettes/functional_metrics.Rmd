@@ -1,5 +1,5 @@
 ---
-title: "Temporal metrics"
+title: "Functional stability metrics"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -183,7 +183,7 @@ and specified in the data frame `d_data` (`aquacomm_resps`, Fig. 2-a).
 
 ```{r}
 invariability(
-  type = "temporal",
+  type = "functional",
   mode = "lm_res",
   response = "lrr",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -202,7 +202,7 @@ the disturbed system by time (Fig. 2-b).
 
 ```{r}
 invariability(
-  type = "temporal",
+  type = "functional",
   mode = "lm_res",
   metric_tf = c(1, max(aquacomm_resps$time)),
   response = "v",
@@ -221,7 +221,7 @@ baseline systems (Fig. 2-c).
 
 ```{r}
 invariability(
-  type = "temporal",
+  type = "functional",
   response = "lrr",
   mode = "cv",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -239,7 +239,7 @@ of a state variable in the disturbed system (Fig. 2-d).
 
 ```{r}
 invariability(
-  type = "temporal",
+  type = "functional",
   response = "v",
   mode = "cv",
   metric_tf = c(1, max(aquacomm_resps$time)),
@@ -266,7 +266,7 @@ step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig.
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "input",
   res_mode = "lrr",
   res_time = "defined",
@@ -287,7 +287,7 @@ systems during a given time frame (`res_tf = c(1, 20)`, Fig. 3-b).
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "input",
   res_mode = "lrr",
   res_time = "max",
@@ -308,7 +308,7 @@ Fig. 3-c).
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "input",
   res_mode = "diff",
   res_time = "defined",
@@ -329,7 +329,7 @@ Fig. 3-d).
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "input",
   res_mode = "diff",
   res_time = "max",
@@ -351,7 +351,7 @@ given time frame (`res_tf = c(11, 50)`, Fig. 3-d).
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "d",
   b_tf = c(-4, 0.14),
   res_time = "max",
@@ -371,7 +371,7 @@ precise time step (`res_t = 1)`, Fig. 3-d).
 
 ```{r}
 resistance(
-  type = "temporal",
+  type = "functional",
   b = "d",
   b_tf = c(-4, 0.14),
   res_mode = "lrr",
@@ -396,7 +396,7 @@ systems (`b = "input"`), at a user-defined time step (`t_rec = 28`, Fig.
 
 ```{r}
 recovery_extent(
-  type = "temporal",
+  type = "functional",
   response = "lrr",
   b = "input",
   t_rec = 28,
@@ -415,7 +415,7 @@ between the state variables in a disturbed time-series and the baseline
 
 ```{r}
 recovery_extent(
-  type = "temporal",
+  type = "functional",
   response = "diff",
   b = "input",
   t_rec = 28,
@@ -437,7 +437,7 @@ point we understand all groups have stabilized (`t_rec = 28`).
 
 ```{r}
 recovery_extent(
-  type = "temporal",
+  type = "functional",
   response = "lrr",
   b = "d",
   summ_mode = "mean",
@@ -462,7 +462,8 @@ frame (`metric_tf = c(1, 28)`, Fig. 5-a).
 
 ```{r}
 recovery_rate(
-  type = "temporal",
+  type = "functional",
+  response = "v",
   b = "input",
   metric_tf = c(1, 28),
   vd_i = "statvar_db",
@@ -476,13 +477,14 @@ recovery_rate(
 
 Rate of recovery calculated as the slope of the linear model which
 predicts the values of the state variable in the disturbed system
-(`b = "d"`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig.
+(`response = "v"`) by time (over a time frame (`metric_tf = c(1, 28)`, Fig.
 5-b).
 
 ```{r}
 recovery_rate(
-  type = "temporal",
-  b = "d",
+  type = "functional",
+  response = "v",
+  b = "input",
   metric_tf = c(1, 28),
   vd_i = "statvar_db",
   td_i = "time",
@@ -507,6 +509,7 @@ period for which persistence is measured
 
 ```{r}
 persistence(
+  type = "functional",
   b = "input",
   metric_tf = c(28, max(aquacomm_resps$time)),
   vd_i = "statvar_db",
@@ -526,6 +529,7 @@ time period (`metric_tf = c(1, 60)`, Fig. 6).
 
 ```{r}
 persistence(
+  type = "functional",
   b = "d",
   b_tf = c(-4, 0.14),
   metric_tf = c(28, max(aquacomm_resps$time)),
@@ -540,28 +544,30 @@ persistence(
 knitr::include_graphics("figures/persistence.png")
 ```
 
+### Overall Ecological Vulnerability
+
+```{r}
+
+```
 
 ## Compositional stability
 
 IDEA TODO: this block is probably going to have to be a form of block that I call from most functions and then do specific stuff with, depending on the 
 
 ```{r}
-(comm_data <- aquacomm_fgps |>
+comm_data <- aquacomm_fgps |>
     dplyr::group_by(time, treat) |>
     dplyr::filter(treat %in% c(0, 44)) |>
     dplyr::summarize_at(vars(herb, detr_herb, carn, omni, detr),
                         mean) |>
     dplyr::ungroup()
-    )
 
-
-
-(comm_data <- aquacomm_fgps |>
-    dplyr::group_by(time, treat) |>
-    dplyr::summarize_at(vars(herb, detr_herb, carn, omni, detr),
-                        mean) |>
-    dplyr::ungroup()
-    )
+control_comm <- comm_data |>
+        dplyr::filter(treat == 0) |>
+        dplyr::select(-treat)
+dist_comm <- comm_data |>
+        dplyr::filter(treat == 44) |>
+        dplyr::select(-treat)
 ```
 
 ### Invariability
@@ -596,7 +602,21 @@ And the max value
 max(unlist(comp_list))
 ```
 
+### Rate of recovery
+ 
+### Extent of recovery
 
+### Persistence
+
+### Overall Ecological Vulnerability
+
+```{r}
+oev(type = "compositional",
+    metric_tf = c(0.14, 56),
+    comm_d = dist_comm,
+    comm_b = control_comm,
+    comm_t = "time")
+```
 
 # Performance
 
@@ -662,6 +682,8 @@ df_list$persist_benchmark %>%
 ```
 
 ![Density distribution of execution times of 100 runs of each of the different options of the `persistence()` function demonstrated in the vignette.](figures/persist_benchmark.png){width=100%}
+
+## Overall Ecological Vulnerability
 
 ------------------------------------------------------------------------
 

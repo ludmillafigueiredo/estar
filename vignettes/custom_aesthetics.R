@@ -17,8 +17,8 @@ treat_colours <- c("#B256B4", "#8E2E79")
 
 ## base theme for plotting figures with graphs for all disturbances and figures: main issue is font size, but watch for facetting
 theme_estar <- function(){
-    #theme_minimal(base_size = 8)%+replace%
-    theme_minimal_hgrid(12)%+replace%
+    theme_minimal(base_size = 8)%+replace%
+    #cowplot::theme_minimal_hgrid(12)%+replace%
         theme(
             axis.text.y = element_text(size = rel(0.85)),
             axis.text.x = element_text(size = rel(0.85)),
