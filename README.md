@@ -12,21 +12,22 @@ coverage](https://codecov.io/gh/ludmillafigueiredo/estar/branch/main/graph/badge
 
 `estar` provides two sets of functions.
 
-The first set corresponds to functions that can be applied to univariate
-data, i.e., a time series of a system’s state variable (e.g., individual
-body mass). This set of metrics includes:
+The first set corresponds to functions that measure stability at any
+level of organisation, from individual to community and can be applied
+to a time series of a system’s state variables (e.g., body mass,
+population abundance, or species diversity). The properties included in
+this set are:
 
 - Resistance
 - Extent of recovery
 - Rate of recovery
 - Invariability
 - Persistence
+- Overall Ecological Vulnerability
 
-The second set of functions can be applied to multivariate data
-represented by the time series of the abundances of all species in a
-community. The functions in this set measure the stability of a
-community at the short and the long time scales. In the short term,
-stability is measured as:
+The second set of functions can be applied to Jacobian matrices. The
+functions in this set measure the stability of a community at short and
+long time scales. In the short term, you can measure:
 
 - Reactivity
 - Maximal amplification
@@ -43,6 +44,9 @@ autoregressive state-space models necessary for the second set of
 metrics.
 
 <!-- You can install the released version of estar from [CRAN](https://CRAN.R-project.org) with: -->
+
 <!-- ``` r -->
+
 <!-- install.packages("estar") -->
+
 <!-- ``` -->
