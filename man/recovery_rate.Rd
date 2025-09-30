@@ -8,7 +8,9 @@ recovery_rate(
   type,
   b = NULL,
   metric_tf,
-  response = NULL,
+  response,
+  summ_mode = "mean",
+  b_tf = NULL,
   vd_i = NULL,
   td_i = NULL,
   d_data = NULL,
@@ -38,6 +40,10 @@ time period over which the stability metric should be measured.}
 calculated using the log-response ratio between the values in the disturbed
 system and the baseline (\code{response = "lrr"}) or using the state
 variable values in the disturbed system alone (\code{response == "v"}).}
+
+\item{b_tf}{a numerical vector, specifying the beginning and end of the
+pre-disturbance time period for the disturbed time-series that defines
+the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 
 \item{vd_i}{a numeric vector containing the state variable in the
 disturbed system or a string specifying the name of the column
@@ -85,13 +91,18 @@ The response can be the state variable in a disturbed system, or the
 log-response ratio (LRR) of the state variable in the disturbed system
 compared to the baseline.
 }
+\details{
+#' @param summ_mode A string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
+Defaults to "mean".
+}
 \examples{
 recovery_rate(
-  type = "functional", vd_i = "statvar_db", td_i = "time",
+  type = "functional", vd_i = "statvar_db", td_i = "time", response = "v",
   d_data = aquacomm_resps, b = "d", metric_tf = c(12, 50)
 )
 recovery_rate(
-  type = "functional", vd_i = "statvar_db", td_i = "time",
+  type = "functional", vd_i = "statvar_db", td_i = "time", response = "v",
   d_data = aquacomm_resps, b = "input", metric_tf = c(12, 50),
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 )

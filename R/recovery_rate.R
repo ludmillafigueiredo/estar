@@ -6,17 +6,20 @@
 #' log-response ratio (LRR) of the state variable in the disturbed system
 #' compared to the baseline.
 #'
+#' #' @param summ_mode A string, stating whether the baseline should be summarized as
+#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
+#' Defaults to "mean".
 #' @inheritParams univar_params
 #'
 #' @return a double, the rate of recovery
 #'
 #' @examples
 #' recovery_rate(
-#'   type = "functional", vd_i = "statvar_db", td_i = "time",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", response = "v",
 #'   d_data = aquacomm_resps, b = "d", metric_tf = c(12, 50)
 #' )
 #' recovery_rate(
-#'   type = "functional", vd_i = "statvar_db", td_i = "time",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", response = "v",
 #'   d_data = aquacomm_resps, b = "input", metric_tf = c(12, 50),
 #'   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 #' )
@@ -24,7 +27,9 @@
 recovery_rate <- function(type,
                           b = NULL,
                           metric_tf,
-                          response = NULL,
+                          response,
+                          summ_mode = "mean",
+                          b_tf = NULL,
                           vd_i = NULL,
                           td_i = NULL,
                           d_data = NULL,
@@ -52,6 +57,7 @@ recovery_rate <- function(type,
     } else {
       if (b == "d") {
         base_df <- dts_df
+        b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
         names(base_df)[names(base_df) == 'td_i'] <- 't'
       } else {
         stop("b must be \"input\" or \"d\".")

@@ -21,20 +21,20 @@
 #'
 #' @examples
 #' persistence(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
 #'   b_tf = c(1, 9), metric_tf = c(28, 56)
 #' )
 #' persistence(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "d",
 #'   b_tf = c(1, 9), metric_tf = c(28, 56)
 #' )
 #' persistence(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   metric_tf = c(28, 56), vb_i = "statvar_bl", tb_i = "time",
 #'   b_data = aquacomm_resps
 #' )
 #' persistence(
-#'   vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
+#'   type = "functional", vd_i = "statvar_db", td_i = "time", d_data = aquacomm_resps, b = "input",
 #'   metric_tf = c(28, 56), vb_i = "statvar_bl", tb_i = "time",
 #'   b_data = aquacomm_resps
 #' )

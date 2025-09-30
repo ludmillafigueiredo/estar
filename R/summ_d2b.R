@@ -1,8 +1,8 @@
 #' Summarize the values of the state variable in a disturbed system into a baseline
 #'
-#' Internal function, used in \code{resistance()} and \code{recovery_extent()}
-#' to create a baseline value out of the pre-disturbance values in the
-#' disturbed system.
+#' Internal function, used in \code{resistance()}, \code{recovery_rate()} and
+#'  \code{recovery_extent()} to create a baseline value out of the
+#'  pre-disturbance values in the disturbed system.
 #'
 #' @inheritParams univar_params
 #' @keywords internal

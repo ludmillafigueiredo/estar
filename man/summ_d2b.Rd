@@ -15,8 +15,8 @@ the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \description{
-Internal function, used in \code{resistance()} and \code{recovery_extent()}
-to create a baseline value out of the pre-disturbance values in the
-disturbed system.
+Internal function, used in \code{resistance()}, \code{recovery_rate()} and
+\code{recovery_extent()} to create a baseline value out of the
+pre-disturbance values in the disturbed system.
 }
 \keyword{internal}
