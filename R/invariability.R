@@ -89,6 +89,8 @@ invariability <- function(type,
     dissim <- calc_dissim(invar_df, comm_t, method, binary)
 
     invar <- 1 / stats::sd(stats::lm(unlist(dissim, use.names = FALSE) ~ as.numeric(names(dissim)))$residuals)
+
+    return(invar)
   }
 
 }
