@@ -192,7 +192,7 @@ resistance <- function(type,
         (\(.) subset(., .[[comm_t]] >= min(res_tf) &
                        .[[comm_t]] <= max(res_tf)))()
 
-      dissim <- unlist(calc_dissim(res_df, comm_t, method, binary))
+      dissim <- unlist(calc_dissim(res_df, comm_t, method, binary), use.names = FALSE)
 
       res <- dissim[which(abs(dissim) == max(abs(dissim), na.rm = TRUE))]
 
