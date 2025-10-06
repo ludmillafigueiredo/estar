@@ -38,18 +38,6 @@ label_intensity <- function(intensity, mu) {
 }
 ```
 
-<!-- colors : -->
-
-<!-- Deep blue "#0D0887FF"  -->
-
-<!-- Purple "#7E03A8FF"  -->
-
-<!-- Dark pink "#CC4678FF"  -->
-
-<!-- Orange "#F89441FF"  -->
-
-<!-- Yellow "#F0F921FF" -->
-
 # Overview of the data
 
 We illustrate the use of `estar` functions on a dataset from an
@@ -546,15 +534,32 @@ knitr::include_graphics("figures/persistence.png")
 
 ### Overall Ecological Vulnerability
 
+Area under the curve of the log response ratio (`response = "lrr"`) between the state variable in the disturbed and baseline scenarios, since shortly after the disturbance (we don't have data from t = 0, the moment of application of the insecticide) until the the end of the observation period (`metric_tf = c(0.14, 56)`).
+
 ```{r}
-
+oev(
+  type = "functional",
+  response = "lrr",
+  metric_tf = c(0.14, 56),
+  vd_i = "statvar_db",
+  td_i = "time",
+  d_data = aquacomm_resps,
+  vb_i = "statvar_bl",
+  tb_i = "time",
+  b_data = aquacomm_resps
+)
 ```
+```{r echo=FALSE, out.width = '50%',vfig.cap="Figure 7: Schematic representation of the calculation of Overall Ecological Stability in estar. 'lrr' refers to the log response ratio of the state variable in the disturbed system compared to the baseline time-series, 'td' is the time step where disturbance happened. The purple shaded area is the area under the curve calculated by the metric."}
 
+knitr::include_graphics("figures/oev.png")
+```
 ## Compositional stability
 
-IDEA TODO: this block is probably going to have to be a form of block that I call from most functions and then do specific stuff with, depending on the 
+The functions for functional stability can be used to calculate the stability of community composition from community compositional data. To do so, the functions call the `vegdist` function (from the `vegan` package), which can be parameterized with the `method` and `binary` arguments.
 
 ```{r}
+# Reformatting the macroinvertebrate community long-format data into 
+# community composition data
 comm_data <- aquacomm_fgps |>
     dplyr::group_by(time, treat) |>
     dplyr::filter(treat %in% c(0, 44)) |>
@@ -570,43 +575,72 @@ dist_comm <- comm_data |>
         dplyr::select(-treat)
 ```
 
+It is worth noting that, if the user wants to calculate compositional stability from other metrics, they can simply input it as a single variable time-series, as demonstrated in the section "Functional stability".
+
 ### Invariability
 
-TODO: filter the time steps I want to demonstrate each case and split those for the matrix (not even sure that will be necessary).
-
 ```{r eval=FALSE}
-# this is a list of dissimilarity matrices
-comp_list <- comp_table[which(comp_table$time %in% seq(1, max(aquacomm_fgps$time))),] |>
-  split(f = ~time) |>
-  # each matrix contains the dissimilarities between the control and each treatment, for a given time step
-  lapply(\(.) .[,-which(names(.) %in% c("treat", "time"))]) |>
-  lapply(vegan::vegdist) |>
-  lapply(\(.) as.matrix(.)[,1]) |>
-  lapply(\(.) data.frame(dissim = .[-1]))
+invariability(
+  type = "compositional",
+  metric_tf = c(0.14, 56),
+  comm_d = dist_comm,
+  comm_b = control_comm,
+  comm_t = "time")
 ```
 
 ### Resistance
 
-Sensu Hillebrand: initial, first time after disturbance
-```{r eval=FALSE}
-comp_list[[1]]
+Maximal resistance (`res_time = "max"`) over a time period defined by the user (`res_tf = c(0.14, 28)`).
+```{r}
+resistance(type = "compositional",
+          res_tf = c(0.14, 28),
+          res_time = "max",
+          comm_d = dist_comm,
+          comm_b = control_comm,
+          comm_t = "time")
 ```
 
-We also offer at a time of choice
+Resistance at a time step chosen by the user (`res_time = "defined"`, `res_t = 28,`).
 ```{r eval=FALSE}
-comp_list[[4]]
-```
-
-And the max value
-```{r eval=FALSE}
-max(unlist(comp_list))
+resistance(type = "compositional",
+          res_time = "defined",
+          res_t = 28,
+          comm_d = dist_comm,
+          comm_b = control_comm,
+          comm_t = "time")
 ```
 
 ### Rate of recovery
+```{r}
+recovery_rate(type = "compositional",
+              metric_tf = c(0.14, 28),
+              comm_d = dist_comm,
+              comm_b = control_comm,
+              comm_t = "time")
+```
  
 ### Extent of recovery
 
+```{r}
+recovery_extent(type = "compositional",
+          t_rec = 28,
+          comm_d = dist_comm,
+          comm_b = control_comm,
+          comm_t = "time")
+```
+
 ### Persistence
+
+```{r}
+persistence(type = "compositional",
+            b = "input",
+            metric_tf = c(28, 56),
+            comm_d = dist_comm,
+            comm_b = control_comm,
+            comm_t = "time",
+            low_lim = 0.5,
+            high_lim = 0.9)
+```
 
 ### Overall Ecological Vulnerability
 
@@ -625,7 +659,7 @@ We conducted the benchmark analysis of the execution time of the different forms
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.01 seconds for our example.
 
 ```{r echo=FALSE}
-load("univariate_performance.rda")
+load("functional_performance.rda")
 ```
 
 ## Invariability
@@ -684,6 +718,15 @@ df_list$persist_benchmark %>%
 ![Density distribution of execution times of 100 runs of each of the different options of the `persistence()` function demonstrated in the vignette.](figures/persist_benchmark.png){width=100%}
 
 ## Overall Ecological Vulnerability
+
+```{r}
+df_list$oev_benchmark %>%
+  dplyr::select(-neval) %>% 
+  kableExtra::kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+![Density distribution of execution times of 100 runs of each of the different options of the `oev()` function demonstrated in the vignette.](figures/oev_benchmark.png){width=100%}
 
 ------------------------------------------------------------------------
 
