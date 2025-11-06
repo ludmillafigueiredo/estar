@@ -74,6 +74,12 @@ state variable values in the baseline.}
 
 \item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
 
+\item{low_lim}{minimal dissimilarity value the user expects for a persistent
+community}
+
+\item{high_lim}{maximal dissimilarity value the user expects for a persistent
+community}
+
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
@@ -83,9 +89,9 @@ a double, contained in [0,1]
 \description{
 \code{persistence} returns the proportion of time the state
 variable remained inside the interval defined by one baseline's
-\eqn{\pm} sd from the baseline's mean. The proportion
-is calculated in relation to the time period for which
-persistence should be calculated.
+\eqn{\pm} sd from the baseline's mean (functional stability) or
+the user (compositional stability). The proportion is calculated in
+relation to the time period (\code{metric_tf}) defined by the user.
 }
 \details{
 If the baseline is defined by the pre-disturbed values of the

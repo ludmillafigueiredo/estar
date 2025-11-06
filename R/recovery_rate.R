@@ -6,7 +6,7 @@
 #' log-response ratio (LRR) of the state variable in the disturbed system
 #' compared to the baseline.
 #'
-#' #' @param summ_mode A string, stating whether the baseline should be summarized as
+#' @param summ_mode A string, stating whether the baseline should be summarized as
 #' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
 #' Defaults to "mean".
 #' @inheritParams univar_params

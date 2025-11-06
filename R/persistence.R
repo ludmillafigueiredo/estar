@@ -3,10 +3,14 @@
 #'
 #' \code{persistence} returns the proportion of time the state
 #' variable remained inside the interval defined by one baseline's
-#' \eqn{\pm} sd from the baseline's mean. The proportion
-#' is calculated in relation to the time period for which
-#' persistence should be calculated.
+#' \eqn{\pm} sd from the baseline's mean (functional stability) or
+#' the user (compositional stability). The proportion is calculated in
+#' relation to the time period (\code{metric_tf}) defined by the user.
 #'
+#' @param low_lim minimal dissimilarity value the user expects for a persistent
+#' community
+#' @param high_lim maximal dissimilarity value the user expects for a persistent
+#' community
 #' @inheritParams univar_params
 #'
 #' @return a double, contained in \[0,1\]
@@ -108,6 +112,7 @@ persistence <-
 
       common_t <- intersect(comm_d[[comm_t]], comm_b[[comm_t]])
 
+      # filter community for common time steps
       comm_b_sub <- comm_b[comm_b[[comm_t]] %in% common_t, ]
       comm_d_sub <- comm_d[comm_d[[comm_t]] %in% common_t, ]
 

@@ -41,6 +41,10 @@ calculated using the log-response ratio between the values in the disturbed
 system and the baseline (\code{response = "lrr"}) or using the state
 variable values in the disturbed system alone (\code{response == "v"}).}
 
+\item{summ_mode}{A string, stating whether the baseline should be summarized as
+the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
+Defaults to "mean".}
+
 \item{b_tf}{a numerical vector, specifying the beginning and end of the
 pre-disturbance time period for the disturbed time-series that defines
 the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
@@ -90,11 +94,6 @@ a linear model which uses the time as a predictor of the response.
 The response can be the state variable in a disturbed system, or the
 log-response ratio (LRR) of the state variable in the disturbed system
 compared to the baseline.
-}
-\details{
-#' @param summ_mode A string, stating whether the baseline should be summarized as
-the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
-Defaults to "mean".
 }
 \examples{
 recovery_rate(
