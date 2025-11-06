@@ -80,7 +80,7 @@ The community is composed of 128 species, classified into 5 functional groups: h
   facet_wrap(~treat, nrow = 5, labeller = labeller(treat = label_intensity)) +
   labs(x = "Time (week)", y = "Mean abundance (log)", 
        colour = "Functional\ngroup") +
-  theme_estar())
+  estar:::theme_estar())
 ```
 
 # MARSS models

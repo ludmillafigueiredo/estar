@@ -29,7 +29,6 @@ Suggests:
     rmarkdown,
     Matrix,
     hesim,
-    ggplot2,
     cowplot,
     viridis,
     forcats,
@@ -44,6 +43,7 @@ Suggests:
 Depends: 
     R (>= 3.5.0)
 Imports:
+    ggplot2,
     stats,
     vegan,
     zoo

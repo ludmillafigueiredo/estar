@@ -96,7 +96,7 @@ carnivores, omnivores, and detritivores.
       labeller = labeller(treat = label_intensity)
     ) +
     labs(x = "Time (week)", y = "Mean abundance (log)", colour = "Functional\ngroup") +
-    theme_estar()
+    estar:::theme_estar()
 )
 ```
 
@@ -147,7 +147,7 @@ carnivores, omnivores, and detritivores.
       labeller = labeller(treat = label_intensity)
     ) +
     labs(x = "Time (week)", y = "Mean abundance", colour = "Functional\ngroup") +
-    theme_estar()
+    estar:::theme_estar()
 )
 ```
 
