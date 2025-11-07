@@ -97,10 +97,10 @@ relation to the time period (\code{metric_tf}) defined by the user.
 If the baseline is defined by the pre-disturbed values of the
 state variable in the disturbed system (\code{b = "d"}), this pre-disturbed
 time period used as baseline (\code{b_tf}) cannot overlap with the time period
-for which the persistence is to be calculated (\code{metric_tf}), because of redundancy:
-the values over \code{b_tf} define the interval for which the values in \code{metric_tf} are
-checked. If they are the same (or partly, if overlap is partial), the
-returned value of persistence will be falsely higher.
+for which the persistence is to be calculated (\code{metric_tf}), because of
+redundancy: the values over \code{b_tf} define the interval for which the
+values in \code{metric_tf} are checked. If they are the same (or partly, if
+overlap is partial), the returned value of persistence will be falsely higher.
 }
 \examples{
 persistence(

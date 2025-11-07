@@ -37,9 +37,10 @@ library(MARSS)
   )
 
   # estimate z-score transformation and replace zeros with NA
-  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], MARSS::zscore)
-  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], function(x)
-    replace(x, x == 0, NA))
+  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")],
+                                                 MARSS::zscore)
+  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")],
+                                                 function(x) replace(x, x == 0, NA))
 
   # reshape data from wide to long format
   data_z_ldf <- reshape(
@@ -52,7 +53,7 @@ library(MARSS)
     idvar = c("time", "treat", "repli")
   )
 
-  data_z_ldf <- data_z_ldf[order(data_z_ldf$time, data_z_ldf$treat, data_z_ldf$fgp), ]
+  data_z_ldf <- data_z_ldf[order(data_z_ldf$time, data_z_ldf$treat, data_z_ldf$fgp),]
 
   # summarize mean and sd
   data_z_summldf <- aggregate(abund_z ~ time + treat + fgp, data_z_ldf, function(x)

@@ -32,9 +32,10 @@ library(MARSS)
   )
 
   # estimate z-score transformation and replace zeros with NA
-  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], MARSS::zscore)
-  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")], function(x)
-    replace(x, x == 0, NA))
+  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")],
+                                                 MARSS::zscore)
+  data_df[, c("herb", "carn", "detr")] <- lapply(data_df[, c("herb", "carn", "detr")],
+                                                 function(x) replace(x, x == 0, NA))
 
   # reshape data from wide to long format
   data_z_ldf <- reshape(

@@ -1,7 +1,8 @@
 #' Extract the community matrix (B) estimated by a MARSS model
 #'
 #' @param marss_res MARSS object returned by \code{\link[MARSS]{MARSS}}
-#' @param states_names a string vector containing the names of species/groups for which interactions were estimated
+#' @param states_names a string vector containing the names of species/groups
+#' for which interactions were estimated
 #'
 #' @return a named matrix
 #'
