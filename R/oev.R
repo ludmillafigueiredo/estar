@@ -6,7 +6,7 @@
 #' calculated using the log-response ratio between the values in the disturbed
 #' system and the baseline (\code{response = "lrr"}) or using the state
 #' variable values in the disturbed system alone (\code{response == "v"}).
-#' @inheritParams univar_params
+#' @inheritParams common_params
 #'
 #' @return a double, the rate of recovery
 #' @export

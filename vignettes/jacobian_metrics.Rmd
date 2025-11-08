@@ -451,7 +451,7 @@ We conducted the benchmark analysis of the execution time of the different funct
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example.
 
 ```{r}
-load("multivar_performance.rda")
+load("jacobian_performance.rda")
 ```
 
 ```{r}

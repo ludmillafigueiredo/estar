@@ -9,7 +9,7 @@
 #' @param summ_mode A string, stating whether the baseline should be summarized as
 #' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
 #' Defaults to "mean".
-#' @inheritParams univar_params
+#' @inheritParams common_params
 #'
 #' @return a double, the rate of recovery
 #'

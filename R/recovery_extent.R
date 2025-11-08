@@ -26,7 +26,7 @@
 #' Defaults to "mean".
 #' @param t_rec An integer, time point at which the extent of recovery should be
 #' calculated.
-#' @inheritParams univar_params
+#' @inheritParams common_params
 #'
 #' @details Even though it is possible to use a single data value as baseline
 #' (by passing a double to \code{b_tf}), it is not recommended, because a

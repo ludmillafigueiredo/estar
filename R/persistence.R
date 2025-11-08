@@ -11,7 +11,7 @@
 #' community
 #' @param high_lim maximal dissimilarity value the user expects for a persistent
 #' community
-#' @inheritParams univar_params
+#' @inheritParams common_params
 #'
 #' @return a double, contained in \[0,1\]
 #'

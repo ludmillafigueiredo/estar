@@ -25,7 +25,7 @@
 #' @param res_tf A vector, specifying the time period for which the maximum
 #' resistance should be looked for, if \code{res_time = "max"}.
 #' @param comm_t an optional string with the name of the time variable in the community data. Only necessary when calculating maximal resistance.
-#' @inheritParams univar_params
+#' @inheritParams common_params
 #'
 #' @details If resistance is calculated at a specific time point, it is
 #' conventionally the first time point after the disturbance.

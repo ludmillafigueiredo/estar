@@ -38,7 +38,7 @@
 #' @param comm_t the name of the time variable in comm_b and comm_d.
 #' @param method a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
 #' @param binary a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
-univar_params <- function(type,
+common_params <- function(type,
                           response,
                           vd_i,
                           td_i,
