@@ -61,7 +61,8 @@ recovery_rate <- function(type,
     } else {
       if (b == "d") {
         base_df <- dts_df
-        b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
+        ## summarized baseline
+        base_df$vb_i <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
         names(base_df)[names(base_df) == 'td_i'] <- 't'
       } else {
         stop("b must be \"input\" or \"d\".")
