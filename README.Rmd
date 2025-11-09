@@ -42,10 +42,4 @@ In the long term, stability can be measured as:
 - Asymptotic resilience
 - Intrinsic stochastic invariability
 
-The package includes two vignettes demonstrating the use of all functions, as well as a brief introduction to multivariate autoregressive state-space models necessary for the second set of metrics. 
-
-<!-- You can install the released version of estar from [CRAN](https://CRAN.R-project.org) with: -->
-
-<!-- ``` r -->
-<!-- install.packages("estar") -->
-<!-- ``` -->
+The package includes two vignettes demonstrating the use of all functions, as well as a brief introduction to multivariate autoregressive state-space models necessary for the second set of metrics.

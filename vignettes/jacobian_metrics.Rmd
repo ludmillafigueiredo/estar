@@ -47,7 +47,7 @@ In community models, this is equivalent to a time-discrete version [@downing_tem
 In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models.
 
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), how these models can be used with the functions provided by the [`estar` package](#marss-in-estar), and the issues that may arise when empirical data is [limited](#limited-data).
-To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an [aquatic community](#aquatic-data).
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an aquatic community.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Overview of demonstration data
@@ -332,7 +332,7 @@ Y =  Z  \times X_t + 0 + D_t.0 + v \\
 \end{equation}
 ```
 
-Thus, our [aquatic commmunity data](aquatic-data) must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of functional group counts under one treatment.
+Thus, our aquatic commmunity data must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of functional group counts under one treatment.
 We have two replicates per treatment and four replicates for the control but we are modelling one observation as corresponding to one state processes, therefore a choice must be made how to deal with this. One possibility is to randomly pick one of the replicates per treatment. Alternatively, one can choose to average the data over replicates. 
 We here use the mean of species abundances over all replicates:
 
