@@ -9,6 +9,17 @@
 #' @inheritParams common_params
 #'
 #' @return a double, the rate of recovery
+#'
+#' @examples
+#' oev(
+#'   type = "functional", response = "lrr", metric_tf = c(0.14, 56), vd_i = "statvar_db",
+#'   td_i = "time", d_data = aquacomm_resps, vb_i = "statvar_bl", tb_i = "time",
+#'   b_data = aquacomm_resps
+#' )
+#' oev(
+#'   type = "compositional", metric_tf = c(0.14, 56), comm_d = comm_dist,
+#'   comm_b = comm_base, comm_t = "time"
+#' )
 #' @export
 oev <- function(type,
                 metric_tf,

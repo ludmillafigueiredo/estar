@@ -78,6 +78,10 @@
 #'   type = "functional", res_mode = "lrr", b_tf = 8, res_time = "max",
 #'   res_tf = c(12, 51)
 #' )
+#' resistance(
+#'   type = "compositional", res_time = "defined", res_t = 28, comm_d = comm_dist,
+#'   comm_b = comm_base, comm_t = "time"
+#' )
 #' @export
 resistance <- function(type,
                        res_mode = NULL,

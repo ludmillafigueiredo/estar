@@ -105,4 +105,8 @@ recovery_rate(
   d_data = aquacomm_resps, b = "input", metric_tf = c(12, 50),
   vb_i = "statvar_bl", tb_i = "time", b_data = aquacomm_resps
 )
+recovery_rate(
+  type = "compositional", metric_tf = c(0.14, 28), comm_d = comm_dist,
+  comm_b = comm_base, comm_t = "time"
+)
 }

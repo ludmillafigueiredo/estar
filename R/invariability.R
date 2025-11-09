@@ -37,6 +37,10 @@
 #'   metric_tf = c(11, 50), mode = "lm_res", vb_i = aquacomm_resps$statvar_bl,
 #'   tb_i = aquacomm_resps$time
 #' )
+#' invariability(
+#'   type = "compositional", metric_tf = c(0.14, 56), comm_d = comm_dist,
+#'   comm_b = comm_base, comm_t = "time"
+#' )
 #' @export
 invariability <- function(type,
                           mode = NULL,

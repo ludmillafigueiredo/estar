@@ -42,6 +42,10 @@
 #'   metric_tf = c(28, 56), vb_i = "statvar_bl", tb_i = "time",
 #'   b_data = aquacomm_resps
 #' )
+#' persistence(
+#'   type = "compositional", b = "input",metric_tf = c(28, 56), comm_d = comm_dist,
+#'   comm_b = comm_base, comm_t = "time", low_lim = 0.5, high_lim = 0.9
+#' )
 #' @export
 persistence <-
   function(type,

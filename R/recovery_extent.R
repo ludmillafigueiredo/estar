@@ -59,6 +59,10 @@
 #'   response = "lrr", type = "functional",
 #'   b = "d", t_rec = 42, b_tf = c(5, 10), summ_mode = "median"
 #' )
+#' recovery_extent(
+#'   type = "compositional", t_rec = 28, comm_d = comm_dist,
+#'   comm_b = comm_base, comm_t = "time"
+#' )
 #' @export
 recovery_extent <- function(type,
                             response = NULL,
