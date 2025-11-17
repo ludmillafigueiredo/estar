@@ -1,6 +1,9 @@
 #' Calculate the overall ecological vulnerability of a community after disturbance.
 #'
-#' \code{oev} returns area under the curve of the absolute log-response-ratio (functional stability) or the dissimilarity (compositional stability) between the disturbed and baseline communities.
+#' \code{oev} returns area under the curve of the absolute log-response-ratio
+#' (functional stability) or the dissimilarity (compositional stability)
+#' between the disturbed and baseline communities. The area under the curve is
+#' calculated as
 #'
 #' @param response a string stating whether the stability metric should be
 #' calculated using the log-response ratio between the values in the disturbed
@@ -8,7 +11,7 @@
 #' variable values in the disturbed system alone (\code{response == "v"}).
 #' @inheritParams common_params
 #'
-#' @return a double, the rate of recovery
+#' @return A numeric, the overall ecological vulnerability
 #'
 #' @examples
 #' oev(

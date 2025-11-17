@@ -1,5 +1,5 @@
 Package: estar
-Title: Ecological Stability Measures in R
+Title: Ecological Stability Metrics
 Version: 1.0-0
 Authors@R: c(
     person(given = "Ludmilla",
@@ -17,7 +17,7 @@ Authors@R: c(
            role = c("ctb"),
            email = "cedricphilippscherer@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0003-0465-2543"))) 
-Description: Standardises and facilitates the use of eleven established stability properties that have been used to assess systems’ responses to press or pulse disturbances at different ecological levels (e.g. population, community). There are two sets of functions. The first set corresponds to functions that measure stability at any level of organisation, from individual to community and can be applied to a time series of a system’s state variables (e.g., body mass, population abundance, or species diversity). The properties included in this set are: invariability, resistance, extent and rate of recovery, persistence, and overall ecological vulnerability. The second set of functions can be applied to Jacobian matrices. The functions in this set measure the stability of a community at short and long time scales. In the short term, the community’s response is measured by maximal amplification, reactivity and initial resilience (i.e. initial rate of return to equilibrium). In the long term, stability can be measured as asymptotic resilience and intrinsic stochastic invariability.
+Description: Standardises and facilitates the use of eleven established stability properties that have been used to assess systems’ responses to press or pulse disturbances at different ecological levels (e.g. population, community). There are two sets of functions. The first set corresponds to functions that measure stability at any level of organisation, from individual to community and can be applied to a time series of a system’s state variables (e.g., body mass, population abundance, or species diversity). The properties included in this set are: invariability, resistance, extent and rate of recovery, persistence, and overall ecological vulnerability. The second set of functions can be applied to Jacobian matrices. The functions in this set measure the stability of a community at short and long time scales. In the short term, the community’s response is measured by maximal amplification, reactivity and initial resilience (i.e. initial rate of return to equilibrium). In the long term, stability can be measured as asymptotic resilience and intrinsic stochastic invariability. Figueiredo et al. (2025) <doi:10.32942/X2M053>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

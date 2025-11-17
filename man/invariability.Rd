@@ -26,9 +26,10 @@ invariability(
 \arguments{
 \item{type}{a string defining the type of stability (\code{"functional"} or \code{"compositional"}) to be calculated.}
 
-\item{mode}{A string stating which variant of invariability should be calculated,
-the one based on the coefficient of variation of the state variable \code{mode = "cv"},
-or the one based on fitting the linear model \code{"lm_res"}.}
+\item{mode}{A string stating which variant of invariability should be
+calculated, the one based on the coefficient of variation of the state
+variable \code{mode = "cv"}, or the one based on fitting the linear
+model \code{"lm_res"}.}
 
 \item{response}{a string stating whether the stability metric should be
 calculated using the log-response ratio between the values in the disturbed
@@ -61,32 +62,88 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_b}{a data frame containing long format community data (species
+names as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_d}{a data frame containing long format community data
+(species as columns over time as rows) to calculate compositional metrics.}
 
 \item{comm_t}{the name of the time variable in comm_b and comm_d.}
 
-\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{method}{a string identifying the dissimilarity index to be used to
+calculate dissimilarity. For more options, see \code{?vegdist}.
+Defaults to "bray".}
 
-\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{binary}{a boolean stating whether presence/absence standardization
+should be performed before calculating the dissimilarity. For more options,
+see \code{?vegdist}. Defaults to "bray".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-a numeric, the invariability value.
+A numeric, the invariability ( \eqn{I} ) value. The larger in
+magnitude
+\eqn{I}
+is, the higher the stability, since the variation
+around the trend is lower.
 }
 \description{
 \code{invariability} returns the temporal invariability.
 Invariability can be calculated using the post-disturbance values of the
 state variable in the disturbed system, or the log-response ratio of the
 state variable in the disturbed system compared to the baseline.
-Two variants of invariability can be calculated: 1. the first one is calculated
-as the inverse of the coefficient of variation of the state variable; 2. the
-second one is calculated as the inverse of the standard deviation of
-residuals of the linear model that uses the time as the predictor of the
-state variable.
+Two variants of invariability can be calculated: as the inverse of the
+coefficient of variation of the system's response, or the inverse of the
+standard deviation of residuals of the linear model that uses the time
+as the predictor of the system's response.
+}
+\details{
+Instability can be calculated as the coefficient fo variation of the
+system:
+\itemize{
+\item For functional stability, the response is the log response ratio between
+the state variable’s value in the disturbed ( \eqn{v_d} ) and in the baseline
+systems ( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values)
+or the state variable’s value in the disturbed system itself. Therefore,
+\eqn{I = \mathrm{CV}\!\left( \log\!\left( \frac{v_d}{v_b} \right) \right)^{-1}}
+, or
+\eqn{I = \mathrm{CV}\!\left( \log\!\left( \frac{v_d}{v_p} \right) \right)^{-1}}
+, or
+\eqn{I = \mathrm{CV}(v_d)^{-1}}
+.
+\item For compositional stability, the response is the dissimilarity between the
+disturbed ( \eqn{C_d} ) and baseline ( \eqn{C_b} ) communities:
+}
+
+\deqn{
+I = \mathrm{CV}\!\left(
+      \mathrm{dissim}\!\left( \frac{C_d}{C_b} \right)
+    \right)^{-1}
+}
+
+Alternatively, instability can be calculated as inverse of the standard
+deviation of residuals of the linear model where the response
+(same as above) is predicted by time, whereby:
+\eqn{I = \sigma(\varepsilon)^{-1}}
+from
+\eqn{y = \alpha + R_r\, t + \varepsilon}
+where
+
+\deqn{
+y \in \left\{
+  \log\!\left(\frac{v_d}{v_b} \right),
+  \log\!\left(\frac{v_d}{v_p} \right),
+  v_d,
+  \mathrm{dissim}\!\left( \frac{C_d}{C_b} \right)
+\right\}
+}
+
+,
+\eqn{\alpha}
+is the intercept, and
+\eqn{R_r}
+is the recovery rate.
 }
 \examples{
 invariability(
@@ -112,4 +169,5 @@ invariability(
   type = "compositional", metric_tf = c(0.14, 56), comm_d = comm_dist,
   comm_b = comm_base, comm_t = "time"
 )
+
 }

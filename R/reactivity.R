@@ -10,7 +10,13 @@
 #' Can be calculated with \code{\link{extractB}} from the
 #' fitted MARSS object.
 #'
-#' @return a numeric, the reactivity value
+#' @return A numeric, the reactivity value.
+#'
+#' @seealso
+#' [estar::extractB()]
+#'
+#' @references
+#' Neubert, M. G., & Caswell, H. (1997). Alternatives to Resilience for Measuring the Responses of Ecological Systems to Perturbations. Ecology, 78(3), 653–665.
 #'
 #' @example man/examples/eg_reactivity.R
 #'

@@ -13,7 +13,7 @@ Can be calculated with \code{\link{extractB}} from the
 fitted MARSS object.}
 }
 \value{
-a numeric, the reactivity value
+A numeric, the reactivity value.
 }
 \description{
 \code{reactitvity} calculates reactivity as the initial rate
@@ -130,4 +130,10 @@ library(MARSS)
   purrr::map(data.Bls, reactivity)
 
 }
+}
+\references{
+Neubert, M. G., & Caswell, H. (1997). Alternatives to Resilience for Measuring the Responses of Ecological Systems to Perturbations. Ecology, 78(3), 653–665.
+}
+\seealso{
+\code{\link[=extractB]{extractB()}}
 }

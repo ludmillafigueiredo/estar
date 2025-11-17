@@ -9,6 +9,7 @@
 #' \code{t_b} or \code{NULL}
 #' @param data a dataframe passed to the function as \code{data_resp},
 #' \code{data_b} or \code{NULL}
+#' 
 #' @keywords internal
 format_input <- function(input = NULL, v_v = NULL, t_v = NULL, data) {
   if (input == "d") {

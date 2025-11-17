@@ -81,24 +81,37 @@ in \code{d_data}.}
 \item{d_data}{an optional data frame containing the time series of the
 state variable values in a disturbed system.}
 
-\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_b}{a data frame containing long format community data (species
+names as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_d}{a data frame containing long format community data
+(species as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_t}{an optional string with the name of the time variable in the community data. Only necessary when calculating maximal resistance.}
+\item{comm_t}{an optional string with the name of the time variable in the
+community data. Only necessary when calculating maximal resistance.}
 
-\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{method}{a string identifying the dissimilarity index to be used to
+calculate dissimilarity. For more options, see \code{?vegdist}.
+Defaults to "bray".}
 
-\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{binary}{a boolean stating whether presence/absence standardization
+should be performed before calculating the dissimilarity. For more options,
+see \code{?vegdist}. Defaults to "bray".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-A double, the resistance of the state variable to disturbance.
+A numeric, the resistance value. Maximum (functional and
+compositional) recovery at 0. For functional stability, smaller or higher
+values indicate under- or overcompensation, respectively. For compositional
+stability using the Bray-Curtis index (default),
+\eqn{0 \le R \le 1}
+, and the maximal resistance is 0. The higher the index, the more apart the
+communities are and thus, the lower resistance is.
 }
 \description{
-\code{resistance} returns either the distance of a state variable to
+\code{resistance} ( \eqn{R} ) returns either the distance of a state variable to
 a baseline value at a specified time point or a maximum distance between the
 state variables in the disturbed system and the baseline over a specified
 period. The distance can be calculated either as the absolute difference
@@ -107,6 +120,45 @@ or as the log response ratio between these state variables.
 See details on how to specify the values.
 }
 \details{
+For functional stability, resistance can be calculated as:
+\itemize{
+\item The log response ratio or absolute difference
+between  the state variable’s value in the disturbed
+\eqn{v_d}
+and the baseline
+( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values),
+on the user-defined time step. Therefore,
+\eqn{R = \log\!\left(\frac{v_d(t)}{v_b(t)}\right)}
+, or
+\eqn{R = \log\!\left(\frac{v_d(t)}{v_p(t)}\right)}
+, or
+\eqn{R = \lvert v_d(t) - v_b(t) \rvert}
+, or
+\eqn{R = \lvert v_d(t) - v_p(t) \rvert}
+.
+\item The maximal log response ratio or absolute difference between the state
+variable’s value in the disturbed and the baseline systems, over a
+user-defined time interval:
+\eqn{R = \max_t(\log\!\left(\frac{v_d(t)}{v_b(t)}\right))}
+, or
+\eqn{R = \max_t(\log\!\left(\frac{v_d(t)}{v_p(t)}\right))}
+, or
+\eqn{R = \max_t(\lvert v_d(t) - v_b(t) \rvert)}
+, or
+\eqn{R = \max_t(\lvert v_d(t) - v_p(t) \rvert)}
+.
+}
+
+For compositional stability, the dissimilarity between disturbed
+( \eqn{C_d} )
+and baseline
+( \eqn{C_b} )
+communities at user-defined time step
+\eqn{R = \mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right)}
+, or the maximal value
+\eqn{R = \max_t (\mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right))}
+.
+
 If resistance is calculated at a specific time point, it is
 conventionally the first time point after the disturbance.
 

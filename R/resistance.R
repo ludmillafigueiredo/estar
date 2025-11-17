@@ -1,6 +1,6 @@
 #' Calculate the resistance of a state variable to disturbance
 #'
-#' \code{resistance} returns either the distance of a state variable to
+#' \code{resistance} ( \eqn{R} ) returns either the distance of a state variable to
 #' a baseline value at a specified time point or a maximum distance between the
 #' state variables in the disturbed system and the baseline over a specified
 #' period. The distance can be calculated either as the absolute difference
@@ -24,10 +24,51 @@
 #' measured if \code{res_time = "defined"}.
 #' @param res_tf A vector, specifying the time period for which the maximum
 #' resistance should be looked for, if \code{res_time = "max"}.
-#' @param comm_t an optional string with the name of the time variable in the community data. Only necessary when calculating maximal resistance.
+#' @param comm_t an optional string with the name of the time variable in the
+#' community data. Only necessary when calculating maximal resistance.
 #' @inheritParams common_params
 #'
-#' @details If resistance is calculated at a specific time point, it is
+#' @details
+#' For functional stability, resistance can be calculated as:
+#'
+#' - The log response ratio or absolute difference
+#' between  the state variable’s value in the disturbed
+#' \eqn{v_d}
+#' and the baseline
+#' ( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values),
+#' on the user-defined time step. Therefore,
+#' \eqn{R = \log\!\left(\frac{v_d(t)}{v_b(t)}\right)}
+#' , or
+#' \eqn{R = \log\!\left(\frac{v_d(t)}{v_p(t)}\right)}
+#' , or
+#' \eqn{R = \lvert v_d(t) - v_b(t) \rvert}
+#' , or
+#' \eqn{R = \lvert v_d(t) - v_p(t) \rvert}
+#' .
+#'
+#' - The maximal log response ratio or absolute difference between the state
+#' variable’s value in the disturbed and the baseline systems, over a
+#' user-defined time interval:
+#' \eqn{R = \max_t(\log\!\left(\frac{v_d(t)}{v_b(t)}\right))}
+#' , or
+#' \eqn{R = \max_t(\log\!\left(\frac{v_d(t)}{v_p(t)}\right))}
+#' , or
+#' \eqn{R = \max_t(\lvert v_d(t) - v_b(t) \rvert)}
+#' , or
+#' \eqn{R = \max_t(\lvert v_d(t) - v_p(t) \rvert)}
+#' .
+#'
+#' For compositional stability, the dissimilarity between disturbed
+#' ( \eqn{C_d} )
+#' and baseline
+#' ( \eqn{C_b} )
+#' communities at user-defined time step
+#' \eqn{R = \mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right)}
+#' , or the maximal value
+#' \eqn{R = \max_t (\mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right))}
+#' .
+#'
+#' If resistance is calculated at a specific time point, it is
 #' conventionally the first time point after the disturbance.
 #'
 #' Even though it is possible to use a single data value as baseline
@@ -35,7 +76,13 @@
 #' single value does not account for any variability in the system arising from,
 #' for example, demographic or environmental stochasticity.
 #'
-#' @return A double, the resistance of the state variable to disturbance.
+#' @return A numeric, the resistance value. Maximum (functional and
+#' compositional) recovery at 0. For functional stability, smaller or higher
+#' values indicate under- or overcompensation, respectively. For compositional
+#' stability using the Bray-Curtis index (default),
+#' \eqn{0 \le R \le 1}
+#' , and the maximal resistance is 0. The higher the index, the more apart the
+#' communities are and thus, the lower resistance is.
 #'
 #' @examples
 #' resistance(

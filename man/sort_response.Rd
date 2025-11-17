@@ -2,7 +2,7 @@
 % Please edit documentation in R/sort_response.R
 \name{sort_response}
 \alias{sort_response}
-\title{Organize the response variable upon which the statbility metric will be calculated}
+\title{Organize the response variable upon which the stability metric will be calculated}
 \usage{
 sort_response(response, dts_df, vb_i, tb_i, b_data)
 }
@@ -16,8 +16,8 @@ disturbed scenario}
 
 \item{vb_i}{a numeric vector containing the state variable in the baseline,
 a string for the name of the column in \code{b_data} containing said
-variable in the baseline, or default \code{NULL}, if a separate baseline is not
-being used.}
+variable in the baseline, or default \code{NULL}, if a separate baseline
+is not being used.}
 
 \item{tb_i}{an optional numeric vector containing the time steps for which
 the baseline was measured, or a string containing the name of the column in
@@ -27,7 +27,10 @@ the baseline was measured, or a string containing the name of the column in
 baseline values of the state variable. Time and value columns must be named
 \code{tb_i} and \code{vb_i}, respectively.}
 }
+\value{
+A dataframe with the response variable calculated over time.
+}
 \description{
-Organize the response variable upon which the statbility metric will be calculated
+Organize the response variable upon which the stability metric will be calculated
 }
 \keyword{internal}

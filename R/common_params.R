@@ -30,14 +30,20 @@
 #' pre-disturbance time period for the disturbed time-series that defines
 #' the baseline. Obligatory if (\code{b = "d"}), see 'Details'.
 #' @param na_rm a logical determining whether NAs should be taken out prior
- #' to the estimation of the stability metric. Defaults to TRUE.
+#' to the estimation of the stability metric. Defaults to TRUE.
 #' @param metric_tf a numerical vector, specifying the beginning and end of the
 #' time period over which the stability metric should be measured.
-#' @param comm_b a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.
-#' @param comm_d a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.
+#' @param comm_b a data frame containing long format community data (species
+#' names as columns over time as rows) to calculate compositional metrics.
+#' @param comm_d a data frame containing long format community data
+#' (species as columns over time as rows) to calculate compositional metrics.
 #' @param comm_t the name of the time variable in comm_b and comm_d.
-#' @param method a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
-#' @param binary a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".
+#' @param method a string identifying the dissimilarity index to be used to
+#' calculate dissimilarity. For more options, see \code{?vegdist}. 
+#' Defaults to "bray".
+#' @param binary a boolean stating whether presence/absence standardization
+#' should be performed before calculating the dissimilarity. For more options, 
+#' see \code{?vegdist}. Defaults to "bray".
 common_params <- function(type,
                           response,
                           vd_i,

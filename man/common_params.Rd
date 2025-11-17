@@ -70,15 +70,21 @@ to the estimation of the stability metric. Defaults to TRUE.}
 \item{metric_tf}{a numerical vector, specifying the beginning and end of the
 time period over which the stability metric should be measured.}
 
-\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_d}{a data frame containing long format community data
+(species as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_b}{a data frame containing long format community data (species
+names as columns over time as rows) to calculate compositional metrics.}
 
 \item{comm_t}{the name of the time variable in comm_b and comm_d.}
 
-\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{method}{a string identifying the dissimilarity index to be used to
+calculate dissimilarity. For more options, see \code{?vegdist}.
+Defaults to "bray".}
 
-\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{binary}{a boolean stating whether presence/absence standardization
+should be performed before calculating the dissimilarity. For more options,
+see \code{?vegdist}. Defaults to "bray".}
 }
 \description{
 Define parameters that are common to all functions

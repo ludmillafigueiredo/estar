@@ -56,24 +56,33 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_d}{a data frame containing long format community data
+(species as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_b}{a data frame containing long format community data (species
+names as columns over time as rows) to calculate compositional metrics.}
 
 \item{comm_t}{the name of the time variable in comm_b and comm_d.}
 
-\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{method}{a string identifying the dissimilarity index to be used to
+calculate dissimilarity. For more options, see \code{?vegdist}.
+Defaults to "bray".}
 
-\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{binary}{a boolean stating whether presence/absence standardization
+should be performed before calculating the dissimilarity. For more options,
+see \code{?vegdist}. Defaults to "bray".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-a double, the rate of recovery
+A numeric, the overall ecological vulnerability
 }
 \description{
-\code{oev} returns area under the curve of the absolute log-response-ratio (functional stability) or the dissimilarity (compositional stability) between the disturbed and baseline communities.
+\code{oev} returns area under the curve of the absolute log-response-ratio
+(functional stability) or the dissimilarity (compositional stability)
+between the disturbed and baseline communities. The area under the curve is
+calculated as
 }
 \examples{
 oev(

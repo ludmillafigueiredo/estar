@@ -1,6 +1,6 @@
 #' Calculate the extent of recovery
 #'
-#' \code{recovery_extent} calculates how close a state variable is to its
+#' \code{recovery_extent} ( \eqn{R_e} ) calculates how close a state variable is to its
 #' baseline value at a time point specified by the user (usually after recovery
 #' has taken place). This distance can be calculated as the log-response ratio
 #' between the values in the disturbed system and the baseline
@@ -28,12 +28,44 @@
 #' calculated.
 #' @inheritParams common_params
 #'
-#' @details Even though it is possible to use a single data value as baseline
+#' @return A numeric, the extent of recovery. Maximum (functional and
+#' compositional) recovery at 0. For functional stability, smaller or higher
+#' values indicate under- or overcompensation, respectively. For compositional
+#' stability using the Bray-Curtis index (default),
+#' \eqn{0 \le R_e \le 1}
+#' .
+#' The higher the index, the further apart the communities are after recovery,
+#' and thus, the lower the recovery is.
+#'
+#' @details
+#' For functional stability, the log-response ratio or difference between the
+#' state variable in the disturbed systems
+#' \eqn{v_d}
+#' and in the baseline
+#' ( \eqn{v_b} or \eqn{v_p}
+#' if the baseline is pre-disturbance values) measured on the user-defined
+#' time step when the recovery is assumed to have taken place. Therefore,
+#' \eqn{R_e = \log\!\left(\frac{v_d(t)}{v_b(t)}\right)}
+#' , or
+#' \eqn{R_e = \log\!\left(\frac{v_d(t)}{v_p(t)}\right)}
+#' , or
+#' \eqn{R_e = \lvert v_d(t) - v_b(t) \rvert}
+#' , or
+#' \eqn{R_e = \lvert v_d(t) - v_p(t) \rvert}
+#' .
+#'
+#' For community stability, the dissimilarity between the disturbed
+#' ( \eqn{C_d} )
+#' and baseline
+#' ( \eqn{C_b} )
+#' communities
+#' \eqn{R_e = \mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right)}
+#' .
+#'
+#' Even though it is possible to use a single data value as baseline
 #' (by passing a double to \code{b_tf}), it is not recommended, because a
 #' single value does not account for any variability in the system arising from,
 #' for example, demographic or environmental stochasticity.
-#'
-#' @return a double, the extent of recovery
 #'
 #' @examples
 #' recovery_extent(

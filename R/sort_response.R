@@ -1,4 +1,4 @@
-#' Organize the response variable upon which the statbility metric will be calculated
+#' Organize the response variable upon which the stability metric will be calculated
 #'
 #' @param response a string stating whether the values of the state variable in
 #' the disturbed scenario (\code{response == "v"}) or its log ratio in relation
@@ -7,14 +7,17 @@
 #' disturbed scenario
 #' @param vb_i a numeric vector containing the state variable in the baseline,
 #' a string for the name of the column in \code{b_data} containing said
-#' variable in the baseline, or default \code{NULL}, if a separate baseline is not
-#' being used.
+#' variable in the baseline, or default \code{NULL}, if a separate baseline
+#' is not being used.
 #' @param tb_i an optional numeric vector containing the time steps for which
 #' the baseline was measured, or a string containing the name of the column in
 #' \code{b_data}.
 #' @param b_data an optional data frame containing the time-series of the
 #' baseline values of the state variable. Time and value columns must be named
 #' \code{tb_i} and \code{vb_i}, respectively.
+#'
+#' @return A dataframe with the response variable calculated over time.
+#'
 #' @keywords internal
 sort_response <- function(response, dts_df, vb_i, tb_i, b_data) {
   if (response == "v") {

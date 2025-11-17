@@ -72,24 +72,37 @@ with baseline values.}
 \item{b_data}{an optional data frame containing the time series of the
 state variable values in the baseline.}
 
-\item{comm_d}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_d}{a data frame containing long format community data
+(species as columns over time as rows) to calculate compositional metrics.}
 
-\item{comm_b}{a data frame containing long format community data (specis as columns over time as rows) to calculate compositional metrics.}
+\item{comm_b}{a data frame containing long format community data (species
+names as columns over time as rows) to calculate compositional metrics.}
 
 \item{comm_t}{the name of the time variable in comm_b and comm_d.}
 
-\item{method}{a string identifying the dissimilarity index to be used to calculate dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{method}{a string identifying the dissimilarity index to be used to
+calculate dissimilarity. For more options, see \code{?vegdist}.
+Defaults to "bray".}
 
-\item{binary}{a boolean stating whether presence/absence standardization should be performed before calculating the dissimilarity. For more options, see \code{?vegdist}. Defaults to "bray".}
+\item{binary}{a boolean stating whether presence/absence standardization
+should be performed before calculating the dissimilarity. For more options,
+see \code{?vegdist}. Defaults to "bray".}
 
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-a double, the extent of recovery
+A numeric, the extent of recovery. Maximum (functional and
+compositional) recovery at 0. For functional stability, smaller or higher
+values indicate under- or overcompensation, respectively. For compositional
+stability using the Bray-Curtis index (default),
+\eqn{0 \le R_e \le 1}
+.
+The higher the index, the further apart the communities are after recovery,
+and thus, the lower the recovery is.
 }
 \description{
-\code{recovery_extent} calculates how close a state variable is to its
+\code{recovery_extent} ( \eqn{R_e} ) calculates how close a state variable is to its
 baseline value at a time point specified by the user (usually after recovery
 has taken place). This distance can be calculated as the log-response ratio
 between the values in the disturbed system and the baseline
@@ -106,6 +119,30 @@ In case a certain pre-disturbed period is used as a
 baseline (\code{b = "d"}), a single value over the specified period
 \code{b_tf} is summarized as the mean or median (\code{summ_mode}) of the
 values over that period.
+
+For functional stability, the log-response ratio or difference between the
+state variable in the disturbed systems
+\eqn{v_d}
+and in the baseline
+( \eqn{v_b} or \eqn{v_p}
+if the baseline is pre-disturbance values) measured on the user-defined
+time step when the recovery is assumed to have taken place. Therefore,
+\eqn{R_e = \log\!\left(\frac{v_d(t)}{v_b(t)}\right)}
+, or
+\eqn{R_e = \log\!\left(\frac{v_d(t)}{v_p(t)}\right)}
+, or
+\eqn{R_e = \lvert v_d(t) - v_b(t) \rvert}
+, or
+\eqn{R_e = \lvert v_d(t) - v_p(t) \rvert}
+.
+
+For community stability, the dissimilarity between the disturbed
+( \eqn{C_d} )
+and baseline
+( \eqn{C_b} )
+communities
+\eqn{R_e = \mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right)}
+.
 
 Even though it is possible to use a single data value as baseline
 (by passing a double to \code{b_tf}), it is not recommended, because a

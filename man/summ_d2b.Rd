@@ -14,6 +14,9 @@ the baseline. Obligatory if (\code{b = "d"}), see 'Details'.}
 \item{na_rm}{a logical determining whether NAs should be taken out prior
 to the estimation of the stability metric. Defaults to TRUE.}
 }
+\value{
+A numeric, the baseline summary value.
+}
 \description{
 Internal function, used in \code{resistance()}, \code{recovery_rate()} and
 \code{recovery_extent()} to create a baseline value out of the

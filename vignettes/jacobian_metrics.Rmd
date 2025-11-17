@@ -455,13 +455,13 @@ load("jacobian_performance.rda")
 ```
 
 ```{r}
-multivar_benchmark %>%
+jacobian_benchmark %>%
   dplyr::select(-neval) %>% 
   kableExtra::kbl() %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-![Density distribution of execution times of 100 runs of each of the different functions used to calculate functional metrics, as demonstrated in this vignette.](figures/multivar_benchmark.png){width=100%}
+![Density distribution of execution times of 100 runs of each of the different functions used to calculate functional metrics, as demonstrated in this vignette.](figures/jacobian_benchmark.png){width=100%}
 
 # References
 

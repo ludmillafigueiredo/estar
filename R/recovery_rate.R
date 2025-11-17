@@ -1,17 +1,53 @@
 #' Calculate the rate of recovery.
 #'
-#' \code{recovery_rate} returns the rate of recovery calculated as the slope of
-#' a linear model which uses the time as a predictor of the response.
-#' The response can be the state variable in a disturbed system, or the
-#' log-response ratio (LRR) of the state variable in the disturbed system
-#' compared to the baseline.
+#' \code{recovery_rate} ( \eqn{R_r} ) returns the rate of recovery calculated as
+#' the slope of a linear model which uses the time as a predictor of the
+#' response. The response can be the state variable in a disturbed system, the
+#' log-response ratio or difference between the state variable in the disturbed
+#' and baseline systems, or community dissimilarity.
 #'
-#' @param summ_mode A string, stating whether the baseline should be summarized as
-#' the mean (\code{summ_mode = "mean"}) or the median (\code{summ_mode = "median"}).
-#' Defaults to "mean".
+#' @param summ_mode A string, stating whether the baseline should be summarized
+#' as the mean (\code{summ_mode = "mean"}) or the median
+#' (\code{summ_mode = "median"}). Defaults to "mean".
 #' @inheritParams common_params
 #'
-#' @return a double, the rate of recovery
+#' @return A numeric, the rate of recovery. If
+#' \eqn{R_r = 0}
+#' , the system did not react to the disturbance.
+#' If
+#' \eqn{R_r \ge 0}
+#' , the system moved towards the values in the baseline after the disturbance
+#' (recovery may be partial).
+#' If
+#' \eqn{Rr \le 0}
+#' , the system deviated even further from the control.
+#' In both cases, the higher
+#' \eqn{R_r}
+#' , the faster the response.
+#'
+#' @details
+#' For functional stability, the response can be state variable
+#' itself
+#' ( \eqn{v_d} )
+#' , or the log-response ratio or difference between the
+#' state variable in the disturbed ( \eqn{v_d} ) and in the
+#' baseline ( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values).
+#' For community stability, the response is the dissimilarity between the
+#' disturbed ( \eqn{C_d} ) and baseline ( \eqn{C_b} ) communities. Therefore,
+#'
+#' \deqn{
+#' R_r =
+#' \frac{\sum (t - \bar{t})(y - \bar{y})}{
+#'       \sum (t - \bar{t})^2},
+#' \qquad
+#' y \in \left\{
+#'   v_d,\;
+#'   \log\!\left(\frac{v_d}{v_b}\right),\;
+#'   \log\!\left(\frac{v_d}{v_p}\right),\;
+#'   v_d,\;
+#'   \mathrm{dissim}\!\left(\frac{C_d}{C_b}\right)
+#' \right\}
+#' }
 #'
 #' @examples
 #' recovery_rate(

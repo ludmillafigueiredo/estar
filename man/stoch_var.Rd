@@ -12,11 +12,18 @@ stoch_var(B)
 or functional groups in the community. Can be calculated
 with \code{\link{extractB}} from the fitted MARSS object.}
 }
+\value{
+A numeric, the stochastic variability. The larger its value,
+the more stable the system, as its rate of return to equilibrium is higher.
+}
 \description{
 \code{stoch_var} calculates the intrinsic stochastic
+( \eqn{I_S} )
 invariability - a theoretical equivalent of the
-univariate measure of invariability (Arnoldi, Loreau,
-and Haegeman 2016).
+univariate measure of invariability (Arnoldi et al. 2016).
+}
+\details{
+\deqn{I_S = \frac{1}{\left\lVert B^{-1} \right\rVert_2}}
 }
 \examples{
 library(MARSS)
@@ -126,4 +133,7 @@ library(MARSS)
   # calculate intrinsic stochastic variability for each of the B matrices
   purrr::map(data.Bls, stoch_var)
 }
+}
+\references{
+Arnoldi, J.-F., Loreau, M., & Haegeman, B. (2016). Resilience, reactivity and variability: A mathematical comparison of ecological stability measures. Journal of Theoretical Biology, 389, 47–59. \doi{10.1016/j.jtbi.2015.10.012}
 }

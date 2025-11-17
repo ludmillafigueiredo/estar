@@ -1,10 +1,12 @@
 #' Calculate the persistence of a state variable over a defined
 #' time interval
 #'
-#' \code{persistence} returns the proportion of time the state
+#' \code{persistence} ( \eqn{P} ) returns the proportion of time the state
 #' variable remained inside the interval defined by one baseline's
-#' \eqn{\pm} sd from the baseline's mean (functional stability) or
-#' the user (compositional stability). The proportion is calculated in
+#' \eqn{\pm}
+#' sd from the baseline's mean (functional stability) or
+#' the user-defined upper and lower limits of the community dissimilarity
+#' (compositional stability). The proportion is calculated in
 #' relation to the time period (\code{metric_tf}) defined by the user.
 #'
 #' @param low_lim minimal dissimilarity value the user expects for a persistent
@@ -13,9 +15,25 @@
 #' community
 #' @inheritParams common_params
 #'
-#' @return a double, contained in \[0,1\]
+#' @return A numeric, the persistence,
+#' \eqn{0 \le P \le}
+#' . The higher persistence is, the more stable the system.
 #'
-#' @details If the baseline is defined by the pre-disturbed values of the
+#' @details
+#'
+#' \deqn{
+#' P = \frac{t_P}{t_a}
+#' }
+#'
+#' where
+#' \eqn{t_a}
+#' is the total time frame defined by the
+#' user (\code{metric_tf}) and
+#' \eqn{t_P}
+#' is the time period during which the response remain inside the limits
+#' defined by the user.
+#'
+#' If the baseline is defined by the pre-disturbed values of the
 #' state variable in the disturbed system (\code{b = "d"}), this pre-disturbed
 #' time period used as baseline (\code{b_tf}) cannot overlap with the time period
 #' for which the persistence is to be calculated (\code{metric_tf}), because of

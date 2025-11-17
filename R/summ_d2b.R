@@ -5,6 +5,9 @@
 #'  pre-disturbance values in the disturbed system.
 #'
 #' @inheritParams common_params
+#'
+#' @return A numeric, the baseline summary value.
+#'
 #' @keywords internal
 summ_d2b <- function(dts_df, b_tf, summ_mode, na_rm) {
   summ_f <- match.fun(summ_mode)
