@@ -3,10 +3,11 @@
 #' \code{resistance} ( \eqn{R} ) returns either the distance of a state variable to
 #' a baseline value at a specified time point or a maximum distance between the
 #' state variables in the disturbed system and the baseline over a specified
-#' period. The distance can be calculated either as the absolute difference
-#' between the state variables in the disturbed system and the baseline,
-#' or as the log response ratio between these state variables.
-#' See details on how to specify the values.
+#' period. For functional stability, the  distance can be calculated as the
+#' log-response ratio or as the difference between the state variables in a
+#' disturbed time-series and the baseline. For community stability, the distance
+#' is calculated as the dissimilarity between the disturbed and baseline
+#' communities.
 #'
 #' @param res_mode A string stating whether the resistance should be calculated
 #' as the log response ratio of the state variable in the disturbed system

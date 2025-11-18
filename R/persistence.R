@@ -15,8 +15,8 @@
 #' community
 #' @inheritParams common_params
 #'
-#' @return A numeric, the persistence,
-#' \eqn{0 \le P \le}
+#' @return A single numeric value, the persistence,
+#' \eqn{0 \le P \le 1}
 #' . The higher persistence is, the more stable the system.
 #'
 #' @details

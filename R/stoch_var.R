@@ -14,7 +14,19 @@
 #' the more stable the system, as its rate of return to equilibrium is higher.
 #'
 #' @details
-#' \deqn{I_S = \frac{1}{\left\lVert B^{-1} \right\rVert_2}}
+#' \deqn{
+#' I_S = \frac{1}{\lVert B^{-1} \rVert}
+#' }
+#'
+#' where \eqn{\lVert B^{-1} \rVert} is the spectral norm of the inverse
+#' of the matrix \eqn{B}. The spectral norm is computed as the dominant
+#' eigenvalue of the matrix
+#'
+#' \deqn{
+#' B \otimes I + I \otimes B
+#' }
+#'
+#' where \eqn{I} is the identity matrix.
 #'
 #' @references
 #' Arnoldi, J.-F., Loreau, M., & Haegeman, B. (2016). Resilience, reactivity and variability: A mathematical comparison of ecological stability measures. Journal of Theoretical Biology, 389, 47–59. \doi{10.1016/j.jtbi.2015.10.012}

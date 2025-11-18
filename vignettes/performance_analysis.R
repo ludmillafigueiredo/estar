@@ -1,7 +1,7 @@
 library(estar)
 library(here)
 library(microbenchmark)
-library(ggplot2)
+library(tidyverse)
 library(viridis)
 library(MARSS)
 source("vignettes/custom_aesthetics.R")
@@ -140,7 +140,7 @@ resis_benchmark <- microbenchmark(
   res_5 = {resistance(
     type = "functional",
     b = "d",
-    b_tf = c(-4, 0),
+    b_tf = c(-4, 0.14),
     res_time = "max",
     res_mode = "diff",
     res_tf = c(1, 20),
@@ -151,7 +151,7 @@ resis_benchmark <- microbenchmark(
   res_6 = {resistance(
     type = "functional",
     b = "d",
-    b_tf = c(-4, 0),
+    b_tf = c(-4, 0.14),
     res_mode = "lrr",
     res_time = "defined",
     res_t = 1,
@@ -326,7 +326,7 @@ persist_benchmark <- microbenchmark(
   persist_2 = {persistence(
     type = "functional",
     b = "d",
-    b_tf = c(-4, 0),
+    b_tf = c(-4, 0.14),
     metric_tf = c(28, max(aquacomm_resps$time)),
     vd_i = "statvar_db",
     td_i = "time",

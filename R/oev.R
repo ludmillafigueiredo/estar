@@ -1,9 +1,11 @@
-#' Calculate the overall ecological vulnerability of a community after disturbance.
+#' Calculate the overall ecological vulnerability of a community after disturbance
 #'
-#' \code{oev} returns area under the curve of the absolute log-response-ratio
-#' (functional stability) or the dissimilarity (compositional stability)
-#' between the disturbed and baseline communities. The area under the curve is
-#' calculated as
+#' \code{oev} returns the overall ecological vulnerability \eqn{OEV}
+#' , calculated as the area under the curve ( \eqn{AUC} ) of the absolute
+#' log-response-ratio (functional stability) or the dissimilarity
+#' (compositional stability) between the disturbed and baseline communities
+#' .
+#' The area under the curve is calculated through trapezoidal integration.
 #'
 #' @param response a string stating whether the stability metric should be
 #' calculated using the log-response ratio between the values in the disturbed
@@ -11,7 +13,53 @@
 #' variable values in the disturbed system alone (\code{response == "v"}).
 #' @inheritParams common_params
 #'
-#' @return A numeric, the overall ecological vulnerability
+#' @return A single numeric value, the overall ecological vulnerability.
+#' \eqn{OEV \ge 0}
+#' . The higher the value, the less stable the system.
+#'
+#' @details
+#' The overall ecosystem variability (OEV) is defined as the area under the
+#' curve (AUC) of the system's response through time.
+#' For functional stability, the response is the log response ratio between
+#' the state variable’s value in the disturbed ( \eqn{v_d} ) and in the baseline
+#' systems ( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values).
+#' For compositional stability, the response is the dissimilarity between the
+#' disturbed ( \eqn{C_d} ) and baseline ( \eqn{C_b} ) communities.
+#' Therefore,
+#'
+#' \eqn{
+#' \mathrm{OEV} = \mathrm{AUC}\!\left(
+#'   \left\lvert \log\!\left( \frac{v_d(t)}{v_b(t)} \right) \right\rvert,\, t
+#' \right)
+#' }
+#'
+#' or
+#'
+#' \eqn{
+#' \mathrm{OEV} = \mathrm{AUC}\!\left(
+#'   \left\lvert \log\!\left( \frac{v_d(t)}{v_p(t)} \right) \right\rvert,\, t
+#' \right)
+#' }
+#'
+#' or
+#'
+#' \eqn{
+#' \mathrm{OEV} = \mathrm{AUC}\!\left(
+#'   \mathrm{dissim}\!\left( \frac{C_d(t)}{C_b(t)} \right),\, t
+#' \right)
+#' }
+#'
+#' where the area under the curve is defined as
+#'
+#' \eqn{
+#' \mathrm{AUC}(y, t)
+#'   = \sum_{i = 1}^{n - 1}
+#'     \frac{\left(t_{i+1} - t_i\right)\left(y_i + y_{i+1}\right)}{2}
+#' }
+#' (trapezoidal integration).
+#'
+#' @references Urrutia-Cordero, P., Langenheder, S., Striebel, M., Angeler, D. G., Bertilsson, S., Eklöv, P., Hansson, L.-A., Kelpsiene, E., Laudon, H., Lundgren, M., Parkefelt, L., Donohue, I., & Hillebrand, H. (2022). Integrating multiple dimensions of ecological stability into a vulnerability framework. Journal of Ecology, 110(2), 374–386. \doi{10.1111/1365-2745.13804}
+
 #'
 #' @examples
 #' oev(

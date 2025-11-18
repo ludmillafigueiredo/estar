@@ -90,8 +90,8 @@ community}
 to the estimation of the stability metric. Defaults to TRUE.}
 }
 \value{
-A numeric, the persistence,
-\eqn{0 \le P \le}
+A single numeric value, the persistence,
+\eqn{0 \le P \le 1}
 . The higher persistence is, the more stable the system.
 }
 \description{

@@ -1,18 +1,16 @@
-#' Calculate the initial resilience of a community from its community matrix.
+#' Calculate the initial resilience of a community after disturbance
 #'
 #' \code{init_resil} calculates initial resilience
 #' \eqn{R_0}
 #' as the initial rate of return to equilibrium (Downing et al. 2020).
-#' The larger its value, the more stable the system, as its “worst case”
-#' initial rate of return to equilibrium is faster (Downing et al. 2020).
 #'
 #' @param B a matrix, containing the interactions between the species
 #' or functional groups in the community.
 #' Can be calculated with \code{\link{extractB}} from the
 #' fitted MARSS object.
 #'
-#' @return A single numeric value, the initial resilience.
-#' The larger its value, the more stable the system.
+#' @return A single numeric value, the initial resilience. The larger its value,
+#' the more stable the system.
 #'
 #' @details
 #' \deqn{

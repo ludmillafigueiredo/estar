@@ -2,8 +2,7 @@
 % Please edit documentation in R/asympt_resil.R
 \name{asympt_resil}
 \alias{asympt_resil}
-\title{Calculate the asymptotic resilience of a community from its
-community matrix.}
+\title{Calculate the asymptotic resilience of a community after disturbance}
 \usage{
 asympt_resil(B)
 }
@@ -13,40 +12,23 @@ or functional groups in the community. Can be calculated with
 \code{\link{extractB}} from the fitted MARSS object.}
 }
 \value{
-A single positive numeric value, asymptotic rate of return to
+A single positive numeric value, the asymptotic rate of return to
 equilibrium after a pulse perturbation.The larger its value, the more
 stable the system.
 }
 \description{
-\code{asympt_resil} calculates asymptotic resilience
-}
-\details{
-\eqn{R_a}
-
+\code{asympt_resil} calculates a community's asymptotic resilience
+\eqn{R_{\infty}}
 as the slowest long-term asymptotic rate of return to
 equilibrium after a pulse perturbation (Arnoldi et al. 2016,
 Downing et al. 2020).
-
-\deqn{
-R_a = \lambda_{\mathrm{dom}}\!\left( H(B) \right)
 }
-where
-
-\eqn{\lambda_{\mathrm{dom}}}
-
-is the dominant eigenvalue, and
-
-\eqn{H(B)}
-
-is the Rayleigh quotient of
-
-\eqn{B}
-
-:
-
-\eqn{H(B) = \frac{x^{\mathsf{T}} B\, x}{x^{\mathsf{T}} x}}
-
-.
+\details{
+\deqn{
+R_{\infty} = -\log \!\left(
+  \left| \lambda_{\mathrm{dom}}(B) \right|
+  \right)
+ }
 }
 \examples{
 library(MARSS)

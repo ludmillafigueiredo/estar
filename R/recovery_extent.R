@@ -1,21 +1,20 @@
-#' Calculate the extent of recovery
+#' Calculate the extent of recovery after disturbance
 #'
-#' \code{recovery_extent} ( \eqn{R_e} ) calculates how close a state variable is to its
-#' baseline value at a time point specified by the user (usually after recovery
-#' has taken place). This distance can be calculated as the log-response ratio
-#' between the values in the disturbed system and the baseline
-#' or as the difference between the state variables in a disturbed
+#' \code{recovery_extent} ( \eqn{R_e} ) calculates how close a state variable is
+#' to its baseline value at a time point specified by the user
+#' (usually after recovery has taken place). For functional stability,
+#' the  distance can be calculated as the log-response ratio or as the
+#' difference between the state variables in a disturbed
 #' time-series and the baseline. The baseline can be
 #' \itemize{
-#' \item a value at time \code{t_rec} of the baseline time-series (\code{b_data}) (\code{b = "input"})
-#' \item values of the state variable in the disturbed system over a period
-#' defined by \code{b_tf}
-#' }.
-#'
-#' In case a certain pre-disturbed period is used as a
-#' baseline (\code{b = "d"}), a single value over the specified period
-#' \code{b_tf} is summarized as the mean or median (\code{summ_mode}) of the
-#' values over that period.
+#' \item a value at time \code{t_rec} of the baseline time-series
+#' \code{b_data} (if \code{b = "input"}).
+#' \item pre-disturbance values of the state variable in the disturbed system
+#' over a period defined by \code{b_tf} (if \code{b = "d"}). In that case,
+#' the state variable is summarized as the mean or median (\code{summ_mode}).
+#' }
+#' For community stability, the distance is calculated as the dissimilarity
+#' between the disturbed and baseline communities.
 #'
 #' @param response a string stating whether the stability metric should be
 #' calculated using the log-response ratio between the values in the disturbed
@@ -62,10 +61,10 @@
 #' \eqn{R_e = \mathrm{dissim}\!\left(\frac{C_d(t)}{C_b(t)}\right)}
 #' .
 #'
-#' Even though it is possible to use a single data value as baseline
-#' (by passing a double to \code{b_tf}), it is not recommended, because a
-#' single value does not account for any variability in the system arising from,
-#' for example, demographic or environmental stochasticity.
+#' Even though it is possible to use a single data value as baseline, it is not
+#' recommended, because a single value does not account for any variability in
+#' the system arising from, for example, demographic or environmental
+#' stochasticity.
 #'
 #' @examples
 #' recovery_extent(
@@ -130,7 +129,9 @@ recovery_extent <- function(type,
         data.frame("vb_i" = bts_df$vb_i, "t" = bts_df$tb_i)
       )
 
-      ifelse(!(t_rec %in% extent_df$t), stop("Choose a t_rec for which you have input data."), extent_df <- extent_df[extent_df$t == t_rec, ])
+      ifelse(!(t_rec %in% extent_df$t),
+             stop("Choose a t_rec for which you have input data."),
+             extent_df <- extent_df[extent_df$t == t_rec, ])
     } else {
       if (b == "d") {
         if (min(b_tf) == max(b_tf)) {

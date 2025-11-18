@@ -1,10 +1,7 @@
-#' Calculate the asymptotic resilience of a community from its
-#' community matrix.
+#' Calculate the asymptotic resilience of a community after disturbance
 #'
-#' \code{asympt_resil} calculates asymptotic resilience
-#'
-#' \eqn{R_a}
-#'
+#' \code{asympt_resil} calculates a community's asymptotic resilience
+#' \eqn{R_{\infty}}
 #' as the slowest long-term asymptotic rate of return to
 #' equilibrium after a pulse perturbation (Arnoldi et al. 2016,
 #' Downing et al. 2020).
@@ -13,32 +10,17 @@
 #' or functional groups in the community. Can be calculated with
 #' \code{\link{extractB}} from the fitted MARSS object.
 #'
-#' @return A single positive numeric value, asymptotic rate of return to
+#' @return A single positive numeric value, the asymptotic rate of return to
 #' equilibrium after a pulse perturbation.The larger its value, the more
 #' stable the system.
 #'
 #' @details
-#'
 #' \deqn{
-#' R_a = \lambda_{\mathrm{dom}}\!\left( H(B) \right)
-#' }
-#' where
+#' R_{\infty} = -\log \!\left(
+#'   \left| \lambda_{\mathrm{dom}}(B) \right|
+#'   \right)
+#'  }
 #'
-#' \eqn{\lambda_{\mathrm{dom}}}
-#'
-#' is the dominant eigenvalue, and
-#'
-#' \eqn{H(B)}
-#'
-#' is the Rayleigh quotient of
-#'
-#' \eqn{B}
-#'
-#' :
-#'
-#' \eqn{H(B) = \frac{x^{\mathsf{T}} B\, x}{x^{\mathsf{T}} x}}
-#'
-#' .
 #'
 #' @references
 #' Arnoldi et al. (2016). Resilience, reactivity and variability: A mathematical comparison of ecological stability measures. Journal of Theoretical Biology, 389, 47–59. \doi{10.1016/j.jtbi.2015.10.012}

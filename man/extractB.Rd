@@ -2,7 +2,7 @@
 % Please edit documentation in R/extractB.R
 \name{extractB}
 \alias{extractB}
-\title{Extract the community matrix (B) estimated by a MARSS model.}
+\title{Extract the community matrix (B)}
 \usage{
 extractB(marss_res, states_names = NULL)
 }
@@ -13,12 +13,15 @@ extractB(marss_res, states_names = NULL)
 for which interactions were estimated.}
 }
 \value{
-A named, Jacobian (square) matrix (B) of estimated interaction strengths
-between the species/groups. The matrix is named after the strings in
-\code{states_names}.
+A named square matrix (B) with one row (and column) per species/group
+listed in \code{states_names} (which should also have been used in
+\code{\link[MARSS]{MARSS}}). Row and column names are included (named after
+\code{states_names}). The values are interaction strengths between the
+species/groups estimated by MARSS.
 }
 \description{
-Extract the community matrix (B) estimated by a MARSS model.
+Extract the community matrix (B) estimated by a MARSS model. The matrix is
+necessary to calculate the Jacobian metrics.
 }
 \examples{
 library(MARSS)

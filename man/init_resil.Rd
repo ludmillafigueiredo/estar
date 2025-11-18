@@ -2,7 +2,7 @@
 % Please edit documentation in R/init_resil.R
 \name{init_resil}
 \alias{init_resil}
-\title{Calculate the initial resilience of a community from its community matrix.}
+\title{Calculate the initial resilience of a community after disturbance}
 \usage{
 init_resil(B)
 }
@@ -13,15 +13,13 @@ Can be calculated with \code{\link{extractB}} from the
 fitted MARSS object.}
 }
 \value{
-A single numeric value, the initial resilience.
-The larger its value, the more stable the system.
+A single numeric value, the initial resilience. The larger its value,
+the more stable the system.
 }
 \description{
 \code{init_resil} calculates initial resilience
 \eqn{R_0}
 as the initial rate of return to equilibrium (Downing et al. 2020).
-The larger its value, the more stable the system, as its “worst case”
-initial rate of return to equilibrium is faster (Downing et al. 2020).
 }
 \details{
 \deqn{

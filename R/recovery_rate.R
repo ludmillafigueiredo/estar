@@ -1,10 +1,18 @@
-#' Calculate the rate of recovery.
+#' Calculate the rate of recovery after disturbance
 #'
 #' \code{recovery_rate} ( \eqn{R_r} ) returns the rate of recovery calculated as
 #' the slope of a linear model which uses the time as a predictor of the
 #' response. The response can be the state variable in a disturbed system, the
-#' log-response ratio or difference between the state variable in the disturbed
-#' and baseline systems, or community dissimilarity.
+#' log-response ratio or community dissimilarity between the state variable
+#' (or community) in the disturbed and baseline systems.
+#' The baseline can be
+#' \itemize{
+#' \item a value at time \code{t_rec} of the baseline time-series
+#' \code{b_data} (if \code{b = "input"}).
+#' \item pre-disturbance values of the state variable in the disturbed system
+#' over a period defined by \code{b_tf} (if \code{b = "d"}). In that case,
+#' the state variable is summarized as the mean or median (\code{summ_mode}).
+#' }
 #'
 #' @param summ_mode A string, stating whether the baseline should be summarized
 #' as the mean (\code{summ_mode = "mean"}) or the median
@@ -26,10 +34,10 @@
 #' , the faster the response.
 #'
 #' @details
-#' For functional stability, the response can be state variable
+#' For functional stability, the response can the be state variable
 #' itself
 #' ( \eqn{v_d} )
-#' , or the log-response ratio or difference between the
+#' , or the log-response ratio between the
 #' state variable in the disturbed ( \eqn{v_d} ) and in the
 #' baseline ( \eqn{v_b} or \eqn{v_p} if the baseline is pre-disturbance values).
 #' For community stability, the response is the dissimilarity between the
@@ -44,7 +52,6 @@
 #'   v_d,\;
 #'   \log\!\left(\frac{v_d}{v_b}\right),\;
 #'   \log\!\left(\frac{v_d}{v_p}\right),\;
-#'   v_d,\;
 #'   \mathrm{dissim}\!\left(\frac{C_d}{C_b}\right)
 #' \right\}
 #' }

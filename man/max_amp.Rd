@@ -2,8 +2,7 @@
 % Please edit documentation in R/max_amp.R
 \name{max_amp}
 \alias{max_amp}
-\title{Calculate the maximal amplification of a community from its
-community matrix.}
+\title{Calculate the maximal amplification of a community after disturbance}
 \usage{
 max_amp(B)
 }
@@ -14,9 +13,9 @@ Can be calculated with \code{\link{extractB}} from the
 fitted MARSS object.}
 }
 \value{
-A numeric, the maximal amplification factor by which a perturbation
-is amplified (relative to its initial size) before the system's eventual
-equilibrium.
+A single numeric numeric, the maximal amplification factor by which a
+perturbation is amplified (relative to its initial size) before the system's
+eventual equilibrium.
 If
 \eqn{A_{max} > 1}
 , the system overreacts and departs from equilibrium.
@@ -28,7 +27,7 @@ If
 \code{max_amp} calculates the maximal amplification ( \eqn{A_{max}} ) as
 the euclidean norm of a community matrix
 \eqn{B}
-(Neubert et al. 1996). We use the \code{expmat} function of
+(Neubert et al. 1996). It uses the \code{expmat} function of
 the \code{hesim} package to calculate the exponential of the community matrix
 \eqn{B}
 , and then its Euclidean norm.

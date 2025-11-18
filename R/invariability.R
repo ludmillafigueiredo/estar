@@ -1,9 +1,11 @@
-#' Calculate the invariability of a state variable after disturbance.
+#' Calculate the invariability of a state variable after disturbance
 #'
-#' \code{invariability} returns the temporal invariability.
+#' \code{invariability} returns the temporal invariability
+#' \eqn{I}
+#' of a system following disturbance.
 #' Invariability can be calculated using the post-disturbance values of the
-#' state variable in the disturbed system, or the log-response ratio of the
-#' state variable in the disturbed system compared to the baseline.
+#' state variable in the disturbed system as the response, or the log-response
+#' ratio of the state variable in the disturbed system compared to the baseline.
 #' Two variants of invariability can be calculated: as the inverse of the
 #' coefficient of variation of the system's response, or the inverse of the
 #' standard deviation of residuals of the linear model that uses the time
@@ -15,7 +17,7 @@
 #' model \code{"lm_res"}.
 #' @inheritParams common_params
 #'
-#' @return A numeric, the invariability ( \eqn{I} ) value. The larger in
+#' @return A single numeric, the invariability ( \eqn{I} ) value. The larger in
 #' magnitude
 #' \eqn{I}
 #' is, the higher the stability, since the variation
@@ -38,22 +40,16 @@
 #'
 #' - For compositional stability, the response is the dissimilarity between the
 #' disturbed ( \eqn{C_d} ) and baseline ( \eqn{C_b} ) communities:
-#'
-#' \deqn{
-#' I = \mathrm{CV}\!\left(
-#'       \mathrm{dissim}\!\left( \frac{C_d}{C_b} \right)
-#'     \right)^{-1}
-#' }
+#' \eqn{I = \mathrm{CV}\!\left(\mathrm{dissim}\!\left( \frac{C_d}{C_b} \right) \right)^{-1} }
 #'
 #' Alternatively, instability can be calculated as inverse of the standard
 #' deviation of residuals of the linear model where the response
 #' (same as above) is predicted by time, whereby:
 #' \eqn{I = \sigma(\varepsilon)^{-1}}
-#' from
+#' , from
 #' \eqn{y = \alpha + R_r\, t + \varepsilon}
-#' where
-#'
-#' \deqn{
+#' , where
+#' \eqn{
 #' y \in \left\{
 #'   \log\!\left(\frac{v_d}{v_b} \right),
 #'   \log\!\left(\frac{v_d}{v_p} \right),
@@ -61,7 +57,6 @@
 #'   \mathrm{dissim}\!\left( \frac{C_d}{C_b} \right)
 #' \right\}
 #' }
-#'
 #' ,
 #' \eqn{\alpha}
 #' is the intercept, and

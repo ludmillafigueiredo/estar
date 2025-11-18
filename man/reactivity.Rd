@@ -2,7 +2,7 @@
 % Please edit documentation in R/reactivity.R
 \name{reactivity}
 \alias{reactivity}
-\title{Calculate the reactivity of a community from its community matrix.}
+\title{Calculate the reactivity of a community after disturbance}
 \usage{
 reactivity(B)
 }
@@ -13,13 +13,31 @@ Can be calculated with \code{\link{extractB}} from the
 fitted MARSS object.}
 }
 \value{
-A numeric, the reactivity value.
+A single numeric value, the reactivity value.
+If \eqn{R_a > 0}
+, the perturbation grows, i.e., the system is initially destabilised.
+If \eqn{R_a < 0}
+0 the perturbation doesn’t grow and the system isn’t initially destabilised.
 }
 \description{
-\code{reactitvity} calculates reactivity as the initial rate
+\code{reactitvity} calculates reactivity \eqn{R_a} as the initial rate
 of return to equilibrium (Downing et al. 2020). Following
 Neubert et al. (1996), it is calculated as the largest
-eigenvalue of the Hermitian part of the community matrix $B$.
+eigenvalue of the Hermitian part of the community matrix
+\eqn{B}
+.
+}
+\details{
+\eqn{R_a = \lambda_{\mathrm{dom}}\!\left( H(B) \right)}
+where
+\eqn{\lambda_{\mathrm{dom}}}
+is the dominant eigenvalue, and
+\eqn{H(B)}
+is the Rayleigh quotient of
+\eqn{B}
+:
+\eqn{H(B) = \frac{x^{\mathsf{T}} B\, x}{x^{\mathsf{T}} x}}
+.
 }
 \examples{
 library(MARSS)
@@ -133,6 +151,8 @@ library(MARSS)
 }
 \references{
 Neubert, M. G., & Caswell, H. (1997). Alternatives to Resilience for Measuring the Responses of Ecological Systems to Perturbations. Ecology, 78(3), 653–665.
+
+Downing, A. L., Jackson, C., Plunkett, C., Lockhart, J. A., Schlater, S. M., & Leibold, M. A. (2020). Temporal stability vs. Community matrix measures of stability and the role of weak interactions. Ecology Letters, 23(10), 1468–1478. \doi{10.1111/ele.13538}
 }
 \seealso{
 \code{\link[=extractB]{extractB()}}

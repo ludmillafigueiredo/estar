@@ -23,7 +23,19 @@ invariability - a theoretical equivalent of the
 univariate measure of invariability (Arnoldi et al. 2016).
 }
 \details{
-\deqn{I_S = \frac{1}{\left\lVert B^{-1} \right\rVert_2}}
+\deqn{
+I_S = \frac{1}{\lVert B^{-1} \rVert}
+}
+
+where \eqn{\lVert B^{-1} \rVert} is the spectral norm of the inverse
+of the matrix \eqn{B}. The spectral norm is computed as the dominant
+eigenvalue of the matrix
+
+\deqn{
+B \otimes I + I \otimes B
+}
+
+where \eqn{I} is the identity matrix.
 }
 \examples{
 library(MARSS)

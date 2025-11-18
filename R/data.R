@@ -14,9 +14,9 @@
 #' @field detr abundance of detrivores
 #'
 #' @references
-#' van den Brink, P. J., Van Wijngaarden, R. P. A., Lucassen, W. G. H., Brock, T. C. M., & Leeuwangh, P. (1996). Effects of the insecticide dursban® 4E (active ingredient chlorpyrifos) in outdoor experimental ditches: II. Invertebrate community responses and recovery. Environmental Toxicology and Chemistry, 15(7), 1143–1153. https://doi.org/10.1002/etc.5620150719
+#' van den Brink, P. J., Van Wijngaarden, R. P. A., Lucassen, W. G. H., Brock, T. C. M., & Leeuwangh, P. (1996). Environmental Toxicology and Chemistry, 15(7), 1143–1153. \doi{10.1002/etc.5620150719}
 #'
-#' Wijngaarden, R. P. A. van, Brink, P. J. van den, Crum, S. J. H., Brock, T. C. M., Leeuwangh, P., & Voshaar, O. J. H. (1996). Effects of the insecticide dursban® 4E (active ingredient chlorpyrifos) in outdoor experimental ditches: I. Comparison of short-term toxicity between the laboratory and the field. Environmental Toxicology and Chemistry, 15(7), 1133–1142. https://doi.org/10.1002/etc.5620150718
+#' Wijngaarden, R. P. A. van, Brink, P. J. van den, Crum, S. J. H., Brock, T. C. M., Leeuwangh, P., & Voshaar, O. J. H. (1996). Effects of the insecticide dursban® 4E (active ingredient chlorpyrifos) in outdoor experimental ditches: I. Comparison of short-term toxicity between the laboratory and the field. Environmental Toxicology and Chemistry, 15(7), 1133–1142. \doi{10.1002/etc.5620150718}
 
 "aquacomm_fgps"
 
