@@ -15,12 +15,7 @@ knitr::opts_chunk$set(
 
 # estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ludmillafigueiredo/estar/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/ludmillafigueiredo/estar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ludmillafigueiredo/estar?branch=main)
-<!-- badges: end -->
-
-`estar` provides two sets of functions. 
+The `estar` package provides two sets of functions. 
 
 The first set corresponds to functions that measure stability at any level of organisation, from individual to community and can be applied to a time series of a system’s state variables (e.g., body mass, population abundance, or species diversity). The properties included in this set are: 
 
