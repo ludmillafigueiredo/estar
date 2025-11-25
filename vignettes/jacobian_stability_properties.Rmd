@@ -1,5 +1,5 @@
 ---
-title: "Jacobian stability metrics"
+title: "Jacobian stability properties"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -7,7 +7,7 @@ output:
     fig_caption: TRUE
     code_folding: hide
 vignette: >
-  %\VignetteIndexEntry{marss_estar}
+  %\VignetteIndexEntry{Jacobian stability properties}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 bibliography: references.bib
@@ -18,7 +18,8 @@ editor_options:
 
 ```{r knit-setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(
-  comment = "#>"
+  comment = "#>",
+  warning=FALSE
   )
 options(rmarkdown.html_vignette.check_title = FALSE) ## title and VignetteIndexEntry are slightly different and this avoids a warning message every time it's rendered
 ```
@@ -41,24 +42,27 @@ label_intensity <- function(intensity, mu){
 }
 ```
 
-Calculation of the so-called "functional stability metrics" (in the context of the `estar` package) relies on the interaction strengths between species composing a community.
+Calculation of the Jacobian stability properties (in the context of the `estar` package, Fig. 1) relies on the interaction strengths between species composing a community.
+
+![Figure 1: Jacobian stability properties calculated by `estar`: reactivity ($R_a$), calculated at the first time step following disturbance ($t_{d+1}$); maximal amplification ($A_{max}$); initial resilience ($R_0$); asymptotic resilience (R∞); and intrinsic stochastic invariability ($I_S$). For simplicity, the properties are illustrated as being calculated in relation to a state variable ($v$) disturbed at time $t_d$, but the properties are calculated from the community’s species interactions matrix and not a single state variable.](figures/jacobian_metrics.png){width=400px}
+
 This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
 In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models.
 
-In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model), how these models can be used with the functions provided by the [`estar` package](#marss-in-estar), and the issues that may arise when empirical data is [limited](#limited-data).
+In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
 To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an aquatic community.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Overview of demonstration data
 
-Similar to what we did for the univariate stability metrics, we illustrate the use of functional stability metrics on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
+Similar to what we did for the functional properties, we illustrate the use of Jacobian properties on a dataset compiled from an ecotoxicological study about the effects of insecticide on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996].
 The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species.
 This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
 
-```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = " Figure 2: Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (aquacomm_fgps.logplot <- aquacomm_fgps |>
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") |>
@@ -131,7 +135,7 @@ Note that:
 The state process ($\mathbf{X}$) is described by:
 
 -   $\mathbf{x}_t$ is a $m \times 1$ vector of unknown abundances of the $m$ species at time $t$.
--   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate community-based stability metrics.
+-   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate Jacobian properties.
 -   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
 -   $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
 -   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
@@ -181,6 +185,7 @@ w_{m}
 \end{bmatrix}_t \\
 \end{equation}
 ```
+
 The $w_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix).
 \begin{equation}
 \mathbf{w}_t \sim \,\text{MVN}
@@ -213,6 +218,7 @@ The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
 \end{bmatrix}_t
 \end{equation}
 ```
+
 The observation process ($\mathbf{Y}$) is described by:
 
 -   $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
@@ -286,12 +292,12 @@ The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without a
 
 ## MARSS in estar {#marss-in-estar}
 
-When calculating the functional metrics the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
+When calculating the Jacobian properties, the user can either provide the required community matrix ($\mathbf{B}$) or have it estimated from the empirical data using a set of predefined assumptions about the modeled community.
 Empirical data in this case constitutes time series of population abundances (or biomass) of all the species (or functional groups) in the community.
-None of the parameters detailed here have default values in functions that calculate the community-based stability metrics.
+None of the parameters detailed here have default values in functions that calculate the Jacobian properties.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
 
-When fitting MARSS models, the user can have up to eight matrices or vectors of parameters estimated (Holmes, Scheuerell, et al., 2024). This is true for all other parameters of the model, which refer to the (co ) variances and errors of abundance and observation processes. The species interaction matrix (B) is usually fully estimated, i.e. all interaction strengths are estimated. It is however possible to constrain values to specific values or in relation to each other. We showcase the use of MARSS in a system assumed to be at equilibrium, with zero observational error, zero covariates (e..g. environmental conditions affecting abundances or the observation). These assumptions reflect knowledge about the system, which, in our case we assume to be minimal. However, for that reason, we also leave it for the user to define their own assumptions. They will affect the estimation of B. Moreover, it is important to point out that the calculation of asymptotic resilience (Downing et al., 2020) implemented in the package requires that process error and constant covariates.
+When fitting MARSS models, the user can have up to eight matrices or vectors of parameters estimated (Holmes, Scheuerell, et al., 2024). This is true for all other parameters of the model, which refer to the (co-) variances and errors of abundance and observation processes. The species interaction matrix (B) is usually fully estimated, i.e. all interaction strengths are estimated. It is however possible to constrain values to specific values or in relation to each other. We showcase the use of MARSS in a system assumed to be at equilibrium, with zero observational error, zero covariates (e..g. environmental conditions affecting abundances or the observation). These assumptions reflect knowledge about the system, which, in our case we assume to be minimal. However, for that reason, we also leave it for the user to define their own assumptions. They will affect the estimation of B. Moreover, it is important to point out that the calculation of asymptotic resilience (Downing et al., 2020) implemented in the package requires that process error and constant covariates.
 
 Pay attention to careful specification of the parameters for the options. For example, a care should be made when specifying the initial and the final time step of the time series. If the user knows the exact timing when the disturbance took place, then the time series should start right from that time point or one time step (whatever appropriate time step is useful) after.  
 
@@ -397,7 +403,7 @@ We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matri
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
 
-Finally, having estimated $\mathbf{B}$ we can calculate all the functional stability metrics:
+Finally, having estimated $\mathbf{B}$ we can calculate all the Jacobian properties :
 
 ## Reactivity
 
@@ -444,9 +450,9 @@ aquacomm.Bls %>%
   map(estar::stoch_var)
 ```
 
-# Performance of functional metrics
+# Performance of functions
 
-We conducted the benchmark analysis of the execution time of the different functional metrics. The code used for the analysis is available in `performance_analysis.R`.
+We conducted the benchmark analysis of the execution time of the different Jacobian properties. The code used for the analysis is available in `performance_analysis.R`.
 
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example.
 
@@ -461,7 +467,7 @@ jacobian_benchmark %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-![Density distribution of execution times of 100 runs of each of the different functions used to calculate functional metrics, as demonstrated in this vignette.](figures/jacobian_benchmark.png){width=100%}
+![Figure 3: Density distribution of execution times of 100 runs of each of the different functions used to calculate Jacobian properties, as demonstrated in this vignette.](figures/jacobian_benchmark.png){width=100%}
 
 # References
 

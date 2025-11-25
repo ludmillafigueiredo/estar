@@ -1,6 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit Rmd only file -->
 
+<!-- badges: start -->
+
+[![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.estar-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.estar)](https://doi.org/10.32614/CRAN.package.estar)
+<!-- badges: end -->
+
 # estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
 
 The `estar` package provides two sets of functions.

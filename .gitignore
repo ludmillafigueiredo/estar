@@ -10,3 +10,5 @@ Meta
 *.DS_Store
 vignettes/marss_models_cache/*
 *chunk*
+/doc/
+/Meta/
