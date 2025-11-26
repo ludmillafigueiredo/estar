@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 [![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.estar-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.estar)](https://doi.org/10.32614/CRAN.package.estar)
 <!-- badges: end -->
 
-# estar <img class="resize" src="man/figures/logo.png" width="200" align="right" />
+# estar <img class="resize" src="man/figures/hex_sticker.png" width="200" align="right" />
 
 The `estar` package provides two sets of functions. 
 
