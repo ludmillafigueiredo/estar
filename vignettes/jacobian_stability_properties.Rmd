@@ -47,7 +47,10 @@ Calculation of the Jacobian stability properties (in the context of the `estar` 
 ![Figure 1: Jacobian stability properties calculated by `estar`: reactivity ($R_a$), calculated at the first time step following disturbance ($t_{d+1}$); maximal amplification ($A_{max}$); initial resilience ($R_0$); asymptotic resilience (R∞); and intrinsic stochastic invariability ($I_S$). For simplicity, the properties are illustrated as being calculated in relation to a state variable ($v$) disturbed at time $t_d$, but the properties are calculated from the community’s species interactions matrix and not a single state variable.](figures/jacobian_metrics.png){width=400px}
 
 This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
-In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019].
+In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019]. The Jacobian matrix consists of $m \times m$ entries (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row. (Fig. 2)
+
+![Figure 2: The $B$ matrix that the `estar` Jacobian functions take in as argument is the $m \times m$ Jacobian community matrix (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row](figures/B_matrix.png)
+
 In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models.
 
 In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
@@ -60,10 +63,10 @@ Similar to what we did for the functional properties, we illustrate the use of J
 The insecticide chlorpyrifos negatively affects freshwater macroinvertebrates, and, to a lesser degree, zooplankton species.
 This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 44 $\mu$g/ L), with two replicates per concentration level.
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
-The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores.
+The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores (Fig. 3).
 
-```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = " Figure 2: Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
-(aquacomm_fgps.logplot <- aquacomm_fgps |>
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = " Figure 3: Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+(data_logplot <- aquacomm_fgps |>
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") |>
   ## summarize to plot
@@ -93,8 +96,8 @@ The community is composed of 128 species, classified into 5 functional groups: h
 
 A complete MARSS model that describes a state process ($\mathbf{X}$) assessed via an observation process ($\mathbf{Y}$) is defined as: \begin{equation}
 \begin{gathered}
-\mathbf{x}_t = \mathbf{B}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}_{t}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
-\mathbf{y}_t = \mathbf{Z}\mathbf{x}_t+\mathbf{a}+\mathbf{D}_{t}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
+\mathbf{x}_t = \mathbf{B}\mathbf{x}_{t-1}+\mathbf{u}+\mathbf{C}\mathbf{c}_{t}+\mathbf{w}_t \text{ where } \mathbf{w}_t \sim \ \text{MVN}(0,\mathbf{Q}) \\
+\mathbf{y}_t = \mathbf{Z}\mathbf{x}_t+\mathbf{a}+\mathbf{D}\mathbf{d}_{t}+\mathbf{v}_t \text{ where } \mathbf{v}_t \sim \ \text{MVN}(0,\mathbf{R}) \\
 \mathbf{x}_1 \sim\ \text{MVN}(\pi,\Lambda) \text{ or } \mathbf{x}_0 \sim\ \text{MVN}(\pi,\Lambda)
 \end{gathered}
 \end{equation}
@@ -127,6 +130,9 @@ Y=
 \end{bmatrix}
 \end{equation}
 ```
+
+- $\pi$ is either a parameter or a fixed prior. It is a $m \times 1$ matrix.
+
 Note that:
 
 -   considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can be passed as `NA`.
@@ -135,11 +141,12 @@ Note that:
 The state process ($\mathbf{X}$) is described by:
 
 -   $\mathbf{x}_t$ is a $m \times 1$ vector of unknown abundances of the $m$ species at time $t$.
--   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate Jacobian properties.
+-   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate 
+Jacobian properties. The estimated $\beta_{(i,j)}$ reflect the effect of the abundances of species in the column (species j) on the growth rate of the species in the row (species i).
 -   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
--   $\mathbf{C}_t$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
+-   $\mathbf{C}$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
 -   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
--   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the stochasticity of the system.
+-   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the environmental stochasticity of the system.
 
 Thus, in matrix formulation:
 
@@ -186,7 +193,7 @@ w_{m}
 \end{equation}
 ```
 
-The $w_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}_t$ (a $m \times m$ matrix).
+The $w_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}$ (a $m \times m$ matrix).
 \begin{equation}
 \mathbf{w}_t \sim \,\text{MVN}
 \begin{pmatrix}
@@ -222,11 +229,12 @@ The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
 The observation process ($\mathbf{Y}$) is described by:
 
 -   $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
--   $\mathbf{Z}_t$ is a $n \times m$ matrix which describes the relationships ($\zeta$) between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
--   $\mathbf{a}$ is a $n \times 1$ vector of fixed values.
--   $\mathbf{D}_t$ is a $n \times q$ matrix of $\delta$ coefficients of each of the $q$ covariates on each of the $n$ observations.
+-   $\mathbf{Z}$ is a $n \times m$ matrix which describes the relationships ($\zeta$) between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
+-   $\mathbf{a}$ is a $n \times 1$ vector of fixed values. It reflects biases that offset observations from process values.
+-   $\mathbf{D}$ is a $n \times q$ matrix of $\delta$ coefficients of each of the $q$ covariates on each of the $n$ observations
+-   $\delta$ is either a parameter or a fixed prior. It is a $m \times m$ variance-covariance matrix.
 -   $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
--   $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix) .
+-   $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}$ (a $n \times n$ matrix) .
 
 In matrix formulation: 
 
@@ -273,7 +281,7 @@ v_{obsn}
 \end{equation}
 ```
 
-The $v_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}_t$ (a $n \times n$ matrix).
+The $v_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{R}$ (a $n \times n$ matrix).
 \begin{equation}
 \mathbf{v}_t \sim \,\text{MVN}
 \begin{pmatrix}
@@ -289,6 +297,8 @@ The $v_{t}$ errors follow a multivariate normal distribution of mean 0, and cova
 The terms $\mathbf{y}_t$, $\mathbf{c}_t$ and $\mathbf{d}_t$ are empirical data that are provided by the user.
 The remaining terms $\mathbf{B}$, $\mathbf{u}$, $\mathbf{C}$, $\mathbf{Q}$, $\mathbf{Z}$, $\mathbf{a}$, $\mathbf{D}$, and $\mathbf{R}$ can be estimated or some of them (e.g. $\mathbf{u}$, $\mathbf{Q}$) can be fixed to certain values based on the assumptions about the system.
 The terms $\mathbf{c}_t$ and $\mathbf{d}_t$ must be given as an input, without any missing values.
+
+**Important note:** The observed abundances are usually log-transformed prior to the analyses to comply with  the multiplicative process.
 
 ## MARSS in estar {#marss-in-estar}
 
@@ -324,7 +334,7 @@ diag(Z_I5) <- 1
           \end{bmatrix}
     \end{equation}\
 -   Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = v$, thus `R = 0`
--   Constant covariates: $C_{t} = C$ and $c_{t} = c = 0$
+-   Constant covariates: $C = C$ and $c_{t} = c = 0$
 -   We assume that the system is at equilibrium, therefore: $U$ = $A$ = 0
 -   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
@@ -334,7 +344,7 @@ Such model is formalized as:
 \begin{equation}
 X = \mathbf{B} \times X_{t-1} + C.0 + 0 + 0 \\
 
-Y =  Z  \times X_t + 0 + D_t.0 + v \\
+Y =  Z  \times X_t + 0 + D.0 + v \\
 \end{equation}
 ```
 
@@ -344,26 +354,27 @@ We here use the mean of species abundances over all replicates:
 
 ```{r collapse=TRUE}
 ## calculate z-scores of abundances
-aquacommz_allscen.ldf <- aquacomm_fgps %>%
-    dplyr::filter(time >= 1 , time <= 28) %>%
-    ungroup() %>%
-    dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr), 
-                     ~MARSS::zscore(.)) %>%
-    dplyr::mutate(across(c(herb, detr_herb, carn, omni, detr),
-                         ~dplyr::na_if(., 0))) %>%
-    tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
-                        names_to = "fgp",
-                        values_to = "abund_z")
+data_zscores <- aquacomm_fgps %>%
+  dplyr::filter(time == 0.14 | (time >= 4 && time <= 28)) %>%
+  dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr),
+                   ~if_else(. == 0, log(. + 0.001), log(.))) %>%
+  ungroup() %>%
+  group_by(., repli) %>%
+  dplyr::mutate_at(vars(herb, detr_herb, carn, omni, detr),
+                   ~MARSS::zscore(.)) %>%
+  tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
+                      names_to = "fgp",
+                      values_to = "abund_z")
 
 ## summarize abunds over replicates
-aquacommz_allscen.summldf <- aquacommz_allscen.ldf %>%
+data_zsumm <- data_zscores %>%
     dplyr::group_by(time, treat, fgp) %>%
     dplyr::summarize(abundz_mu = mean (abund_z),
                      abundz_sd = sd(abund_z)) %>%
     dplyr::ungroup()
 
 ## convert into time-series matrix
-aquacommz_allscen.summmxls <- aquacommz_allscen.summldf %>%
+data_matrix <- data_zsumm %>%
     dplyr::select(time, treat, fgp, abundz_mu) %>%
     split(.$treat) %>%
     purrr::map(~ dplyr::select(., time, fgp, abundz_mu) %>%
@@ -383,7 +394,7 @@ As we want to estimate all interaction strengths, we set `B = "unconstrained"`.
 ### no observation error variance: 0 reps (summarized data), 5 gps
 R_05 <- matrix(list(0), 5, 5)
 
-aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
+data_marss <- data_matrix %>%
     purrr::map(~ MARSS(.,
                 list(B = "unconstrained",
                      U = "zero", A = "zero",
@@ -392,13 +403,13 @@ aquacommz_allscen.marssls <- aquacommz_allscen.summmxls %>%
                      R = R_05,
                      tinitx = 1),
                 method = "BFGS"))
-names(aquacommz_allscen.marssls) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " micro g/L")
+names(data_marss) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " micro g/L")
 ```
 
 We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
-(aquacomm.Bls <- aquacommz_allscen.marssls %>%
+(data_Bs <- data_marss %>%
   purrr::map(~estar::extractB(., 
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
@@ -410,7 +421,7 @@ Finally, having estimated $\mathbf{B}$ we can calculate all the Jacobian propert
 A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied.
 
 ```{r}
-aquacomm.Bls %>%
+data_Bs %>%
   purrr::map(estar::reactivity)
 ```
 
@@ -419,7 +430,7 @@ aquacomm.Bls %>%
 The largest response of the community to the perturbation, it is a measure of the transient behavior of the system.
 
 ```{r}
-aquacomm.Bls %>%
+data_Bs %>%
   purrr::map(estar::max_amp)
 ```
 
@@ -428,7 +439,7 @@ aquacomm.Bls %>%
 Initial resilience is the initial rate of return to equilibrium. The larger its value, the more stable the system, as its “worst case” initial rate of return to equilibrium is faster (Downing et al. 2020).
 
 ```{r}
-aquacomm.Bls %>%
+data_Bs %>%
   purrr::map(estar::init_resil)
 ```
 
@@ -437,7 +448,7 @@ aquacomm.Bls %>%
 The slowest/long-term asymptotic rate of return to equilibrium after a pulse perturbation. Asymptotic resilience can take on positive real numbers. The larger its value, the more stable the system as such communities have a faster long-term return to stable state.
 
 ```{r}
-aquacomm.Bls %>%
+data_Bs %>%
   purrr::map(estar::asympt_resil)
 ```
 
@@ -446,7 +457,7 @@ aquacomm.Bls %>%
 Inverse of the maximal response variance to white noise. The larger its value, the more stable the system as it indicates less variability due to random displacements of the system from the equilibrium.
 
 ```{r}
-aquacomm.Bls %>%
+data_Bs %>%
   map(estar::stoch_var)
 ```
 
@@ -454,7 +465,8 @@ aquacomm.Bls %>%
 
 We conducted the benchmark analysis of the execution time of the different Jacobian properties. The code used for the analysis is available in `performance_analysis.R`.
 
-While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example.
+While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.05 seconds for our example (Fi
+g. 4).
 
 ```{r}
 load("jacobian_performance.rda")
@@ -467,7 +479,7 @@ jacobian_benchmark %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-![Figure 3: Density distribution of execution times of 100 runs of each of the different functions used to calculate Jacobian properties, as demonstrated in this vignette.](figures/jacobian_benchmark.png){width=100%}
+![Figure 4: Density distribution of execution times of 100 runs of each of the different functions used to calculate Jacobian properties, as demonstrated in this vignette.](figures/jacobian_benchmark.png){width=100%}
 
 # References
 
