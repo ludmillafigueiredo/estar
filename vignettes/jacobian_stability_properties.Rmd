@@ -49,11 +49,9 @@ Calculation of the Jacobian stability properties (in the context of the `estar` 
 This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
 In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019]. The Jacobian matrix consists of $m \times m$ entries (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row. (Fig. 2)
 
-![Figure 2: The $B$ matrix that the `estar` Jacobian functions take in as argument is the $m \times m$ Jacobian community matrix (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row](figures/B_matrix.png)
+![Figure 2: The $B$ matrix that the `estar` Jacobian functions take in as argument is the $m \times m$ Jacobian community matrix (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row](figures/B_matrix.png){width=40%}
 
-In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models.
-
-In this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
+In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models. To assist `estar` users, in this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
 To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an aquatic community.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
