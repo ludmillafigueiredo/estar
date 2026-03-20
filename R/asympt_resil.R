@@ -34,7 +34,7 @@
 #'
 #' @export
 asympt_resil <- function(B) {
-  l_dom <- eigen(B, symmetric = TRUE)$values[1]
+  l_dom <- eigen(B)$values[1]
   r_inf <- -log(abs(l_dom))
   return(r_inf)
 }
