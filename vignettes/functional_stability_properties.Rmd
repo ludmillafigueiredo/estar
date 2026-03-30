@@ -53,7 +53,7 @@ production nor respiration. The community is composed of 128 species,
 classified into 5 functional groups: herbivores, detriti-herbivores,
 carnivores, omnivores, and detritivores.
 
-```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = "Figure 1. Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
   aquacomm_resps.logplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
@@ -99,7 +99,7 @@ carnivores, omnivores, and detritivores.
 )
 ```
 
-```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap="Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo=FALSE, message = FALSE, fig.height = 6, fig.width = 8, fig.cap="Figure 2. Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when the insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (
   aquacomm_resps.rawplot <- aquacomm_fgps |>
     tidyr::pivot_longer(
@@ -153,9 +153,9 @@ carnivores, omnivores, and detritivores.
 # Main functions
 
 Examples of each function applied to the example dataset. For the
-functions that require a user-defined time step when were the system has
+functions that require a user-defined time step when the system has
 recovered, we use week 28, when all groups seem to have stabilized their
-growth curve (Fig.1).
+growth curve based on visual inspection (Fig.1).
 
 ## Functional stability
 
@@ -165,8 +165,8 @@ Invariability calculated as the inverse of standard deviation of
 residuals of the linear model that predicts the log response ratio of
 the state variable in the disturbed and baseline systems by time. The
 baseline system in our example dataset is reflected by control ditches,
-to which no pesticide was applied. The time frame is defined by `tb_i`
-and specified in the data frame `d_data` (`aquacomm_resps`, Fig. 2-a).
+to which no pesticide was applied. The time frame is defined by `td_i`
+and specified in the data frame `d_data` (`aquacomm_resps`, Fig. 3-a).
 
 ```{r}
 invariability(
@@ -185,7 +185,7 @@ invariability(
 
 Invariability calculated as the inverse of standard deviation of
 residuals of the linear model fitted to predict the state variable in
-the disturbed system by time (Fig. 2-b).
+the disturbed system by time (Fig. 3-b).
 
 ```{r}
 invariability(
@@ -204,7 +204,7 @@ invariability(
 
 Invariability calculated as the inverse of the coefficient of variation
 of the log response ratio of the state variable in the disturbed and
-baseline systems (Fig. 2-c).
+baseline systems (Fig. 3-c).
 
 ```{r}
 invariability(
@@ -222,7 +222,7 @@ invariability(
 ```
 
 Invariability calculated as the inverse of the coefficient of variation
-of a state variable in the disturbed system (Fig. 2-d).
+of a state variable in the disturbed system (Fig. 3-d).
 
 ```{r}
 invariability(
@@ -239,13 +239,13 @@ invariability(
 )
 ```
 
-```{r invar_schem, echo=FALSE, fig.height = 4, fig.cap="Figure 2: Schematic representation of how functional invariability is calculated by `estar`: $lrr$ and $diff$ refer to the log response ratio and the difference between the state variable in the disturbed system compared to the baseline time-series, $t_d$ is the time of disturbance. a) and b) illustrate the calculation of invariability as the coefficient of variation of the log response ratio and the difference, respectively; c and d) illustrate invariability calculated as the standard deviation of the residuals of the fitted linear model (blue solid line) of the log response ration and difference, respectively, as functions of time.", out.width = '500px'}
+```{r invar_schem, echo=FALSE, fig.height = 4, fig.cap="Figure 3. Schematic representation of how functional invariability is calculated by `estar`: $v$ and $lrr$ refer to the state variable in the disturbed system and the log response ratio of the state variables in the disturbed compared to the baseline time-series, respectively, $t_d$ is the time of disturbance. a) and b) illustrate the calculation of invariability as the coefficient of variation of the log response ratio and the state variable in the disturbed system, respectively; c and d) illustrate invariability calculated as the standard deviation of the residuals of the fitted linear model (grey solid line) of the log response ratio and the state variable in the disturbed system, respectively, as functions of time.", out.width = '500px'}
 knitr::include_graphics("figures/invariability.png")
 ```
 
 ### Resistance
 
-Resistance calculated in relation to an independent baseline time series (`b = "input"`), as the log response ratio (`res_mode = "lrr"`) of the state variable in the disturbed and baseline systems at the first time step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-a).
+Resistance calculated in relation to an independent baseline time series (`b = "input"`), as the log response ratio (`res_mode = "lrr"`) of the state variable in the disturbed and baseline systems at the first time step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 4-a).
 
 ```{r}
 resistance(
@@ -263,7 +263,7 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), as the highest (`res_time = "max"`) log response ratio (`res_mode = "lrr"`) of the state variable in the disturbed and baseline (independent) systems during a given time frame (`res_tf = c(0.14, 28)`, Fig. 3-b).
+Resistance calculated in relation to a baseline time series (`b = "input"`), as the highest (`res_time = "max"`) log response ratio (`res_mode = "lrr"`) of the state variable in the disturbed and baseline (independent) systems during a given time frame (`res_tf = c(0.14, 28)`, Fig. 4-b).
 
 ```{r}
 resistance(
@@ -281,7 +281,7 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), as the difference (`res_mode = "diff"`) at the first time step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 3-c).
+Resistance calculated in relation to a baseline time series (`b = "input"`), as the difference (`res_mode = "diff"`) at the first time step following disturbance (`res_time = "defined"`, `res_t = 1`, Fig. 4-c).
 
 ```{r}
 resistance(
@@ -299,7 +299,7 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a baseline time series (`b = "input"`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time fram, from the first day after to disturbance until week 28, when recovery is assumed to have happened (`res_tf = c(0.14, 28)`, Fig. 3-d).
+Resistance calculated in relation to a baseline time series (`b = "input"`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame, from the first day after disturbance had happened until week 28, when recovery is assumed to have happened (`res_tf = c(0.14, 28)`, Fig. 4-d).
 
 ```{r}
 resistance(
@@ -317,7 +317,7 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame (`res_tf = c(0.14, 28)`, Fig. 3-d).
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "max"`) absolute difference (`res_mode = "diff"`) during a given time frame (`res_tf = c(0.14, 28)`).
 
 ```{r}
 resistance(
@@ -333,7 +333,7 @@ resistance(
 )
 ```
 
-Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`, Fig. 3-d).
+Resistance calculated in relation to a pre-disturbance baseline (`b = "d"`), composed of the state variable values in the three time steps before disturbance (`b_tf = c(-4, -0.14)`), as the highest (`res_time = "defined"`) absolute log-ratio (`res_mode = "lrr"`) at a precise time step (`res_t = 1)`).
 
 ```{r}
 resistance(
@@ -349,13 +349,13 @@ resistance(
 )
 ```
 
-```{r resistance_schem, fig.height = 4, echo=FALSE, fig.cap="Figure 3: Schematic representation of how functional rate of recovery is calculated by `estar`: $lrr$ and $diff$ refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), $v$ to 'state variable', $t_{res}$, is the user-defined time step when resistance is calculated, and $t_{high}$, to the time step of the highest response in relation to the baseline. The four possibilities of calculating resistance (a-d) resistance result from calculating resistance from $lrr$ and $diff$ at time steps $t_{res}$ and $t_{high}$.", out.width = '500px'}
+```{r resistance_schem, fig.height = 4, echo=FALSE, fig.cap="Figure 4. Schematic representation of how functional rate of recovery is calculated by `estar`: $lrr$ and $diff$ refer, respectively, to the log response ratio and to the difference between the state variable in the disturbed system in relation to the baseline value(s), $v$ to 'state variable', $t_{res}$, is the user-defined time step when resistance is calculated, and $t_{high}$, to the time step of the highest response in relation to the baseline. The four possibilities of calculating resistance (a-d) resistance result from calculating resistance from $lrr$ and $diff$ at time steps $t_{res}$ and $t_{high}$.", out.width = '500px'}
 knitr::include_graphics("figures/resistance.png")
 ```
 
 ### Extent of recovery
 
-Extent of recovery calculated as the log response ratio (`response = "lrr"`) of the state variable in the disturbed and baseline independent systems (`b = "input"`), at a user-defined time step whenrecovery is assumed to have happened (`t_rec = 28`, Fig. 4-a).
+Extent of recovery calculated as the log response ratio (`response = "lrr"`) of the state variable in the disturbed and baseline independent systems (`b = "input"`), at a user-defined time step when recovery is assumed to have happened (`t_rec = 28`, Fig. 5-a).
 
 ```{r}
 recovery_extent(
@@ -372,7 +372,7 @@ recovery_extent(
 ) 
 ```
 
-Extent of recovery calculated as the log response ratio (`response = "lrr"`) of the state variable in the disturbed time-series in relation to the state variable pre-disturbance (`b = "d"`), summarized by the mean value (`summ_mode = "mean"` - default, over a period `b_tf = c(-4, 0)`). The extent of recovery is calculated at the point we understand all groups have stabilized (`t_rec = 28`, Fig. 4-a).
+Extent of recovery calculated as the log response ratio (`response = "lrr"`) of the state variable in the disturbed time-series in relation to the state variable pre-disturbance (`b = "d"`), summarized by the mean value (`summ_mode = "mean"` - default, over a period `b_tf = c(-4, 0)`). The extent of recovery is calculated at the point we understand all groups have stabilized (`t_rec = 28`, Fig. 5-a).
 
 ```{r}
 recovery_extent(
@@ -388,7 +388,7 @@ recovery_extent(
 )
 ```
 
-Extent of recovery calculated as the difference (`response = "diff"`) between the state variables in a disturbed time-series and the baseline (`b = "input"`), at the predefined time step (`t_rec = 28`, Fig. 4-b).
+Extent of recovery calculated as the difference (`response = "diff"`) between the state variables in a disturbed time-series and the baseline (`b = "input"`), at the predefined time step (`t_rec = 28`, Fig. 5-b).
 
 ```{r}
 recovery_extent(
@@ -405,13 +405,13 @@ recovery_extent(
 )
 ```
 
-```{r echo=FALSE, fig.height = 4, fig.cap="Figure 4: Schematic representation of how functional extent of recovery is calculated by `estar`. $t_{post}$ is the user-defined timestep when recovery is supposed to have happened. a) $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series and b) $diff$ to the difference between them.", out.width = '500px'}
+```{r echo=FALSE, fig.height = 4, fig.cap="Figure 5. Schematic representation of how functional extent of recovery is calculated by `estar`. $t_{post}$ is the user-defined timestep when recovery is supposed to have happened. a) $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series and b) $diff$ is the difference between them.", out.width = '500px'}
 knitr::include_graphics("figures/extent_recovery.png")
 ```
 
 ### Rate of recovery
 
-Rate of recovery calculated as the slope of the linear model which predicts the log response ratio of the state variable in the disturbed system compared to the baseline (`b = "input`) by time (since one day after disturbance until recovery, `metric_tf = c(0.14, 28)`, Fig. 5-a).
+Rate of recovery calculated as the slope of the linear model which predicts the log response ratio of the state variable in the disturbed system compared to the baseline (`b = "input"`) by time (since one day after disturbance until recovery, `metric_tf = c(0.14, 28)`, Fig. 6-a).
 
 ```{r}
 recovery_rate(
@@ -428,7 +428,7 @@ recovery_rate(
 )
 ```
 
-Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system(`response = "v"`) by time (over a time frame (`metric_tf = c(0.14, 28)`, Fig. 5-b).
+Rate of recovery calculated as the slope of the linear model which predicts the values of the state variable in the disturbed system(`response = "v"`) by time (over a time frame (`metric_tf = c(0.14, 28)`, Fig. 6-b).
 
 ```{r}
 recovery_rate(
@@ -445,19 +445,19 @@ recovery_rate(
 )
 ```
 
-```{r echo=FALSE, fig.height = 4, fig.cap="Figure 5: Schematic representation of how functional rate of recovery is calculated by `estar`: a) $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series, b) $v$ is the state variable. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '500px'}
+```{r echo=FALSE, fig.height = 4, fig.cap="Figure 6. Schematic representation of how functional rate of recovery is calculated by `estar`: a) $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series, b) $v$ is the state variable. The blue solid line identifies the linear model fitted to predict the response from time (along with its equation) and the double-headed arrow identifies the slope, which is the measure of rate of recovery", out.width = '500px'}
 knitr::include_graphics("figures/rate_recovery.png")
 ```
 
 ### Persistence
 
-Proportion of time over which the state variable stays within 1 standard deviation from the mean of the state variable values from an independent baseline (`b = "input"`) since recovery until the end of the experiment (`metric_tf = c(28, 56)`, Fig. 6).
+Proportion of time over which the state variable stays within 1 standard deviation from the mean of the state variable values from an independent baseline (`b = "input"`) over the period specified by the user, often since application of the disturbance and until the end of the experiment (`metric_tf = c(0.14, 56)`, Fig. 7).
 
 ```{r}
 persistence(
   type = "functional",
   b = "input",
-  metric_tf = c(28, 56),
+  metric_tf = c(0.14, 56),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps,
@@ -467,28 +467,28 @@ persistence(
 )
 ```
 
-Proportion of time over which the state variable stays within 1 standard deviation from the mean of the state variable values during a pre-disturbance (`b = "d"`) time period (`b_tf = c(-4, 0.14)`). Persistence is measured after recovery until the end of the experiment (`metric_tf = c(28, 56)`, Fig. 6).
+Proportion of time over which the state variable stays within 1 standard deviation from the mean of the state variable values during a pre-disturbance (`b = "d"`) time period (`b_tf = c(-4, 0.14)`). Persistence is measuredover the period specified by the user, often since application of the disturbance and until the end of the experiment (`metric_tf = c(0.14, 56)`, Fig. 7).
 
 ```{r}
 persistence(
   type = "functional",
   b = "d",
   b_tf = c(-4, 0.14),
-  metric_tf = c(28, 56),
+  metric_tf = c(0.14, 56),
   vd_i = "statvar_db",
   td_i = "time",
   d_data = aquacomm_resps
 )
 ```
 
-```{r echo=FALSE, out.width = '300px', fig.cap="Figure 6: Schematic representation of how functional persistence is calculated by `estar`: $v_b \\pm sd_b$ is the  standard deviation limit around the mean ($v_b$) of the baseline state variable. $t_a$ is the period for which persistence is calculated for, and $t_P$, the period during which the state variable remained inside the limits."}
+```{r echo=FALSE, out.width = '300px', fig.cap="Figure 7. Schematic representation of how functional persistence is calculated by `estar`: $v_b \\pm sd_b$ is the  standard deviation limit around the mean ($v_b$) of the baseline state variable. $t_a$ is the period for which persistence is calculated for, and $t_P$, the period during which the state variable remained inside the limits."}
 
 knitr::include_graphics("figures/persistence.png")
 ```
 
 ### Overall Ecological Vulnerability
 
-Area under the curve of the log response ratio (`response = "lrr"`) between the state variable in the disturbed and baseline scenarios, since shortly after the disturbance (we don't have data from t = 0, the moment of application of the insecticide) until the the end of the observation period (`metric_tf = c(0.14, 56)`).
+Area under the curve of the log response ratio (`response = "lrr"`) between the state variable in the disturbed and baseline scenarios, since shortly after the disturbance - 1 day after (we don't have data from t = 0, the moment of application of the insecticide) until the the end of the observation period (`metric_tf = c(0.14, 56)`).
 
 ```{r}
 oev(
@@ -504,14 +504,14 @@ oev(
 )
 ```
 
-```{r echo=FALSE, out.width = '300px', fig.cap="Figure 7: Schematic representation of the calculation of overall ecological etability in `estar`: $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series, $t_d$ is the time step when disturbance happened. The purple shaded area is the area under the curve calculated by the metric."}
+```{r echo=FALSE, out.width = '300px', fig.cap="Figure 8. Schematic representation of the calculation of overall ecological etability in `estar`: $lrr$ is the log response ratio of the state variable in the disturbed system compared to the baseline time-series, $t_d$ is the time step when disturbance happened. The purple shaded area is the area under the curve calculated by the metric."}
 
 knitr::include_graphics("figures/oev.png")
 ```
 
 ## Compositional stability
 
-The functions for functional stability can be used to calculate the stability of community composition from community compositional data. To do so, the functions call the `vegdist` function (from the `vegan` package), which can be parameterized with the `method` and `binary` arguments. Here, we use the default arguments `method` and `binary`, which means the Bray-Curtis dissimilarity is used.
+The functions for functional stability can be used to calculate the stability of community composition from community compositional data. To do so, the functions call the `vegdist` function (from the `vegan` package), to which we can pass on the required `method` and `binary` arguments. Here, we use the default settings for arguments `method` and `binary`, which means the Bray-Curtis dissimilarity is used.
 
 ```{r}
 # Reformatting the macroinvertebrate community long-format data into 
@@ -598,7 +598,7 @@ recovery_extent(type = "compositional",
 
 ### Persistence
 
-Here, the community is considered to be persistent if it's dissimilarity stays between 0.5 and 0.9 (`low_lim = 0.5, high_lim = 0.9`). We check if the community stayed in this persistence zone after recovery (week 28) until the end of the experiment (week 56, `metric_tf = c(28, 56)`).
+Here, the community is considered to be persistent if it's dissimilarity with the undisturbed, baseline community stays between 0.5 and 0.9 (`low_lim = 0.5, high_lim = 0.9`). We here check if the community stayed in this persistence "zone" after recovery (week 28) until the end of the experiment (week 56, `metric_tf = c(28, 56)`).
 
 ```{r}
 persistence(type = "compositional",
@@ -623,7 +623,7 @@ oev(type = "compositional",
 
 # Performance
 
-We conducted the benchmark analysis of the execution time of the different forms of calculating the temporal metrics. The number attached to the function name in "Function calls" identifies the order in which the function call appears in the vignette. The code used for the analysis is available in `performance_analysis.R`.
+We conducted the benchmark analysis of the execution time of the different forms of calculating the functional stability metrics. The number attached to the function name in "Function calls" identifies the order in which the function call appears in the vignette. The code used for the analysis is available in `performance_analysis.R`.
 
 While the time to run the calls can differ significantly from each other, the execution time did not exceed 0.01 seconds for our example.
 
