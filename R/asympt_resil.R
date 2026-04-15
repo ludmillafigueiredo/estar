@@ -35,6 +35,15 @@
 #' @export
 asympt_resil <- function(B) {
   l_dom <- eigen(B)$values[1]
-  r_inf <- -log(abs(l_dom))
-  return(r_inf)
+
+  tryCatch({
+    if (Re(l_dom) <= 0 | Re(l_dom) >= 1) {
+      stop("Couldn't estimate asymptotic resilience because it falls outside [0,1].")
+    }
+    r_inf <- -log(abs(l_dom))
+    return(r_inf)
+  }, error = function(e) {
+    warning(conditionMessage(e))
+    NA
+  })
 }
