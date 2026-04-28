@@ -43,7 +43,8 @@ asympt_resil <- function(B) {
 
   tryCatch({
     if (Mod(l_dom) <= 0 | Mod(l_dom) >= 1) {
-      stop("Couldn't estimate asymptotic resilience because it falls outside [0,1].")
+      stop("Couldn't estimate asymptotic resilience because Modulus of the dominant
+           eigenvalue falls outside [0,1].")
     }
     r_inf <- -log(Mod(l_dom))
     return(r_inf)
