@@ -46,13 +46,13 @@ Calculation of the Jacobian stability properties (in the context of the `estar` 
 
 ![Figure 1: Jacobian stability properties calculated by `estar`: reactivity ($R_a$), calculated at the first time step following disturbance ($t_{d+1}$); maximal amplification ($A_{max}$); initial resilience ($R_0$); asymptotic resilience (R∞); and intrinsic stochastic invariability ($I_S$). For simplicity, the properties are illustrated as being calculated in relation to a state variable ($v$) disturbed at time $t_d$, but the properties are calculated from the community’s species interactions matrix and not a single state variable.](figures/jacobian_metrics.png){width=400px}
 
-This information is classically summarized in the *species interaction matrix* [also known as $B$ matrix, @novak_characterizing_2016, see Glossary in the main text].
-In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019]. The Jacobian matrix consists of $m \times m$ entries (for $m$ species). Each entry reflects the effect of the population density of the species in the column on the per-capita growth rate of the species in the row. (Fig. 2)
+This information is classically summarized in the *community matrix* [sensu @novak_characterizing_2016, detailed in the Glossary in the main text].
+In community models, this is equivalent to a time-discrete version [@downing_temporal_2020] of the Jacobian matrix composed of the partial derivatives of the dynamical equations describing each species population growth [@dominguez-garcia_unveiling_2019]. The Jacobian matrix consists of $m \times m$ entries (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row. (Fig. 2)
 
-![Figure 2: The $B$ matrix that the Jacobian functions in `estar` take in as argument is the $m \times m$ Jacobian matrix (for $m$ species). Each entry reflects the effect of the population density of the species in the column on the per-capita growth rate of the species in the row](figures/B_matrix.png){width=40%}
+![Figure 2: The $B$ matrix that the `estar` Jacobian functions take in as argument is the $m \times m$ Jacobian community matrix (for $m$ species). Each entry reflects the effect of the population abundance of the species in the column on the population growth rate of the species in the row](figures/B_matrix.png){width=40%}
 
-If time-series data on composition of real-world communities is gathered, then it can be used to estimate interaction strengths in those communities with multivariate autoregressive state-space (MARSS) models. To assist `estar` users, in this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
-To facilitate understanding, we illustrate the definition of a MARSS model in the context of an ecotoxicological study that applied insecticide to an aquatic community.
+In real-world communities, interaction strengths can be estimated with multivariate autoregressive state-space (MARSS) models. To assist `estar` users, in this vignette, we focus on explaining [how a MARSS model works](#intro-marss-model) and how these models are used with the functions provided by the [`estar` package](#marss-in-estar).
+To facilitate understanding, we illustrate the definition of a MARSS model in the context of this application to an aquatic community.
 For a more general and formal definition, refer to the [`MARSS` package documentation](https://nwfsc-timeseries.github.io/MARSS/).
 
 # Overview of demonstration data
@@ -63,7 +63,7 @@ This insecticide was applied at four different concentrations (0.1, 0.9, 6, and 
 Additionally, four replicates were used as control, i.e. an undisturbed systems ('baseline' in `estar` terminology).
 The community is composed of 128 species, classified into 5 functional groups: herbivores, detritiherbivores, carnivores, omnivores, and detritivores (Fig. 3).
 
-```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = " Figure 3: Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chlorpyfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
+```{r echo = FALSE, message = FALSE,  fig.height = 6, fig.width = 8, fig.cap = " Figure 3: Organism mean count (log axis) of the five functional groups over the course of ecotoxicological experiment. The vertical dashed line identifies the time when chloryfiros insecticide was applied (at week 0), and facets represent the different concentrations (micro g/L)."}
 (data_logplot <- aquacomm_fgps |>
   tidyr::pivot_longer(cols = c(herb, detr_herb, carn, omni, detr),
                       names_to = "gp", values_to = "abund") |>
@@ -134,17 +134,17 @@ Y=
 Note that:
 
 -   considering that the observations in $\mathbf{Y}$ refer to processes $\mathbf{X}$, $n \geq m$. Missing values can be passed as `NA`.
--   from $\mathbf{X}$ and $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes. We will address this in the description of the observation process $\mathbf{Y}$.
+-   from $\mathbf{X}$ and $\mathbf{Y}$ alone, it is impossible to trace how observations refer to processes. We will address this in the description of $\mathbf{Y}$.
 
 The state process ($\mathbf{X}$) is described by:
 
 -   $\mathbf{x}_t$ is a $m \times 1$ vector of unknown abundances of the $m$ species at time $t$.
 -   $\mathbf{B}$ is a $m \times m$ matrix of states covariances. This is the matrix of **interactions strengths** ($\beta$) we want to estimate to calculate 
-Jacobian properties. The estimated $\beta_{(i,j)}$ reflect the effect of the abundances of species in the column (species j) on the per-capita growth rate of the species in the row (species i).
--   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. These are the intrinsic rates of increase of abundance for each species/functional group.
+Jacobian properties. The estimated $\beta_{(i,j)}$ reflect the effect of the abundances of species in the column (species j) on the growth rate of the species in the row (species i).
+-   $\mathbf{u}$ is a $m \times 1$ vector of states fixed values. For example, expected abundance values for each functional group.
 -   $\mathbf{C}$ is a $m \times p$ matrix of coefficients ($\gamma$) of each of the $p$ covariates (enviromental conditions) effects on each of the $m$ states (abundances).
 -   $\mathbf{c}_t$ is a $p \times 1$ vector of covariate values. For example, environmental conditions which are expected to affect abundances.
--   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors, which reflects effects of environmental stochasticity on the system.
+-   $\mathbf{w}_t$ is a $m \times 1$ vector of the state ($X$) process errors. These account for the environmental stochasticity of the system.
 
 Thus, in matrix formulation:
 
@@ -191,7 +191,7 @@ w_{m}
 \end{equation}
 ```
 
-The $w_{t}$ errors follow a multivariate normal distribution with mean 0, and covariance $\mathbf{Q}$ (a $m \times m$ matrix).
+The $w_{t}$ errors follow a multivariate normal distribution of mean 0, and covariance $\mathbf{Q}$ (a $m \times m$ matrix).
 \begin{equation}
 \mathbf{w}_t \sim \,\text{MVN}
 \begin{pmatrix}
@@ -226,10 +226,11 @@ The model initial conditions can be specified at $t=0$ ($x_0$) or $t=1$ ($x_1$).
 
 The observation process ($\mathbf{Y}$) is described by:
 
--   $\mathbf{y}_t$ is a $n \times 1$ vector with the number of $n$ observations taken at time $t$.
--   $\mathbf{Z}$ is a $n \times m$ matrix which describes the relationships ($\zeta$) between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples).
+-   $\mathbf{y}_t$ is a $m \times 1$ vector with the number of $n$ observations taken at time $t$.
+-   $\mathbf{Z}$ is a $n \times m$ matrix which describes the relationships ($\zeta$) between hidden states $\mathbf{x}$ (real abundances of functional groups) and the observations $\mathbf{y}$ (samples). $\mathbf{Z}$ can accommodate replicates of observations.
 -   $\mathbf{a}$ is a $n \times 1$ vector of fixed values. It reflects biases that offset observations from process values.
--   $\mathbf{D}$ is a $n \times q$ matrix of $\delta$ coefficients reflecting the effect of each of the $q$ covariates on each of the $n$ observations
+-   $\mathbf{D}$ is a $n \times q$ matrix of $\delta$ coefficients of each of the $q$ covariates on each of the $n$ observations
+-   $\delta$ is either a parameter or a fixed prior. It is a $m \times m$ variance-covariance matrix.
 -   $\mathbf{d}_t$ s a $q \times 1$ vector of covariate values affecting the observation process.
 -   $\mathbf{v}_t$ is a $n \times 1$ vector of observation errors. They follow a multivariate normal distribution with mean 0, and covariance $\mathbf{R}$ (a $n \times n$ matrix) .
 
@@ -304,24 +305,24 @@ Empirical data in this case constitutes time series of population abundances (or
 None of the parameters detailed here have default values in functions that calculate the Jacobian properties.
 The motivation for it is to avoid the indiscriminate use, and thus force the user to take into consideration the implications of the chosen assumptions.
 
-When fitting MARSS models, the user can have up to eight matrices or vectors of parameters estimated (Holmes, Scheuerell, et al., 2024). The species interaction matrix ($\mathbf{B}$) is usually fully estimated, i.e. all interaction strengths are estimated. It is, however, possible to constrain values to specific values (e.g. to 0 when one species is known to not affect the other one) or in relation to each other. We showcase the use of MARSS in a system assumed to be at equilibrium and with zero observational error. These assumptions reflect knowledge about the system. We leave it for the user to define their own assumptions for their systems as these assumptions will affect the estimation of $\mathbf{B}$. Moreover, it is important to point out that the calculation of asymptotic resilience (Downing et al., 2020) implemented in the package requires that process error is zero and covariates are constant.
+When fitting MARSS models, the user can have up to eight matrices or vectors of parameters estimated (Holmes, Scheuerell, et al., 2024). This is true for all other parameters of the model, which refer to the (co-) variances and errors of abundance and observation processes. The species interaction matrix (B) is usually fully estimated, i.e. all interaction strengths are estimated. It is however possible to constrain values to specific values or in relation to each other. We showcase the use of MARSS in a system assumed to be at equilibrium, with zero observational error, zero covariates (e..g. environmental conditions affecting abundances or the observation). These assumptions reflect knowledge about the system, which, in our case we assume to be minimal. However, for that reason, we also leave it for the user to define their own assumptions. They will affect the estimation of B. Moreover, it is important to point out that the calculation of asymptotic resilience (Downing et al., 2020) implemented in the package requires that process error and constant covariates.
 
 Pay attention to careful specification of the parameters for the options. For example, a care should be made when specifying the initial and the final time step of the time series. If the user knows the exact timing when the disturbance took place, then the time series should start right from that time point or one time step (whatever appropriate time step is useful) after.  
 
-For simplicity we present a minimal case of one single observation per state process. However, it can be extended to systems with multiple observations per state process (by appropriate specification of matrix $\mathbf{Z}$).
+We present a minimal case of one single observation per state process and other simplifying assumptions.
 
 ## Minimal case
 
 The calculation of asymptotic resilience (@downing_temporal_2020) that is used in the package requires zero process error and constant covariates. Therefore, our minimal case assumes that:
 
--   Each observation corresponds to one state process ($n = m$), thus $\mathbf{Z}$ = "identity". In our case we have 5 functional groups, therefore $\mathbf{Z}$ corresponds to a $5 \times 5$ identity matrix:
+-   Each observation corresponds to one state process ($y_i = x_i$), thus $\mathbf{Z}$ = "identity". In our case we have 5 functional groups, therefore $\mathbf{Z}$ corresponds to a $5 \times 5$ identity matrix, since $n = m$:
 
 ```{r}
 Z_I5 <- matrix(list(0), 5, 5)
 diag(Z_I5) <- 1
 ```
 
--   All functional groups have the same state processes variance: $w_t = \sigma$ and dynamics of each functional group is not covarying with any other groups due to environmental drivers, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to \begin{equation}
+-   All functional groups have the same state processes variance: $w_t = \sigma$, thus `Q = "diagonal and equal"` (in MARSS terminology), which equates to \begin{equation}
     \begin{bmatrix}
           \sigma & 0 & 0 & 0 & 0 \\
           0 & \sigma & 0 & 0 & 0 \\
@@ -330,8 +331,8 @@ diag(Z_I5) <- 1
           0 & 0 & 0 & 0 & \sigma\\
           \end{bmatrix}
     \end{equation}\
--   Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = 0$, thus `R = 0`
--   No covariates are assumed to affect system dynamics except for insecticide treatment (effect of which we expect to see in matrix $\mathbf{Z}$). Thus, $c_{t} = c = 0$
+-   Observational error is the same for all functional groups and is assumed to be 0 (we assume complete knowledge of the system): $v_t = v$, thus `R = 0`
+-   Constant covariates: $C = C$ and $c_{t} = c = 0$
 -   We assume that the system is at equilibrium, therefore: $U$ = $A$ = 0
 -   $X_0 = X_{t=1}$, which is passed to the `MARSS()` as the argument `tinitx = 1`
 
@@ -339,16 +340,15 @@ Such model is formalized as:
 
 ```{=tex}
 \begin{equation}
-X = \mathbf{B} \times X_{t-1} + 0 + C.0 + w \\
+X = \mathbf{B} \times X_{t-1} + C.0 + 0 + 0 \\
 
-Y =  Z  \times X_t + 0 + D.0 + 0 \\
+Y =  Z  \times X_t + 0 + D.0 + v \\
 \end{equation}
 ```
 
-Thus, our aquatic community data must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of functional group counts under one treatment.
-In this experiment we have two replicates per treatment and four replicates for the control but, for simplicity for this demonstration we are modelling one observation as corresponding to one state processes, we therefore use the mean of functional group abundances over all replicates. Another possibility would be to randomly pick one of the replicates per treatment.
-
-Importantly, the data have to be supplied using a specific chosen time step (e.g. every week, month, year). Missing values for some functional groups at some time steps in observations are allowed (since this is a state-space model, those values will be estimated). In our experiment, during the first month, the community was sampled first every week and then bi-weekly; but after that the sampling was done every four weeks. We therefore have chosen one month (four weeks) as a time step for our analyses - to avoid the need of interpolation. In preparation of the data, we subsample the time steps accordingly.
+Thus, our aquatic commmunity data must be split by the concentration of the pesticide, into matrices $Y_{control}, Y_{0.1}, Y_{0.9}, Y_6, Y_{44}$, each containing the time-series of functional group counts under one treatment.
+We have two replicates per treatment and four replicates for the control but we are modelling one observation as corresponding to one state processes, therefore a choice must be made how to deal with this. One possibility is to randomly pick one of the replicates per treatment. Alternatively, one can choose to average the data over replicates. 
+We here use the mean of species abundances over all replicates:
 
 ```{r collapse=TRUE}
 ## calculate z-scores of abundances
@@ -371,7 +371,7 @@ data_zsumm <- data_zscores %>%
                      abundz_sd = sd(abund_z)) %>%
     dplyr::ungroup()
 
-## convert into time-series matrix per insecticide concentration
+## convert into time-series matrix
 data_matrix <- data_zsumm %>%
     dplyr::select(time, treat, fgp, abundz_mu) %>%
     split(.$treat) %>%
@@ -404,7 +404,7 @@ data_marss <- data_matrix %>%
 names(data_marss) <- paste0("Conc. = ", c("0", "0.1", "0.9", "6", "44" ), " micro g/L")
 ```
 
-We provide the function `estar::extractB()` in `estar` which extracts $\mathbf{B}$ in a matrix form from the fitted MARSS object and names the interacting species/groups
+We provide the function `estar::extractB()` which extracts $\mathbf{B}$ in matrix form from the fitted MARSS object and names the interacting groups
 
 ```{r}
 (data_Bs <- data_marss %>%
@@ -412,11 +412,11 @@ We provide the function `estar::extractB()` in `estar` which extracts $\mathbf{B
                 states_names = c("Herbivores", "DetHerbivores", "Carnivores", "Omnivores", "Detrivores"))))
 ```
 
-Finally, having estimated $\mathbf{B}$, we can calculate all the Jacobian properties :
+Finally, having estimated $\mathbf{B}$ we can calculate all the Jacobian properties :
 
 ## Reactivity
 
-A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied. And, it is more reactive in treatments with higher insecticide concentrations.
+A positive value indicates the system is reactive and the higher its value, the faster the perturbation can grow. The aquatic community in our example seems to be reactive even when no insecticide is applied.
 
 ```{r}
 data_Bs %>%
@@ -425,7 +425,7 @@ data_Bs %>%
 
 ## Maximal amplification
 
-The largest response of the community to the perturbation, it is a measure of the transient behavior of the system. The more the value of maximal amplification deviates from 1 (larger than 1), the more the system departures from its equilibrium. If maximal amplification %~~% 1, then the system is rather stable. In our case maximal amplifications increase for higher insecticide concentrations and are higher for 6 micro g/L compared to 44 micro g/L.
+The largest response of the community to the perturbation, it is a measure of the transient behavior of the system.
 
 ```{r}
 data_Bs %>%
