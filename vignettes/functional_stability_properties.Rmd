@@ -43,11 +43,13 @@ label_intensity <- function(intensity, mu) {
 We illustrate the use of `estar` functions on a dataset from an
 ecotoxicological study about the effects of the chlorpyrifos insecticide
 on a community of aquatic macroinvertebrates [@van_den_brink_effects_1996; @wijngaarden_effects_1996]. The insecticide negatively affects freshwater
-macroinvertebrates, and, to a lesser degree, zooplankton species. This insecticide was applied at four
+macroinvertebrates, and, to a lesser degree, zooplankton species. This 
+insecticide was applied at four
 different concentrations (0.1, 0.9, 6, and 44 microg/ L), with two
 replicates per concentration level. Additionally, four replicates were
 used as control, undisturbed systems ('baseline' in `estar`
-terminology). In response to a pulse disturbance, @van_den_brink_effects_1996 reports decreased and
+terminology). In response to a pulse disturbance, @van_den_brink_effects_1996 
+reports decreased and
 destabilized community diversity, but no effects on gross primary
 production nor respiration. The community is composed of 128 species,
 classified into 5 functional groups: herbivores, detriti-herbivores,
