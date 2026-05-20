@@ -5,17 +5,10 @@
 #' response. The response can be the state variable in a disturbed system, the
 #' log-response ratio or community dissimilarity between the state variable
 #' (or community) in the disturbed and baseline systems.
-#' The baseline can be
-#' \itemize{
-#' \item a value at time \code{t_rec} of the baseline time-series
-#' \code{b_data} (if \code{b = "input"}).
-#' \item pre-disturbance values of the state variable in the disturbed system
-#' over a period defined by \code{b_tf} (if \code{b = "d"}). In that case,
-#' the state variable is summarized as the mean or median (\code{summ_mode}).
-#' }
 #'
 #' @param summ_mode A string, stating whether the baseline should be summarized
-#' as the mean (\code{summ_mode = "mean"}) or the median
+#' as the mean (\code{summ_mode = "mean"}) or the median. This (single)
+#' summary value will be used as a constant for the duration of the baseline.
 #' (\code{summ_mode = "median"}). Defaults to "mean".
 #' @inheritParams common_params
 #'
@@ -34,6 +27,11 @@
 #' , the faster the response.
 #'
 #' @details
+#'
+#' It is recommended to calculate the slope from the time of highest response
+#' until the point where the user considers response has happened
+#' (see [recovery_extent()])
+#'
 #' For functional stability, the response can the be state variable
 #' itself
 #' ( \eqn{v_d} )
@@ -54,6 +52,15 @@
 #'   \log\!\left(\frac{v_d}{v_p}\right),\;
 #'   \mathrm{dissim}\!\left(\frac{C_d}{C_b}\right)
 #' \right\}
+#' }
+#'
+#' The baseline can be
+#' \itemize{
+#' \item the baseline time-series (\code{b_data}) during \code{metric_tf}
+#'  (if \code{b = "input"}).
+#' \item pre-disturbance values of the state variable in the disturbed system
+#' over a period defined by \code{b_tf} (if \code{b = "d"}). In that case,
+#' the state variable is summarized as the mean or median (\code{summ_mode}).
 #' }
 #'
 #' @examples

@@ -135,7 +135,7 @@ recovery_extent <- function(type,
     } else {
       if (b == "d") {
         if (min(b_tf) == max(b_tf)) {
-          warning("You are using a single point as baseline. Consider an interval, Details.")
+          warning("You are using a single point as baseline. Consider an interval, see Details.")
         }
         b <- summ_d2b(dts_df, b_tf, summ_mode, na_rm)
         extent_df <- dts_df[dts_df$td_i == t_rec, ]
