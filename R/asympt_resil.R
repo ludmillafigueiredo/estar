@@ -35,15 +35,9 @@
 #' @export
 asympt_resil <- function(B) {
   l_dom <- eigen(B)$values[1]
-
-  # Ludmilla: we work with the magnitude (modulus) of lambda. Since lambda can be complex numbers,
-  # for it we do not take abs() but Mod(). So, for complex numbers the modulus =
-  # sqrt(Re(DomEigenvalue)^2 + Im(DomEigenvalue)^2); and this is implemented in a
-  # function Mod()
-
   tryCatch({
     if (Mod(l_dom) <= 0 | Mod(l_dom) >= 1) {
-      stop("Couldn't estimate asymptotic resilience because Modulus of the dominant
+      stop("Couldn't estimate asymptotic resilience because modulus of the dominant
            eigenvalue falls outside [0,1].")
     }
     r_inf <- -log(Mod(l_dom))
